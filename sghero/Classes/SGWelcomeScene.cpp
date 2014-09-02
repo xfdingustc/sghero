@@ -1,14 +1,14 @@
-#include "HelloWorldScene.h"
+#include "SGWelcomeScene.h"
 
 USING_NS_CC;
 
-Scene* HelloWorld::createScene()
+Scene* SGWelcomeScene::createScene()
 {
     // 'scene' is an autorelease object
     auto scene = Scene::create();
     
     // 'layer' is an autorelease object
-    auto layer = HelloWorld::create();
+    auto layer = SGWelcomeScene::create();
 
     // add layer as a child to scene
     scene->addChild(layer);
@@ -18,7 +18,7 @@ Scene* HelloWorld::createScene()
 }
 
 // on "init" you need to initialize your instance
-bool HelloWorld::init()
+bool SGWelcomeScene::init()
 {
     //////////////////////////////
     // 1. super init first
@@ -35,39 +35,35 @@ bool HelloWorld::init()
     //    you may modify it.
 
     // add a "close" icon to exit the progress. it's an autorelease object
-    auto closeItem = MenuItemImage::create(
-                                           "CloseNormal.png",
-                                           "CloseSelected.png",
-                                           CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
+    auto startNewGameItem = MenuItemImage::create(
+                                           "StartNewGame.png",
+                                           "StartNewGame.png",
+                                           CC_CALLBACK_1(SGWelcomeScene::startNewGameCallback, this));
     
-	closeItem->setPosition(Vec2(origin.x + visibleSize.width - closeItem->getContentSize().width/2 ,
-                                origin.y + closeItem->getContentSize().height/2));
+	  startNewGameItem->setPosition(Vec2(visibleSize.width / 2 ,
+                                visibleSize.height / 2 + startNewGameItem->getContentSize().height/2));
+
+    auto endGameItem = MenuItemImage::create(
+      "EndGame.png",
+      "EndGame.png",
+      CC_CALLBACK_1(SGWelcomeScene::menuCloseCallback, this));
+
+
+    endGameItem->setPosition(Vec2(visibleSize.width / 2 , visibleSize.height / 2 - endGameItem->getContentSize().height/2));
 
     // create menu, it's an autorelease object
-    auto menu = Menu::create(closeItem, NULL);
+    auto menu = Menu::create(startNewGameItem, endGameItem,  NULL);
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
 
-    /////////////////////////////
-    // 3. add your codes below...
 
-    // add a label shows "Hello World"
-    // create and initialize a label
-    
-    auto label = LabelTTF::create("Hello World", "Arial", 24);
-    
-    // position the label on the center of the screen
-    label->setPosition(Vec2(origin.x + visibleSize.width/2,
-                            origin.y + visibleSize.height - label->getContentSize().height));
+    // add "WelcomeScene" splash screen"
+    auto sprite = Sprite::create("WelcomeScene.png");
 
-    // add the label as a child to this layer
-    this->addChild(label, 1);
-
-    // add "HelloWorld" splash screen"
-    auto sprite = Sprite::create("HelloWorld.png");
+    sprite->setAnchorPoint(Vec2(0,0));
 
     // position the sprite on the center of the screen
-    sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
+    sprite->setPosition(Vec2(0,0));
 
     // add the sprite as a child to this layer
     this->addChild(sprite, 0);
@@ -76,7 +72,7 @@ bool HelloWorld::init()
 }
 
 
-void HelloWorld::menuCloseCallback(Ref* pSender)
+void SGWelcomeScene::menuCloseCallback(Ref* pSender)
 {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WP8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
 	MessageBox("You pressed the close button. Windows Store Apps do not implement a close button.","Alert");
@@ -88,4 +84,10 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     exit(0);
 #endif
+}
+
+
+void SGWelcomeScene::startNewGameCallback(Ref* pSender)
+{
+
 }

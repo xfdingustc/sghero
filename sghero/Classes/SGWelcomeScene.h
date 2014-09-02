@@ -1,9 +1,9 @@
-#ifndef __HELLOWORLD_SCENE_H__
-#define __HELLOWORLD_SCENE_H__
+#ifndef __SGWELCOME_SCENE_H__
+#define __SGWELCOME_SCENE_H__
 
 #include "cocos2d.h"
 
-class HelloWorld : public cocos2d::Layer
+class SGWelcomeScene : public cocos2d::Layer
 {
 public:
     // there's no 'id' in cpp, so we recommend returning the class instance pointer
@@ -12,11 +12,15 @@ public:
     // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
     virtual bool init();  
     
+
+    // start new game callback
+    void startNewGameCallback(cocos2d::Ref* pSender);
+
     // a selector callback
     void menuCloseCallback(cocos2d::Ref* pSender);
     
     // implement the "static create()" method manually
-    CREATE_FUNC(HelloWorld);
+    CREATE_FUNC(SGWelcomeScene);
 };
 
 #endif // __HELLOWORLD_SCENE_H__
