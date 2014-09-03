@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding="utf-8"?>
+<Scene>
+	<Section>
+		<InternalInfo title="乱世之奸雄，治世之能臣。" />
+		<Event>
+			<BackgroundImage type="internal" image="MMap-71" />
+			<SoundEffect effect="SE_E_01.WAV" />  
+			<HeroAppear hero="士兵01" x="40" y="5" face="south" action="普通" /> 
+			<HeroMove hero="士兵01" x="40" y="15" face="south" />
+			<HeroAppear hero="曹操" x="40" y="5" face="south" />
+			<HeroAppear hero="徐子将" x="54" y="96" face="north" />
+			<HeroMove hero="士兵01" x="40" y="25" face="south" />
+			<HeroMove hero="曹操" x="40" y="15" face="south" />
+			<HeroMove hero="徐子将"  x="54" y="85" face="north" />
+			<HeroAppear hero="士兵02" x="40" y="5" face="south" />
+			<HeroMove hero="士兵01" x="40" y="45" face="south" />
+			<HeroMove hero="曹操" x="40" y="35" face="south" />
+			<HeroMove hero="士兵02" x="40" y="25" face="south" />
+			<HeroMove hero="徐子将" x="54" y="65" face="north" />
+			<Delay time="3" />
+			<HeroTurn hero="士兵01" face="north" />
+			<Dialog hero="士兵01" content="队长，咱们得快点！"/>
+			<Dialog hero="曹操" content="我知道！" />
+			<HeroMove hero="士兵01" x="40" y="65" face="south" />
+			<HeroMove hero="曹操" x="40" y="50" face="south" />
+			<HeroMove hero="士兵02" x="40" y="40" face="south" />
+			<HeroMove hero="徐子将" x="54" y="50" face="north" />			
+			<Delay time="3" />
+
+			<HeroTurn hero="徐子将" face="west" />
+			<Dialog hero="徐子将" content="请留步！" />
+			<HeroTurn hero="士兵01" face="east" />
+			<Dialog hero="士兵01" content="来者何人？你想阻止官兵吗！" />
+			<Dialog hero="曹操" content="且慢。" />
+
+			<HeroTurn hero="曹操" face="east" />
+			<Dialog hero="曹操" content="老丈找我有事？\n我是官军骑兵队长，\n姓曹名操，字孟德。" />
+			<HeroAction hero="徐子将" action="作揖" />
+			<Dialog hero="徐子将" content="其实，小老儿见您相貌异于常人，\n所以不经意便喊住了您。" />
+			<Dialog hero="士兵01" content="喂，不得对我们队长无礼！" />
+			<HeroTurn hero="曹操" face="south" />
+			<Dialog hero="曹操" content="哎，多嘴！"/>
+			<HeroTurn hero="曹操" face="east" />		
+		<Dialog hero="曹操" content="老丈，你可会看相？"/>
+			<Dialog hero="徐子将" content="是的。" />
+		<Dialog hero="曹操" content="这倒有意思！\n不知我面相如何？"/>
+			<Dialog hero="徐子将" content="阁下乃治世之能臣，\n不过将来世人会称你作奸雄的。" />
+			<Dialog hero="士兵01" content="你，你说什么？" />
+			<Dialog hero="曹操" content="慢着。" />
+			<Dialog hero="曹操" content="老丈，你是说天将大乱吗？"/>
+			<Dialog hero="徐子将" content="哈哈，小老儿可没这么说。" />
+			<Dialog hero="曹操" content="老丈不必隐瞒了。\n不过，奸雄这话……。" />
+						<!--		-->
+			<SoundEffect effect="SE_E_01.WAV" />  
+			<Delay time="3" />
+			<SoundTrack track="Track13" />
+			<Delay time="3" />
+		</Event>
+	</Section>
+
+</Scene>

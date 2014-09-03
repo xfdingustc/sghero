@@ -1,4 +1,5 @@
 #include "SGWelcomeScene.h"
+#include "SGDramaScene.h"
 
 USING_NS_CC;
 
@@ -89,5 +90,6 @@ void SGWelcomeScene::menuCloseCallback(Ref* pSender)
 
 void SGWelcomeScene::startNewGameCallback(Ref* pSender)
 {
-
+  auto drama_scene = SGDramaScene::createScene();
+  Director::sharedDirector()->replaceScene(drama_scene);
 }
