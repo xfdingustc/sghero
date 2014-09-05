@@ -3,12 +3,12 @@
 	<Section>
 		<InternalInfo title="乱世之奸雄，治世之能臣。" />
 		<Event>
-			<BackgroundImage type="internal" image="MMap-71" />
-			<SoundEffect effect="SE_E_01.WAV" />  
+			<BackgroundImage type="internal" image="Mmaps/71.jpg" />
+			<SoundEffect effect="SoundEffects/SE_e_01.wav" />  
 			<HeroAppear hero="士兵01" x="40" y="5" face="south" action="普通" /> 
-			<HeroMove hero="士兵01" x="40" y="15" face="south" />
-			<HeroAppear hero="曹操" x="40" y="5" face="south" />
-			<HeroAppear hero="徐子将" x="54" y="96" face="north" />
+			<!--<HeroMove hero="士兵01" x="40" y="15" face="south" /> -->
+			<HeroAppear hero="曹操" x="40" y="15" face="south" />
+			<HeroAppear hero="徐子将" x="40" y="25" face="north" />
 			<HeroMove hero="士兵01" x="40" y="25" face="south" />
 			<HeroMove hero="曹操" x="40" y="15" face="south" />
 			<HeroMove hero="徐子将"  x="54" y="85" face="north" />

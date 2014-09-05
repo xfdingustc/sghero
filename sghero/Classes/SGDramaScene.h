@@ -14,9 +14,15 @@ public:
   CREATE_FUNC(SGDramaScene);
   virtual bool init(); 
 
+  void update(float dt);
+
 private:
   bool parseDramaSceneXmlFile(const char* file);
   bool parseDrameSceneEvents(tinyxml2::XMLElement* event);
+
+  std::list<tinyxml2::XMLElement*> event_list;
+
+  Vec2 convertCoordinate(Vec2 origin);
 };
 
 #endif

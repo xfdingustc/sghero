@@ -1,6 +1,6 @@
 #include "AppDelegate.h"
 #include "SGWelcomeScene.h"
-#include "GlobalSettings.h"
+#include "SGGlobalSettings.h"
 
 USING_NS_CC;
 

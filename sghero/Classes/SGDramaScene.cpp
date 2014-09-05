@@ -1,9 +1,10 @@
 
 #include "SGDramaScene.h"
-
+#include "SGDramaSceneHero.h"
+#include "SimpleAudioEngine.h"
 
 USING_NS_CC;
-
+using namespace CocosDenshion;
 
 Scene* SGDramaScene::createScene()
 {
@@ -30,6 +31,7 @@ bool SGDramaScene::init()
   }
 
   parseDramaSceneXmlFile("DramaScenes/DramaScene00.xml");
+  scheduleUpdate();
   
   return true;
 }
@@ -56,7 +58,8 @@ bool SGDramaScene::parseDramaSceneXmlFile(const char* file_name)
     while(event) {
       tinyxml2::XMLElement* one_event = event->FirstChildElement();
       while(one_event) {
-        parseDrameSceneEvents(one_event);
+        //parseDrameSceneEvents(one_event);
+        event_list.push_back(one_event);
         one_event = one_event->NextSiblingElement();
       }
       event = event->NextSiblingElement();
@@ -73,10 +76,54 @@ bool SGDramaScene::parseDrameSceneEvents(tinyxml2::XMLElement* event)
   const char* name = event->Name();
   CCLOG("event name = %s", name);
 
-  if(!strcmp(name, "HeroAppear")) {
+  if (!strcmp(name, "BackgroundImage")) {
+    const char* map_name = event->Attribute("image");
+    auto bg_image = Sprite::create(map_name);
+    bg_image->setAnchorPoint(Vec2(0,0));
+    bg_image->setPosition(Vec2::ZERO);
+    this->addChild(bg_image);
+
+  } else if (!strcmp(name, "HeroAppear")) {
     //const tinyxml2::XMLAttribute* attribute = event->Attribute("hero");
     const char* hero_name = event->Attribute("hero");
     CCLOG("hero name = %s", hero_name);
   } 
   return true;
+}
+
+void SGDramaScene::update(float dt)
+{
+  tinyxml2::XMLElement* event = event_list.front();
+  const char* name = event->Name();
+  if (!strcmp(name, "BackgroundImage")) {
+    const char* map_name = event->Attribute("image");
+    auto bg_image = Sprite::create(map_name);
+    bg_image->setAnchorPoint(Vec2(0,0));
+    bg_image->setPosition(Vec2::ZERO);
+    this->addChild(bg_image);
+    event_list.pop_front();
+  } else if (!strcmp(name, "SoundEffect")) {
+    const char* sound_effect = event->Attribute("effect");
+    SimpleAudioEngine::sharedEngine()->playEffect(sound_effect);
+    event_list.pop_front();
+  } else if (!strcmp(name, "HeroAppear")) {
+    const char* hero_name = event->Attribute("hero");
+    int x = atoi(event->Attribute("x"));
+    int y = atoi(event->Attribute("y"));
+    SGDramaSceneHero* hero = SGDramaSceneHero::create(hero_name);
+    hero->setAnchorPoint(Vec2(1.0f, 1.0f));
+
+    hero->setPosition(convertCoordinate(Vec2(x,y)));
+    this->addChild(hero);
+    event_list.pop_front();
+  }
+}
+
+Vec2 SGDramaScene::convertCoordinate(Vec2 origin)
+{
+  Vec2 new_pos;
+  Size visibleSize = Director::getInstance()->getVisibleSize();
+  new_pos.x = visibleSize.width - (origin.x - 35) * 38.4f;
+  new_pos.y = visibleSize.height - (origin.y - 5) * 28.8f;
+  return new_pos;
 }
