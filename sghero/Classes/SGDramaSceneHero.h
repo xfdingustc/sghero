@@ -9,7 +9,14 @@ class SGDramaSceneHero : public Sprite
 public:
   static SGDramaSceneHero* create(const char* hero_name);
 
+  void moveTo(Vec2 target_pos);
+
   bool init(const char* hero_name);
+
+  bool initActions();
+
+  void actionFinished();
+  Animate* animate;
 };
 
 #endif

@@ -2,6 +2,7 @@
 #include "SGDramaScene.h"
 #include "SGDramaSceneHero.h"
 #include "SimpleAudioEngine.h"
+#include "xxhash/xxhash.h"
 
 USING_NS_CC;
 using namespace CocosDenshion;
@@ -93,7 +94,12 @@ bool SGDramaScene::parseDrameSceneEvents(tinyxml2::XMLElement* event)
 
 void SGDramaScene::update(float dt)
 {
+  // TODO: no event list, we need move to the next scene
+  if (event_list.size() == 0) {
+    return ;
+  } 
   tinyxml2::XMLElement* event = event_list.front();
+
   const char* name = event->Name();
   if (!strcmp(name, "BackgroundImage")) {
     const char* map_name = event->Attribute("image");
@@ -107,23 +113,40 @@ void SGDramaScene::update(float dt)
     SimpleAudioEngine::sharedEngine()->playEffect(sound_effect);
     event_list.pop_front();
   } else if (!strcmp(name, "HeroAppear")) {
-    const char* hero_name = event->Attribute("hero");
+    std::string hero_name = event->Attribute("hero");
     int x = atoi(event->Attribute("x"));
     int y = atoi(event->Attribute("y"));
-    SGDramaSceneHero* hero = SGDramaSceneHero::create(hero_name);
+    SGDramaSceneHero* hero = SGDramaSceneHero::create(hero_name.c_str());
     hero->setAnchorPoint(Vec2(1.0f, 1.0f));
-
     hero->setPosition(convertCoordinate(Vec2(x,y)));
     this->addChild(hero);
     event_list.pop_front();
+  } else if (!strcmp(name, "HeroMove")) {
+	  std::string hero_name = event->Attribute("hero");
+	  int target_x = atoi(event->Attribute("x"));
+	  int target_y = atoi(event->Attribute("y"));
+    SGDramaSceneHero* hero = (SGDramaSceneHero*)this->getChildByName(hero_name.c_str());
+    if (hero) {
+      hero->moveTo(convertCoordinate(Vec2(target_x,target_x)));
+    }
+
+	  event_list.pop_front();
   }
 }
 
 Vec2 SGDramaScene::convertCoordinate(Vec2 origin)
 {
   Vec2 new_pos;
-  Size visibleSize = Director::getInstance()->getVisibleSize();
-  new_pos.x = visibleSize.width - (origin.x - 35) * 38.4f;
-  new_pos.y = visibleSize.height - (origin.y - 5) * 28.8f;
+  
+  int zero_x = 54;
+  int zero_y = 95;
+
+  float sina = 0.53f;
+  float cosa = 0.848f;
+
+  int scale = 13;
+
+  new_pos.x = ((origin.x - zero_x) * sina - (origin.y - zero_y) * cosa) * scale;
+  new_pos.y = ((zero_x - origin.x) * cosa + (zero_y - origin.y) * sina) * scale;
   return new_pos;
 }
