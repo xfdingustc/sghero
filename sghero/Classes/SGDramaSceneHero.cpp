@@ -70,8 +70,6 @@ void SGDramaSceneHero::moveTo(Vec2 target_pos)
   FiniteTimeAction *actionMove = MoveTo::create(actualDuration, target_pos);
   CallFunc * funcall= CallFunc::create(this, callfunc_selector(SGDramaSceneHero::actionFinished));
   FiniteTimeAction* moveWithCallback = Sequence::create(actionMove, funcall, NULL);
-
-  //this->runAction(actionMove);
   Repeat* walk = Repeat::create(animate, 300);
     
   Spawn * walk_south = Spawn::create(walk, moveWithCallback, NULL);
@@ -82,5 +80,4 @@ void SGDramaSceneHero::moveTo(Vec2 target_pos)
 void SGDramaSceneHero::actionFinished()
 {
   this->stopAllActions();
-  CCLOG("Action finished");
 }

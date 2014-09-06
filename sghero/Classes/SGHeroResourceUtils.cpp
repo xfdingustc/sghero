@@ -51,7 +51,11 @@ void SGHeroResourceUtils::init()
 
 SGHeroResourceUtils::SGHeroResourceObject* SGHeroResourceUtils::getHeroResObj(std::string name)
 {
-  HERO_MAP_TYPE::iterator it;
-  it = heroes_map.find(name);
-  return it->second;
+  HERO_MAP_TYPE::iterator iter;
+  iter = heroes_map.find(name);
+  if (iter != heroes_map.end()) {
+     return iter->second;
+  }
+  CCLOG("Cannot found resouce info for hero %s", name.c_str());
+  return NULL;
 }

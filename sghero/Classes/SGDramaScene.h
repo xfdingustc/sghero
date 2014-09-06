@@ -23,6 +23,8 @@ private:
   std::list<tinyxml2::XMLElement*> event_list;
 
   Vec2 convertCoordinate(Vec2 origin);
+
+  void startSceneScript(float dt);
 };
 
 #endif

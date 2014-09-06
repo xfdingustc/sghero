@@ -7,19 +7,21 @@
 			<SoundEffect effect="SoundEffects/SE_e_01.wav" />  
 			<HeroAppear hero="士兵01" x="40" y="5" face="south" action="普通" /> 
 			<HeroMove hero="士兵01" x="40" y="15" face="south" /> 
-			<HeroAppear hero="曹操" x="40" y="15" face="south" />
+			<HeroAppear hero="曹操" x="40" y="5" face="south" />
 			<HeroAppear hero="徐子将" x="54" y="95" face="north" />
 
 			<HeroMove hero="士兵01" x="40" y="25" face="south" />
 			<HeroMove hero="曹操" x="40" y="15" face="south" />
 			<HeroMove hero="徐子将"  x="54" y="85" face="north" />
-									<!---
+
 			<HeroAppear hero="士兵02" x="40" y="5" face="south" />
 			<HeroMove hero="士兵01" x="40" y="45" face="south" />
 			<HeroMove hero="曹操" x="40" y="35" face="south" />
 			<HeroMove hero="士兵02" x="40" y="25" face="south" />
 			<HeroMove hero="徐子将" x="54" y="65" face="north" />
+												
 			<Delay time="3" />
+			<!---
 			<HeroTurn hero="士兵01" face="north" />
 			<Dialog hero="士兵01" content="队长，咱们得快点！"/>
 			<Dialog hero="曹操" content="我知道！" />
