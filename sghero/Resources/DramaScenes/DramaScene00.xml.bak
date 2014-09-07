@@ -21,15 +21,17 @@
 			<HeroMove hero="徐子将" x="54" y="65" face="north" />
 												
 			<Delay time="3" />
-			<!---
+
 			<HeroTurn hero="士兵01" face="north" />
 			<Dialog hero="士兵01" content="队长，咱们得快点！"/>
+
 			<Dialog hero="曹操" content="我知道！" />
 			<HeroMove hero="士兵01" x="40" y="65" face="south" />
 			<HeroMove hero="曹操" x="40" y="50" face="south" />
 			<HeroMove hero="士兵02" x="40" y="40" face="south" />
 			<HeroMove hero="徐子将" x="54" y="50" face="north" />			
 			<Delay time="3" />
+									<!---
 			<HeroTurn hero="徐子将" face="west" />
 			<Dialog hero="徐子将" content="请留步！" />
 			<HeroTurn hero="士兵01" face="east" />

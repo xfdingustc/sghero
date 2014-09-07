@@ -1,4 +1,5 @@
 #include "SGDramaSceneHero.h"
+#include "SGDramaSceneHeroSpeakScene.h"
 #include "SGHeroResourceUtils.h"
 
 USING_NS_CC;
@@ -19,6 +20,10 @@ SGDramaSceneHero* SGDramaSceneHero::create(const char* hero_name)
 
 bool SGDramaSceneHero::init(const char* hero_name)
 {
+  if (!Sprite::init()) {
+    return false;
+  }
+
   SGHeroResourceUtils* utils = SGHeroResourceUtils::getInstance();
   SGHeroResourceUtils::SGHeroResourceObject* hero_res_obj = utils->getHeroResObj(hero_name);
 
@@ -80,4 +85,10 @@ void SGDramaSceneHero::moveTo(Vec2 target_pos)
 void SGDramaSceneHero::actionFinished()
 {
   this->stopAllActions();
+}
+
+void SGDramaSceneHero::speak(const char* content)
+{
+  Scene* scene = SGDramaSceneHeroSpeakScene::creatScene();
+  Director::getInstance()->pushScene(scene);
 }

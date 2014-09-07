@@ -145,6 +145,11 @@ void SGDramaScene::update(float dt)
     std::string hero_name = event->Attribute("hero");
     std::string speak = event->Attribute("content");
     CCLOG("%s said: %s", hero_name.c_str(), speak.c_str());
+    SGDramaSceneHero* hero = (SGDramaSceneHero*)this->getChildByName(hero_name.c_str());
+    if (hero) {
+
+      hero->speak(speak.c_str());
+    }
   }
   
   
