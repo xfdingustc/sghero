@@ -55,11 +55,11 @@
 			<Dialog hero="曹操" content="老丈，你是说天将大乱吗？"/>
 			<Dialog hero="徐子将" content="哈哈，小老儿可没这么说。" />
 			<Dialog hero="曹操" content="老丈不必隐瞒了。\n不过，奸雄这话……。" />
-												<!---
-			<SoundEffect effect="SE_E_01.WAV" />  
+			<SoundEffect effect="SoundEffects/SE_e_01.wav" />  
 			<Delay time="3" />
-			<SoundTrack track="Track13" />
+			<SoundTrack track="SoundTrack/Track13.mp3" />
 			<Delay time="3" />
+			<!---
 			-->
 		</Event>
 	</Section>

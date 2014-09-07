@@ -110,7 +110,7 @@ void SGDramaScene::update(float dt)
 
   } else if (!strcmp(name, "SoundEffect")) {
     const char* sound_effect = event->Attribute("effect");
-    SimpleAudioEngine::sharedEngine()->playEffect(sound_effect, true);
+    SimpleAudioEngine::getInstance()->playEffect(sound_effect, true);
 
   } else if (!strcmp(name, "HeroAppear")) {
     std::string hero_name = event->Attribute("hero");
@@ -163,6 +163,9 @@ void SGDramaScene::update(float dt)
 
       hero->speak(speak.c_str());
     }
+  } else if (!strcmp(name, "SoundTrack")) {
+    std::string track = event->Attribute("track");
+    SimpleAudioEngine::getInstance()->playBackgroundMusic(track.c_str());
   }
   
   
