@@ -1,4 +1,5 @@
 <?xml version='1.0' encoding="utf-8"?>
+<![CDATA[\n]]>
 <Scene>
 	<Section>
 		<InternalInfo title="乱世之奸雄，治世之能臣。" />
@@ -31,14 +32,14 @@
 			<HeroMove hero="士兵02" x="40" y="40" face="south" />
 			<HeroMove hero="徐子将" x="54" y="50" face="north" />			
 			<Delay time="3" />
-									<!---
+
 			<HeroTurn hero="徐子将" face="west" />
 			<Dialog hero="徐子将" content="请留步！" />
 			<HeroTurn hero="士兵01" face="east" />
 			<Dialog hero="士兵01" content="来者何人？你想阻止官兵吗！" />
 			<Dialog hero="曹操" content="且慢。" />
 			<HeroTurn hero="曹操" face="east" />
-			<Dialog hero="曹操" content="老丈找我有事？\n我是官军骑兵队长，\n姓曹名操，字孟德。" />
+			<Dialog hero="曹操" content="老丈找我有事？ \n 我是官军骑兵队长， \n 姓曹名操，字孟德。" />
 			<HeroAction hero="徐子将" action="作揖" />
 			<Dialog hero="徐子将" content="其实，小老儿见您相貌异于常人，\n所以不经意便喊住了您。" />
 			<Dialog hero="士兵01" content="喂，不得对我们队长无礼！" />
@@ -54,6 +55,7 @@
 			<Dialog hero="曹操" content="老丈，你是说天将大乱吗？"/>
 			<Dialog hero="徐子将" content="哈哈，小老儿可没这么说。" />
 			<Dialog hero="曹操" content="老丈不必隐瞒了。\n不过，奸雄这话……。" />
+												<!---
 			<SoundEffect effect="SE_E_01.WAV" />  
 			<Delay time="3" />
 			<SoundTrack track="Track13" />

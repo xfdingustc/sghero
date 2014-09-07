@@ -39,6 +39,7 @@ void SGHeroResourceUtils::init()
         if (val.HasMember("name")) {
           SGHeroResourceObject* new_hero = new SGHeroResourceObject;
           new_hero->name = val["name"].GetString();
+          new_hero->face = val["face"].GetString();
           new_hero->drama_scene_south = val["south"].GetString();
           new_hero->drama_scene_north = val["north"].GetString();
           heroes_map.insert(HERO_MAP_TYPE::value_type(new_hero->name, new_hero));

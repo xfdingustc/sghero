@@ -144,6 +144,19 @@ void SGDramaScene::update(float dt)
   } else if (!strcmp(name, "Dialog")) {
     std::string hero_name = event->Attribute("hero");
     std::string speak = event->Attribute("content");
+
+    // replace "\\n" to "\n"
+    std::string::size_type pos = 0;
+    std::string src_str = "\\n";
+    std::string des_str = "\n";
+    std::string::size_type srcLen = src_str.size();  
+    std::string::size_type desLen = src_str.size();  
+    while( (pos=speak.find(src_str, pos)) != std::string::npos )
+    {
+      speak.replace( pos, srcLen, des_str );
+      pos += desLen;
+    }
+
     CCLOG("%s said: %s", hero_name.c_str(), speak.c_str());
     SGDramaSceneHero* hero = (SGDramaSceneHero*)this->getChildByName(hero_name.c_str());
     if (hero) {

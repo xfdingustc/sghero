@@ -1,9 +1,9 @@
 {
     "Resource":
     [
-	{"name": "曹操", "south": "DramaSceneObjects/caocao_south.png", "north": "caocao_north.png"},
-	{"name": "徐子将", "south": "DramaSceneObjects/xuzijiang_south.png", "north": "xuzijiang_north.png"},
-	{"name": "士兵01", "south": "DramaSceneObjects/shibing01_south.png", "north": "shibing01_north.png"},
-	{"name": "士兵02", "south": "DramaSceneObjects/shibing02_south.png", "north": "shibing02_north.png"},
+	{"name": "曹操", "face": "HeroFaces/caocao.png", "south": "DramaSceneObjects/caocao_south.png", "north": "caocao_north.png"},
+	{"name": "徐子将", "face": "HeroFaces/xuzijiang.png", "south": "DramaSceneObjects/xuzijiang_south.png", "north": "xuzijiang_north.png"},
+	{"name": "士兵01", "face": "HeroFaces/shibing.png", "south": "DramaSceneObjects/shibing01_south.png", "north": "shibing01_north.png"},
+	{"name": "士兵02", "face": "HeroFaces/shibing.png", "south": "DramaSceneObjects/shibing02_south.png", "north": "shibing02_north.png"}
     ]
 }

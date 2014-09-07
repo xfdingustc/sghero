@@ -89,6 +89,6 @@ void SGDramaSceneHero::actionFinished()
 
 void SGDramaSceneHero::speak(const char* content)
 {
-  Scene* scene = SGDramaSceneHeroSpeakScene::creatScene();
+  Scene* scene = SGDramaSceneHeroSpeakScene::creatScene(getName().c_str(), content);
   Director::getInstance()->pushScene(scene);
 }
