@@ -36,6 +36,9 @@
     <ClCompile Include="..\Classes\SGDramaSceneHeroSpeakScene.cpp">
       <Filter>Classes\SGDramaScene</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\SGDramaSceneSelectScene.cpp">
+      <Filter>Classes\SGDramaScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -60,6 +63,9 @@
       <Filter>Classes</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\SGDramaSceneHeroSpeakScene.h">
+      <Filter>Classes\SGDramaScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SGDramaSceneSelectScene.h">
       <Filter>Classes\SGDramaScene</Filter>
     </ClInclude>
   </ItemGroup>

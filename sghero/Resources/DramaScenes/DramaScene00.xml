@@ -59,6 +59,33 @@
 			<Delay time="3" />
 			<SoundTrack track="SoundTrack/Track13.mp3" />
 			<Delay time="3" />
+			<Select hero="曹操" content="正是吾心所愿\n似乎言之过早\n">
+				<Case1>
+					<Ambition change="add" number="10" />
+					<!--- <SoundTrack track="null" /> 
+					<Delay time="3" />
+					<SoundEffect effect="SoundEffects/SE_e_01.wav" />  
+					<Delay time="3" /> --->
+					<HeroAction hero="曹操" action="举手" />
+					<Dialog hero="曹操" content="既然生为男儿，\n乱世奸雄正是吾心所愿。" />
+					<HeroAction hero="曹操" action="普通" />
+					<Dialog hero="徐子将" content="原来如此。其实小老儿不过是胡言乱语。\n还请大人莫怪。。" />
+					<Dialog hero="徐子将" content="那么小老儿就此告辞，祝将军旗开得胜。" />
+					<HeroAction hero="徐子将" action="普通" />
+				</Case1>
+				<Case2>
+					<Ambition change="minus" number="10" />
+					<SoundTrack track="null" />
+					<Delay time="3" />
+					<SoundEffect effect="SoundEffects/SE_e_01.wav" />  
+					<Delay time="3" />
+					<Dialog hero="曹操" content="……奸雄？\n现在就下定论，未免言之过早。" />
+					<HeroAction hero="徐子将" action="作揖" />
+					<Dialog hero="徐子将" content="原来如此。其实小老儿不过是胡言乱语。\n还请大人莫怪。。" />
+					<Dialog hero="徐子将" content="那么小老儿就此告辞，祝将军旗开得胜。" />
+					<HeroAction hero="徐子将" action="普通" />
+				</Case2>
+			</Select>
 			<!---
 			-->
 		</Event>

@@ -37,15 +37,13 @@ Scene* SGDramaSceneHeroSpeakScene::creatScene(const char* hero_name, const char*
   face->setPosition(Vec2(dialog_size.width * 0.1f ,dialog_size.height/2));
   dialog_win->addChild(face);
 
-  // step 3: create dialog content backgound
+  // step 3: create dialog content background
   LayerColor* content_bg_layer = LayerColor::create(Color4B::WHITE, dialog_size.width * 0.75f ,dialog_size.height * 0.6667f);
-  //content_bg_layer->setAnchorPoint(Vec2(0.5f, 0.5f));
   content_bg_layer->setPosition(Vec2(dialog_size.width * 0.2333f ,dialog_size.height * 0.0714f));
-  //content_bg_layer->setPosition(Vec2::ZERO);
   dialog_win->addChild(content_bg_layer);
 
   // step4: create dialog content TTF
-  LabelTTF* content_ttf = LabelTTF::create(content, "Microsoft YaHei", 20);
+  LabelTTF* content_ttf = LabelTTF::create(content, TEXT_FONT_NAME, TEXT_FONT_SIZE);
   content_ttf->setHorizontalAlignment(TextHAlignment::LEFT);
   content_ttf->setColor(Color3B::BLACK);
   content_ttf->setAnchorPoint(Vec2(0.0f, 1.0f));

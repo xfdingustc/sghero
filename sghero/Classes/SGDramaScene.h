@@ -20,11 +20,13 @@ private:
   bool parseDramaSceneXmlFile(const char* file);
   bool parseDrameSceneEvents(tinyxml2::XMLElement* event);
 
-  std::list<tinyxml2::XMLElement*> event_list;
-
-  Vec2 convertCoordinate(Vec2 origin);
-
+  typedef std::list<tinyxml2::XMLElement*> SGDramaSceneEventList;
+  SGDramaSceneEventList __event_list;
   void startSceneScript(float dt);
+  void handleDramaSceneScriptEvent(SGDramaSceneEventList& event_list);
+
+  // coordination convert
+  Vec2 convertCoordinate(Vec2 origin);
 };
 
 #endif

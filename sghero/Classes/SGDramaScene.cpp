@@ -1,6 +1,6 @@
-
 #include "SGDramaScene.h"
 #include "SGDramaSceneHero.h"
+#include "SGDramaSceneSelectScene.h"
 #include "SimpleAudioEngine.h"
 #include "xxhash/xxhash.h"
 
@@ -60,7 +60,7 @@ bool SGDramaScene::parseDramaSceneXmlFile(const char* file_name)
       tinyxml2::XMLElement* one_event = event->FirstChildElement();
       while(one_event) {
         //parseDrameSceneEvents(one_event);
-        event_list.push_back(one_event);
+        __event_list.push_back(one_event);
         one_event = one_event->NextSiblingElement();
       }
       event = event->NextSiblingElement();
@@ -92,13 +92,18 @@ bool SGDramaScene::parseDrameSceneEvents(tinyxml2::XMLElement* event)
   return true;
 }
 
-void SGDramaScene::update(float dt)
+void SGDramaScene::update(float dt) {
+  handleDramaSceneScriptEvent(__event_list);
+}
+
+void SGDramaScene::handleDramaSceneScriptEvent(SGDramaSceneEventList& event_list)
 {
   // TODO: no event list, we need move to the next scene
   if (event_list.size() == 0) {
     return ;
   } 
   tinyxml2::XMLElement* event = event_list.front();
+  event_list.pop_front();
 
   const char* name = event->Name();
   if (!strcmp(name, "BackgroundImage")) {
@@ -137,7 +142,7 @@ void SGDramaScene::update(float dt)
 
 
   } else if (!strcmp(name, "Delay")) {
-    float time = float(atoi(event->Attribute("time")));
+    float time = float(atoi(event->Attribute("time"))) * 0.1f;
     unscheduleUpdate();
 
     scheduleOnce(schedule_selector(SGDramaScene::startSceneScript), time);
@@ -151,8 +156,7 @@ void SGDramaScene::update(float dt)
     std::string des_str = "\n";
     std::string::size_type srcLen = src_str.size();  
     std::string::size_type desLen = src_str.size();  
-    while( (pos=speak.find(src_str, pos)) != std::string::npos )
-    {
+    while ((pos = speak.find(src_str, pos)) != std::string::npos){
       speak.replace( pos, srcLen, des_str );
       pos += desLen;
     }
@@ -166,10 +170,32 @@ void SGDramaScene::update(float dt)
   } else if (!strcmp(name, "SoundTrack")) {
     std::string track = event->Attribute("track");
     SimpleAudioEngine::getInstance()->playBackgroundMusic(track.c_str());
+  } else if (!strcmp(name, "Select")) {
+    std::string hero_name = event->Attribute("hero");
+    std::string content = event->Attribute("content");
+    
+    Scene* select_scene = SGDramaSceneSelectScene::creatScene(hero_name.c_str(), content.c_str());
+    Director::getInstance()->pushScene(select_scene);
+
+    CCLOG("select here");
+    SGDramaSceneEventList sub_event_list;
+    tinyxml2::XMLElement* sub_event = event->FirstChildElement("Case1");
+    tinyxml2::XMLElement* one_sub_event = sub_event->FirstChildElement();
+    while(one_sub_event) {
+      sub_event_list.push_back(one_sub_event);
+      one_sub_event = one_sub_event->NextSiblingElement();
+    }
+
+    SGDramaSceneEventList::reverse_iterator reverse_iter = sub_event_list.rbegin();
+    for (; reverse_iter != sub_event_list.rend(); reverse_iter++) {
+      tinyxml2::XMLElement* one_sub_event = (tinyxml2::XMLElement*)(*reverse_iter);
+      event_list.push_front(one_sub_event);
+    }
+    
   }
   
   
-  event_list.pop_front();
+  
   
 }
 

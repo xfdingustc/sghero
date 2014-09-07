@@ -71,7 +71,7 @@ bool SGDramaSceneHero::initActions()
 
 void SGDramaSceneHero::moveTo(Vec2 target_pos)
 {
-  int actualDuration = 3;
+  int actualDuration = 0.1f;
   FiniteTimeAction *actionMove = MoveTo::create(actualDuration, target_pos);
   CallFunc * funcall= CallFunc::create(this, callfunc_selector(SGDramaSceneHero::actionFinished));
   FiniteTimeAction* moveWithCallback = Sequence::create(actionMove, funcall, NULL);
