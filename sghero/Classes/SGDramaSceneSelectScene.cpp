@@ -4,7 +4,7 @@
 
 USING_NS_CC;
 
-Scene* SGDramaSceneSelectScene::creatScene(const char* hero_name, const char* content)
+Scene* SGDramaSceneSelectScene::creatScene(const char* hero_name, const char* content, int* ret_add)
 {
   Scene* scene = Scene::create();
 
@@ -63,13 +63,13 @@ Scene* SGDramaSceneSelectScene::creatScene(const char* hero_name, const char* co
     switch (menu_size)
     {
     case 1:
-      menu_item1 = MenuItemLabel::create(label);
+      menu_item1 = MenuItemLabel::create(label, CC_CALLBACK_1(SGDramaSceneSelectScene::menuItem1Callback, select_layer));
       break;
     case 2:
-      menu_item2 = MenuItemLabel::create(label);
+      menu_item2 = MenuItemLabel::create(label, CC_CALLBACK_1(SGDramaSceneSelectScene::menuItem2Callback, select_layer));
       break;
     case 3:
-      menu_item3 = MenuItemLabel::create(label);
+      menu_item3 = MenuItemLabel::create(label, CC_CALLBACK_1(SGDramaSceneSelectScene::menuItem3Callback, select_layer));
     default:
       break;
     }
@@ -97,6 +97,7 @@ Scene* SGDramaSceneSelectScene::creatScene(const char* hero_name, const char* co
 
   scene->addChild(select_layer);
 
+  select_layer->__ret = ret_add;
 
 
   return scene;
@@ -110,4 +111,20 @@ bool SGDramaSceneSelectScene::init()
 
   }
   return true;
+}
+
+void SGDramaSceneSelectScene::menuItem1Callback(cocos2d::Ref* pSender)
+{
+  *__ret = 1;
+  Director::getInstance()->popScene();
+}
+void SGDramaSceneSelectScene::menuItem2Callback(cocos2d::Ref* pSender)
+{
+  *__ret = 2;
+  Director::getInstance()->popScene();
+}
+void SGDramaSceneSelectScene::menuItem3Callback(cocos2d::Ref* pSender)
+{
+  *__ret = 3;
+  Director::getInstance()->popScene();
 }

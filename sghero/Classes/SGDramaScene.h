@@ -27,6 +27,9 @@ private:
 
   // coordination convert
   Vec2 convertCoordinate(Vec2 origin);
+
+  bool __has_pending_event;
+  int __ret_value;
 };
 
 #endif

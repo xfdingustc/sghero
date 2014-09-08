@@ -33,7 +33,7 @@ bool SGDramaScene::init()
 
   parseDramaSceneXmlFile("DramaScenes/DramaScene00.xml");
   startSceneScript(0.0f);
-  
+  __has_pending_event = false;
   return true;
 }
 
@@ -103,7 +103,7 @@ void SGDramaScene::handleDramaSceneScriptEvent(SGDramaSceneEventList& event_list
     return ;
   } 
   tinyxml2::XMLElement* event = event_list.front();
-  event_list.pop_front();
+
 
   const char* name = event->Name();
   if (!strcmp(name, "BackgroundImage")) {
@@ -112,11 +112,11 @@ void SGDramaScene::handleDramaSceneScriptEvent(SGDramaSceneEventList& event_list
     bg_image->setAnchorPoint(Vec2(0,0));
     bg_image->setPosition(Vec2::ZERO);
     this->addChild(bg_image);
-
+    event_list.pop_front();
   } else if (!strcmp(name, "SoundEffect")) {
     const char* sound_effect = event->Attribute("effect");
     SimpleAudioEngine::getInstance()->playEffect(sound_effect, true);
-
+    event_list.pop_front();
   } else if (!strcmp(name, "HeroAppear")) {
     std::string hero_name = event->Attribute("hero");
     int x = atoi(event->Attribute("x"));
@@ -125,7 +125,7 @@ void SGDramaScene::handleDramaSceneScriptEvent(SGDramaSceneEventList& event_list
     hero->setAnchorPoint(Vec2(1.0f, 1.0f));
     hero->setPosition(convertCoordinate(Vec2(x,y)));
     this->addChild(hero);
-
+    event_list.pop_front();
   } else if (!strcmp(name, "HeroMove")) {
 
 	  std::string hero_name = event->Attribute("hero");
@@ -139,13 +139,13 @@ void SGDramaScene::handleDramaSceneScriptEvent(SGDramaSceneEventList& event_list
     if (hero) {
       hero->moveTo(convertCoordinate(Vec2(target_x,target_y)));
     }
-
+    event_list.pop_front();
 
   } else if (!strcmp(name, "Delay")) {
     float time = float(atoi(event->Attribute("time"))) * 0.1f;
     unscheduleUpdate();
-
     scheduleOnce(schedule_selector(SGDramaScene::startSceneScript), time);
+    event_list.pop_front();
   } else if (!strcmp(name, "Dialog")) {
     std::string hero_name = event->Attribute("hero");
     std::string speak = event->Attribute("content");
@@ -164,22 +164,43 @@ void SGDramaScene::handleDramaSceneScriptEvent(SGDramaSceneEventList& event_list
     CCLOG("%s said: %s", hero_name.c_str(), speak.c_str());
     SGDramaSceneHero* hero = (SGDramaSceneHero*)this->getChildByName(hero_name.c_str());
     if (hero) {
-
       hero->speak(speak.c_str());
     }
+    event_list.pop_front();
   } else if (!strcmp(name, "SoundTrack")) {
     std::string track = event->Attribute("track");
     SimpleAudioEngine::getInstance()->playBackgroundMusic(track.c_str());
+    event_list.pop_front();
   } else if (!strcmp(name, "Select")) {
     std::string hero_name = event->Attribute("hero");
     std::string content = event->Attribute("content");
     
-    Scene* select_scene = SGDramaSceneSelectScene::creatScene(hero_name.c_str(), content.c_str());
-    Director::getInstance()->pushScene(select_scene);
+    if (!__has_pending_event) {
+      Scene* select_scene = SGDramaSceneSelectScene::creatScene(hero_name.c_str(), content.c_str(), &__ret_value);
+      Director::getInstance()->pushScene(select_scene);
+      __has_pending_event = true;
+      return;
+    }
 
-    CCLOG("select here");
+    CCLOG("select here, ret = %d", __ret_value);
+    std::string case_name;
+    switch (__ret_value)
+    {
+    case 1:
+      case_name = "Case1";
+      break;
+    case 2:
+      case_name = "Case2";
+      break;
+    case 3:
+      case_name = "Case3";
+      break;
+    default:
+      break;
+    }
+    event_list.pop_front();
     SGDramaSceneEventList sub_event_list;
-    tinyxml2::XMLElement* sub_event = event->FirstChildElement("Case1");
+    tinyxml2::XMLElement* sub_event = event->FirstChildElement(case_name.c_str());
     tinyxml2::XMLElement* one_sub_event = sub_event->FirstChildElement();
     while(one_sub_event) {
       sub_event_list.push_back(one_sub_event);
@@ -191,7 +212,10 @@ void SGDramaScene::handleDramaSceneScriptEvent(SGDramaSceneEventList& event_list
       tinyxml2::XMLElement* one_sub_event = (tinyxml2::XMLElement*)(*reverse_iter);
       event_list.push_front(one_sub_event);
     }
+    __has_pending_event = false;
     
+  } else {
+    event_list.pop_front();
   }
   
   
