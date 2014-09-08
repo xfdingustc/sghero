@@ -30,6 +30,9 @@ public:
 
 
 private:
+  Vector<SpriteFrame*> __south_sprite_frames;
+  Vector<SpriteFrame*> __north_sprite_frames;
+
   DIRECTION getDirection(const char* direction);
   DIRECTION __face_direction;
 

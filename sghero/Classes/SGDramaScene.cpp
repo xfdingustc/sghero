@@ -169,7 +169,7 @@ void SGDramaScene::handleDramaSceneScriptEvent(SGDramaSceneEventList& event_list
     std::string action = event->Attribute("action");
     SGDramaSceneHero* hero = (SGDramaSceneHero*)this->getChildByName(hero_name.c_str());
     if (hero) {
-      //hero->doAction(action.c_str());
+      hero->doAction(action.c_str());
     }
     event_list.pop_front();
   } else if (!strcmp(name, "Delay")) {

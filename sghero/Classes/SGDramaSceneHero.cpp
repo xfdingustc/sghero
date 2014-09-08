@@ -41,50 +41,57 @@ bool SGDramaSceneHero::init(const char* hero_name)
   // init hero actions
   // parse face south resource picture
   Texture2D* texture = TextureCache::getInstance()->addImage(hero_res_file_full_path);
-  SpriteFrame* frame0 = SpriteFrame::createWithTexture(texture, Rect(0, 0, HERO_DRAMA_RES_WIDTH, HERO_DRAMA_RES_HEIGHT));
-  std::string frame_name = "face_south";
-  __frame_map[frame_name] = frame0;
-  SpriteFrame* frame1 = SpriteFrame::createWithTexture(texture, Rect(0, HERO_DRAMA_RES_HEIGHT, HERO_DRAMA_RES_WIDTH, HERO_DRAMA_RES_HEIGHT));
-  SpriteFrame* frame2 = SpriteFrame::createWithTexture(texture, Rect(0, HERO_DRAMA_RES_HEIGHT*2, HERO_DRAMA_RES_WIDTH, HERO_DRAMA_RES_HEIGHT));
+  for (int i = 0; i < 20; i++) {
+    SpriteFrame* frame = SpriteFrame::createWithTexture(texture, Rect(0, HERO_DRAMA_RES_HEIGHT * i, HERO_DRAMA_RES_WIDTH, HERO_DRAMA_RES_HEIGHT));
+    frame->retain();
+    __south_sprite_frames.pushBack(frame);
+  }
+   
+  
+  __frame_map["putong_south"] = __south_sprite_frames.at(0);
+  __frame_map["jushou_south"] = __south_sprite_frames.at(5);
+  __frame_map["zuoyi_south"] = __south_sprite_frames.at(8);
+  __frame_map["danshoujuqi_south"] = __south_sprite_frames.at(19);
+
   Vector<SpriteFrame*>* animFrames = new Vector<SpriteFrame*>;
-  animFrames->pushBack(frame0);
-  animFrames->pushBack(frame1);
-  animFrames->pushBack(frame2);
+  animFrames->pushBack(__south_sprite_frames.at(0));
+  animFrames->pushBack(__south_sprite_frames.at(1));
+  animFrames->pushBack(__south_sprite_frames.at(2));
   Animation* animation = Animation::createWithSpriteFrames(*animFrames, 0.2f);
   Animate* animate = Animate::create(animation);
   animate->retain();
   std::string animate_name = "walk_south";
   __animate_map[animate_name] = animate;
 
-  SpriteFrame* frame8 = SpriteFrame::createWithTexture(texture, Rect(0, HERO_DRAMA_RES_HEIGHT*8, HERO_DRAMA_RES_WIDTH, HERO_DRAMA_RES_HEIGHT));
-  frame_name = "zuoyi_south";
-  frame8->retain();
-  __frame_map[frame_name] = frame8;
+  
+
 
   // parse face north resource picture
   hero_res_file = hero_res_obj->drama_scene_north;
   hero_res_file_full_path = FileUtils::getInstance()->fullPathForFilename(hero_res_file);
   Texture2D* north_texture = TextureCache::getInstance()->addImage(hero_res_file_full_path);
-  SpriteFrame* north_frame0 = SpriteFrame::createWithTexture(north_texture, Rect(0, 0, HERO_DRAMA_RES_WIDTH, HERO_DRAMA_RES_HEIGHT));
-  frame_name = "face_north";
-  __frame_map[frame_name] = north_frame0;
-  SpriteFrame* north_frame1 = SpriteFrame::createWithTexture(north_texture, Rect(0, HERO_DRAMA_RES_HEIGHT, HERO_DRAMA_RES_WIDTH, HERO_DRAMA_RES_HEIGHT));
-  SpriteFrame* north_frame2 = SpriteFrame::createWithTexture(north_texture, Rect(0, HERO_DRAMA_RES_HEIGHT*2, HERO_DRAMA_RES_WIDTH, HERO_DRAMA_RES_HEIGHT));
+  for (int i = 0; i < 20; i++) {
+    SpriteFrame* frame = SpriteFrame::createWithTexture(north_texture, Rect(0, HERO_DRAMA_RES_HEIGHT * i, HERO_DRAMA_RES_WIDTH, HERO_DRAMA_RES_HEIGHT));
+    frame->retain();
+    __north_sprite_frames.pushBack(frame);
+  }
+  
+  
+  __frame_map["putong_north"] = __north_sprite_frames.at(0);
+  __frame_map["jushou_north"] = __north_sprite_frames.at(5);
+  __frame_map["zuoyi_north"] = __north_sprite_frames.at(8);
+  __frame_map["danshoujuqi_north"] = __north_sprite_frames.at(19);
+
   Vector<SpriteFrame*>* walk_north_animFrames = new Vector<SpriteFrame*>;
-  walk_north_animFrames->pushBack(north_frame0);
-  walk_north_animFrames->pushBack(north_frame1);
-  walk_north_animFrames->pushBack(north_frame2);
+  walk_north_animFrames->pushBack(__north_sprite_frames.at(0));
+  walk_north_animFrames->pushBack(__north_sprite_frames.at(1));
+  walk_north_animFrames->pushBack(__north_sprite_frames.at(2));
   Animation* walk_north_animation = Animation::createWithSpriteFrames(*walk_north_animFrames, 0.2f);
   Animate* walk_north_animate = Animate::create(walk_north_animation);
   walk_north_animate->retain();
   animate_name = "walk_north";
   __animate_map[animate_name] = walk_north_animate;
-
-  SpriteFrame* north_frame8 = SpriteFrame::createWithTexture(north_texture, Rect(0, HERO_DRAMA_RES_HEIGHT*8, HERO_DRAMA_RES_WIDTH, HERO_DRAMA_RES_HEIGHT));
-  north_frame8->retain();
-  frame_name = "zuoyi_north";
-  __frame_map[frame_name] = north_frame8;
-
+  
   this->setName(hero_name);
 
   return true;
@@ -159,26 +166,20 @@ void SGDramaSceneHero::faceTo(const char* direction)
   {
   case DIRECTION_WEST:
     setFlippedX(true);
-    face_frame_name = "face_north";
     break;
   case DIRECTION_NORTH:
     setFlippedX(false);
-    face_frame_name = "face_north";
     break;
   case DIRECTION_SOUTH:
     setFlippedX(false);
-    face_frame_name = "face_south";
     break;
   case DIRECTION_EAST:
     setFlippedX(true);
-    face_frame_name = "face_south";
     break;
   default:
     break;
   }
-  SpriteFrame* frame = __frame_map[face_frame_name];
-  setSpriteFrame(frame);
-
+  doAction("putong");
 }
 
 void SGDramaSceneHero::actionFinished()
