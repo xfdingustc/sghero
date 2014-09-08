@@ -14,4 +14,5 @@
 
 #define TEXT_FONT_NAME "Microsoft YaHei"
 #define TEXT_FONT_SIZE 20
+#define CHAPTER_TEXT_FONT_SIZE 50
 #endif

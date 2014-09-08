@@ -1,6 +1,7 @@
 #include "SGDramaScene.h"
 #include "SGDramaSceneHero.h"
 #include "SGDramaSceneSelectScene.h"
+#include "SGDramaSceneChapterScene.h"
 #include "SimpleAudioEngine.h"
 #include "xxhash/xxhash.h"
 
@@ -128,6 +129,12 @@ void SGDramaScene::handleDramaSceneScriptEvent(SGDramaSceneEventList& event_list
     bg_image->setAnchorPoint(Vec2(0,0));
     bg_image->setPosition(Vec2::ZERO);
     this->addChild(bg_image);
+    event_list.pop_front();
+  } else if (!strcmp(name, "Chapter")) {
+    std::string chapter = event->Attribute("num");
+    std::string title = event->Attribute("title");
+    Scene* scene = SGDramaSceneChapterScene::createScene(chapter.c_str(), title.c_str());
+    Director::getInstance()->pushScene(scene);
     event_list.pop_front();
   } else if (!strcmp(name, "SoundEffect")) {
     const char* sound_effect = event->Attribute("effect");

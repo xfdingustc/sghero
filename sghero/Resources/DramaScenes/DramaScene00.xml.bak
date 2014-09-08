@@ -92,7 +92,7 @@
 			<Delay time="3" />
 			<HeroAction hero="曹操" action="danshoujuqi" />
 			<Dialog hero="曹操" content="出发！\n赶往激战中的颍川！" />
-			<HeroAction hero="曹操" action="普通" />
+			<HeroAction hero="曹操" action="putong" />
 			<Delay time="3" />
 			<HeroTurn hero="士兵01" face="north" />
 			<Dialog hero="士兵01" content="是！" />
