@@ -145,6 +145,7 @@ void SGDramaScene::handleDramaSceneScriptEvent(SGDramaSceneEventList& event_list
   } else if (!strcmp(name, "HeroMove")) {
 
 	  std::string hero_name = event->Attribute("hero");
+    std::string direction = event->Attribute("face");
 
 	  int target_x = atoi(event->Attribute("x"));
 	  int target_y = atoi(event->Attribute("y"));
@@ -153,12 +154,12 @@ void SGDramaScene::handleDramaSceneScriptEvent(SGDramaSceneEventList& event_list
      
     SGDramaSceneHero* hero = (SGDramaSceneHero*)this->getChildByName(hero_name.c_str());
     if (hero) {
-      hero->moveTo(convertCoordinate(Vec2(target_x,target_y)));
+      hero->moveTo(convertCoordinate(Vec2(target_x,target_y)), direction.c_str());
     }
     event_list.pop_front();
 
   } else if (!strcmp(name, "Delay")) {
-    float time = float(atoi(event->Attribute("time"))) * 0.1f;
+    float time = float(atoi(event->Attribute("time"))) * 0.5f;
     unscheduleUpdate();
     scheduleOnce(schedule_selector(SGDramaScene::startSceneScript), time);
     event_list.pop_front();

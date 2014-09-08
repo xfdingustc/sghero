@@ -6,6 +6,9 @@
 
 #define HERO_RESOURCE_JSON_FILE "HeroRes.json"
 
+#define HERO_DRAMA_RES_WIDTH 48
+#define HERO_DRAMA_RES_HEIGHT 64
+
 #define DIALOG_WINDOW_BACKGROUND "Mark/DialogWindowTexture.png"
 #define SELECT_WINDOW_BACKGROUND "Mark/SelectWindowTexture.png"
 

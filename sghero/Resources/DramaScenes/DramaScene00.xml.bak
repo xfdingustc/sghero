@@ -7,7 +7,9 @@
 			<BackgroundImage type="internal" image="Mmaps/71.jpg" />
 			<SoundEffect effect="SoundEffects/SE_e_01.wav" />  
 			<HeroAppear hero="士兵01" x="40" y="5" face="south" action="普通" /> 
+
 			<HeroMove hero="士兵01" x="40" y="15" face="south" /> 
+
 			<HeroAppear hero="曹操" x="40" y="5" face="south" />
 			<HeroAppear hero="徐子将" x="54" y="95" face="north" />
 
@@ -66,7 +68,7 @@
 					<ValueSet val_name="Val300" val="1" />
 					<Delay time="3" />
 					<SoundEffect effect="SoundEffects/SE_e_01.wav" />  
-					<Delay time="3" /> --->
+					<Delay time="3" /> 
 					<HeroAction hero="曹操" action="举手" />
 					<Dialog hero="曹操" content="既然生为男儿，\n乱世奸雄正是吾心所愿。" />
 					<HeroAction hero="曹操" action="普通" />
@@ -105,6 +107,7 @@
 			<HeroMove hero="士兵02" x="40" y="70" face="south" />
 			<HeroMove hero="徐子将" x="54" y="20" face="north" />	
 			<Delay time="3" />
+			<HeroTurn hero="徐子将" face="south" />
 			<ValueTest val_name="Val300" val="1" >
 				<Dialog hero="徐子将" content="原来自己想当奸雄？\n好好，曹大人……\n您就朝着自己的理想努力吧。" />
 				<Dialog hero="徐子将" content="呵、呵、呵！！" />
@@ -119,6 +122,7 @@
 			<HeroMove hero="徐子将" x="54" y="5" face="north" />			
 			<Delay time="3" />
 			<SoundEffect effect="SoundEffects/SE_e_01.wav" />  
+			--->
 		</Event>
 	</Section>
 

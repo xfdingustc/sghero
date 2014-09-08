@@ -9,7 +9,13 @@ class SGDramaSceneHero : public Sprite
 public:
   static SGDramaSceneHero* create(const char* hero_name);
 
-  void moveTo(Vec2 target_pos);
+  typedef enum {
+    DIRECTION_NORTH,
+    DIRECTION_WEST,
+    DIRECTION_SOUTH,
+    DIRECTION_EAST, 
+  } DIRECTION;
+  void moveTo(Vec2 target_pos, const char* direction);
 
   bool init(const char* hero_name);
 
@@ -18,7 +24,13 @@ public:
   void speak(const char* content);
 
   void actionFinished();
-  Animate* animate;
+  typedef std::map<std::string, Animate*> ANIMATE_MAP;
+  ANIMATE_MAP __animate_map;
+
+
+private:
+  DIRECTION getDirection(const char* direction);
+
 };
 
 #endif
