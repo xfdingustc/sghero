@@ -42,6 +42,8 @@ bool SGDramaSceneHero::init(const char* hero_name)
   // parse face south resource picture
   Texture2D* texture = TextureCache::getInstance()->addImage(hero_res_file_full_path);
   SpriteFrame* frame0 = SpriteFrame::createWithTexture(texture, Rect(0, 0, HERO_DRAMA_RES_WIDTH, HERO_DRAMA_RES_HEIGHT));
+  std::string frame_name = "face_south";
+  __frame_map[frame_name] = frame0;
   SpriteFrame* frame1 = SpriteFrame::createWithTexture(texture, Rect(0, HERO_DRAMA_RES_HEIGHT, HERO_DRAMA_RES_WIDTH, HERO_DRAMA_RES_HEIGHT));
   SpriteFrame* frame2 = SpriteFrame::createWithTexture(texture, Rect(0, HERO_DRAMA_RES_HEIGHT*2, HERO_DRAMA_RES_WIDTH, HERO_DRAMA_RES_HEIGHT));
   Vector<SpriteFrame*>* animFrames = new Vector<SpriteFrame*>;
@@ -59,6 +61,8 @@ bool SGDramaSceneHero::init(const char* hero_name)
   hero_res_file_full_path = FileUtils::getInstance()->fullPathForFilename(hero_res_file);
   Texture2D* north_texture = TextureCache::getInstance()->addImage(hero_res_file_full_path);
   SpriteFrame* north_frame0 = SpriteFrame::createWithTexture(north_texture, Rect(0, 0, HERO_DRAMA_RES_WIDTH, HERO_DRAMA_RES_HEIGHT));
+  frame_name = "face_north";
+  __frame_map[frame_name] = north_frame0;
   SpriteFrame* north_frame1 = SpriteFrame::createWithTexture(north_texture, Rect(0, HERO_DRAMA_RES_HEIGHT, HERO_DRAMA_RES_WIDTH, HERO_DRAMA_RES_HEIGHT));
   SpriteFrame* north_frame2 = SpriteFrame::createWithTexture(north_texture, Rect(0, HERO_DRAMA_RES_HEIGHT*2, HERO_DRAMA_RES_WIDTH, HERO_DRAMA_RES_HEIGHT));
   Vector<SpriteFrame*>* walk_north_animFrames = new Vector<SpriteFrame*>;
@@ -89,6 +93,7 @@ bool SGDramaSceneHero::initActions()
 void SGDramaSceneHero::moveTo(Vec2 target_pos, const char* direction)
 {
   int actualDuration = 3.0f;
+  //faceTo(direction);
   FiniteTimeAction *actionMove = MoveTo::create(actualDuration, target_pos);
   CallFunc * funcall= CallFunc::create(this, callfunc_selector(SGDramaSceneHero::actionFinished));
   FiniteTimeAction* moveWithCallback = Sequence::create(actionMove, funcall, NULL);
@@ -111,6 +116,36 @@ void SGDramaSceneHero::moveTo(Vec2 target_pos, const char* direction)
   Spawn * walk_south = Spawn::create(walk, moveWithCallback, NULL);
    
   this->runAction(walk_south);
+}
+
+void SGDramaSceneHero::faceTo(const char* direction)
+{
+  std::string face_frame_name;
+  DIRECTION dir = getDirection(direction);
+  switch (dir)
+  {
+  case DIRECTION_WEST:
+    setFlippedX(true);
+    face_frame_name = "face_north";
+    break;
+  case DIRECTION_NORTH:
+    setFlippedX(false);
+    face_frame_name = "face_north";
+    break;
+  case DIRECTION_SOUTH:
+    setFlippedX(false);
+    face_frame_name = "face_south";
+    break;
+  case DIRECTION_EAST:
+    setFlippedX(true);
+    face_frame_name = "face_south";
+    break;
+  default:
+    break;
+  }
+  SpriteFrame* frame = __frame_map[face_frame_name];
+  setSpriteFrame(frame);
+
 }
 
 void SGDramaSceneHero::actionFinished()

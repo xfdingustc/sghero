@@ -16,6 +16,7 @@ public:
     DIRECTION_EAST, 
   } DIRECTION;
   void moveTo(Vec2 target_pos, const char* direction);
+  void faceTo(const char* direction);
 
   bool init(const char* hero_name);
 
@@ -24,12 +25,17 @@ public:
   void speak(const char* content);
 
   void actionFinished();
-  typedef std::map<std::string, Animate*> ANIMATE_MAP;
-  ANIMATE_MAP __animate_map;
+
 
 
 private:
   DIRECTION getDirection(const char* direction);
+
+  typedef std::map<std::string, Animate*> ANIMATE_MAP;
+  ANIMATE_MAP __animate_map;
+
+  typedef std::map<std::string, SpriteFrame*> FRAME_MAP;
+  FRAME_MAP __frame_map;
 
 };
 
