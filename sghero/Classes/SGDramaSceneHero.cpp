@@ -56,6 +56,11 @@ bool SGDramaSceneHero::init(const char* hero_name)
   std::string animate_name = "walk_south";
   __animate_map[animate_name] = animate;
 
+  SpriteFrame* frame8 = SpriteFrame::createWithTexture(texture, Rect(0, HERO_DRAMA_RES_HEIGHT*8, HERO_DRAMA_RES_WIDTH, HERO_DRAMA_RES_HEIGHT));
+  frame_name = "zuoyi_south";
+  frame8->retain();
+  __frame_map[frame_name] = frame8;
+
   // parse face north resource picture
   hero_res_file = hero_res_obj->drama_scene_north;
   hero_res_file_full_path = FileUtils::getInstance()->fullPathForFilename(hero_res_file);
@@ -75,6 +80,10 @@ bool SGDramaSceneHero::init(const char* hero_name)
   animate_name = "walk_north";
   __animate_map[animate_name] = walk_north_animate;
 
+  SpriteFrame* north_frame8 = SpriteFrame::createWithTexture(north_texture, Rect(0, HERO_DRAMA_RES_HEIGHT*8, HERO_DRAMA_RES_WIDTH, HERO_DRAMA_RES_HEIGHT));
+  north_frame8->retain();
+  frame_name = "zuoyi_north";
+  __frame_map[frame_name] = north_frame8;
 
   this->setName(hero_name);
 
@@ -118,11 +127,35 @@ void SGDramaSceneHero::moveTo(Vec2 target_pos, const char* direction)
   this->runAction(walk_south);
 }
 
+void SGDramaSceneHero::doAction(const char* action)
+{
+  std::string act = action;
+  std::string suffex;
+  switch (__face_direction)
+  {
+  case DIRECTION_NORTH:
+  case DIRECTION_WEST:
+    suffex = "_north";
+    break;
+  case DIRECTION_EAST:
+  case DIRECTION_SOUTH:
+    suffex = "_south";
+    break;
+  default:
+    break;
+  }
+  
+  act.append(suffex);
+  SpriteFrame* frame = __frame_map[act];
+  setSpriteFrame(frame);
+
+}
+
 void SGDramaSceneHero::faceTo(const char* direction)
 {
   std::string face_frame_name;
-  DIRECTION dir = getDirection(direction);
-  switch (dir)
+  __face_direction = getDirection(direction);
+  switch (__face_direction)
   {
   case DIRECTION_WEST:
     setFlippedX(true);

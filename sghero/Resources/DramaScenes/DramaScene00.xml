@@ -38,7 +38,7 @@
 			<Dialog hero="曹操" content="且慢。" />
 			<HeroTurn hero="曹操" face="east" />
 			<Dialog hero="曹操" content="老丈找我有事？ \n我是官军骑兵队长， \n姓曹名操，字孟德。" />
-			<HeroAction hero="徐子将" action="作揖" />
+			<HeroAction hero="徐子将" action="zuoyi" />
 			<Dialog hero="徐子将" content="其实，小老儿见您相貌异于常人，\n所以不经意便喊住了您。" />
 			<Dialog hero="士兵01" content="喂，不得对我们队长无礼！" />
 			<HeroTurn hero="曹操" face="south" />
