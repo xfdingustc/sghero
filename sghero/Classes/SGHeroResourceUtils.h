@@ -21,7 +21,7 @@ public:
 
 private:
   typedef std::map<std::string, SGHeroResourceObject*> HERO_MAP_TYPE;
- HERO_MAP_TYPE heroes_map;
+  HERO_MAP_TYPE heroes_map;
 
 };
 

@@ -62,7 +62,8 @@
 			<Select hero="曹操" content="正是吾心所愿\n似乎言之过早\n">
 				<Case1>
 					<Ambition change="add" number="10" />
-					<!--- <SoundTrack track="null" /> 
+					<SoundTrack track="null" /> 
+					<ValueSet val_name="Val300" val="1" />
 					<Delay time="3" />
 					<SoundEffect effect="SoundEffects/SE_e_01.wav" />  
 					<Delay time="3" /> --->
@@ -76,6 +77,7 @@
 				<Case2>
 					<Ambition change="minus" number="10" />
 					<SoundTrack track="null" />
+					<ValueSet val_name="Val300" val="0" />
 					<Delay time="3" />
 					<SoundEffect effect="SoundEffects/SE_e_01.wav" />  
 					<Delay time="3" />
@@ -86,8 +88,38 @@
 					<HeroAction hero="徐子将" action="普通" />
 				</Case2>
 			</Select>
-			<!---
-			-->
+			<Delay time="3" />
+			<Dialog hero="曹操" content="……嗯。\n再会了，老丈。" />
+			<HeroTurn hero="曹操" face="south" />
+			<Delay time="3" />
+			<HeroAction hero="曹操" action="单手举起" />
+			<Dialog hero="曹操" content="出发！\n赶往激战中的颍川！" />
+			<HeroAction hero="曹操" action="普通" />
+			<Delay time="3" />
+			<HeroTurn hero="士兵01" face="north" />
+			<Dialog hero="士兵01" content="是！" />
+			<HeroTurn hero="士兵01" face="south" />
+			<Dialog hero="士兵02" content="是！" />
+			<HeroMove hero="曹操" x="40" y="80" face="south" />
+			<HeroMove hero="士兵01" x="40" y="98" face="south" />
+			<HeroMove hero="士兵02" x="40" y="70" face="south" />
+			<HeroMove hero="徐子将" x="54" y="20" face="north" />	
+			<Delay time="3" />
+			<HeroTurn hero="徐子将" face="south" />
+			<ValueTest val_name="Val300" val="1" >
+				<Dialog hero="徐子将" content="原来自己想当奸雄？\n好好，曹大人……\n您就朝着自己的理想努力吧。" />
+				<Dialog hero="徐子将" content="呵、呵、呵！！" />
+			</ValueTest>
+			<ValueTest val_name="Val300" val="0" >
+				<Dialog hero="徐子将" content="那年轻人的相貌，\n正是乱世之奸雄，治世之能臣。" />
+				<Dialog hero="徐子将" content="不知他将来会如何……？\n就让我们拭目以待吧。" />
+				<Dialog hero="徐子将" content="呵、呵、呵。" />
+			</ValueTest>
+			<HeroMove hero="曹操" x="40" y="98" face="south" />
+			<HeroMove hero="士兵02" x="40" y="98" face="south" />
+			<HeroMove hero="徐子将" x="54" y="5" face="north" />			
+			<Delay time="3" />
+			<SoundEffect effect="SoundEffects/SE_e_01.wav" />  
 		</Event>
 	</Section>
 

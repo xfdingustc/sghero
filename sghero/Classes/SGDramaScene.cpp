@@ -72,6 +72,22 @@ bool SGDramaScene::parseDramaSceneXmlFile(const char* file_name)
 
 }
 
+void SGDramaScene::parseDrameSceneSubEvents(tinyxml2::XMLElement* sub_event)
+{
+  SGDramaSceneEventList sub_event_list;
+  tinyxml2::XMLElement* one_sub_event = sub_event->FirstChildElement();
+  while(one_sub_event) {
+    sub_event_list.push_back(one_sub_event);
+    one_sub_event = one_sub_event->NextSiblingElement();
+  }
+
+  SGDramaSceneEventList::reverse_iterator reverse_iter = sub_event_list.rbegin();
+  for (; reverse_iter != sub_event_list.rend(); reverse_iter++) {
+    tinyxml2::XMLElement* one_sub_event = (tinyxml2::XMLElement*)(*reverse_iter);
+    __event_list.push_front(one_sub_event);
+  }
+}
+
 bool SGDramaScene::parseDrameSceneEvents(tinyxml2::XMLElement* event)
 {
   const char* name = event->Name();
@@ -199,21 +215,27 @@ void SGDramaScene::handleDramaSceneScriptEvent(SGDramaSceneEventList& event_list
       break;
     }
     event_list.pop_front();
-    SGDramaSceneEventList sub_event_list;
+    
     tinyxml2::XMLElement* sub_event = event->FirstChildElement(case_name.c_str());
-    tinyxml2::XMLElement* one_sub_event = sub_event->FirstChildElement();
-    while(one_sub_event) {
-      sub_event_list.push_back(one_sub_event);
-      one_sub_event = one_sub_event->NextSiblingElement();
-    }
-
-    SGDramaSceneEventList::reverse_iterator reverse_iter = sub_event_list.rbegin();
-    for (; reverse_iter != sub_event_list.rend(); reverse_iter++) {
-      tinyxml2::XMLElement* one_sub_event = (tinyxml2::XMLElement*)(*reverse_iter);
-      event_list.push_front(one_sub_event);
-    }
+    parseDrameSceneSubEvents(sub_event);
     __has_pending_event = false;
     
+  } else if (!strcmp(name, "ValueSet")) {
+    std::string val_name = event->Attribute("val_name");
+    int val = atoi(event->Attribute("val"));
+    __internal_val_map[val_name] = val;
+    event_list.pop_front();
+
+  } else if (!strcmp(name, "ValueTest")) {
+    std::string val_name = event->Attribute("val_name");
+    int val_test = atoi(event->Attribute("val"));
+    int val = __internal_val_map[val_name];
+    if (val == val_test) {
+      event_list.pop_front();
+      parseDrameSceneSubEvents(event);
+    } else {
+      event_list.pop_front();
+    }
   } else {
     event_list.pop_front();
   }

@@ -19,6 +19,7 @@ public:
 private:
   bool parseDramaSceneXmlFile(const char* file);
   bool parseDrameSceneEvents(tinyxml2::XMLElement* event);
+  void parseDrameSceneSubEvents(tinyxml2::XMLElement* sub_event);
 
   typedef std::list<tinyxml2::XMLElement*> SGDramaSceneEventList;
   SGDramaSceneEventList __event_list;
@@ -28,8 +29,13 @@ private:
   // coordination convert
   Vec2 convertCoordinate(Vec2 origin);
 
+  // for drama select window
   bool __has_pending_event;
   int __ret_value;
+
+  // for drama forks
+  typedef std::map<std::string, int> VAL_MAP_TYPE;
+  VAL_MAP_TYPE __internal_val_map;
 };
 
 #endif
