@@ -138,6 +138,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\SGDramaSceneChapterScene.cpp" />
     <ClCompile Include="..\Classes\SGDramaSceneHero.cpp" />
     <ClCompile Include="..\Classes\SGDramaSceneHeroSpeakScene.cpp" />
+    <ClCompile Include="..\Classes\SGDramaSceneInfoScene.cpp" />
     <ClCompile Include="..\Classes\SGDramaSceneSelectScene.cpp" />
     <ClCompile Include="..\Classes\SGHeroResourceUtils.cpp" />
     <ClCompile Include="..\Classes\SGWelcomeScene.cpp" />
@@ -148,6 +149,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\SGDramaScene.h" />
     <ClInclude Include="..\Classes\SGDramaSceneChapterScene.h" />
     <ClInclude Include="..\Classes\SGDramaSceneHeroSpeakScene.h" />
+    <ClInclude Include="..\Classes\SGDramaSceneInfoScene.h" />
     <ClInclude Include="..\Classes\SGDramaSceneSelectScene.h" />
     <ClInclude Include="..\Classes\SGGlobalSettings.h" />
     <ClInclude Include="..\Classes\SGDramaSceneHero.h" />

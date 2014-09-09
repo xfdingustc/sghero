@@ -6,7 +6,8 @@
 			<SoundTrack track="SoundTrack/Track18.mp3" /> 
 			<Chapter num="第一章" title="霸王诞生" />
 			<BackgroundImage type="external" image="Mmaps/17.jpg" />
-			<Info content="距今大约１８００年前，\n东汉末年的中国大陆。" />
+			
+			<Info content="距今大约１８００年前，\n东汉末年的中国大陆。" /> -->
 			<Info content="当时的皇帝灵帝耽于享乐，朝廷腐败，\n百姓食不果腹，对汉室的不满更是到\n达了顶点。" />
 			<Info content="这时候……，" />
 			<BackgroundImage type="zhongguo" image="Mmaps/zhongguo.jpg" />

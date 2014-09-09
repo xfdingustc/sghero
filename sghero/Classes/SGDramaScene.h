@@ -21,6 +21,8 @@ private:
   bool parseDrameSceneEvents(tinyxml2::XMLElement* event);
   void parseDrameSceneSubEvents(tinyxml2::XMLElement* sub_event);
 
+  void formatString(std::string& str);
+
   typedef std::list<tinyxml2::XMLElement*> SGDramaSceneEventList;
   SGDramaSceneEventList __event_list;
   void startSceneScript(float dt);

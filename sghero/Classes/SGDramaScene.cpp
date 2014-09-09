@@ -2,6 +2,7 @@
 #include "SGDramaSceneHero.h"
 #include "SGDramaSceneSelectScene.h"
 #include "SGDramaSceneChapterScene.h"
+#include "SGDramaSceneInfoScene.h"
 #include "SimpleAudioEngine.h"
 #include "xxhash/xxhash.h"
 
@@ -32,7 +33,7 @@ bool SGDramaScene::init()
     return false;
   }
 
-  parseDramaSceneXmlFile("DramaScenes/DramaScene00.xml");
+  parseDramaSceneXmlFile("DramaScenes/DramaScene01.xml");
   startSceneScript(0.0f);
   __has_pending_event = false;
   return true;
@@ -109,6 +110,20 @@ bool SGDramaScene::parseDrameSceneEvents(tinyxml2::XMLElement* event)
   return true;
 }
 
+void SGDramaScene::formatString(std::string& str)
+{
+  // replace "\\n" to "\n"
+  std::string::size_type pos = 0;
+  std::string src_str = "\\n";
+  std::string des_str = "\n";
+  std::string::size_type srcLen = src_str.size();  
+  std::string::size_type desLen = src_str.size();  
+  while ((pos = str.find(src_str, pos)) != std::string::npos){
+    str.replace( pos, srcLen, des_str );
+    pos += desLen;
+  }
+}
+
 void SGDramaScene::update(float dt) {
   handleDramaSceneScriptEvent(__event_list);
 }
@@ -134,6 +149,12 @@ void SGDramaScene::handleDramaSceneScriptEvent(SGDramaSceneEventList& event_list
     std::string chapter = event->Attribute("num");
     std::string title = event->Attribute("title");
     Scene* scene = SGDramaSceneChapterScene::createScene(chapter.c_str(), title.c_str());
+    Director::getInstance()->pushScene(scene);
+    event_list.pop_front();
+  } else if (!strcmp(name, "Info")) {
+    std::string info = event->Attribute("content");
+    formatString(info);
+    Scene* scene = SGDramaSceneInfoScene::createScene(info.c_str());
     Director::getInstance()->pushScene(scene);
     event_list.pop_front();
   } else if (!strcmp(name, "SoundEffect")) {
@@ -188,16 +209,7 @@ void SGDramaScene::handleDramaSceneScriptEvent(SGDramaSceneEventList& event_list
     std::string hero_name = event->Attribute("hero");
     std::string speak = event->Attribute("content");
 
-    // replace "\\n" to "\n"
-    std::string::size_type pos = 0;
-    std::string src_str = "\\n";
-    std::string des_str = "\n";
-    std::string::size_type srcLen = src_str.size();  
-    std::string::size_type desLen = src_str.size();  
-    while ((pos = speak.find(src_str, pos)) != std::string::npos){
-      speak.replace( pos, srcLen, des_str );
-      pos += desLen;
-    }
+    formatString(speak);
 
     CCLOG("%s said: %s", hero_name.c_str(), speak.c_str());
     SGDramaSceneHero* hero = (SGDramaSceneHero*)this->getChildByName(hero_name.c_str());
