@@ -161,8 +161,12 @@ void SGDramaScene::handleDramaSceneScriptEvent(SGDramaSceneEventList& event_list
     event_list.pop_front();
   } else if (!strcmp(name, "HeroFaceShow")) {
     onHandleEventHeroFaceShow(event);
+  } else if (!strcmp(name, "HeroFaceMove")) {
+    onHandleEventHeroFaceMove(event);
   } else if (!strcmp(name, "MapInfoShow")) {
     onHandleEventMapInfoShow(event);
+  } else if (!strcmp(name, "HeroFaceHide")) {
+    onHandleEventHeroFaceHide(event);
   } else if (!strcmp(name, "SoundEffect")) {
     const char* sound_effect = event->Attribute("effect");
     SimpleAudioEngine::getInstance()->playEffect(sound_effect, true);
@@ -290,11 +294,34 @@ void SGDramaScene::onHandleEventHeroFaceShow(tinyxml2::XMLElement* event)
   std::string hero_face_resource = SGHeroResourceUtils::getInstance()->getHeroResObj(hero_name.c_str())->face;
 
   Sprite* hero_face = Sprite::create(hero_face_resource);
-  hero_face->setPosition(Vec2(x, y));
+  hero_face->setPosition(chinaMapPosConvert(Vec2(x, y)));
   hero_face->setName(hero_name);
   this->addChild(hero_face);
   __event_list.pop_front();
 }
+
+void SGDramaScene::onHandleEventHeroFaceMove(tinyxml2::XMLElement* event)
+{
+  std::string hero_name = event->Attribute("hero");
+  int x = atoi(event->Attribute("x"));
+  int y = atoi(event->Attribute("y"));
+  
+
+  Sprite* hero_face = (Sprite*)this->getChildByName(hero_name);
+  FiniteTimeAction *actionMove = MoveTo::create(2.0f, chinaMapPosConvert(Vec2(x, y)));
+  
+  hero_face->runAction(actionMove);
+  
+  __event_list.pop_front();
+}
+
+void SGDramaScene::onHandleEventHeroFaceHide(tinyxml2::XMLElement* event)
+{
+  std::string hero_name = event->Attribute("hero");
+  this->removeChildByName(hero_name);
+  __event_list.pop_front();
+}
+
 void SGDramaScene::onHandleEventMapInfoShow(tinyxml2::XMLElement* event)
 {
   std::string content = event->Attribute("content");
@@ -347,6 +374,17 @@ Vec2 SGDramaScene::convertCoordinate(Vec2 origin)
   new_pos.y = ((zero_x - origin.x) * cosa + (zero_y - origin.y) * sina) * scale;
 
   //CCLOG("new pos = %f %f", new_pos.x, new_pos.y);
+  return new_pos;
+}
+
+Vec2 SGDramaScene::chinaMapPosConvert(Vec2 origin)
+{
+  Vec2 new_pos;
+  float scale = 1024.0f / 600.0f;
+  
+  new_pos.x = scale * origin.x;
+  new_pos.y = 768 - origin.y * scale;
+
   return new_pos;
 }
 

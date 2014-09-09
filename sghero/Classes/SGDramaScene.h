@@ -29,11 +29,13 @@ private:
   void handleDramaSceneScriptEvent(SGDramaSceneEventList& event_list);
 
   void onHandleEventHeroFaceShow(tinyxml2::XMLElement* event);
+  void onHandleEventHeroFaceMove(tinyxml2::XMLElement* event);
+  void onHandleEventHeroFaceHide(tinyxml2::XMLElement* event);
   void onHandleEventMapInfoShow(tinyxml2::XMLElement* event);
 
   // coordination convert
   Vec2 convertCoordinate(Vec2 origin);
-
+  Vec2 chinaMapPosConvert(Vec2 origin);
   // for drama select window
   bool __has_pending_event;
   int __ret_value;
