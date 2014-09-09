@@ -14,7 +14,17 @@
 			<HeroFaceShow hero="张梁" x="320" y="180" />
 			<HeroFaceShow hero="张宝" x="400" y="130" />
 			<Delay time="5" />
-
+			<MapInfoShow content="以「太平道」教主张角为首的黄巾之乱，" page_change="true"  />
+			<Delay time="5" />
+			<MapInfoShow content="遂在中国各地爆发了。"  page_change="false" />
+			<Delay time="10" />
+			<HeroFaceShow hero="曹操" x="336" y="110" />
+			<Delay time="5" />
+			<MapInfoShow content="\n曹操所率领的官军，" page_change="true"  />
+			<Delay time="5" />
+			<HeroFaceHide hero="张梁" />
+			<HeroFaceHide hero="张宝" />
+			<Delay time="5" />
 		</Event>
 	</Section>
 

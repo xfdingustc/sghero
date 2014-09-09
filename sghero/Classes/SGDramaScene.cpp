@@ -4,6 +4,7 @@
 #include "SGDramaSceneChapterScene.h"
 #include "SGDramaSceneInfoScene.h"
 #include "SGHeroResourceUtils.h"
+#include "SGGlobalSettings.h"
 #include "SimpleAudioEngine.h"
 #include "xxhash/xxhash.h"
 
@@ -160,6 +161,8 @@ void SGDramaScene::handleDramaSceneScriptEvent(SGDramaSceneEventList& event_list
     event_list.pop_front();
   } else if (!strcmp(name, "HeroFaceShow")) {
     onHandleEventHeroFaceShow(event);
+  } else if (!strcmp(name, "MapInfoShow")) {
+    onHandleEventMapInfoShow(event);
   } else if (!strcmp(name, "SoundEffect")) {
     const char* sound_effect = event->Attribute("effect");
     SimpleAudioEngine::getInstance()->playEffect(sound_effect, true);
@@ -290,6 +293,41 @@ void SGDramaScene::onHandleEventHeroFaceShow(tinyxml2::XMLElement* event)
   hero_face->setPosition(Vec2(x, y));
   hero_face->setName(hero_name);
   this->addChild(hero_face);
+  __event_list.pop_front();
+}
+void SGDramaScene::onHandleEventMapInfoShow(tinyxml2::XMLElement* event)
+{
+  std::string content = event->Attribute("content");
+  const char* page_change = event->Attribute("page_change");
+  formatString(content);
+  Size size = Director::getInstance()->getVisibleSize();
+  LayerColor* map_info = (LayerColor*)this->getChildByName("MapInfoWin");
+  if (!map_info) {
+    map_info = LayerColor::create(Color4B(0, 0, 0, 100), size.width ,size.height * 0.2f);
+    map_info->setAnchorPoint(Vec2::ZERO);
+    map_info->setPosition(Vec2::ZERO);
+    map_info->setName("MapInfoWin");
+    this->addChild(map_info);
+  }
+
+  LabelTTF* content_text = (LabelTTF*)map_info->getChildByName("content");
+  if (!content_text) {
+    content_text = LabelTTF::create(content, TEXT_FONT_NAME, TEXT_FONT_SIZE);
+    content_text->setColor(Color3B::WHITE);
+    content_text->setAnchorPoint(Vec2(0.0f, 1.0f));
+    Size size = map_info->getContentSize();
+    content_text->setPosition(Vec2(size.width * 0.2f, size.height * 0.8f));
+    content_text->setName("content");
+    map_info->addChild(content_text);
+  } else {
+    if (!strcmp(page_change, "true")) {
+      content_text->setString(content);
+    } else {
+      std::string new_string = content_text->getString();
+      new_string.append(content);
+      content_text->setString(new_string);
+    }
+  }
   __event_list.pop_front();
 }
 

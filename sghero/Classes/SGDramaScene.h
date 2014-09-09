@@ -29,6 +29,7 @@ private:
   void handleDramaSceneScriptEvent(SGDramaSceneEventList& event_list);
 
   void onHandleEventHeroFaceShow(tinyxml2::XMLElement* event);
+  void onHandleEventMapInfoShow(tinyxml2::XMLElement* event);
 
   // coordination convert
   Vec2 convertCoordinate(Vec2 origin);
