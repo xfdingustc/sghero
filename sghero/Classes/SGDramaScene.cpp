@@ -3,6 +3,7 @@
 #include "SGDramaSceneSelectScene.h"
 #include "SGDramaSceneChapterScene.h"
 #include "SGDramaSceneInfoScene.h"
+#include "SGHeroResourceUtils.h"
 #include "SimpleAudioEngine.h"
 #include "xxhash/xxhash.h"
 
@@ -157,6 +158,8 @@ void SGDramaScene::handleDramaSceneScriptEvent(SGDramaSceneEventList& event_list
     Scene* scene = SGDramaSceneInfoScene::createScene(info.c_str());
     Director::getInstance()->pushScene(scene);
     event_list.pop_front();
+  } else if (!strcmp(name, "HeroFaceShow")) {
+    onHandleEventHeroFaceShow(event);
   } else if (!strcmp(name, "SoundEffect")) {
     const char* sound_effect = event->Attribute("effect");
     SimpleAudioEngine::getInstance()->playEffect(sound_effect, true);
@@ -273,10 +276,21 @@ void SGDramaScene::handleDramaSceneScriptEvent(SGDramaSceneEventList& event_list
   } else {
     event_list.pop_front();
   }
-  
-  
-  
-  
+   
+}
+
+void SGDramaScene::onHandleEventHeroFaceShow(tinyxml2::XMLElement* event)
+{
+  std::string hero_name = event->Attribute("hero");
+  int x = atoi(event->Attribute("x"));
+  int y = atoi(event->Attribute("y"));
+  std::string hero_face_resource = SGHeroResourceUtils::getInstance()->getHeroResObj(hero_name.c_str())->face;
+
+  Sprite* hero_face = Sprite::create(hero_face_resource);
+  hero_face->setPosition(Vec2(x, y));
+  hero_face->setName(hero_name);
+  this->addChild(hero_face);
+  __event_list.pop_front();
 }
 
 Vec2 SGDramaScene::convertCoordinate(Vec2 origin)
