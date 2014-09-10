@@ -35,7 +35,7 @@ bool SGDramaScene::init()
     return false;
   }
 
-  parseDramaSceneXmlFile("DramaScenes/DramaScene01.xml");
+  parseDramaSceneXmlFile("DramaScenes/FeiLiShaodi.xml");
   startSceneScript(0.0f);
   __has_pending_event = false;
   return true;
@@ -168,11 +168,13 @@ void SGDramaScene::handleDramaSceneScriptEvent(SGDramaSceneEventList& event_list
     event_list.pop_front();
   } else if (!strcmp(name, "HeroAppear")) {
     std::string hero_name = event->Attribute("hero");
+    std::string direction = event->Attribute("face");
     int x = atoi(event->Attribute("x"));
     int y = atoi(event->Attribute("y"));
     SGDramaSceneHero* hero = SGDramaSceneHero::create(hero_name.c_str());
     hero->setAnchorPoint(Vec2(1.0f, 1.0f));
     hero->setPosition(convertCoordinate(Vec2(x,y)));
+    hero->faceTo(direction.c_str());
     this->addChild(hero);
     event_list.pop_front();
   } else if (!strcmp(name, "HeroMove")) {

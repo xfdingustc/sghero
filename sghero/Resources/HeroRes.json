@@ -2,10 +2,17 @@
     "Resource":
     [
 	{"name": "曹操", "face": "HeroFaces/caocao.png", "south": "DramaSceneObjects/caocao_south.png", "north": "DramaSceneObjects/caocao_north.png"},
+	{"name": "李傕", "face": "HeroFaces/zhangliang.png", "south": "DramaSceneObjects/lique_south.png", "north": "DramaSceneObjects/lique_north.png"},
+	{"name": "张济", "face": "HeroFaces/zhangliang.png", "south": "DramaSceneObjects/zhangji_south.png", "north": "DramaSceneObjects/zhangji_north.png"},
+	{"name": "袁绍", "face": "HeroFaces/zhangliang.png", "south": "DramaSceneObjects/yuanshao_south.png", "north": "DramaSceneObjects/yuanshao_north.png"},
+	{"name": "樊稠", "face": "HeroFaces/zhangliang.png", "south": "DramaSceneObjects/fanchou_south.png", "north": "DramaSceneObjects/fanchou_north.png"},
+	{"name": "华雄", "face": "HeroFaces/zhangliang.png", "south": "DramaSceneObjects/huaxiong_south.png", "north": "DramaSceneObjects/huaxiong_north.png"},
 	{"name": "徐子将", "face": "HeroFaces/xuzijiang.png", "south": "DramaSceneObjects/xuzijiang_south.png", "north": "DramaSceneObjects/xuzijiang_north.png"},
 	{"name": "张梁", "face": "HeroFaces/zhangliang.png", "south": "DramaSceneObjects/shibing02_south.png", "north": "DramaSceneObjects/shibing02_north.png"},
 	{"name": "张宝", "face": "HeroFaces/zhangbao.png", "south": "DramaSceneObjects/shibing02_south.png", "north": "DramaSceneObjects/shibing02_north.png"},
 	{"name": "士兵01", "face": "HeroFaces/shibing01.png", "south": "DramaSceneObjects/shibing01_south.png", "north": "DramaSceneObjects/shibing01_north.png"},
-	{"name": "士兵02", "face": "HeroFaces/shibing01.png", "south": "DramaSceneObjects/shibing02_south.png", "north": "DramaSceneObjects/shibing02_north.png"}
+	{"name": "士兵02", "face": "HeroFaces/shibing01.png", "south": "DramaSceneObjects/shibing02_south.png", "north": "DramaSceneObjects/shibing02_north.png"},
+	{"name": "文官01", "face": "HeroFaces/shibing01.png", "south": "DramaSceneObjects/wenguan01_south.png", "north": "DramaSceneObjects/wenguan01_north.png"},
+	{"name": "文官02", "face": "HeroFaces/shibing01.png", "south": "DramaSceneObjects/wenguan02_south.png", "north": "DramaSceneObjects/wenguan02_north.png"}
     ]
 }

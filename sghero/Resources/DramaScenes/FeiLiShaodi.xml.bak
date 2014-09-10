@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding="utf-8"?>
+<Scene>
+	<Section>
+		<InternalInfo title="乱世之奸雄，治世之能臣。" />
+		<Event>
+			<BackgroundImage type="internal" image="Mmaps/50.jpg" />
+			<HeroAppear hero="文官01" x="52" y="41" face="south" action="putong" />
+			<HeroAppear hero="文官02" x="58" y="41" face="south" action="putong" /> 
+			<HeroAppear hero="李傕" x="64" y="41" face="south" action="putong" /> 
+			<HeroAppear hero="张济" x="70" y="41" face="south" action="putong" /> 
+			<HeroAppear hero="袁绍" x="52" y="70" face="north" action="putong" /> 
+			<HeroAppear hero="曹操" x="58" y="70" face="north" action="putong" /> 
+			<HeroAppear hero="士兵01" x="40" y="5" face="south" action="putong" /> 
+			<HeroAppear hero="士兵01" x="40" y="5" face="south" action="putong" /> 
+		</Event>
+	</Section>
+
+</Scene>
