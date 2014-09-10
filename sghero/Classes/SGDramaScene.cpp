@@ -375,16 +375,16 @@ Vec2 SGDramaScene::convertCoordinate(Vec2 origin)
 {
   Vec2 new_pos;
   
-  float zero_x = 54;
-  float zero_y = 95;
+  float zero_x = 50;
+  float zero_y = 100;
 
   float sina = 0.53f;
   float cosa = 0.848f;
 
-  float scale = 10;
+  float scale = 13.41;
 
-  new_pos.x = ((origin.x - zero_x) * sina - (origin.y - zero_y) * cosa) * scale;
-  new_pos.y = ((zero_x - origin.x) * cosa + (zero_y - origin.y) * sina) * scale;
+  new_pos.x = ((origin.x - zero_x) * cosa - (origin.y - zero_y) * cosa) * scale;
+  new_pos.y = ((zero_x - origin.x) * sina + (zero_y - origin.y) * sina) * scale;
 
   //CCLOG("new pos = %f %f", new_pos.x, new_pos.y);
   return new_pos;
