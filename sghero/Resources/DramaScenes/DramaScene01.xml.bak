@@ -22,11 +22,19 @@
 			<Delay time="5" />
 			<MapInfoShow content="\n曹操所率领的官军，" page_change="false"  />
 			<Delay time="5" />
-			<HeroFaceMove hero="曹操" />
+			<HeroFaceMove hero="曹操" x="336" y="100" />
 			<Delay time="5" />
 			<HeroFaceHide hero="张梁" />
 			<HeroFaceHide hero="张宝" />
 			<Delay time="5" />
+			<Info content="虽然历经艰难镇压了这股叛变势力，" page_change="false"  />
+			<Delay time="5" />
+			<Info content="\n但已无力阻止汉室衰微的情势发展，" page_change="false"  />
+			<Info content="\n这也就是乱世的开端。" page_change="true"  />
+			<BackgroundImage type="external" image="Mmaps/17.jpg" />
+			<Info content="黄巾之乱平息不久，灵帝随即驾崩，\n趁着群龙无首之际，朝廷内部开始了\n激烈的权力斗争。" />
+			<Info content="最后董卓凭借自己的实力，趁朝廷的\n混乱，掌握了洛阳的实权。" />
+			<SoundTrack track="null" /> 
 		</Event>
 	</Section>
 

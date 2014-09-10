@@ -28,6 +28,7 @@ private:
   void startSceneScript(float dt);
   void handleDramaSceneScriptEvent(SGDramaSceneEventList& event_list);
 
+  void onHandleEventBackgroundImage(tinyxml2::XMLElement* event);
   void onHandleEventHeroFaceShow(tinyxml2::XMLElement* event);
   void onHandleEventHeroFaceMove(tinyxml2::XMLElement* event);
   void onHandleEventHeroFaceHide(tinyxml2::XMLElement* event);

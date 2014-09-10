@@ -141,12 +141,7 @@ void SGDramaScene::handleDramaSceneScriptEvent(SGDramaSceneEventList& event_list
 
   const char* name = event->Name();
   if (!strcmp(name, "BackgroundImage")) {
-    const char* map_name = event->Attribute("image");
-    auto bg_image = Sprite::create(map_name);
-    bg_image->setAnchorPoint(Vec2(0,0));
-    bg_image->setPosition(Vec2::ZERO);
-    this->addChild(bg_image);
-    event_list.pop_front();
+    onHandleEventBackgroundImage(event);
   } else if (!strcmp(name, "Chapter")) {
     std::string chapter = event->Attribute("num");
     std::string title = event->Attribute("title");
@@ -284,6 +279,22 @@ void SGDramaScene::handleDramaSceneScriptEvent(SGDramaSceneEventList& event_list
     event_list.pop_front();
   }
    
+}
+
+void SGDramaScene::onHandleEventBackgroundImage(tinyxml2::XMLElement* event)
+{
+  const char* map_name = event->Attribute("image");
+  Sprite* bg_image = (Sprite*)this->getChildByName("BackgroudnImage");
+  if (!bg_image) {
+    this->removeChildByName("BackgroudnImage");
+  } 
+  bg_image = Sprite::create(map_name);
+  bg_image->setAnchorPoint(Vec2(0,0));
+  bg_image->setPosition(Vec2::ZERO);
+  bg_image->setName("BackgroudnImage");
+  this->addChild(bg_image);
+  
+  __event_list.pop_front();
 }
 
 void SGDramaScene::onHandleEventHeroFaceShow(tinyxml2::XMLElement* event)
