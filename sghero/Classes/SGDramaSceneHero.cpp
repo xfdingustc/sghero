@@ -49,6 +49,7 @@ bool SGDramaSceneHero::init(const char* hero_name)
    
   
   __frame_map["putong_south"] = __south_sprite_frames.at(0);
+  __frame_map["lianhong_south"] = __south_sprite_frames.at(0);
   __frame_map["jushou_south"] = __south_sprite_frames.at(5);
   __frame_map["zuoyi_south"] = __south_sprite_frames.at(8);
   __frame_map["danshoujuqi_south"] = __south_sprite_frames.at(19);
@@ -78,6 +79,7 @@ bool SGDramaSceneHero::init(const char* hero_name)
   
   
   __frame_map["putong_north"] = __north_sprite_frames.at(0);
+  __frame_map["lianhong_north"] = __north_sprite_frames.at(0);
   __frame_map["jushou_north"] = __north_sprite_frames.at(5);
   __frame_map["zuoyi_north"] = __north_sprite_frames.at(8);
   __frame_map["danshoujuqi_north"] = __north_sprite_frames.at(19);
@@ -120,9 +122,11 @@ void SGDramaSceneHero::moveTo(Vec2 target_pos, const char* direction)
   switch (getDirection(direction))
   {
   case DIRECTION_NORTH:
+  case DIRECTION_WEST:
     walk_animate_name = "walk_north";
     break;
   case DIRECTION_SOUTH:
+  case DIRECTION_EAST:
     walk_animate_name = "walk_south";
     break;
   default:

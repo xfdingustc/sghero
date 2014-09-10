@@ -12,6 +12,150 @@
 			<HeroAppear hero="曹操" x="58" y="70" face="north" action="putong" /> 
 			<HeroAppear hero="樊稠" x="64" y="70" face="north" action="putong" /> 
 			<HeroAppear hero="华雄" x="70" y="70" face="north" action="putong" /> 
+			<SoundEffect effect="SoundEffects/SE_e_05.wav" />  
+			<Delay time="0" />
+			<SceneTitleSet title="曹操举兵" />
+			<ScenePlaceSet city="洛阳" place="相府" />
+			<Delay time="3" />
+			<HeroTurn hero="袁绍" face="east" />
+			<Dialog hero="袁绍" content="董卓这厮突然召集我们，到底有什么事？\n你看呢？曹操！" />
+			<HeroTurn hero="曹操" face="west" />
+			<Dialog hero="曹操" content="大概要告诉我们天下已在他掌握之中吧。" />
+			<HeroAction hero="袁绍" action="lianhong" />
+			<Dialog hero="袁绍" content="天下！？可恨，那厮根本是个畜生……。" />
+			<HeroTurn hero="曹操" face="north" />
+			<Dialog hero="曹操" content="……本初，还是少说几句吧。\n畜生大人来了。" />
+			<HeroTurn hero="袁绍" face="north" />
+			<HeroAppear hero="董卓" x="90" y="55" face="west" action="putong" /> 
+			<HeroMove hero="董卓" x="84" y="55" face="west" />
+			<HeroAppear hero="吕布" x="90" y="58" face="west" action="putong" /> 
+			<HeroAppear hero="李儒" x="90" y="52" face="west" action="putong" />
+			<HeroMove hero="董卓" x="41" y="55" face="west" />
+			<HeroMove hero="吕布" x="47" y="58" face="west" />
+			<HeroMove hero="李儒" x="47" y="52" face="west" />
+			<Delay time="3" />
+			<HeroMove hero="董卓" x="41" y="58" face="south" />
+			<HeroMove hero="吕布" x="33" y="58" face="west" />
+			<HeroMove hero="李儒" x="33" y="55" face="east" />
+			<Delay time="3" />
+			<HeroMove hero="吕布" x="41" y="58" face="west" />
+			<Delay time="0" />
+			<HeroMove hero="李儒" x="41" y="52" face="west" />
+			<Delay time="3" />
+			<HeroMove hero="李儒" x="41" y="46" face="north" />
+			<Delay time="3" />
+			<HeroMove hero="吕布" x="33" y="58" face="west" />
+			<HeroMove hero="李儒" x="33" y="46" face="west" />
+			<Delay time="5" />
+			<HeroMove hero="吕布" x="33" y="61" face="east" />
+			<HeroMove hero="李儒" x="33" y="47" face="east" />
+			<Delay time="5" />
+			<HeroAction hero="董卓" action="jushou" />
+			<Dialog hero="董卓" content="今天召集大家来，是要宣布一件大事。" />
+			<HeroAction hero="文官01" action="zuoyi" />
+			<Dialog hero="文官01" content="不知丞相宣布何事？" />
+			<HeroAction hero="文官01" action="putong" />
+			<Dialog hero="董卓" content="是关于圣上的事。" />
+			<HeroAction hero="董卓" action="danshoujuqi" />
+			<Dialog hero="董卓" content="我打算废除当今无能的皇帝，\n立陈留王为新帝。" />
+			<HeroAction hero="董卓" action="putong" />
+			<Delay time="3" />
+			<HeroAction hero="文官01" action="jushou" />
+			<Dialog hero="文官01" content="什，什么！？" />
+			<HeroAction hero="文官01" action="putong" />
+			<Delay time="3" />
+			<HeroAction hero="袁绍" action="lianhong" />
+			<Dialog hero="袁绍" content="哼……。" />
+			<HeroAction hero="袁绍" action="putong" />
+			<Delay time="3" />
+			<HeroTurn hero="曹操" face="west" />
+			<Dialog hero="曹操" content="……。" />
+			<HeroAction hero="董卓" action="jushou" />
+			<Dialog hero="董卓" content="怎么？有何异议？" />
+			<HeroAction hero="董卓" action="putong" />
+			<Delay time="3" />
+			<HeroAction hero="文官02" action="zuoyi" />
+			<Dialog hero="文官02" content="……不，不。" />
+			<HeroAction hero="文官02" action="putong" />
+			<Delay time="3" />
+			<HeroAction hero="文官01" action="zuoyi" />
+			<Dialog hero="文官01" content="全凭丞相吩咐。" />
+			<HeroAction hero="文官01" action="putong" />
+			<Delay time="3" />
+			<HeroAction hero="袁绍" action="lianhong" />
+			<Dialog hero="袁绍" content="可恶！" />
+			<HeroTurn hero="曹操" face="south" />
+			<Dialog hero="曹操" content="……慢着，本初。暂时先听他的话吧。" />
+			<HeroAction hero="袁绍" action="putong" />
+			<Delay time="3" />
+			<HeroTurn hero="袁绍" face="east" />
+			<Delay time="3" />
+			<HeroAction hero="袁绍" action="lianhong" />
+			<Dialog hero="袁绍" content="什么！？\n曹操，都什么时候了，还不宰了那厮！？" />
+			<Dialog hero="曹操" content="看见站在董卓身边那员武将了吗？\n他就是吕布！" />
+			<HeroAction hero="袁绍" action="putong" />
+			<Dialog hero="袁绍" content="吕布是何人？" />
+			<Dialog hero="曹操" content="你不知道？他是天下无双的豪杰。\n你要是拔剑出来，\n只会白白送死罢了。\n算了吧，现在还是听话的好。" />
+			<HeroAction hero="袁绍" action="lianhong" />
+			<Dialog hero="袁绍" content="可恶……。" />
+			<HeroAction hero="袁绍" action="putong" />
+			<Delay time="3" />
+			<HeroTurn hero="袁绍" face="north" />
+			<HeroTurn hero="曹操" face="north" />
+			<Delay time="5" />
+			<HeroAction hero="董卓" action="jushou" />
+			<Dialog hero="董卓" content="哈哈哈！" />
+			<HeroAction hero="董卓" action="putong" />
+			<Dialog hero="董卓" content="原来如此，原来如此。\n大家都赞成吧？" />
+			<HeroTurn hero="董卓" face="north" />
+			<Dialog hero="董卓" content="李儒。" />
+			<HeroTurn hero="李儒" face="south" />
+			<Delay time="3" />
+			<HeroAction hero="李儒" action="zuoyi" />
+			<Dialog hero="李儒" content="在。" />
+			<HeroAction hero="董卓" action="jushou" />
+			<Dialog hero="董卓" content="既然大家都同意，\n你就马上去布署吧。" />
+			<HeroAction hero="董卓" action="putong" />
+			<Dialog hero="李儒" content="遵命。" />
+			<HeroAction hero="李儒" action="putong" />
+			<Delay time="3" />
+			<HeroTurn hero="董卓" face="east" />
+			<Delay time="3" />	
+			<HeroAction hero="董卓" action="jushou" />
+			<Dialog hero="董卓" content="哈哈哈，痛快！\n大家今天要好好喝几杯！" />
+			<HeroAction hero="董卓" action="putong" />
+			<Dialog hero="吕布" content="……。" />
+			<Delay time="3" />	
+			<HeroTurn hero="袁绍" face="east" />
+			<Dialog hero="袁绍" content="曹操。" />
+			<Delay time="3" />	
+			<HeroTurn hero="曹操" face="south" />
+			<Dialog hero="曹操" content="什么事？" />
+			<HeroAction hero="袁绍" action="jushou" />
+			<Dialog hero="袁绍" content="我在洛阳没有什么兵马，\n要杀董卓恐怕不易。" />
+			<HeroAction hero="袁绍" action="putong" />
+			<Dialog hero="袁绍" content="我打算回河北招兵买马，\n从洛阳城外攻打董卓。" />
+			<HeroTurn hero="曹操" face="west" />
+			<Dialog hero="曹操" content="……你要离开洛阳？" />
+			<Dialog hero="袁绍" content="是啊，你有何打算，曹操？" />
+			<HeroTurn hero="曹操" face="south" />
+			<Dialog hero="曹操" content="我想再观察一下董卓这个人。" />
+			<Dialog hero="袁绍" content="观察他？" />
+			<Dialog hero="曹操" content="是啊。" />
+			<Dialog hero="袁绍" content="曹操…你有何打算？" />
+			<Dialog hero="曹操" content="我还不了解董卓这个人，\n所以想看看他有没有气度。" />
+			<Dialog hero="袁绍" content="董卓的气度？" />
+			<HeroTurn hero="袁绍" face="east" />
+			<HeroAction hero="袁绍" action="lianhong" />
+			<Dialog hero="袁绍" content="那家伙不过是头恶狼！" />
+			<HeroTurn hero="曹操" face="west" />
+			<Dialog hero="曹操" content="别大声嚷嚷！" />
+			<HeroTurn hero="曹操" face="south" />
+			<Dialog hero="曹操" content="恶狼会听见的，哈哈哈。" />
+			<HeroAction hero="袁绍" action="putong" />
+			<Dialog hero="吕布" content="（……那边的两个人是袁绍袁本初\n和曹操曹孟德吧……。）" />
+			<SoundEffect effect="SoundEffects/SE_e_05.wav" />  
+
 		</Event>
 	</Section>
 

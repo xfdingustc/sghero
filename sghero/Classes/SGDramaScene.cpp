@@ -208,7 +208,7 @@ void SGDramaScene::handleDramaSceneScriptEvent(SGDramaSceneEventList& event_list
     }
     event_list.pop_front();
   } else if (!strcmp(name, "Delay")) {
-    float time = float(atoi(event->Attribute("time"))) * 0.5f;
+    float time = float(atoi(event->Attribute("time"))) ;
     unscheduleUpdate();
     scheduleOnce(schedule_selector(SGDramaScene::startSceneScript), time);
     event_list.pop_front();
