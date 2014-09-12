@@ -1,0 +1,201 @@
+<?xml version='1.0' encoding="utf-8"?>
+<Scene>
+	<Section>
+		<InternalInfo title="七星剑" />
+		<Event>
+			<SoundTrack track="SoundTrack/Track18.mp3" /> 
+			<BackgroundImage type="external" image="Mmaps/17.jpg" />
+			<Info content="成了天子诏命大臣的董卓，独揽大权\n暴虐横行。京城洛阳萦绕着人们的\n悲声和叹息。" /> 
+			<SoundTrack track="null" /> 
+			<BackgroundImage type="internal" image="Mmaps/80.jpg" />
+			<HeroAppear hero="王允" x="68" y="57" face="north" action="xiagui" />
+			<SoundEffect effect="SoundEffects/SE_e_02.wav" />  
+			<Delay time="3" />
+			<ScenePlaceSet city="洛阳" place="王允府中" />
+			<Dialog hero="王允" content="董卓暴虐日甚，朝臣们畏惧他，\n只知谄媚，君臣性命尽在董卓手中。" />
+			<Dialog hero="王允" content="我家世代食汉室俸禄，\n如今我又身执司徒重职，\n却对董卓这个奸臣无能为力！" />
+			<HeroAction hero="王允" action="panzuoku" />
+			<Dialog hero="王允" content="唉……。" />
+			<HeroAppear hero="文官05" x="55" y="29" face="south" action="putong" />
+			<Dialog hero="文官05" content="王大人在家吗？" />
+			<Dialog hero="王允" content="在。" />
+			<Dialog hero="文官05" content="王大人，打扰了。" />
+			<HeroAction hero="王允" action="putong" />
+			<Dialog hero="王允" content="噢，没关系。" />
+			<HeroMove hero="文官05" x="55" y="49" face="south" />
+			<HeroAction hero="文官05" action="putong" />
+			<Delay time="3" />
+			<HeroMove hero="王允" x="55" y="57" face="north" />
+			<HeroAction hero="王允" action="putong" />
+			<Delay time="3" />
+			<HeroAction hero="王允" action="zuoyi" />
+			<Dialog hero="王允" content="太尉大人，\n若有事，传唤一声，王允亲往便是。" />
+			<HeroAction hero="王允" action="putong" />
+			<Delay time="3" />
+			<HeroAction hero="文官05" action="zuoyi" />
+			<Dialog hero="文官05" content="嗯……怎敢劳烦王大人大驾呢？" />
+			<HeroAction hero="文官05" action="putong" />
+			<Dialog hero="文官05" content="其实今日前来，\n是想介绍一个人给王大人的。" />
+			<HeroAction hero="王允" action="zuoyi" />
+			<Dialog hero="王允" content="哦，不知哪位？" />
+			<HeroAction hero="王允" action="putong" />
+			<Delay time="3" />
+			<HeroTurn hero="文官05" face="north" />
+			<Dialog hero="文官05" content="曹操，进来吧。" />
+			<HeroAppear hero="曹操" x="55" y="29" face="south" action="putong" />
+			<Dialog hero="曹操" content="您好。" />
+			<HeroMove hero="文官05" x="61" y="49" face="south" />
+			<HeroMove hero="曹操" x="55" y="49" face="south" />
+			<Delay time="5" />
+			<HeroAction hero="文官05" action="zuoyi" />
+			<Dialog hero="文官05" content="这位是曹操，字孟德，\n他可是位不可多得的人才呢。" />
+			<HeroAction hero="文官05" action="putong" />
+			<Delay time="3" />
+			<HeroAction hero="曹操" action="zuoyi" />
+			<Dialog hero="曹操" content="在下曹操，字孟德，\n请王允大人多多提协。" />
+			<HeroAction hero="曹操" action="putong" />
+			<Delay time="3" />
+			<HeroAction hero="王允" action="zuoyi" />
+			<Dialog hero="王允" content="啊，将军太多礼了。" />
+			<HeroAction hero="王允" action="putong" />
+			<Dialog hero="王允" content="请不必拘礼。" />
+			<HeroAction hero="曹操" action="zuoyi" />
+			<Dialog hero="曹操" content="谢谢王大人。" />
+			<HeroAction hero="曹操" action="putong" />
+			<Delay time="5" />
+			<HeroMove hero="王允" x="68" y="57" face="north" />
+			<HeroMove hero="文官05" x="74" y="49" face="south" />
+			<HeroMove hero="曹操" x="68" y="49" face="south" />
+			<Delay time="3" />
+			<HeroAction hero="文官05" action="xiagui" />
+			<HeroAction hero="曹操" action="xiagui" />
+			<HeroAction hero="王允" action="xiagui." />
+			<Delay time="3" />
+			<Aside content="过了一会儿……。"/>
+			<Delay time="5" />
+			<Dialog hero="王允" content="曹操，你对当今朝廷有何看法？" />
+			<Dialog hero="曹操" content="恐怕也称不上什么朝廷了，\n完全是董卓独揽大权，\n耳目所见尽是叹息之声。" />
+			<Dialog hero="王允" content="原来将军也这么认为……\n我也有此想法。\n只是这样下去可要天下大乱啊……。" />
+			<HeroAction hero="曹操" action="putong" />
+			<Dialog hero="曹操" content="我假意为董卓效力，\n实际上是在观察他。" />
+			<HeroAction hero="王允" action="putong" />
+			<Dialog hero="王允" content="哦，那么……。" />
+			<HeroAction hero="曹操" action="zuoyi" />
+			<Dialog hero="曹操" content="虽然董卓独揽专权，\n但并非有勇无谋之辈。" />
+			<HeroAction hero="曹操" action="putong" />
+			<Dialog hero="曹操" content="由洛阳城内是无法除掉他的，\n而且各路诸侯也无人有实力\n讨伐他。" />
+			<HeroTurn hero="王允" face="north" />
+			<HeroAction hero="王允" action="xiagui" />
+			<Dialog hero="王允" content="嗯……。" />
+			<Dialog hero="王允" content="我也这么想，\n个别诸侯的力量是不够的……。" />
+			<HeroAction hero="曹操" action="jushou" />
+			<Dialog hero="曹操" content="是的，个别诸侯的力量确实不行。" />
+			<Dialog hero="曹操" content="不过……。" />
+			<HeroAction hero="曹操" action="putong" />
+			<Delay time="10" />
+			<HeroAction hero="王允" action="putong" />
+			<Delay time="3" />
+			<HeroAction hero="王允" action="jushou" />
+			<Dialog hero="王允" content="噢、我明白了。\n个别诸侯的力量虽然不及董卓，\n但若能集众人之力……。" />
+			<HeroAction hero="王允" action="putong" />
+			<Dialog hero="曹操" content="是的，\n只要能让群雄结成同盟的话！" />
+			<HeroAction hero="曹操" action="putong" />
+			<Delay time="3" />
+			<HeroAction hero="文官05" action="putong" />
+			<Delay time="3" />
+			<HeroTurn hero="文官05" face="west" />
+			<Dialog hero="文官05" content="同盟？！" />
+			<HeroTurn hero="曹操" face="east" />
+			<Dialog hero="曹操" content="是的，不过想让群雄结盟并非易事……。" />
+			<HeroTurn hero="曹操" face="south" />
+			<HeroTurn hero="文官05" face="south" />
+			<Delay time="5" />
+			<HeroTurn hero="王允" face="south" />
+			<Dialog hero="曹操" content="……这事或许有点不妥，\n不过若能以天子名义发布檄文，\n群雄应该会挺身而出的。" />
+			<HeroTurn hero="王允" face="north" />
+			<Dialog hero="曹操" content="曹将军，就由你负责促成这个同盟吧。" />
+			<HeroAction hero="曹操" action="jushou" />
+			<Dialog hero="曹操" content="我？" />
+			<HeroAction hero="曹操" action="putong" />
+			<Delay time="3" />
+			<HeroAction hero="王允" action="zuoyi" />
+			<Dialog hero="王允" content="是的，我一见到将军，\n就相信你可以成就大业，\n无论如何，希望将军能答应此事。" />
+			<HeroAction hero="王允" action="putong" />
+			<Delay time="3" />
+			<HeroAction hero="曹操" action="zuoyi" />
+			<Dialog hero="曹操" content="可是…要想促成同盟，\n必须具有一定的实力。" />
+			<Dialog hero="曹操" content="小人既无兵马，更无财力招兵买马呀。" />
+			<HeroAction hero="曹操" action="putong" />
+			<Delay time="3" />
+			<HeroAction hero="王允" action="zuoyi" />
+			<Dialog hero="王允" content="我家有柄宝剑，名曰七星剑。" />
+			<Dialog hero="王允" content="如果你肯接受这个使命，\n就将这柄宝剑送给你，\n卖了它就有资金了。" />
+			<Dialog hero="王允" content="如何？你愿意接受吗？" />
+			<HeroAction hero="王允" action="putong" />
+			<SoundEffect effect="SoundEffects/SE_e_02.wav" />  
+			<SoundTrack track="SoundTrack/Track18.mp3" /> 
+			<Delay time="3" />
+			<Select hero="曹操" content="我愿意担当此任\n请恕我难当此任\n">
+				<Case1>
+					<Ambition change="add" number="5"/>
+					<SoundTrack track="null" />
+					<SoundEffect effect="SoundEffects/SE_e_02.wav" />  
+					<Delay time="3" />
+					<Dialog hero="曹操" content="……好吧。" />
+					<HeroAction hero="曹操" action="zuoyi" />
+					<Dialog hero="曹操" content="小人就接此重任。" />
+					<HeroAction hero="曹操" action="putong" />
+					<Delay time="3" />
+					<HeroAction hero="王允" action="jushou" />
+					<Dialog hero="王允" content="哦，你答应了？" />
+					<HeroAction hero="王允" action="putong" />
+					<Delay time="3" />
+					<HeroAction hero="曹操" action="zuoyi" />
+					<Dialog hero="曹操" content="小人一定尽力而为。" />
+					<HeroAction hero="曹操" action="putong" />
+					<Delay time="3" />
+					<HeroAction hero="王允" action="zuoyi" />
+					<Dialog hero="王允" content="谢谢，谢谢你，曹将军。" />
+					<HeroAction hero="王允" action="putong" />
+					<Dialog hero="王允" content="既然如此，事不宜迟。\n这柄七星剑就交给你了。" />
+				</Case1>
+				<Case2>
+					<Ambition change="minus" number="5"/>
+					<SoundTrack track="null" />
+					<SoundEffect effect="SoundEffects/SE_e_02.wav" />  
+					<Delay time="3" />
+					<HeroAction hero="曹操" action="zuoyi" />
+					<Dialog hero="曹操" content="如此重任，小人怕担当不起。" />
+					<HeroAction hero="曹操" action="putong" />
+					<Delay time="3" />
+					<HeroAction hero="王允" action="jushou" />
+					<Dialog hero="王允" content="何来此言？将军方才分析如此精辟，\n此事非将军莫属。" />
+					<HeroAction hero="王允" action="putong" />
+					<Delay time="5" />
+					<HeroTurn hero="文官05" face="west" />
+					<Dialog hero="文官05" content="曹操，王大人既然这么说，\n你就不要推辞了。" />
+					<Delay time="5" />
+					<Dialog hero="曹操" content="……好吧。" />
+					<HeroAction hero="曹操" action="zuoyi" />
+					<Dialog hero="曹操" content="小人就接此重任。" />
+					<HeroAction hero="曹操" action="putong" />
+					<Delay time="3" />
+					<HeroAction hero="王允" action="jushou" />
+					<Dialog hero="王允" content="哦，你答应了？" />
+					<HeroAction hero="王允" action="putong" />
+					<Delay time="3" />
+					<HeroAction hero="曹操" action="zuoyi" />
+					<Dialog hero="曹操" content="小人一定尽力而为。" />
+					<HeroAction hero="曹操" action="putong" />
+					<Delay time="3" />
+					<HeroAction hero="王允" action="zuoyi" />
+					<Dialog hero="王允" content="谢谢，谢谢你，曹将军。" />
+					<HeroAction hero="王允" action="putong" />
+					<Dialog hero="王允" content="既然如此，事不宜迟。\n这柄七星剑就交给你了。" />
+				</Case2>
+			</Select>
+			<Dialog hero="王允" content="快出来吧，貂蝉，貂蝉！" />
+		</Event>
+	</Section>
+
+</Scene>

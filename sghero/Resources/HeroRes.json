@@ -7,6 +7,7 @@
 	{"name": "袁绍", "face": "HeroFaces/yuanshao.png", "south": "DramaSceneObjects/yuanshao_south.png", "north": "DramaSceneObjects/yuanshao_north.png"},
 	{"name": "樊稠", "face": "HeroFaces/fanchou.png", "south": "DramaSceneObjects/fanchou_south.png", "north": "DramaSceneObjects/fanchou_north.png"},
 	{"name": "董卓", "face": "HeroFaces/dongzhuo.png", "south": "DramaSceneObjects/dongzhuo_south.png", "north": "DramaSceneObjects/dongzhuo_north.png"},
+	{"name": "王允", "face": "HeroFaces/wangyun.png", "south": "DramaSceneObjects/wangyun_south.png", "north": "DramaSceneObjects/wangyun_north.png"},
 	{"name": "吕布", "face": "HeroFaces/lvbu.png", "south": "DramaSceneObjects/lvbu_south.png", "north": "DramaSceneObjects/lvbu_north.png"},
 	{"name": "李儒", "face": "HeroFaces/liru.png", "south": "DramaSceneObjects/liru_south.png", "north": "DramaSceneObjects/liru_north.png"},
 	{"name": "华雄", "face": "HeroFaces/huaxiong.png", "south": "DramaSceneObjects/huaxiong_south.png", "north": "DramaSceneObjects/huaxiong_north.png"},
@@ -16,6 +17,7 @@
 	{"name": "士兵01", "face": "HeroFaces/shibing01.png", "south": "DramaSceneObjects/shibing01_south.png", "north": "DramaSceneObjects/shibing01_north.png"},
 	{"name": "士兵02", "face": "HeroFaces/shibing01.png", "south": "DramaSceneObjects/shibing02_south.png", "north": "DramaSceneObjects/shibing02_north.png"},
 	{"name": "文官01", "face": "HeroFaces/shibing01.png", "south": "DramaSceneObjects/wenguan01_south.png", "north": "DramaSceneObjects/wenguan01_north.png"},
-	{"name": "文官02", "face": "HeroFaces/shibing01.png", "south": "DramaSceneObjects/wenguan02_south.png", "north": "DramaSceneObjects/wenguan02_north.png"}
+	{"name": "文官02", "face": "HeroFaces/shibing02.png", "south": "DramaSceneObjects/wenguan02_south.png", "north": "DramaSceneObjects/wenguan02_north.png"},
+	{"name": "文官05", "face": "HeroFaces/wenguan05.png", "south": "DramaSceneObjects/wenguan05_south.png", "north": "DramaSceneObjects/wenguan05_north.png"}
     ]
 }

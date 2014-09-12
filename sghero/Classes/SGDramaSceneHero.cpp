@@ -49,9 +49,11 @@ bool SGDramaSceneHero::init(const char* hero_name)
    
   
   __frame_map["putong_south"] = __south_sprite_frames.at(0);
-  __frame_map["lianhong_south"] = __south_sprite_frames.at(0);
+  __frame_map["xiagui_south"] = __south_sprite_frames.at(3);
+  __frame_map["lianhong_south"] = __south_sprite_frames.at(4);
   __frame_map["jushou_south"] = __south_sprite_frames.at(5);
   __frame_map["zuoyi_south"] = __south_sprite_frames.at(8);
+  __frame_map["panzuoku_south"] = __south_sprite_frames.at(11);
   __frame_map["danshoujuqi_south"] = __south_sprite_frames.at(19);
 
   Vector<SpriteFrame*>* animFrames = new Vector<SpriteFrame*>;
@@ -79,9 +81,11 @@ bool SGDramaSceneHero::init(const char* hero_name)
   
   
   __frame_map["putong_north"] = __north_sprite_frames.at(0);
-  __frame_map["lianhong_north"] = __north_sprite_frames.at(0);
+  __frame_map["xiagui_north"] = __north_sprite_frames.at(3);
+  __frame_map["lianhong_north"] = __north_sprite_frames.at(4);
   __frame_map["jushou_north"] = __north_sprite_frames.at(5);
   __frame_map["zuoyi_north"] = __north_sprite_frames.at(8);
+  __frame_map["panzuoku_north"] = __north_sprite_frames.at(11);
   __frame_map["danshoujuqi_north"] = __north_sprite_frames.at(19);
 
   Vector<SpriteFrame*>* walk_north_animFrames = new Vector<SpriteFrame*>;
@@ -161,7 +165,9 @@ void SGDramaSceneHero::doAction(const char* action)
   
   act.append(suffex);
   SpriteFrame* frame = __frame_map[act];
-  setSpriteFrame(frame);
+  if (frame) {
+    setSpriteFrame(frame);
+  }
 
 }
 

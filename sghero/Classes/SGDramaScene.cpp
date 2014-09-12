@@ -35,7 +35,7 @@ bool SGDramaScene::init()
     return false;
   }
 
-  parseDramaSceneXmlFile("DramaScenes/FeiLiShaodi.xml");
+  parseDramaSceneXmlFile("DramaScenes/QiXinJian.xml");
   startSceneScript(0.0f);
   __has_pending_event = false;
   return true;
@@ -167,16 +167,7 @@ void SGDramaScene::handleDramaSceneScriptEvent(SGDramaSceneEventList& event_list
     SimpleAudioEngine::getInstance()->playEffect(sound_effect, true);
     event_list.pop_front();
   } else if (!strcmp(name, "HeroAppear")) {
-    std::string hero_name = event->Attribute("hero");
-    std::string direction = event->Attribute("face");
-    int x = atoi(event->Attribute("x"));
-    int y = atoi(event->Attribute("y"));
-    SGDramaSceneHero* hero = SGDramaSceneHero::create(hero_name.c_str());
-    hero->setAnchorPoint(Vec2(1.0f, 1.0f));
-    hero->setPosition(convertCoordinate(Vec2(x,y)));
-    hero->faceTo(direction.c_str());
-    this->addChild(hero);
-    event_list.pop_front();
+    onHandleEventHeroAppear(event);
   } else if (!strcmp(name, "HeroMove")) {
 
 	  std::string hero_name = event->Attribute("hero");
@@ -332,6 +323,23 @@ void SGDramaScene::onHandleEventHeroFaceHide(tinyxml2::XMLElement* event)
 {
   std::string hero_name = event->Attribute("hero");
   this->removeChildByName(hero_name);
+  __event_list.pop_front();
+}
+
+
+void SGDramaScene::onHandleEventHeroAppear(tinyxml2::XMLElement* event)
+{
+  std::string hero_name = event->Attribute("hero");
+  std::string direction = event->Attribute("face");
+  std::string action = event->Attribute("action");
+  int x = atoi(event->Attribute("x"));
+  int y = atoi(event->Attribute("y"));
+  SGDramaSceneHero* hero = SGDramaSceneHero::create(hero_name.c_str());
+  hero->setAnchorPoint(Vec2(1.0f, 1.0f));
+  hero->setPosition(convertCoordinate(Vec2(x,y)));
+  hero->faceTo(direction.c_str());
+  hero->doAction(action.c_str());
+  this->addChild(hero);
   __event_list.pop_front();
 }
 
