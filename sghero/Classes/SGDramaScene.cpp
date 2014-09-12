@@ -168,6 +168,8 @@ void SGDramaScene::handleDramaSceneScriptEvent(SGDramaSceneEventList& event_list
     event_list.pop_front();
   } else if (!strcmp(name, "HeroAppear")) {
     onHandleEventHeroAppear(event);
+  } else if (!strcmp(name, "HeroDisappear")) {
+    onHandleEventHeroDisappear(event);
   } else if (!strcmp(name, "HeroMove")) {
 
 	  std::string hero_name = event->Attribute("hero");
@@ -343,6 +345,12 @@ void SGDramaScene::onHandleEventHeroAppear(tinyxml2::XMLElement* event)
   __event_list.pop_front();
 }
 
+void SGDramaScene::onHandleEventHeroDisappear(tinyxml2::XMLElement* event)
+{
+  std::string hero_name = event->Attribute("hero");
+  this->removeChildByName(hero_name);
+  __event_list.pop_front();
+}
 void SGDramaScene::onHandleEventMapInfoShow(tinyxml2::XMLElement* event)
 {
   std::string content = event->Attribute("content");

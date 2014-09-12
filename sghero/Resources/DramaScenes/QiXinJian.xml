@@ -195,6 +195,231 @@
 				</Case2>
 			</Select>
 			<Dialog hero="王允" content="快出来吧，貂蝉，貂蝉！" />
+			<HeroAppear hero="貂蝉" x="55" y="29" face="south" action="putong" />
+			<Delay time="3" />
+			<HeroAction hero="貂蝉" action="zuoyi" />
+			<Dialog hero="貂蝉" content="来了，爹。" />
+			<HeroAction hero="貂蝉" action="putong" />
+			<Delay time="3" />
+			<HeroTurn hero="曹操" face="north" />
+			<HeroTurn hero="文官05" face="north" />
+			<Delay time="3" />
+			<HeroAction hero="王允" action="jushou" />
+			<Dialog hero="王允" content="貂蝉，快把七星剑拿来。" />
+			<HeroAction hero="王允" action="putong" />
+			<Delay time="3" />
+			<HeroAction hero="貂蝉" action="zuoyi" />
+			<Dialog hero="貂蝉" content="是，爹。" />
+			<HeroAction hero="貂蝉" action="putong" />
+			<Delay time="3" />
+			<HeroDisappear hero="貂蝉" />
+			<Delay time="5" />
+			<HeroAction hero="文官05" action="zuoyi" />
+			<Dialog hero="文官05" content="王大人，方才的小姐是？" />
+			<HeroAction hero="文官05" action="putong" />
+			<Delay time="3" />
+			<HeroAction hero="王允" action="zuoyi" />
+			<Dialog hero="王允" content="哦，是我的养女，名叫貂蝉。" />
+			<HeroAction hero="王允" action="putong" />
+			<Delay time="3" />
+			<HeroAction hero="文官05" action="zuoyi" />
+			<Dialog hero="文官05" content="是吗？真令人吃惊。\n没想到王大人竟有如此貌美的女儿。" />
+			<HeroAction hero="文官05" action="putong" />
+			<Delay time="3" />
+			<HeroAction hero="王允" action="jushou" />
+			<Dialog hero="王允" content="哪里哪里，还是个孩子。" />
+			<HeroAction hero="王允" action="putong" />
+			<Delay time="3" />
+			<HeroAction hero="文官05" action="zuoyi" />
+			<Dialog hero="文官05" content="啊，实在是太美了。" />
+			<HeroAction hero="文官05" action="putong" />
+			<Delay time="3" />
+			<HeroAppear hero="貂蝉" x="55" y="29" face="south" action="putong" />
+			<Dialog hero="貂蝉" content="爹，您久等了。" />
+			<HeroMove hero="貂蝉" x="55" y="57" face="east" />
+			<Delay time="3" />
+			<HeroTurn hero="王允" face="west" />
+			<Dialog hero="王允" content="哦，乖女儿。" />
+			<HeroMove hero="貂蝉" x="64" y="57" face="east" />
+			<Delay time="3" />
+			<HeroMove hero="貂蝉" x="55" y="57" face="east" />
+			<Dialog hero="王允" content="貂蝉，我给你介绍一下。" />
+			<HeroTurn hero="王允" face="north" />
+			<Dialog hero="王允" content="这位是太尉大人，\n这位年轻人是曹将军。" />
+			<HeroAction hero="貂蝉" action="zuoyi" />
+			<Dialog hero="貂蝉" content="小女子貂蝉，见过二位大人。" />
+			<HeroAction hero="貂蝉" action="putong" />
+			<Delay time="3" />
+			<HeroTurn hero="文官05" face="west" />
+			<Delay time="3" />
+			<HeroAction hero="文官05" action="zuoyi" />
+			<Dialog hero="文官05" content="啊，你好。" />
+			<HeroAction hero="文官05" action="putong" />
+			<Delay time="3" />
+			<HeroAction hero="曹操" action="zuoyi" />
+			<Dialog hero="曹操" content="你好。" />
+			<HeroAction hero="曹操" action="putong" />
+			<Delay time="3" />
+			<HeroAction hero="王允" action="zuoyi" />
+			<Dialog hero="王允" content="曹将军，我的女儿如何？" />
+			<HeroAction hero="王允" action="putong" />
+			<Delay time="5" />
+			<HeroFaceSet hero="曹操" status="shocked" />
+			<HeroAction hero="曹操" action="jushou" />
+			<Dialog hero="曹操" content="啊？" />
+			<HeroAction hero="曹操" action="putong" />
+			<HeroFaceSet hero="曹操" status="normal" />
+			<Delay time="3" />
+			<SoundEffect effect="SoundEffects/SE_e_02.wav" />  
+			<SoundTrack track="SoundTrack/Track13.mp3" />
+			<Delay time="3" />
+			<Select hero="曹操" content="真是令人激赏\n没什么特别的\n">
+				<Case1>
+					<Ambition change="add" number="5"/>
+					<SoundTrack track="null" />
+					<Delay time="3" />
+					<SoundEffect effect="SoundEffects/SE_e_02.wav" />  
+					<Delay time="3" />
+					<HeroAction hero="曹操" action="zuoyi" />
+					<Dialog hero="曹操" content="啊，真是太美了。" />
+					<HeroAction hero="曹操" action="putong" />
+					<Delay time="3" />
+					<HeroAction hero="貂蝉" action="jushou" />
+					<Dialog hero="貂蝉" content="哪里的话，谢谢大人夸奖。" />
+					<HeroAction hero="貂蝉" action="putong" />
+					<Delay time="3" />
+					<HeroAction hero="王允" action="jushou" />
+					<Dialog hero="王允" content="哈哈哈，看来曹将军很欣赏你，貂蝉。" />
+					<HeroAction hero="王允" action="putong" />
+					<Delay time="5" />
+					<HeroFaceSet hero="曹操" status="shocked" />
+					<HeroAction hero="曹操" action="jushou" />
+					<Dialog hero="曹操" content="啊，王允大人，我不是……。" />
+					<HeroAction hero="曹操" action="putong" />
+					<HeroFaceSet hero="曹操" status="normal" />
+					<Delay time="3" />
+					<HeroAction hero="貂蝉" action="jushou" />
+					<Dialog hero="貂蝉" content="这是小女子的荣幸，曹大人。" />
+					<HeroAction hero="貂蝉" action="putong" />
+					<Delay time="3" />
+					<HeroAction hero="曹操" action="zuoyi" />
+					<Dialog hero="曹操" content="噢，是……。" />
+					<HeroAction hero="曹操" action="putong" />
+					<Delay time="3" />
+					<HeroMove hero="貂蝉" x="55" y="63" face="north" />
+					<HeroMove hero="王允" x="55" y="57" face="north" />
+					<Delay time="0" />
+					<HeroMove hero="王允" x="55" y="49" face="north" />
+					<HeroAction hero="王允" action="putong" />
+					<HeroTurn hero="曹操" face="west" />
+					<Delay time="3" />
+					<HeroAction hero="王允" action="zuoyi" />
+					<Dialog hero="王允" content="那么曹将军，这把剑就交给你了。" />
+					<HeroAction hero="王允" action="putong" />
+					<Delay time="3" />
+					<HeroMove hero="王允" x="64" y="49" face="east" />
+					<HeroAction hero="王允" action="putong" />
+					<Delay time="3" />
+					<HeroAction hero="曹操" action="shenshou" />
+					<Delay time="3" />
+					<HeroMove hero="王允" x="55" y="49" face="east" />
+					<HeroAction hero="王允" action="putong" />
+					<Delay time="3" />
+					<HeroAction hero="王允" action="zuoyi" />
+					<Dialog hero="王允" content="一切可全靠将军了。" />
+					<HeroAction hero="王允" action="putong" />
+					<Delay time="3" />
+					<HeroAction hero="曹操" action="zuoyi" />
+					<Dialog hero="曹操" content="大人放心，小人一定不负大人厚望。" />
+					<HeroAction hero="曹操" action="putong" />
+					<Delay time="3" />
+					<HeroMove hero="王允" x="55" y="55" face="north" />
+					<HeroMove hero="曹操" x="55" y="49" face="north" />
+					<HeroAction hero="曹操" action="putong" />
+					<Delay time="5" />
+					<HeroAction hero="曹操" action="zuoyi" />
+					<Dialog hero="曹操" content="噢，是……。" />
+					<HeroAction hero="曹操" action="那么在下就此告辞。" />
+					<Delay time="5" />
+					<HeroMove hero="曹操" x="55" y="29" face="north" />
+					<HeroDisappear hero="曹操" />
+					<Delay time="5" />
+					<HeroTurn hero="王允" face="east" />
+					<Dialog hero="王允" content="真是个出众的年轻人，\n将来必能功成名就。" />
+					<HeroTurn hero="文官05" face="south" />
+					<Dialog hero="文官05" content="我也这么认为。" />
+					<HeroTurn hero="貂蝉" face="east" />
+					<Dialog hero="貂蝉" content="（曹操大人……。）" />
+					<ValueSet val_name="Val302" val="1" />
+				</Case1>
+				<Case2>
+					<Ambition change="minus" number="5"/>
+					<Delay time="3" />
+					<SoundEffect effect="SoundEffects/SE_e_02.wav" />  
+					<Delay time="3" />
+					<HeroAction hero="曹操" action="zuoyi" />
+					<Dialog hero="曹操" content="王大人，您还没给剑呢。" />
+					<HeroAction hero="曹操" action="putong" />
+					<Delay time="3" />
+					<HeroAction hero="王允" action="zuoyi" />
+					<Dialog hero="王允" content="哦，对不起。" />
+					<HeroAction hero="王允" action="putong" />
+					<Delay time="3" />
+					<HeroTurn hero="王允" face="west" />
+					<Dialog hero="曹操" content="貂蝉，你先下去吧。" />
+					<HeroAction hero="貂蝉" action="zuoyi" />
+					<Dialog hero="貂蝉" content="是。" />
+					<HeroAction hero="貂蝉" action="putong" />
+					<Delay time="3" />
+					<HeroMove hero="貂蝉" x="55" y="29" face="north" />
+					<HeroDisappear hero="貂蝉" />
+					<Delay time="5" />
+					<HeroMove hero="王允" x="55" y="57" face="west" />
+					<HeroAction hero="王允" action="putong" />
+					<Delay time="0" />
+					<HeroMove hero="王允" x="55" y="49" face="east" />
+					<HeroAction hero="王允" action="putong" />
+					<HeroTurn hero="曹操" face="west" />
+					<HeroTurn hero="文官05" face="west" />
+					<Delay time="3" />
+					<HeroAction hero="王允" action="zuoyi" />
+					<Dialog hero="王允" content="那么曹将军，这把剑就交给你了。" />
+					<HeroAction hero="王允" action="putong" />
+					<Delay time="3" />
+					<HeroMove hero="王允" x="64" y="49" face="east" />
+					<HeroAction hero="王允" action="putong" />
+					<Delay time="3" />
+					<HeroAction hero="曹操" action="shenshou" />
+					<Delay time="3" />
+					<HeroMove hero="王允" x="55" y="49" face="east" />
+					<HeroAction hero="王允" action="putong" />
+					<Delay time="3" />
+					<HeroAction hero="王允" action="zuoyi" />
+					<Dialog hero="王允" content="一切可全靠将军了。" />
+					<HeroAction hero="王允" action="putong" />
+					<Delay time="3" />
+					<HeroAction hero="曹操" action="zuoyi" />
+					<Dialog hero="曹操" content="大人放心，小人一定不负大人厚望。" />
+					<HeroAction hero="曹操" action="putong" />
+					<Delay time="3" />
+					<HeroMove hero="王允" x="55" y="55" face="north" />
+					<HeroMove hero="曹操" x="55" y="49" face="north" />
+					<HeroAction hero="曹操" action="putong" />
+					<Delay time="5" />
+					<HeroAction hero="曹操" action="zuoyi" />
+					<Dialog hero="曹操" content="噢，是……。" />
+					<HeroAction hero="曹操" action="那么在下就此告辞。" />
+					<Delay time="5" />
+					<HeroMove hero="曹操" x="55" y="29" face="north" />
+					<HeroDisappear hero="曹操" />
+					<Delay time="5" />
+					<HeroTurn hero="王允" face="east" />
+					<Dialog hero="王允" content="真是个出众的年轻人，\n将来必能功成名就。" />
+					<HeroTurn hero="文官05" face="south" />
+					<Dialog hero="文官05" content="我也这么认为。" />
+					<ValueSet val_name="Val303" val="1" />
+				</Case2>
+			</Select >
 		</Event>
 	</Section>
 

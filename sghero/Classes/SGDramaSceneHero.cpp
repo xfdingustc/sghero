@@ -52,6 +52,8 @@ bool SGDramaSceneHero::init(const char* hero_name)
   __frame_map["xiagui_south"] = __south_sprite_frames.at(3);
   __frame_map["lianhong_south"] = __south_sprite_frames.at(4);
   __frame_map["jushou_south"] = __south_sprite_frames.at(5);
+  __frame_map["ku_south"] = __south_sprite_frames.at(6);
+  __frame_map["shenshou_south"] = __south_sprite_frames.at(7);
   __frame_map["zuoyi_south"] = __south_sprite_frames.at(8);
   __frame_map["panzuoku_south"] = __south_sprite_frames.at(11);
   __frame_map["danshoujuqi_south"] = __south_sprite_frames.at(19);
@@ -84,6 +86,8 @@ bool SGDramaSceneHero::init(const char* hero_name)
   __frame_map["xiagui_north"] = __north_sprite_frames.at(3);
   __frame_map["lianhong_north"] = __north_sprite_frames.at(4);
   __frame_map["jushou_north"] = __north_sprite_frames.at(5);
+  __frame_map["ku_north"] = __north_sprite_frames.at(6);
+  __frame_map["shenshou_north"] = __north_sprite_frames.at(7);
   __frame_map["zuoyi_north"] = __north_sprite_frames.at(8);
   __frame_map["panzuoku_north"] = __north_sprite_frames.at(11);
   __frame_map["danshoujuqi_north"] = __north_sprite_frames.at(19);
@@ -118,21 +122,39 @@ bool SGDramaSceneHero::initActions()
 void SGDramaSceneHero::moveTo(Vec2 target_pos, const char* direction)
 {
   int actualDuration = 3.0f;
-  //faceTo(direction);
+  faceTo(direction);
   FiniteTimeAction *actionMove = MoveTo::create(actualDuration, target_pos);
   CallFunc * funcall= CallFunc::create(this, callfunc_selector(SGDramaSceneHero::actionFinished));
   FiniteTimeAction* moveWithCallback = Sequence::create(actionMove, funcall, NULL);
   std::string walk_animate_name;
-  switch (getDirection(direction))
+  Vec2 cur_pos = this->getPosition();
+  DIRECTION move_dir;
+  if (target_pos.x > cur_pos.x && target_pos.y < cur_pos.y) {
+    move_dir = DIRECTION_EAST;
+  } else if (target_pos.x < cur_pos.x && target_pos.y < cur_pos.y) {
+    move_dir = DIRECTION_SOUTH;
+  } else if (target_pos.x > cur_pos.x && target_pos.y > cur_pos.y) {
+    move_dir = DIRECTION_NORTH;
+  } else {
+    move_dir = DIRECTION_WEST;
+  }
+  switch (move_dir)
   {
-  case DIRECTION_NORTH:
   case DIRECTION_WEST:
+    setFlippedX(true);
+    walk_animate_name = "walk_north";
+    break;
+  case DIRECTION_NORTH:
+    setFlippedX(false);
     walk_animate_name = "walk_north";
     break;
   case DIRECTION_SOUTH:
-  case DIRECTION_EAST:
+    setFlippedX(false);
     walk_animate_name = "walk_south";
     break;
+  case DIRECTION_EAST:
+    setFlippedX(true);
+    walk_animate_name = "walk_south";
   default:
     break;
   }
@@ -174,7 +196,13 @@ void SGDramaSceneHero::doAction(const char* action)
 void SGDramaSceneHero::faceTo(const char* direction)
 {
   std::string face_frame_name;
-  __face_direction = getDirection(direction);
+  
+  faceTo(getDirection(direction));
+}
+
+void SGDramaSceneHero::faceTo(DIRECTION direction)
+{
+  __face_direction = direction;
   switch (__face_direction)
   {
   case DIRECTION_WEST:
@@ -197,6 +225,7 @@ void SGDramaSceneHero::faceTo(const char* direction)
 
 void SGDramaSceneHero::actionFinished()
 {
+  faceTo(__face_direction);
   this->stopAllActions();
 }
 

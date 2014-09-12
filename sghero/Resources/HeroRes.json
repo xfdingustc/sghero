@@ -11,6 +11,7 @@
 	{"name": "吕布", "face": "HeroFaces/lvbu.png", "south": "DramaSceneObjects/lvbu_south.png", "north": "DramaSceneObjects/lvbu_north.png"},
 	{"name": "李儒", "face": "HeroFaces/liru.png", "south": "DramaSceneObjects/liru_south.png", "north": "DramaSceneObjects/liru_north.png"},
 	{"name": "华雄", "face": "HeroFaces/huaxiong.png", "south": "DramaSceneObjects/huaxiong_south.png", "north": "DramaSceneObjects/huaxiong_north.png"},
+	{"name": "貂蝉", "face": "HeroFaces/diaochan.png", "south": "DramaSceneObjects/diaochan_south.png", "north": "DramaSceneObjects/diaochan_north.png"},
 	{"name": "徐子将", "face": "HeroFaces/xuzijiang.png", "south": "DramaSceneObjects/xuzijiang_south.png", "north": "DramaSceneObjects/xuzijiang_north.png"},
 	{"name": "张梁", "face": "HeroFaces/zhangliang.png", "south": "DramaSceneObjects/shibing02_south.png", "north": "DramaSceneObjects/shibing02_north.png"},
 	{"name": "张宝", "face": "HeroFaces/zhangbao.png", "south": "DramaSceneObjects/shibing02_south.png", "north": "DramaSceneObjects/shibing02_north.png"},

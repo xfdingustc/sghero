@@ -17,6 +17,7 @@ public:
   } DIRECTION;
   void moveTo(Vec2 target_pos, const char* direction);
   void faceTo(const char* direction);
+  void faceTo(DIRECTION direction);
   void doAction(const char* action);
 
   bool init(const char* hero_name);

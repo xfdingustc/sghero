@@ -33,6 +33,7 @@ private:
   void onHandleEventHeroFaceMove(tinyxml2::XMLElement* event);
   void onHandleEventHeroFaceHide(tinyxml2::XMLElement* event);
   void onHandleEventHeroAppear(tinyxml2::XMLElement* event);
+  void onHandleEventHeroDisappear(tinyxml2::XMLElement* event);
   void onHandleEventMapInfoShow(tinyxml2::XMLElement* event);
 
   // coordination convert
