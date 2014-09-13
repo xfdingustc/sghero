@@ -13,6 +13,9 @@
     <Filter Include="Classes\SGDramaScene">
       <UniqueIdentifier>{d6cd1beb-5327-4095-9d04-e1e97b08a9e3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\SGSkirmishScene">
+      <UniqueIdentifier>{6f118507-68ea-4e7b-963f-7e358fd8d83a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -44,6 +47,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\SGDramaSceneInfoScene.cpp">
       <Filter>Classes\SGDramaScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SGSkirmishScene.cpp">
+      <Filter>Classes\SGSkirmishScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -79,6 +85,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\SGDramaSceneInfoScene.h">
       <Filter>Classes\SGDramaScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SGSkirmishScene.h">
+      <Filter>Classes\SGSkirmishScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

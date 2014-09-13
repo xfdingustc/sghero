@@ -16,6 +16,9 @@ public:
     // start new game callback
     void startNewGameCallback(cocos2d::Ref* pSender);
 
+    // quick skirmish callback
+    void quickSkirmishCallback(cocos2d::Ref* pSender);
+
     // a selector callback
     void menuCloseCallback(cocos2d::Ref* pSender);
     

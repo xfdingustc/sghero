@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding="utf-8"?>
+<Scene>
+	<Section>
+		<Map map="Skirmish/YingChuanZhiZhan.jpg" width="20" height="20" />
+		<Terrain terrain="Skirmish/YingChuanZhiZhan.ter" />
+		<Setting max_round="20" level="-2" OurChiefHero="曹操" weather="shine"/>
+		<FriendSetting>
+			<HeroAdd hero="刘备" x="14" y="1" face="west" level="+6" hide="true" AI="attack" />
+			<HeroAdd hero="关羽" x="13" y="2" face="west" level="+6" hide="true" AI="attack" />
+			<HeroAdd hero="张飞" x="13" y="1" face="west" level="+6" hide="true" AI="attack" />
+			<HeroAdd hero="步兵01" x="10" y="17" face="north" level="0" hide="false" AI="attack" />
+			<HeroAdd hero="步兵02" x="9" y="18" face="north" level="0" hide="false" AI="attack" />
+			<HeroAdd hero="弓兵01" x="12" y="17" face="north" level="0" hide="false" AI="attack" />
+			<HeroAdd hero="弓兵02" x="7" y="16" face="north" level="0" hide="false" AI="attack" />
+			<HeroAdd hero="骑兵01" x="6" y="0" face="east" level="0" hide="true" AI="attack" />
+			<HeroAdd hero="骑兵02" x="5" y="0" face="east" level="0" hide="true" AI="attack" />
+			<HeroAdd hero="策士01" x="12" y="16" face="north" level="0" hide="false" AI="attack" />
+			<HeroAdd hero="许子将" x="12" y="17" face="north" level="0" hide="true" AI="negative" />
+		</FriendSetting>
+		<EnemySetting>
+			<HeroAdd hero="张宝" x="12" y="17" face="south" level="4" hide="false" AI="stay" />
+			<HeroAdd hero="张梁" x="10" y="11" face="south" level="4" hide="false" AI="stay" />
+			<HeroAdd hero="黄巾军01" x="12" y="17" face="south" level="0" hide="false" AI="stay" />
+		</EnemySetting>
+		<Event>
+			
+
+		</Event>
+		<Test>
+			<RoundTest round="1">
+				
+			</RoundTest>
+		</Test>
+	</Section>
+
+</Scene>

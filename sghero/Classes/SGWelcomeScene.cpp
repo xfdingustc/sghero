@@ -1,5 +1,6 @@
 #include "SGWelcomeScene.h"
 #include "SGDramaScene.h"
+#include "SGSkirmishScene.h"
 
 USING_NS_CC;
 
@@ -42,18 +43,27 @@ bool SGWelcomeScene::init()
                                            CC_CALLBACK_1(SGWelcomeScene::startNewGameCallback, this));
     
 	  startNewGameItem->setPosition(Vec2(visibleSize.width / 2 ,
-                                visibleSize.height / 2 + startNewGameItem->getContentSize().height/2));
+                                visibleSize.height / 2 + startNewGameItem->getContentSize().height));
+
+    auto quickSkirmishItem = MenuItemImage::create("QuickSkirmish.png",
+      "QuickSkirmish.png",
+      CC_CALLBACK_1(SGWelcomeScene::quickSkirmishCallback, this));
+
+    quickSkirmishItem->setPosition(Vec2(visibleSize.width / 2 ,  visibleSize.height / 2 ));
+
 
     auto endGameItem = MenuItemImage::create(
       "EndGame.png",
       "EndGame.png",
       CC_CALLBACK_1(SGWelcomeScene::menuCloseCallback, this));
 
+    
 
-    endGameItem->setPosition(Vec2(visibleSize.width / 2 , visibleSize.height / 2 - endGameItem->getContentSize().height/2));
+
+    endGameItem->setPosition(Vec2(visibleSize.width / 2 , visibleSize.height / 2 - endGameItem->getContentSize().height));
 
     // create menu, it's an autorelease object
-    auto menu = Menu::create(startNewGameItem, endGameItem,  NULL);
+    auto menu = Menu::create(startNewGameItem, quickSkirmishItem, endGameItem,  NULL);
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
 
@@ -91,5 +101,11 @@ void SGWelcomeScene::menuCloseCallback(Ref* pSender)
 void SGWelcomeScene::startNewGameCallback(Ref* pSender)
 {
   auto drama_scene = SGDramaScene::createScene();
-  Director::sharedDirector()->replaceScene(drama_scene);
+  Director::getInstance()->replaceScene(drama_scene);
+}
+
+void SGWelcomeScene::quickSkirmishCallback(Ref* pSender)
+{
+  auto skirmish_scene = SGSkirmishScene::createScene();
+  Director::getInstance()->replaceScene(skirmish_scene);
 }
