@@ -31,7 +31,9 @@ Scene* SGDramaSceneSelectScene::creatScene(const char* hero_name, const char* co
   dialog_win->setPosition(Vec2(win_size.width/2, win_size.height/2));
 
   // step 2: create hero face image;
-  std::string hero_face_res = SGHeroResourceUtils::getInstance()->getHeroResObj(hero_name)->face;
+  std::string hero_face_res = SG_HERO_FACE_RES_PATH;
+  hero_face_res.append(SGHeroResourceUtils::getInstance()->getHeroResObj(hero_name)->res_name);
+  hero_face_res.append(".png");
   Sprite* face = Sprite::create(hero_face_res);
   face->setPosition(Vec2(dialog_size.width * 0.1f ,dialog_size.height/2));
   dialog_win->addChild(face);

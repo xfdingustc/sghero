@@ -36,14 +36,18 @@ void SGHeroResourceUtils::init()
     if (res_list.IsArray()) {
       for (int i = 0; i < res_list.Size(); i++) {
         const rapidjson::Value &val = res_list[i];
-        if (val.HasMember("name")) {
-          SGHeroResourceObject* new_hero = new SGHeroResourceObject;
-          new_hero->name = val["name"].GetString();
-          new_hero->face = val["face"].GetString();
-          new_hero->drama_scene_south = val["south"].GetString();
-          new_hero->drama_scene_north = val["north"].GetString();
-          heroes_map.insert(HERO_MAP_TYPE::value_type(new_hero->name, new_hero));
+        SGHeroResourceObject* new_hero = new SGHeroResourceObject;
+        new_hero->name = val["name"].GetString();
+        if (val.HasMember("catagory")) {
+          new_hero->catagory = val["catagory"].GetString();
         }
+        if (val.HasMember("res_name")) {
+          new_hero->res_name = val["res_name"].GetString();
+        }
+        
+        
+        
+        heroes_map.insert(HERO_MAP_TYPE::value_type(new_hero->name, new_hero));
       }
     }
 

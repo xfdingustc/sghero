@@ -12,9 +12,8 @@ public:
   class SGHeroResourceObject {
   public:
     std::string name;
-    std::string face;
-    std::string drama_scene_south;
-    std::string drama_scene_north;
+    std::string catagory;
+    std::string res_name;
   };
 
   SGHeroResourceObject* getHeroResObj(std::string name);

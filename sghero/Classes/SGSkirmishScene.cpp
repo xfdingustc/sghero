@@ -1,6 +1,6 @@
 #include "SGSkirmishScene.h"
-
-
+#include "SGSkirmishSceneHero.h"
+#include "SGGlobalSettings.h"
 
 Scene* SGSkirmishScene::createScene()
 {
@@ -52,6 +52,8 @@ bool SGSkirmishScene::parseSkirmishSettings(tinyxml2::XMLElement* setting)
   const char* name = setting->Name();
   if (!strcmp(name, "Map")) {
     onHandleSettingMap(setting);
+  } else if (!strcmp(name, "FriendSetting")) {
+    onHandleSettingFriend(setting);
   }
   return true;
 }
@@ -66,4 +68,37 @@ void SGSkirmishScene::onHandleSettingMap(tinyxml2::XMLElement* setting)
   Size size = Director::getInstance()->getVisibleSize();
   bg_map->setPosition(Vec2(0.0f, size.height));
   this->addChild(bg_map);
+}
+
+void SGSkirmishScene::onHandleSettingFriend(tinyxml2::XMLElement* setting)
+{
+  tinyxml2::XMLElement* one_friend_hero = setting->FirstChildElement();
+
+  while(one_friend_hero) {
+    std::string hero_name = one_friend_hero->Attribute("hero");
+    int x = atoi(one_friend_hero->Attribute("x"));
+    int y = atoi(one_friend_hero->Attribute("y"));
+    const char* hide = one_friend_hero->Attribute("hide");
+
+    SGSkirmishSceneHero* hero = SGSkirmishSceneHero::create(hero_name.c_str(), SGSkirmishSceneHero::HERO_SIDE_FRIEND);
+    hero->setPosition(mapPos2OpenGLPos(Vec2(x,y)));
+    if (!strcmp(hide, "true")) {
+      //hero->setVisible(false);
+    }
+
+    this->addChild(hero);
+    one_friend_hero = one_friend_hero->NextSiblingElement();
+  }
+
+}
+
+Vec2 SGSkirmishScene::mapPos2OpenGLPos(Vec2 origin)
+{
+  Vec2 new_pos;
+
+  Size size = this->getContentSize();
+
+  new_pos.x = origin.x * SG_SKIRMISH_SCENE_HERO_WALK_RES_WIDTH;
+  new_pos.y = size.height - origin.y * SG_SKIRMISH_SCENE_HERO_WALK_RES_HEIGHT;
+  return new_pos;
 }

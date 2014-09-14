@@ -18,6 +18,10 @@ private:
   bool parseSkirmishSettings(tinyxml2::XMLElement* setting);
 
   void onHandleSettingMap(tinyxml2::XMLElement* setting);
+  void onHandleSettingFriend(tinyxml2::XMLElement* setting);
+
+  Vec2 mapPos2OpenGLPos(Vec2 origin);
+  
 };
 
 #endif

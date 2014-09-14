@@ -37,6 +37,7 @@ bool SGWelcomeScene::init()
     //    you may modify it.
 
     // add a "close" icon to exit the progress. it's an autorelease object
+
     auto startNewGameItem = MenuItemImage::create(
                                            "StartNewGame.png",
                                            "StartNewGame.png",
@@ -44,13 +45,13 @@ bool SGWelcomeScene::init()
     
 	  startNewGameItem->setPosition(Vec2(visibleSize.width / 2 ,
                                 visibleSize.height / 2 + startNewGameItem->getContentSize().height));
-
+#if 0
     auto quickSkirmishItem = MenuItemImage::create("QuickSkirmish.png",
       "QuickSkirmish.png",
       CC_CALLBACK_1(SGWelcomeScene::quickSkirmishCallback, this));
 
     quickSkirmishItem->setPosition(Vec2(visibleSize.width / 2 ,  visibleSize.height / 2 ));
-
+        #endif
 
     auto endGameItem = MenuItemImage::create(
       "EndGame.png",
@@ -63,7 +64,7 @@ bool SGWelcomeScene::init()
     endGameItem->setPosition(Vec2(visibleSize.width / 2 , visibleSize.height / 2 - endGameItem->getContentSize().height));
 
     // create menu, it's an autorelease object
-    auto menu = Menu::create(startNewGameItem, quickSkirmishItem, endGameItem,  NULL);
+    auto menu = Menu::create(startNewGameItem, /*quickSkirmishItem,*/ endGameItem,  NULL);
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
 

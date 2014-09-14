@@ -297,9 +297,12 @@ void SGDramaScene::onHandleEventHeroFaceShow(tinyxml2::XMLElement* event)
   std::string hero_name = event->Attribute("hero");
   int x = atoi(event->Attribute("x"));
   int y = atoi(event->Attribute("y"));
-  std::string hero_face_resource = SGHeroResourceUtils::getInstance()->getHeroResObj(hero_name.c_str())->face;
+  // step 2: create hero face image;
+  std::string hero_face_res = SG_HERO_FACE_RES_PATH;
+  hero_face_res.append(SGHeroResourceUtils::getInstance()->getHeroResObj(hero_name)->res_name);
+  hero_face_res.append(".png");
 
-  Sprite* hero_face = Sprite::create(hero_face_resource);
+  Sprite* hero_face = Sprite::create(hero_face_res);
   hero_face->setPosition(chinaMapPosConvert(Vec2(x, y)));
   hero_face->setName(hero_name);
   this->addChild(hero_face);

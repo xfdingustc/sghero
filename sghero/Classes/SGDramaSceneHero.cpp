@@ -28,19 +28,24 @@ bool SGDramaSceneHero::init(const char* hero_name)
   SGHeroResourceUtils* utils = SGHeroResourceUtils::getInstance();
   SGHeroResourceUtils::SGHeroResourceObject* hero_res_obj = utils->getHeroResObj(hero_name);
 
-  std::string hero_res_file = hero_res_obj->drama_scene_south;
+  std::string hero_res_name = SG_DRAMA_SCENE_HERO_RES_PATH;
+  hero_res_name.append(hero_res_obj->res_name);
+   
+  std::string hero_south = hero_res_name;
+  hero_south.append("_south.png");
 
-  std::string hero_res_file_full_path = FileUtils::getInstance()->fullPathForFilename(hero_res_file);
+
+  std::string hero_south_full_path = FileUtils::getInstance()->fullPathForFilename(hero_south);
 
 
   // Init hero start pic
-  if (!Sprite::initWithFile(hero_res_file_full_path, Rect(0, 0, 48, 64))) {
+  if (!Sprite::initWithFile(hero_south_full_path, Rect(0, 0, 48, 64))) {
     return false;
   }
 
   // init hero actions
   // parse face south resource picture
-  Texture2D* texture = TextureCache::getInstance()->addImage(hero_res_file_full_path);
+  Texture2D* texture = TextureCache::getInstance()->addImage(hero_south_full_path);
   for (int i = 0; i < 20; i++) {
     SpriteFrame* frame = SpriteFrame::createWithTexture(texture, Rect(0, HERO_DRAMA_RES_HEIGHT * i, HERO_DRAMA_RES_WIDTH, HERO_DRAMA_RES_HEIGHT));
     frame->retain();
@@ -72,9 +77,10 @@ bool SGDramaSceneHero::init(const char* hero_name)
 
 
   // parse face north resource picture
-  hero_res_file = hero_res_obj->drama_scene_north;
-  hero_res_file_full_path = FileUtils::getInstance()->fullPathForFilename(hero_res_file);
-  Texture2D* north_texture = TextureCache::getInstance()->addImage(hero_res_file_full_path);
+  std::string hero_north = hero_res_name;
+  hero_north.append("_north.png");
+  std::string hero_north_full_path = FileUtils::getInstance()->fullPathForFilename(hero_north);
+  Texture2D* north_texture = TextureCache::getInstance()->addImage(hero_north_full_path);
   for (int i = 0; i < 20; i++) {
     SpriteFrame* frame = SpriteFrame::createWithTexture(north_texture, Rect(0, HERO_DRAMA_RES_HEIGHT * i, HERO_DRAMA_RES_WIDTH, HERO_DRAMA_RES_HEIGHT));
     frame->retain();
