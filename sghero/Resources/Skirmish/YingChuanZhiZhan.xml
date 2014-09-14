@@ -10,6 +10,7 @@
 			<HeroAdd hero="张飞" x="13" y="1" face="west" level="+6" hide="true" AI="attack" />
 			<HeroAdd hero="步兵01" x="10" y="17" face="north" level="0" hide="false" AI="attack" />
 			<!---<HeroAdd hero="步兵02" x="9" y="18" face="north" level="0" hide="false" AI="attack" />
+			
 			<HeroAdd hero="弓兵01" x="12" y="17" face="north" level="0" hide="false" AI="attack" />
 			<HeroAdd hero="弓兵02" x="7" y="16" face="north" level="0" hide="false" AI="attack" />
 			<HeroAdd hero="骑兵01" x="6" y="0" face="east" level="0" hide="true" AI="attack" />
