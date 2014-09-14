@@ -47,7 +47,7 @@ bool SGSkirmishSceneHero::init(const char* hero_name, HERO_SIDE side)
     return false;
   }
 
-  this->setAnchorPoint(Vec2::ZERO);
+  this->setAnchorPoint(Vec2(0.0f, 1.0f));
 
   this->setName(hero_name);
 }
