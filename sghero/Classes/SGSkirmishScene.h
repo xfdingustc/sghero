@@ -13,6 +13,10 @@ public:
   CREATE_FUNC(SGSkirmishScene);
   virtual bool init();
 
+  virtual void onExit();
+
+  bool onTouchBegan(Touch *touch, Event *unused_event) { return  true; };
+  void onTouchMoved(Touch *touch, Event *unused_event);
 private:
   bool parseSkirmishSceneXmlFile(const char* file);
   bool parseSkirmishSettings(tinyxml2::XMLElement* setting);
@@ -21,6 +25,8 @@ private:
   void onHandleSettingFriend(tinyxml2::XMLElement* setting);
 
   Vec2 mapPos2OpenGLPos(Vec2 origin);
+
+  EventListenerTouchOneByOne* __event_listener;
   
 };
 

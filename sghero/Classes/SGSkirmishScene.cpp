@@ -21,7 +21,38 @@ bool SGSkirmishScene::init()
   }
 
   parseSkirmishSceneXmlFile("Skirmish/YingChuanZhiZhan.xml");
+
+  // add touch handler
+  auto dispatcher = Director::getInstance()->getEventDispatcher();
+  __event_listener = EventListenerTouchOneByOne::create();
+  __event_listener->onTouchBegan = CC_CALLBACK_2(SGSkirmishScene::onTouchBegan, this);
+  __event_listener->onTouchMoved = CC_CALLBACK_2(SGSkirmishScene::onTouchMoved, this);
+  __event_listener->setSwallowTouches(true);
+  dispatcher->addEventListenerWithSceneGraphPriority(__event_listener,this);
   return true;
+}
+
+void SGSkirmishScene::onExit()
+{
+  Director::getInstance()->getEventDispatcher()->removeEventListener(__event_listener);
+  Layer::onExit();
+}
+
+
+void SGSkirmishScene::onTouchMoved(Touch *touch, Event *unused_event)
+{
+  
+  Vec2 pos_diff = touch->getDelta();
+  Vec2 new_pos = this->getPosition();
+  new_pos.add(pos_diff);
+  if (new_pos.x > 0) {
+    new_pos.x = 0;
+  }
+  if (new_pos.y < 0) {
+    new_pos.y = 0;
+  }
+  this->setPosition(new_pos);
+  
 }
 
 bool SGSkirmishScene::parseSkirmishSceneXmlFile(const char* file_name)
