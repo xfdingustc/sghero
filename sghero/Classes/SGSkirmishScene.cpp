@@ -1,5 +1,5 @@
 #include "SGSkirmishScene.h"
-#include "SGSkirmishSceneHero.h"
+
 #include "SGGlobalSettings.h"
 
 Scene* SGSkirmishScene::createScene()
@@ -84,7 +84,9 @@ bool SGSkirmishScene::parseSkirmishSettings(tinyxml2::XMLElement* setting)
   if (!strcmp(name, "Map")) {
     onHandleSettingMap(setting);
   } else if (!strcmp(name, "FriendSetting")) {
-    onHandleSettingFriend(setting);
+    onHandleHeroAdd(setting, SGSkirmishSceneHero::HERO_SIDE_FRIEND);
+  } else if (!strcmp(name, "EnemySetting")) {
+    onHandleHeroAdd(setting, SGSkirmishSceneHero::HERO_SIDE_ENEMY);
   }
   return true;
 }
@@ -101,7 +103,7 @@ void SGSkirmishScene::onHandleSettingMap(tinyxml2::XMLElement* setting)
   this->addChild(bg_map);
 }
 
-void SGSkirmishScene::onHandleSettingFriend(tinyxml2::XMLElement* setting)
+void SGSkirmishScene::onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSkirmishSceneHero::HERO_SIDE side)
 {
   tinyxml2::XMLElement* one_friend_hero = setting->FirstChildElement();
 
@@ -111,7 +113,7 @@ void SGSkirmishScene::onHandleSettingFriend(tinyxml2::XMLElement* setting)
     int y = atoi(one_friend_hero->Attribute("y"));
     const char* hide = one_friend_hero->Attribute("hide");
 
-    SGSkirmishSceneHero* hero = SGSkirmishSceneHero::create(hero_name.c_str(), SGSkirmishSceneHero::HERO_SIDE_FRIEND);
+    SGSkirmishSceneHero* hero = SGSkirmishSceneHero::create(hero_name.c_str(), side);
     hero->setPosition(mapPos2OpenGLPos(Vec2(x,y)));
     if (!strcmp(hide, "true")) {
       //hero->setVisible(false);

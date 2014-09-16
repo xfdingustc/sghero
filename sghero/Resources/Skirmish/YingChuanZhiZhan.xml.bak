@@ -15,12 +15,23 @@
 			<HeroAdd hero="骑兵01" x="6" y="0" face="east" level="0" hide="true" AI="attack" />
 			<HeroAdd hero="骑兵02" x="5" y="0" face="east" level="0" hide="true" AI="attack" />
 			<HeroAdd hero="策士01" x="12" y="16" face="north" level="0" hide="false" AI="attack" />
-			<HeroAdd hero="许子将" x="12" y="17" face="north" level="0" hide="true" AI="negative" /> --->
+			<!---<HeroAdd hero="许子将" x="12" y="17" face="north" level="0" hide="true" AI="negative" /> --->
 		</FriendSetting>
 		<EnemySetting>
-			<HeroAdd hero="张宝" x="12" y="17" face="south" level="4" hide="false" AI="stay" />
+			<HeroAdd hero="张宝" x="9" y="11" face="south" level="4" hide="false" AI="stay" />
 			<HeroAdd hero="张梁" x="10" y="11" face="south" level="4" hide="false" AI="stay" />
-			<HeroAdd hero="黄巾军01" x="12" y="17" face="south" level="0" hide="false" AI="stay" />
+			<HeroAdd hero="黄巾军01" x="9" y="16" face="east" level="0" hide="false" AI="attack" />  
+			<HeroAdd hero="黄巾军02" x="9" y="15" face="east" level="0" hide="false" AI="attack" />  
+			<HeroAdd hero="黄巾军03" x="10" y="15" face="east" level="0" hide="false" AI="attack" />  
+			<HeroAdd hero="黄巾军04" x="12" y="15" face="east" level="0" hide="false" AI="attack" />  
+			<HeroAdd hero="黄巾军05" x="9" y="14" face="east" level="0" hide="false" AI="attack" />  
+			<HeroAdd hero="黄巾军06" x="10" y="14" face="east" level="0" hide="false" AI="attack" />  
+			<HeroAdd hero="黄巾军07" x="5" y="10" face="east" level="0" hide="false" AI="defense" />  
+			<HeroAdd hero="黄巾军08" x="5" y="11" face="east" level="0" hide="false" AI="attack" />  
+			<HeroAdd hero="黄巾军09" x="7" y="11" face="east" level="0" hide="false" AI="attack" />  
+			<HeroAdd hero="黄巾军10" x="8" y="10" face="east" level="0" hide="false" AI="attack" />  
+			<HeroAdd hero="黄巾军11" x="12" y="10" face="east" level="0" hide="false" AI="attack" />  
+			<HeroAdd hero="黄巾军12" x="12" y="12" face="east" level="0" hide="false" AI="attack" />  
 		</EnemySetting>
 		<Event>
 			

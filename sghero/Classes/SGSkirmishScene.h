@@ -2,6 +2,7 @@
 #define SG_SKIRMISH_SCENE_H
 
 #include "cocos2d.h"
+#include "SGSkirmishSceneHero.h"
 USING_NS_CC;
 #include "tinyxml2/tinyxml2.h"
 
@@ -22,7 +23,8 @@ private:
   bool parseSkirmishSettings(tinyxml2::XMLElement* setting);
 
   void onHandleSettingMap(tinyxml2::XMLElement* setting);
-  void onHandleSettingFriend(tinyxml2::XMLElement* setting);
+  void onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSkirmishSceneHero::HERO_SIDE side);
+  
 
   Vec2 mapPos2OpenGLPos(Vec2 origin);
 
