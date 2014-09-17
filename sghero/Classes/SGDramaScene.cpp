@@ -192,21 +192,9 @@ void SGDramaScene::handleDramaSceneScriptEvent(SGSceneEventList& event_list)
     scheduleOnce(schedule_selector(SGDramaScene::startSceneScript), time);
     event_list.pop_front();
   } else if (!strcmp(name, "Dialog")) {
-    std::string hero_name = event->Attribute("hero");
-    std::string speak = event->Attribute("content");
-
-    formatString(speak);
-
-    CCLOG("%s said: %s", hero_name.c_str(), speak.c_str());
-    SGDramaSceneHero* hero = (SGDramaSceneHero*)this->getChildByName(hero_name.c_str());
-    if (hero) {
-      hero->speak(speak.c_str());
-    }
-    event_list.pop_front();
+    onHandleEventDialog(event);
   } else if (!strcmp(name, "SoundTrack")) {
-    std::string track = event->Attribute("track");
-    SimpleAudioEngine::getInstance()->playBackgroundMusic(track.c_str());
-    event_list.pop_front();
+    onHandleEventSoundTrack(event);
   } else if (!strcmp(name, "Select")) {
     std::string hero_name = event->Attribute("hero");
     std::string content = event->Attribute("content");
