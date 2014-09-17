@@ -15,8 +15,25 @@ public:
   static SGSkirmishSceneHero* create(const char* hero_name, HERO_SIDE side);
   virtual bool init(const char* hero_name, HERO_SIDE side);
 
+  
+  typedef enum {
+    DIRECTION_NORTH,
+    DIRECTION_WEST,
+    DIRECTION_SOUTH,
+    DIRECTION_EAST, 
+  } DIRECTION;
+  
+  void faceTo(const char* direction);
+
 private:
   HERO_SIDE __side;
+  Vector<SpriteFrame*> __sprite_frames;
+
+  typedef std::map<std::string, Animate*> ANIMATE_MAP;
+  ANIMATE_MAP __animate_map;
+
+  DIRECTION getDirection(const char* direction);
+  DIRECTION __face_direction;
 };
 
 #endif

@@ -78,14 +78,14 @@ bool SGDramaScene::parseDramaSceneXmlFile(const char* file_name)
 
 void SGDramaScene::parseDrameSceneSubEvents(tinyxml2::XMLElement* sub_event)
 {
-  SGDramaSceneEventList sub_event_list;
+  SGSceneEventList sub_event_list;
   tinyxml2::XMLElement* one_sub_event = sub_event->FirstChildElement();
   while(one_sub_event) {
     sub_event_list.push_back(one_sub_event);
     one_sub_event = one_sub_event->NextSiblingElement();
   }
 
-  SGDramaSceneEventList::reverse_iterator reverse_iter = sub_event_list.rbegin();
+  SGSceneEventList::reverse_iterator reverse_iter = sub_event_list.rbegin();
   for (; reverse_iter != sub_event_list.rend(); reverse_iter++) {
     tinyxml2::XMLElement* one_sub_event = (tinyxml2::XMLElement*)(*reverse_iter);
     __event_list.push_front(one_sub_event);
@@ -112,25 +112,11 @@ bool SGDramaScene::parseDrameSceneEvents(tinyxml2::XMLElement* event)
   return true;
 }
 
-void SGDramaScene::formatString(std::string& str)
-{
-  // replace "\\n" to "\n"
-  std::string::size_type pos = 0;
-  std::string src_str = "\\n";
-  std::string des_str = "\n";
-  std::string::size_type srcLen = src_str.size();  
-  std::string::size_type desLen = src_str.size();  
-  while ((pos = str.find(src_str, pos)) != std::string::npos){
-    str.replace( pos, srcLen, des_str );
-    pos += desLen;
-  }
-}
-
 void SGDramaScene::update(float dt) {
   handleDramaSceneScriptEvent(__event_list);
 }
 
-void SGDramaScene::handleDramaSceneScriptEvent(SGDramaSceneEventList& event_list)
+void SGDramaScene::handleDramaSceneScriptEvent(SGSceneEventList& event_list)
 {
   // TODO: no event list, we need move to the next scene
   if (event_list.size() == 0) {

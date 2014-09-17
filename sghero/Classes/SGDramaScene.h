@@ -1,11 +1,11 @@
 #ifndef SG_DRAMA_SCENE_H
 #define SG_DRAMA_SCENE_H
-#include "tinyxml2/tinyxml2.h"
-#include "cocos2d.h"
+
+#include "SGSceneBase.h"
 USING_NS_CC;
 
 
-class SGDramaScene : public Layer
+class SGDramaScene : public SGSceneBase
 {
 public:
   static cocos2d::Scene* createScene();
@@ -21,12 +21,9 @@ private:
   bool parseDrameSceneEvents(tinyxml2::XMLElement* event);
   void parseDrameSceneSubEvents(tinyxml2::XMLElement* sub_event);
 
-  void formatString(std::string& str);
-
-  typedef std::list<tinyxml2::XMLElement*> SGDramaSceneEventList;
-  SGDramaSceneEventList __event_list;
+  
   void startSceneScript(float dt);
-  void handleDramaSceneScriptEvent(SGDramaSceneEventList& event_list);
+  void handleDramaSceneScriptEvent(SGSceneEventList& event_list);
 
   void onHandleEventBackgroundImage(tinyxml2::XMLElement* event);
   void onHandleEventHeroFaceShow(tinyxml2::XMLElement* event);

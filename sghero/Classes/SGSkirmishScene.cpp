@@ -1,6 +1,8 @@
 #include "SGSkirmishScene.h"
-
+#include "SimpleAudioEngine.h"
 #include "SGGlobalSettings.h"
+
+using namespace CocosDenshion;
 
 Scene* SGSkirmishScene::createScene()
 {
@@ -75,6 +77,14 @@ bool SGSkirmishScene::parseSkirmishSceneXmlFile(const char* file_name)
     parseSkirmishSettings(settings);
     settings = settings->NextSiblingElement();
   }
+
+  tinyxml2::XMLElement* events = section->FirstChildElement("Event");
+  if (events) {
+    parseSkrimishEvents(events);
+  }
+
+
+  scheduleUpdate();
   return true;
 }
 
@@ -87,6 +97,16 @@ bool SGSkirmishScene::parseSkirmishSettings(tinyxml2::XMLElement* setting)
     onHandleHeroAdd(setting, SGSkirmishSceneHero::HERO_SIDE_FRIEND);
   } else if (!strcmp(name, "EnemySetting")) {
     onHandleHeroAdd(setting, SGSkirmishSceneHero::HERO_SIDE_ENEMY);
+  }
+  return true;
+}
+
+bool SGSkirmishScene::parseSkrimishEvents(tinyxml2::XMLElement* events)
+{
+  tinyxml2::XMLElement* one_event = events->FirstChildElement();
+  while(one_event) {
+    __event_list.push_back(one_event);
+    one_event = one_event->NextSiblingElement();
   }
   return true;
 }
@@ -111,18 +131,51 @@ void SGSkirmishScene::onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSkirmishS
     std::string hero_name = one_friend_hero->Attribute("hero");
     int x = atoi(one_friend_hero->Attribute("x"));
     int y = atoi(one_friend_hero->Attribute("y"));
+    std::string direction = one_friend_hero->Attribute("face");
     const char* hide = one_friend_hero->Attribute("hide");
 
     SGSkirmishSceneHero* hero = SGSkirmishSceneHero::create(hero_name.c_str(), side);
+    hero->faceTo(direction.c_str());
     hero->setPosition(mapPos2OpenGLPos(Vec2(x,y)));
     if (!strcmp(hide, "true")) {
-      //hero->setVisible(false);
+      hero->setVisible(false);
     }
 
     this->addChild(hero);
     one_friend_hero = one_friend_hero->NextSiblingElement();
   }
 
+}
+
+void SGSkirmishScene::onHandleEventDialog(tinyxml2::XMLElement* event)
+{
+  std::string hero_name = event->Attribute("hero");
+  std::string speak = event->Attribute("content");
+
+  //formatString(speak);
+
+  CCLOG("%s said: %s", hero_name.c_str(), speak.c_str());
+  //SGDramaSceneHero* hero = (SGSkirmishScene*)this->getChildByName(hero_name.c_str());
+  //if (hero) {
+    //hero->speak(speak.c_str());
+  //}
+  __event_list.pop_front();
+}
+
+void SGSkirmishScene::update(float dt) {
+  if (__event_list.size() == 0) {
+    return ;
+  } 
+  tinyxml2::XMLElement* event = __event_list.front();
+  const char* name = event->Name();
+
+  if (!strcmp(name, "SoundTrack")) {
+    std::string track = event->Attribute("track");
+    SimpleAudioEngine::getInstance()->playBackgroundMusic(track.c_str());
+    __event_list.pop_front();;
+  } else if (!strcmp(name, "Dialog")) {
+    onHandleEventDialog(event);
+  }
 }
 
 Vec2 SGSkirmishScene::mapPos2OpenGLPos(Vec2 origin)

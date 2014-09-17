@@ -39,7 +39,7 @@ bool SGDramaSceneHero::init(const char* hero_name)
 
 
   // Init hero start pic
-  if (!Sprite::initWithFile(hero_south_full_path, Rect(0, 0, 48, 64))) {
+  if (!Sprite::initWithFile(hero_south_full_path, Rect(0, 0, HERO_DRAMA_RES_WIDTH, HERO_DRAMA_RES_HEIGHT))) {
     return false;
   }
 

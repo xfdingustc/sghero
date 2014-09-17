@@ -16,6 +16,9 @@
     <Filter Include="Classes\SGSkirmishScene">
       <UniqueIdentifier>{6f118507-68ea-4e7b-963f-7e358fd8d83a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\SGSceneBase">
+      <UniqueIdentifier>{0f808549-3c52-490d-add6-dc597ae02675}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -53,6 +56,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\SGSkirmishSceneHero.cpp">
       <Filter>Classes\SGSkirmishScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SGSceneBase.cpp">
+      <Filter>Classes\SGSceneBase</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -94,6 +100,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\SGSkirmishSceneHero.h">
       <Filter>Classes\SGSkirmishScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SGSceneBase.h">
+      <Filter>Classes\SGSceneBase</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
