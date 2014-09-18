@@ -36,7 +36,9 @@
 		
 		<Event>
 			<SoundTrack track="SoundTrack/Track8.mp3" />
-			<Dialog hero="黄巾军01" content="来者何人？你想阻止官兵吗！" />
+			<Dialog hero="黄巾军01" content="去死吧！" />
+			<HeroAction hero="黄巾军01" action="attack" />
+			<!---<HeroAction hero="弓兵02" action="attacked" />--->
 		</Event>
 		<Test>
 			<RoundTest round="1">

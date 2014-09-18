@@ -24,8 +24,6 @@ public:
 
   bool initActions();
 
-  void speak(const char* content);
-
   void actionFinished();
 
 

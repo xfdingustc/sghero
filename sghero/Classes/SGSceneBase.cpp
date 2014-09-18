@@ -1,5 +1,5 @@
 #include "SGSceneBase.h"
-#include "SGDramaSceneHeroSpeakScene.h"
+#include "SGSceneHeroSpeakScene.h"
 #include "SimpleAudioEngine.h"
 
 using namespace CocosDenshion;
@@ -19,7 +19,7 @@ void SGSceneBase::onHandleEventDialog(tinyxml2::XMLElement* event)
   formatString(speak);
 
   
-  Scene* scene = SGDramaSceneHeroSpeakScene::creatScene(hero_name.c_str(), speak.c_str());
+  Scene* scene = SGSceneHeroSpeakScene::creatScene(hero_name.c_str(), speak.c_str());
   Director::getInstance()->pushScene(scene);
  
   __event_list.pop_front();

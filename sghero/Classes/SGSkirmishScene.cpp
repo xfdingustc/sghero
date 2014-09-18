@@ -36,7 +36,7 @@ bool SGSkirmishScene::init()
 
 void SGSkirmishScene::onExit()
 {
-  Director::getInstance()->getEventDispatcher()->removeEventListener(__event_listener);
+  //Director::getInstance()->getEventDispatcher()->removeEventListener(__event_listener);
   Layer::onExit();
 }
 
@@ -147,20 +147,17 @@ void SGSkirmishScene::onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSkirmishS
 
 }
 
-void SGSkirmishScene::onHandleEventDialog(tinyxml2::XMLElement* event)
+void SGSkirmishScene::onHandleEventHeroAction(tinyxml2::XMLElement* event)
 {
   std::string hero_name = event->Attribute("hero");
-  std::string speak = event->Attribute("content");
+  std::string action = event->Attribute("action");
 
-  //formatString(speak);
+  SGSkirmishSceneHero* hero = (SGSkirmishSceneHero*)this->getChildByName(hero_name);
 
-  CCLOG("%s said: %s", hero_name.c_str(), speak.c_str());
-  //SGDramaSceneHero* hero = (SGSkirmishScene*)this->getChildByName(hero_name.c_str());
-  //if (hero) {
-    //hero->speak(speak.c_str());
-  //}
+  hero->doAction(action.c_str());
   __event_list.pop_front();
 }
+
 
 void SGSkirmishScene::update(float dt) {
   if (__event_list.size() == 0) {
@@ -170,11 +167,11 @@ void SGSkirmishScene::update(float dt) {
   const char* name = event->Name();
 
   if (!strcmp(name, "SoundTrack")) {
-    std::string track = event->Attribute("track");
-    SimpleAudioEngine::getInstance()->playBackgroundMusic(track.c_str());
-    __event_list.pop_front();;
+    onHandleEventSoundTrack(event);
   } else if (!strcmp(name, "Dialog")) {
     onHandleEventDialog(event);
+  } else if (!strcmp(name, "HeroAction")) {
+    onHandleEventHeroAction(event);
   }
 }
 

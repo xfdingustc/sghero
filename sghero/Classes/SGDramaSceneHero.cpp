@@ -1,5 +1,4 @@
 #include "SGDramaSceneHero.h"
-#include "SGDramaSceneHeroSpeakScene.h"
 #include "SGHeroResourceUtils.h"
 #include "SGGlobalSettings.h"
 
@@ -45,7 +44,7 @@ bool SGDramaSceneHero::init(const char* hero_name)
 
   // init hero actions
   // parse face south resource picture
-  Texture2D* texture = TextureCache::getInstance()->addImage(hero_south_full_path);
+  Texture2D* texture = Director::getInstance()->getTextureCache()->addImage(hero_south_full_path);
   for (int i = 0; i < 20; i++) {
     SpriteFrame* frame = SpriteFrame::createWithTexture(texture, Rect(0, HERO_DRAMA_RES_HEIGHT * i, HERO_DRAMA_RES_WIDTH, HERO_DRAMA_RES_HEIGHT));
     frame->retain();
@@ -80,7 +79,7 @@ bool SGDramaSceneHero::init(const char* hero_name)
   std::string hero_north = hero_res_name;
   hero_north.append("_north.png");
   std::string hero_north_full_path = FileUtils::getInstance()->fullPathForFilename(hero_north);
-  Texture2D* north_texture = TextureCache::getInstance()->addImage(hero_north_full_path);
+  Texture2D* north_texture = Director::getInstance()->getTextureCache()->addImage(hero_north_full_path);
   for (int i = 0; i < 20; i++) {
     SpriteFrame* frame = SpriteFrame::createWithTexture(north_texture, Rect(0, HERO_DRAMA_RES_HEIGHT * i, HERO_DRAMA_RES_WIDTH, HERO_DRAMA_RES_HEIGHT));
     frame->retain();
@@ -235,11 +234,6 @@ void SGDramaSceneHero::actionFinished()
   this->stopAllActions();
 }
 
-void SGDramaSceneHero::speak(const char* content)
-{
-  Scene* scene = SGDramaSceneHeroSpeakScene::creatScene(getName().c_str(), content);
-  Director::getInstance()->pushScene(scene);
-}
 
 SGDramaSceneHero::DIRECTION SGDramaSceneHero::getDirection(const char* direction)
 {

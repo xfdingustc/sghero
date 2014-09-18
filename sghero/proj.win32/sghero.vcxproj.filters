@@ -39,9 +39,6 @@
     <ClCompile Include="..\Classes\SGHeroResourceUtils.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\SGDramaSceneHeroSpeakScene.cpp">
-      <Filter>Classes\SGDramaScene</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\SGDramaSceneSelectScene.cpp">
       <Filter>Classes\SGDramaScene</Filter>
     </ClCompile>
@@ -58,6 +55,9 @@
       <Filter>Classes\SGSkirmishScene</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\SGSceneBase.cpp">
+      <Filter>Classes\SGSceneBase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SGSceneHeroSpeakScene.cpp">
       <Filter>Classes\SGSceneBase</Filter>
     </ClCompile>
   </ItemGroup>
@@ -83,9 +83,6 @@
     <ClInclude Include="..\Classes\SGHeroResourceUtils.h">
       <Filter>Classes</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\SGDramaSceneHeroSpeakScene.h">
-      <Filter>Classes\SGDramaScene</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\SGDramaSceneSelectScene.h">
       <Filter>Classes\SGDramaScene</Filter>
     </ClInclude>
@@ -102,6 +99,9 @@
       <Filter>Classes\SGSkirmishScene</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\SGSceneBase.h">
+      <Filter>Classes\SGSceneBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SGSceneHeroSpeakScene.h">
       <Filter>Classes\SGSceneBase</Filter>
     </ClInclude>
   </ItemGroup>

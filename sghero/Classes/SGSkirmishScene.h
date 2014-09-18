@@ -3,10 +3,11 @@
 
 #include "cocos2d.h"
 #include "SGSkirmishSceneHero.h"
+#include "SGSceneBase.h"
 USING_NS_CC;
 #include "tinyxml2/tinyxml2.h"
 
-class SGSkirmishScene : public Layer
+class SGSkirmishScene : public SGSceneBase
 {
 public:
   static Scene* createScene();
@@ -26,15 +27,13 @@ private:
 
   void onHandleSettingMap(tinyxml2::XMLElement* setting);
   void onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSkirmishSceneHero::HERO_SIDE side);
+  void onHandleEventHeroAction(tinyxml2::XMLElement* event);
   
-  void onHandleEventDialog(tinyxml2::XMLElement* event);
 
   Vec2 mapPos2OpenGLPos(Vec2 origin);
 
   EventListenerTouchOneByOne* __event_listener;
   
-  typedef std::list<tinyxml2::XMLElement*> SGSkirmishSceneEventList;
-  SGSkirmishSceneEventList __event_list;
 
 };
 
