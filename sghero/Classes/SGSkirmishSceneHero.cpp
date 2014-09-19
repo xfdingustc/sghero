@@ -77,6 +77,15 @@ bool SGSkirmishSceneHero::initActions()
   animate_name = "face_west";
   __animate_map[animate_name] = animate_west;
 
+  
+  Vector<SpriteFrame*>* fragile = new Vector<SpriteFrame*>;
+  fragile->pushBack(__sprite_frames.at(9));
+  fragile->pushBack(__sprite_frames.at(10));
+  Animation* animation_fragile = Animation::createWithSpriteFrames(*fragile, 0.2f);
+  Animate* animate_fragile = Animate::create(animation_fragile);
+  animate_fragile->retain();
+  animate_name = "fragile";
+  __animate_map[animate_name] = animate_fragile;
   return true;
 }
 
@@ -287,8 +296,12 @@ void SGSkirmishSceneHero::doAction(const char* action)
   } else if (!strcmp(action, "attacked")) {
     std::string action_name = "attacked";
     Animate* animate = __animate_map[action_name];
-    RepeatForever* face_walk = RepeatForever::create(animate);
     this->runAction(animate);
+  } else if (!strcmp(action, "fragile")) {
+    std::string action_name = "fragile";
+    Animate* animate = __animate_map[action_name];
+    RepeatForever* animate_repeat = RepeatForever::create(animate);
+    this->runAction(animate_repeat);
   }
 }
 
