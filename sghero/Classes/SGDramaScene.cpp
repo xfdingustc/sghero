@@ -149,9 +149,7 @@ void SGDramaScene::handleDramaSceneScriptEvent(SGSceneEventList& event_list)
   } else if (!strcmp(name, "HeroFaceHide")) {
     onHandleEventHeroFaceHide(event);
   } else if (!strcmp(name, "SoundEffect")) {
-    const char* sound_effect = event->Attribute("effect");
-    SimpleAudioEngine::getInstance()->playEffect(sound_effect, true);
-    event_list.pop_front();
+    onHandleEventSoundEffect(event);
   } else if (!strcmp(name, "HeroAppear")) {
     onHandleEventHeroAppear(event);
   } else if (!strcmp(name, "HeroDisappear")) {

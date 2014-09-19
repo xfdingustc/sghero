@@ -26,59 +26,16 @@ bool SGSkirmishSceneHero::init(const char* hero_name, HERO_SIDE side)
 
   initActions();
   initAttackActions();
+  initSpecActions();
 
-  this->setAnchorPoint(Vec2(0.0f, 1.0f));
+  this->setAnchorPoint(Vec2::ZERO);
 
   this->setName(hero_name);
 }
 
 bool SGSkirmishSceneHero::initActions()
 {
-  SGHeroResourceUtils* utils = SGHeroResourceUtils::getInstance();
-  SGHeroResourceUtils::SGHeroResourceObject* hero_res_obj = utils->getHeroResObj(__name);
-
-  if (!hero_res_obj) {
-    // we cannot found by hero name, so we need to remove the index
-    std::string new_hero_name = __name;
-    std::string index = "00";
-    new_hero_name = new_hero_name.substr(0, new_hero_name.size() - index.size());
-    hero_res_obj = utils->getHeroResObj(new_hero_name);
-    if (!hero_res_obj) {
-      return false;
-    }
-  }
-
-  std::string hero_res_file = SG_SKIRMISH_SCENE_HERO_RES_PATH;
-
-  if (hero_res_obj->res_name.empty()) {
-    // use default resource
-    hero_res_file.append(hero_res_obj->catagory);
-    // add side info
-    if (HERO_SIDE_FRIEND == __side) {
-      hero_res_file.append("_friend");
-    } else if (HERO_SIDE_ENEMY == __side) {
-      hero_res_file.append("_enemy");
-    }
-  } else {
-    hero_res_file.append(hero_res_obj->res_name);
-  }
-
-
-  hero_res_file.append(".png");
-
-  if (!FileUtils::getInstance()->isFileExist(hero_res_file)) {
-    // use default resource;
-    hero_res_file = SG_SKIRMISH_SCENE_HERO_RES_PATH;
-    hero_res_file.append(hero_res_obj->catagory);
-    if (HERO_SIDE_FRIEND == __side) {
-      hero_res_file.append("_friend");
-    } else if (HERO_SIDE_ENEMY == __side) {
-      hero_res_file.append("_enemy");
-    }
-    hero_res_file.append(".png");
-  }
-
-  std::string hero_res_file_full_path = FileUtils::getInstance()->fullPathForFilename(hero_res_file);
+  std::string hero_res_file_full_path = getHeroResFile(SG_SKIRMISH_SCENE_HERO_RES_PATH);
   // Init hero start picture
   if (!Sprite::initWithFile(hero_res_file_full_path, Rect(0, 0, SG_SKIRMISH_SCENE_HERO_WALK_RES_WIDTH, SG_SKIRMISH_SCENE_HERO_WALK_RES_HEIGHT))) {
     return false;
@@ -125,48 +82,7 @@ bool SGSkirmishSceneHero::initActions()
 
 bool SGSkirmishSceneHero::initAttackActions()
 {
-  SGHeroResourceUtils::SGHeroResourceObject* hero_res_obj = SGHeroResourceUtils::getInstance()->getHeroResObj(__name);
-  std::string hero_attack_res_file = SG_SKIRMISH_SCENE_HERO_ATTACK_RES_PATH;
-
-  if (!hero_res_obj) {
-    // we cannot found by hero name, so we need to remove the index
-    std::string new_hero_name = __name;
-    std::string index = "00";
-    new_hero_name = new_hero_name.substr(0, new_hero_name.size() - index.size());
-    hero_res_obj = SGHeroResourceUtils::getInstance()->getHeroResObj(new_hero_name);
-    if (!hero_res_obj) {
-      return false;
-    }
-  }
-  if (hero_res_obj->res_name.empty()) {
-    // use default resource
-    hero_attack_res_file.append(hero_res_obj->catagory);
-    // add side info
-    if (HERO_SIDE_FRIEND == __side) {
-      hero_attack_res_file.append("_friend");
-    } else if (HERO_SIDE_ENEMY == __side) {
-      hero_attack_res_file.append("_enemy");
-    }
-  } else {
-    hero_attack_res_file.append(hero_res_obj->res_name);
-  }
-
-
-  hero_attack_res_file.append(".png");
-
-  if (!FileUtils::getInstance()->isFileExist(hero_attack_res_file)) {
-    // use default resource;
-    hero_attack_res_file = SG_SKIRMISH_SCENE_HERO_RES_PATH;
-    hero_attack_res_file.append(hero_res_obj->catagory);
-    if (HERO_SIDE_FRIEND == __side) {
-      hero_attack_res_file.append("_friend");
-    } else if (HERO_SIDE_ENEMY == __side) {
-      hero_attack_res_file.append("_enemy");
-    }
-    hero_attack_res_file.append(".png");
-  }
-
-  std::string hero_attack_res_file_full_path = FileUtils::getInstance()->fullPathForFilename(hero_attack_res_file);
+  std::string hero_attack_res_file_full_path = getHeroResFile(SG_SKIRMISH_SCENE_HERO_ATTACK_RES_PATH);
 
   Texture2D* texture = TextureCache::getInstance()->addImage(hero_attack_res_file_full_path);
   for (int i = 0; i < 12; i++) {
@@ -213,6 +129,100 @@ bool SGSkirmishSceneHero::initAttackActions()
   return true;
 }
 
+bool SGSkirmishSceneHero::initSpecActions()
+{
+  std::string hero_spec_res_file_full_path = getHeroResFile(SG_SKIRMISH_SCENE_HERO_SPEC_RES_PATH);
+  Texture2D* texture = TextureCache::getInstance()->addImage(hero_spec_res_file_full_path);
+  for (int i = 0; i < 5; i++) {
+    SpriteFrame* frame = SpriteFrame::createWithTexture(
+      texture, Rect(0, SG_SKIRMISH_SCENE_HERO_SPEC_RES_WIDTH * i, 
+      SG_SKIRMISH_SCENE_HERO_SPEC_RES_WIDTH, SG_SKIRMISH_SCENE_HERO_SPEC_RES_HEIGHT));
+    frame->retain();
+    __spec_sprite_frames.pushBack(frame);
+  }
+  Vector<SpriteFrame*>* block_south = new Vector<SpriteFrame*>;
+  block_south->pushBack(__spec_sprite_frames.at(0));
+  Animation* animation_south = Animation::createWithSpriteFrames(*block_south, 0.5f);
+  Animate* animate_south = Animate::create(animation_south);
+  animate_south->retain();
+  std::string animate_name = "block_south";
+  __animate_map[animate_name] = animate_south;
+
+  Vector<SpriteFrame*>* block_north = new Vector<SpriteFrame*>;
+  block_north->pushBack(__spec_sprite_frames.at(1));
+  Animation* animation_north = Animation::createWithSpriteFrames(*block_north, 0.5f);
+  Animate* animate_north = Animate::create(animation_north);
+  animate_north->retain();
+  animate_name = "block_north";
+  __animate_map[animate_name] = animate_north;
+
+  Vector<SpriteFrame*>* block_west = new Vector<SpriteFrame*>;
+  block_west->pushBack(__spec_sprite_frames.at(2));
+  Animation* animation_west = Animation::createWithSpriteFrames(*block_west, 0.5f);
+  Animate* animate_west = Animate::create(animation_west);
+  animate_west->retain();
+  animate_name = "block_west";
+  __animate_map[animate_name] = animate_west;
+
+  Vector<SpriteFrame*>* attacked = new Vector<SpriteFrame*>;
+  attacked->pushBack(__spec_sprite_frames.at(3));
+  Animation* animation_attacked = Animation::createWithSpriteFrames(*attacked, 1.0f);
+  Animate* animate_attack = Animate::create(animation_attacked);
+  animate_attack->retain();
+  animate_name = "attacked";
+  __animate_map[animate_name] = animate_attack;
+  return true;
+}
+
+std::string& SGSkirmishSceneHero::getHeroResFile(const char* res_dir)
+{
+  static std::string res_file;
+
+  SGHeroResourceUtils::SGHeroResourceObject* hero_res_obj = SGHeroResourceUtils::getInstance()->getHeroResObj(__name);
+  std::string hero_res_file = res_dir;
+
+  if (!hero_res_obj) {
+    // we cannot found by hero name, so we need to remove the index
+    std::string new_hero_name = __name;
+    std::string index = "00";
+    new_hero_name = new_hero_name.substr(0, new_hero_name.size() - index.size());
+    hero_res_obj = SGHeroResourceUtils::getInstance()->getHeroResObj(new_hero_name);
+    if (!hero_res_obj) {
+      res_file = "";
+      return res_file;
+    }
+  }
+  if (hero_res_obj->res_name.empty()) {
+    // use default resource
+    hero_res_file.append(hero_res_obj->catagory);
+    // add side info
+    if (HERO_SIDE_FRIEND == __side) {
+      hero_res_file.append("_friend");
+    } else if (HERO_SIDE_ENEMY == __side) {
+      hero_res_file.append("_enemy");
+    }
+  } else {
+    hero_res_file.append(hero_res_obj->res_name);
+  }
+  
+  hero_res_file.append(".png");
+  
+
+  if (!FileUtils::getInstance()->isFileExist(hero_res_file)) {
+    // use default resource;
+    hero_res_file = res_dir;
+    hero_res_file.append(hero_res_obj->catagory);
+    if (HERO_SIDE_FRIEND == __side) {
+      hero_res_file.append("_friend");
+    } else if (HERO_SIDE_ENEMY == __side) {
+      hero_res_file.append("_enemy");
+    }
+    hero_res_file.append(".png");
+  }
+  res_file = FileUtils::getInstance()->fullPathForFilename(hero_res_file);
+  return res_file;
+}
+
 void SGSkirmishSceneHero::faceTo(const char* direction)
 {
   __face_direction = getDirection(direction);
@@ -247,7 +257,6 @@ void SGSkirmishSceneHero::faceTo(const char* direction)
 
 void SGSkirmishSceneHero::doAttackAction()
 {
-  this->stopAllActions();
   std::string action_name;
   switch (__face_direction)
   {
@@ -272,8 +281,14 @@ void SGSkirmishSceneHero::doAttackAction()
 
 void SGSkirmishSceneHero::doAction(const char* action)
 {
+  this->stopAllActions();
   if (!strcmp(action, "attack")) {
     doAttackAction();
+  } else if (!strcmp(action, "attacked")) {
+    std::string action_name = "attacked";
+    Animate* animate = __animate_map[action_name];
+    RepeatForever* face_walk = RepeatForever::create(animate);
+    this->runAction(animate);
   }
 }
 

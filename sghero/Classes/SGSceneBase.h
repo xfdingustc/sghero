@@ -8,6 +8,7 @@ USING_NS_CC;
 class SGSceneBase : public Layer {
 
 protected:
+  void onHandleEventSoundEffect(tinyxml2::XMLElement* event);
   void onHandleEventSoundTrack(tinyxml2::XMLElement* event);
   void onHandleEventDialog(tinyxml2::XMLElement* event);
 

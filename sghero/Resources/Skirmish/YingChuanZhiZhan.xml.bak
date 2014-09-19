@@ -20,7 +20,7 @@
 		<EnemySetting>
 			<HeroAdd hero="张宝" x="9" y="11" face="south" level="4" hide="false" AI="stay" />
 			<HeroAdd hero="张梁" x="10" y="11" face="south" level="4" hide="false" AI="stay" />
-			<HeroAdd hero="黄巾军01" x="9" y="16" face="east" level="0" hide="false" AI="attack" />  
+			<HeroAdd hero="黄巾军01" x="6" y="16" face="east" level="0" hide="false" AI="attack" />  
 			<HeroAdd hero="黄巾军02" x="9" y="15" face="south" level="0" hide="false" AI="attack" />  
 			<HeroAdd hero="黄巾军03" x="10" y="15" face="south" level="0" hide="false" AI="attack" />  
 			<HeroAdd hero="黄巾军04" x="12" y="15" face="south" level="0" hide="false" AI="attack" />  
@@ -35,10 +35,15 @@
 		</EnemySetting>
 		
 		<Event>
-			<SoundTrack track="SoundTrack/Track8.mp3" />
+			<!---<SoundTrack track="SoundTrack/Track08.mp3" />--->
 			<Dialog hero="黄巾军01" content="去死吧！" />
 			<HeroAction hero="黄巾军01" action="attack" />
-			<!---<HeroAction hero="弓兵02" action="attacked" />--->
+			<HeroAction hero="弓兵02" action="attacked" />
+			<!---<SoundEffect effect="SoundEffects/Se36.wav" />  --->
+			<Delay time="5" />
+			<HeroAdd hero="吕布" x="12" y="12" face="south" level="0" hide="false" AI="defense" />  
+			<HeroAction hero="弓兵02" action="fragile" />
+			
 		</Event>
 		<Test>
 			<RoundTest round="1">

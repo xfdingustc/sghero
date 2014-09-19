@@ -20,6 +20,9 @@ public:
   bool onTouchBegan(Touch *touch, Event *unused_event) { return  true; };
   void onTouchMoved(Touch *touch, Event *unused_event);
 private:
+
+  void startSceneScript(float dt);
+
   bool parseSkirmishSceneXmlFile(const char* file);
   bool parseSkirmishSettings(tinyxml2::XMLElement* setting);
   bool parseSkrimishEvents(tinyxml2::XMLElement* events);
@@ -28,11 +31,14 @@ private:
   void onHandleSettingMap(tinyxml2::XMLElement* setting);
   void onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSkirmishSceneHero::HERO_SIDE side);
   void onHandleEventHeroAction(tinyxml2::XMLElement* event);
-  
+  void onHandleEventDelay(tinyxml2::XMLElement* event);
 
   Vec2 mapPos2OpenGLPos(Vec2 origin);
 
   EventListenerTouchOneByOne* __event_listener;
+
+  int __map_width;
+  int __map_height;
   
 
 };

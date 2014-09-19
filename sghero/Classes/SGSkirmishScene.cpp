@@ -45,15 +45,28 @@ void SGSkirmishScene::onTouchMoved(Touch *touch, Event *unused_event)
 {
   
   Vec2 pos_diff = touch->getDelta();
-  Vec2 new_pos = this->getPosition();
-  new_pos.add(pos_diff);
+  Vec2 cur_postion = this->getPosition();
+  CCLOG("cur position x = %f y = %f", cur_postion.x, cur_postion.y);
+  Vec2 new_pos = cur_postion + pos_diff;
+  Size size = Director::getInstance()->getVisibleSize();
+  Sprite* map = (Sprite*)this->getChildByName("map");
+  Size map_size = map->getContentSize();
+
   if (new_pos.x > 0) {
     new_pos.x = 0;
   }
+
+  if (new_pos.y > map_size.height - size.height) {
+    new_pos.y = map_size.height - size.height;
+  }
+
   if (new_pos.y < 0) {
     new_pos.y = 0;
   }
-  this->setPosition(new_pos);
+  Vec2 new_pos_diff = new_pos - cur_postion;
+   //CCLOG("cur position x = %f y = %f", cur_postion.x, cur_postion.y);
+  //if (new_pos.y <)
+  this->setPosition(this->getPosition() + new_pos_diff);
   
 }
 
@@ -114,13 +127,22 @@ bool SGSkirmishScene::parseSkrimishEvents(tinyxml2::XMLElement* events)
 void SGSkirmishScene::onHandleSettingMap(tinyxml2::XMLElement* setting)
 {
   std::string map = setting->Attribute("map");
+  __map_width = atoi(setting->Attribute("width"));
+  __map_height = atoi(setting->Attribute("height"));
 
+  
   std::string map_full_path = FileUtils::getInstance()->fullPathForFilename(map);
   Sprite* bg_map = Sprite::create(map_full_path);
-  bg_map->setAnchorPoint(Vec2(0.0f, 1.0f));
+  bg_map->setName("map");
+  
+  
   Size size = Director::getInstance()->getVisibleSize();
+
+  
+  bg_map->setAnchorPoint(Vec2(0.0f, 1.0f));
   bg_map->setPosition(Vec2(0.0f, size.height));
   this->addChild(bg_map);
+ 
 }
 
 void SGSkirmishScene::onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSkirmishSceneHero::HERO_SIDE side)
@@ -158,6 +180,18 @@ void SGSkirmishScene::onHandleEventHeroAction(tinyxml2::XMLElement* event)
   __event_list.pop_front();
 }
 
+void SGSkirmishScene::onHandleEventDelay(tinyxml2::XMLElement* event)
+{
+  float time = float(atoi(event->Attribute("time"))) ;
+  unscheduleUpdate();
+  scheduleOnce(schedule_selector(SGSkirmishScene::startSceneScript), time);
+  __event_list.pop_front();
+}
+
+void SGSkirmishScene::startSceneScript(float dt)
+{
+  scheduleUpdate();
+}
 
 void SGSkirmishScene::update(float dt) {
   if (__event_list.size() == 0) {
@@ -172,7 +206,11 @@ void SGSkirmishScene::update(float dt) {
     onHandleEventDialog(event);
   } else if (!strcmp(name, "HeroAction")) {
     onHandleEventHeroAction(event);
-  }
+  } else if (!strcmp(name, "SoundEffect")) {
+    onHandleEventSoundEffect(event);
+  } else if (!strcmp(name, "Delay")) {
+    onHandleEventDelay(event);
+  } 
 }
 
 Vec2 SGSkirmishScene::mapPos2OpenGLPos(Vec2 origin)
@@ -182,6 +220,6 @@ Vec2 SGSkirmishScene::mapPos2OpenGLPos(Vec2 origin)
   Size size = this->getContentSize();
 
   new_pos.x = origin.x * SG_SKIRMISH_SCENE_HERO_WALK_RES_WIDTH;
-  new_pos.y = size.height - origin.y * SG_SKIRMISH_SCENE_HERO_WALK_RES_HEIGHT;
+  new_pos.y = size.height - (origin.y + 1) * SG_SKIRMISH_SCENE_HERO_WALK_RES_HEIGHT;
   return new_pos;
 }
