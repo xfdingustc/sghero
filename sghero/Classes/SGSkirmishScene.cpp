@@ -184,8 +184,16 @@ void SGSkirmishScene::onHandleEventDelay(tinyxml2::XMLElement* event)
 {
   float time = float(atoi(event->Attribute("time"))) ;
   unscheduleUpdate();
-  scheduleOnce(schedule_selector(SGSkirmishScene::startSceneScript), time);
+  scheduleOnce(schedule_selector(SGSkirmishScene::startSceneScript), time*0.1f);
   __event_list.pop_front();
+}
+
+void SGSkirmishScene::onHandleEventHeroRemove(tinyxml2::XMLElement* event)
+{
+  std::string name = event->Attribute("name");
+  this->removeChildByName(name);
+  __event_list.pop_front();
+
 }
 
 void SGSkirmishScene::startSceneScript(float dt)
@@ -210,7 +218,9 @@ void SGSkirmishScene::update(float dt) {
     onHandleEventSoundEffect(event);
   } else if (!strcmp(name, "Delay")) {
     onHandleEventDelay(event);
-  } 
+  } else if (!strcmp(name, "HeroRemove")) {
+    onHandleEventHeroRemove(event);
+  }
 }
 
 Vec2 SGSkirmishScene::mapPos2OpenGLPos(Vec2 origin)

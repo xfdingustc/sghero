@@ -40,9 +40,10 @@
 			<HeroAction hero="黄巾军01" action="attack" />
 			<HeroAction hero="弓兵02" action="attacked" />
 			<!---<SoundEffect effect="SoundEffects/Se36.wav" />  --->
-			<Delay time="5" />
-			<HeroAdd hero="吕布" x="12" y="12" face="south" level="0" hide="false" AI="defense" />  
+			<Delay time="10" />
 			<HeroAction hero="弓兵02" action="fragile" />
+			<Dialog hero="黄巾军01" content="可、可恨……。" />
+			<HeroRemove hero="弓兵02" />
 			
 		</Event>
 		<Test>

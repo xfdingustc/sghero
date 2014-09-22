@@ -32,6 +32,7 @@ private:
   void onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSkirmishSceneHero::HERO_SIDE side);
   void onHandleEventHeroAction(tinyxml2::XMLElement* event);
   void onHandleEventDelay(tinyxml2::XMLElement* event);
+  void onHandleEventHeroRemove(tinyxml2::XMLElement* event);
 
   Vec2 mapPos2OpenGLPos(Vec2 origin);
 
