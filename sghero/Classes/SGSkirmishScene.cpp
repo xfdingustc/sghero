@@ -190,7 +190,7 @@ void SGSkirmishScene::onHandleEventDelay(tinyxml2::XMLElement* event)
 
 void SGSkirmishScene::onHandleEventHeroRemove(tinyxml2::XMLElement* event)
 {
-  std::string name = event->Attribute("name");
+  std::string name = event->Attribute("hero");
   this->removeChildByName(name);
   __event_list.pop_front();
 
