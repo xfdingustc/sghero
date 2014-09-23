@@ -35,16 +35,22 @@
 		</EnemySetting>
 		
 		<Event>
-			<!---<SoundTrack track="SoundTrack/Track08.mp3" />--->
+			<SoundTrack track="SoundTrack/Track08.mp3" />
 			<Dialog hero="黄巾军01" content="去死吧！" />
 			<HeroAction hero="黄巾军01" action="attack" />
 			<HeroAction hero="弓兵02" action="attacked" />
-			<!---<SoundEffect effect="SoundEffects/Se36.wav" />  --->
+			<SoundEffect effect="SoundEffects/Se36.wav" />  
 			<Delay time="10" />
 			<HeroAction hero="弓兵02" action="fragile" />
 			<Dialog hero="弓兵02" content="可、可恨……。" />
 			<HeroRemove hero="弓兵02" />
-			
+			<Dialog hero="黄巾军02" content="啊！" />
+			<HeroAction hero="黄巾军02" action="attack" />
+			<HeroAction hero="策士01" action="attacked" />
+			<SoundEffect effect="SoundEffects/Se35.wav" />  
+			<Dialog hero="策士01" content="啊！" />
+			<HeroRemove hero="策士01" />
+			<HeroAction hero="弓兵01" action="wheeze" />
 		</Event>
 		<Test>
 			<RoundTest round="1">

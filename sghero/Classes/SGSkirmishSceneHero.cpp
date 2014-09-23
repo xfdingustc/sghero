@@ -77,15 +77,23 @@ bool SGSkirmishSceneHero::initActions()
   animate_name = "face_west";
   __animate_map[animate_name] = animate_west;
 
-  
   Vector<SpriteFrame*>* fragile = new Vector<SpriteFrame*>;
   fragile->pushBack(__sprite_frames.at(9));
-  fragile->pushBack(__sprite_frames.at(10));
-  Animation* animation_fragile = Animation::createWithSpriteFrames(*fragile, 0.2f);
+  Animation* animation_fragile = Animation::createWithSpriteFrames(*fragile, 1.0f);
   Animate* animate_fragile = Animate::create(animation_fragile);
   animate_fragile->retain();
   animate_name = "fragile";
   __animate_map[animate_name] = animate_fragile;
+
+
+  Vector<SpriteFrame*>* wheeze = new Vector<SpriteFrame*>;
+  wheeze->pushBack(__sprite_frames.at(9));
+  wheeze->pushBack(__sprite_frames.at(10));
+  Animation* animation_wheeze = Animation::createWithSpriteFrames(*wheeze, 0.2f);
+  Animate* animate_wheeze = Animate::create(animation_wheeze);
+  animate_wheeze->retain();
+  animate_name = "wheeze";
+  __animate_map[animate_name] = animate_wheeze;
   return true;
 }
 
@@ -302,6 +310,10 @@ void SGSkirmishSceneHero::doAction(const char* action)
     Animate* animate = __animate_map[action_name];
     RepeatForever* animate_repeat = RepeatForever::create(animate);
     this->runAction(animate_repeat);
+  } else if (!strcmp(action, "wheeze")) {
+    std::string action_name = "wheeze";
+    Animate* animate = __animate_map[action_name];
+    RepeatForever* animate_repeat = RepeatForever::create(animate);
   }
 }
 
