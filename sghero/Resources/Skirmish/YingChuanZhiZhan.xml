@@ -44,13 +44,25 @@
 			<HeroAction hero="弓兵02" action="fragile" />
 			<Dialog hero="弓兵02" content="可、可恨……。" />
 			<HeroRemove hero="弓兵02" />
-			<Dialog hero="黄巾军02" content="啊！" />
-			<HeroAction hero="黄巾军02" action="attack" />
+			<Dialog hero="黄巾军04" content="啊！" />
+			<HeroAction hero="黄巾军04" action="attack" />
 			<HeroAction hero="策士01" action="attacked" />
 			<SoundEffect effect="SoundEffects/Se35.wav" />  
-			<Dialog hero="策士01" content="啊！" />
+			<Delay time="10" />
+			<HeroAction hero="策士01" action="fragile" />
+			<HeroAction hero="弓兵01" action="wheeze" />
 			<HeroRemove hero="策士01" />
 			<HeroAction hero="弓兵01" action="wheeze" />
+			<Dialog hero="弓兵01" content="呼、呼、哈…支持不住了！\n再这样下去，我们会全军覆没的。" />
+			<Dialog hero="步兵01" content="可恶，黄巾军的人越来越多。" />
+			<Dialog hero="步兵01" content="再过一会儿，骑兵队会来增援的，\n无论如何都要顶住！" />
+			<Dialog hero="步兵02" content="可是依我看，还是保住自家性命要紧，\n现在的官军谁不这么想。" />
+			<Dialog hero="步兵02" content="何况咱们这里是战况最激烈的颍川，\n我看腐败的朝廷不会派兵赶来送死的。" />
+			<Dialog hero="步兵01" content="话虽如此，不过援军的骑兵队长是曹操，\n听说他是个厉害角色。" />
+			<Dialog hero="步兵01" content="就信他这次吧。\n如今也只有等他来了。" />
+			<Dialog hero="弓兵01" content="快、快点来吧！" />
+			<Dialog hero="张宝" content="对方可真顽强。" />
+			<Dialog hero="张梁" content="哼，迟早要打败他们的！\n可恶的官军，竟敢攻打这里！\n一定要让他们后悔。" />
 		</Event>
 		<Test>
 			<RoundTest round="1">
