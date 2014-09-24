@@ -10,7 +10,7 @@ class SGSceneBase : public Layer {
 protected:
   void onHandleEventSoundEffect(tinyxml2::XMLElement* event);
   void onHandleEventSoundTrack(tinyxml2::XMLElement* event);
-  void onHandleEventDialog(tinyxml2::XMLElement* event);
+  virtual void onHandleEventDialog(tinyxml2::XMLElement* event);
 
 
   void formatString(std::string& str);

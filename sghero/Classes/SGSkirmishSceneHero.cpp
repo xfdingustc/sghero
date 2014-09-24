@@ -242,6 +242,7 @@ std::string& SGSkirmishSceneHero::getHeroResFile(const char* res_dir)
 
 void SGSkirmishSceneHero::faceTo(const char* direction)
 {
+  this->stopAllActions();
   __face_direction = getDirection(direction);
   std::string action_name;
   switch (__face_direction)

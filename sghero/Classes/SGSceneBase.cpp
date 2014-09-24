@@ -25,7 +25,6 @@ void SGSceneBase::onHandleEventDialog(tinyxml2::XMLElement* event)
 
   formatString(speak);
 
-  
   Scene* scene = SGSceneHeroSpeakScene::creatScene(hero_name.c_str(), speak.c_str());
   Director::getInstance()->pushScene(scene);
  

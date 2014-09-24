@@ -41,13 +41,11 @@ void SGSkirmishScene::onExit()
 }
 
 
-void SGSkirmishScene::onTouchMoved(Touch *touch, Event *unused_event)
+void SGSkirmishScene::mapMove(Vec2& delta)
 {
-  
-  Vec2 pos_diff = touch->getDelta();
   Vec2 cur_postion = this->getPosition();
   CCLOG("cur position x = %f y = %f", cur_postion.x, cur_postion.y);
-  Vec2 new_pos = cur_postion + pos_diff;
+  Vec2 new_pos = cur_postion + delta;
   Size size = Director::getInstance()->getVisibleSize();
   Sprite* map = (Sprite*)this->getChildByName("map");
   Size map_size = map->getContentSize();
@@ -64,11 +62,28 @@ void SGSkirmishScene::onTouchMoved(Touch *touch, Event *unused_event)
     new_pos.y = 0;
   }
   Vec2 new_pos_diff = new_pos - cur_postion;
-   //CCLOG("cur position x = %f y = %f", cur_postion.x, cur_postion.y);
-  //if (new_pos.y <)
+
   this->setPosition(this->getPosition() + new_pos_diff);
+}
+
+void SGSkirmishScene::requireFocus(const Vec2& pos)
+{
+  Size size = Director::getInstance()->getVisibleSize();
+  Vec2 center(size.width, size.height);
+
+  Vec2 delta = center - pos;
+
+  mapMove(delta);
+}
+
+
+void SGSkirmishScene::onTouchMoved(Touch *touch, Event *unused_event)
+{
+  mapMove(touch->getDelta());
   
 }
+
+
 
 bool SGSkirmishScene::parseSkirmishSceneXmlFile(const char* file_name)
 {
@@ -196,6 +211,42 @@ void SGSkirmishScene::onHandleEventHeroRemove(tinyxml2::XMLElement* event)
 
 }
 
+bool SGSkirmishScene::onHandleEventHeroTurn(tinyxml2::XMLElement* event)
+{
+  std::string hero_name = event->Attribute("hero");
+  std::string target_hero_name = event->Attribute("target_hero");
+
+  SGSkirmishSceneHero* hero_sprite = (SGSkirmishSceneHero*)this->getChildByName(hero_name);
+  SGSkirmishSceneHero* target_hero_sprite = (SGSkirmishSceneHero*)this->getChildByName(target_hero_name);
+
+  Vec2 hero_pos = hero_sprite->getPosition();
+  Vec2 target_hero_pos = target_hero_sprite->getPosition();
+
+  std::string direction;
+  if (target_hero_pos.x > hero_pos.x) {
+    direction = "east";
+  } else if (target_hero_pos.x < hero_pos.x) {
+    direction = "west";
+  } else if (target_hero_pos.y > hero_pos.y) {
+    direction = "north";
+  } else {
+    direction = "south";
+  }
+  hero_sprite->faceTo(direction.c_str());
+
+  __event_list.pop_front();
+  return true;
+}
+
+
+void SGSkirmishScene::onHandleEventDialog(tinyxml2::XMLElement* event)
+{
+  std::string hero_name = event->Attribute("hero");
+  SGSkirmishSceneHero* hero = (SGSkirmishSceneHero*)this->getChildByName(hero_name);
+  requireFocus(hero->getPosition());
+  SGSceneBase::onHandleEventDialog(event);
+}
+
 void SGSkirmishScene::startSceneScript(float dt)
 {
   scheduleUpdate();
@@ -220,6 +271,8 @@ void SGSkirmishScene::update(float dt) {
     onHandleEventDelay(event);
   } else if (!strcmp(name, "HeroRemove")) {
     onHandleEventHeroRemove(event);
+  } else if (!strcmp(name, "HeroTurn")) {
+    onHandleEventHeroTurn(event);
   }
 }
 

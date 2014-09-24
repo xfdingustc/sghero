@@ -22,6 +22,8 @@ public:
 private:
 
   void startSceneScript(float dt);
+  void mapMove(Vec2& delta);
+  void requireFocus(const Vec2& pos);
 
   bool parseSkirmishSceneXmlFile(const char* file);
   bool parseSkirmishSettings(tinyxml2::XMLElement* setting);
@@ -33,6 +35,9 @@ private:
   void onHandleEventHeroAction(tinyxml2::XMLElement* event);
   void onHandleEventDelay(tinyxml2::XMLElement* event);
   void onHandleEventHeroRemove(tinyxml2::XMLElement* event);
+  bool onHandleEventHeroTurn(tinyxml2::XMLElement* event);
+
+  void onHandleEventDialog(tinyxml2::XMLElement* event);
 
   Vec2 mapPos2OpenGLPos(Vec2 origin);
 
