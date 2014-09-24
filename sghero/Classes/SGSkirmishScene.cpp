@@ -76,6 +76,11 @@ void SGSkirmishScene::requireFocus(const Vec2& pos)
   mapMove(delta);
 }
 
+void SGSkirmishScene::notify()
+{
+  this->removeChildByName("arrow");
+}
+
 
 void SGSkirmishScene::onTouchMoved(Touch *touch, Event *unused_event)
 {
@@ -244,7 +249,21 @@ void SGSkirmishScene::onHandleEventDialog(tinyxml2::XMLElement* event)
   std::string hero_name = event->Attribute("hero");
   SGSkirmishSceneHero* hero = (SGSkirmishSceneHero*)this->getChildByName(hero_name);
   requireFocus(hero->getPosition());
-  SGSceneBase::onHandleEventDialog(event);
+  Vec2 dialog_win_pos;
+  Vec2 hero_pos = hero->getPosition();
+  Size hero_size = hero->getContentSize();
+  Size win_size = Director::getInstance()->getVisibleSize();
+  
+  Sprite* arrow = Sprite::create(DIAGLOG_WINDOW_ARROW_UP);
+  arrow->setAnchorPoint(Vec2(0.5f, 0.0f));
+  arrow->setPosition(Vec2(hero_pos.x + hero_size.width/2, hero_pos.y + hero_size.height));
+  arrow->setName("arrow");
+  this->addChild(arrow);
+
+  dialog_win_pos.x = hero_pos.x + hero_size.width / 2;
+  dialog_win_pos.y = hero_pos.y + hero_size.height + arrow->getContentSize().height;
+
+  SGSceneBase::onHandleEventDialog(event, convertToWorldSpace(dialog_win_pos));
 }
 
 void SGSkirmishScene::startSceneScript(float dt)

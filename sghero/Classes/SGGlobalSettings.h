@@ -27,6 +27,8 @@
 #define DIALOG_WINDOW_BACKGROUND "Mark/DialogWindowTexture.png"
 #define SELECT_WINDOW_BACKGROUND "Mark/SelectWindowTexture.png"
 
+#define DIAGLOG_WINDOW_ARROW_UP "Mark/speakDialogArrowUp.png"
+
 #define TEXT_FONT_NAME "Microsoft YaHei"
 #define TEXT_FONT_SIZE 20
 #define CHAPTER_TEXT_FONT_SIZE 50

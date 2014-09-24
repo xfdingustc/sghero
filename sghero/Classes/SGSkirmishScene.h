@@ -25,6 +25,8 @@ private:
   void mapMove(Vec2& delta);
   void requireFocus(const Vec2& pos);
 
+  void notify();
+
   bool parseSkirmishSceneXmlFile(const char* file);
   bool parseSkirmishSettings(tinyxml2::XMLElement* setting);
   bool parseSkrimishEvents(tinyxml2::XMLElement* events);

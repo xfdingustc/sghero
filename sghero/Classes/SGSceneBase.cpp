@@ -18,14 +18,16 @@ void SGSceneBase::onHandleEventSoundTrack(tinyxml2::XMLElement* event)
   __event_list.pop_front();
 }
 
-void SGSceneBase::onHandleEventDialog(tinyxml2::XMLElement* event)
+void SGSceneBase::onHandleEventDialog(tinyxml2::XMLElement* event, const Vec2& pos)
 {
   std::string hero_name = event->Attribute("hero");
   std::string speak = event->Attribute("content");
 
   formatString(speak);
 
-  Scene* scene = SGSceneHeroSpeakScene::creatScene(hero_name.c_str(), speak.c_str());
+  Scene* scene = SGSceneHeroSpeakScene::creatScene(hero_name.c_str(), speak.c_str(), pos);
+  SGSceneHeroSpeakScene* layer = (SGSceneHeroSpeakScene*)scene->getChildByName("dialog_layer");
+  layer->setObserver(this);
   Director::getInstance()->pushScene(scene);
  
   __event_list.pop_front();

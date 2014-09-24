@@ -19,6 +19,9 @@
     <Filter Include="Classes\SGSceneBase">
       <UniqueIdentifier>{0f808549-3c52-490d-add6-dc597ae02675}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\SGUtils">
+      <UniqueIdentifier>{4766f911-6e05-4685-90b3-ebaa588d2d57}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -59,6 +62,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\SGSceneHeroSpeakScene.cpp">
       <Filter>Classes\SGSceneBase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SGObserver.cpp">
+      <Filter>Classes\SGUtils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +109,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\SGSceneHeroSpeakScene.h">
       <Filter>Classes\SGSceneBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SGObserver.h">
+      <Filter>Classes\SGUtils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

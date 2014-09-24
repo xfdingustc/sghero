@@ -5,7 +5,7 @@
 USING_NS_CC;
 
 
-Scene* SGSceneHeroSpeakScene::creatScene(const char* hero_name, const char* content)
+Scene* SGSceneHeroSpeakScene::creatScene(const char* hero_name, const char* content, const Vec2& pos)
 {
   Scene* scene = Scene::create();
 
@@ -55,11 +55,18 @@ Scene* SGSceneHeroSpeakScene::creatScene(const char* hero_name, const char* cont
   content_bg_layer->addChild(content_ttf);
 
   // set dialog window position
-  Vec2 dialog_win_pos(win_size.width * 0.0278f, win_size.height * 0.03571f);
+  Vec2 dialog_win_pos;
+  if (pos == Vec2::ZERO) {
+    dialog_win_pos = Vec2(win_size.width * 0.0278f, win_size.height * 0.03571f);
+  } else {
+    dialog_win->setAnchorPoint(Vec2(0.5f, 0.0f));
+    dialog_win_pos = pos;
+  }
   dialog_win->setPosition(dialog_win_pos);
+  
 
   speak_layer->addChild(dialog_win);
-
+  speak_layer->setName("dialog_layer");
   
 
   scene->addChild(speak_layer);
@@ -86,6 +93,7 @@ bool SGSceneHeroSpeakScene::init()
 
 bool SGSceneHeroSpeakScene::onTouchBegin(Touch *touch, Event *unused_event)
 {
+  notifyObserver();
   Director::getInstance()->getEventDispatcher()->removeEventListener(event_listener);
   Director::getInstance()->popScene();
   return true;
