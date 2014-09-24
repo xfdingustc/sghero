@@ -263,7 +263,12 @@ void SGSkirmishScene::onHandleEventDialog(tinyxml2::XMLElement* event)
   dialog_win_pos.x = hero_pos.x + hero_size.width / 2;
   dialog_win_pos.y = hero_pos.y + hero_size.height + arrow->getContentSize().height;
 
-  SGSceneBase::onHandleEventDialog(event, convertToWorldSpace(dialog_win_pos));
+  dialog_win_pos = convertToWorldSpace(dialog_win_pos);
+
+  event->SetAttribute("x", dialog_win_pos.x);
+  event->SetAttribute("y", dialog_win_pos.y);
+
+  SGSceneBase::onHandleEventDialog(event);
 }
 
 void SGSkirmishScene::startSceneScript(float dt)

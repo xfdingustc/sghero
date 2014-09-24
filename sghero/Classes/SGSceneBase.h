@@ -11,7 +11,7 @@ class SGSceneBase : public Layer, public SGObserver {
 protected:
   void onHandleEventSoundEffect(tinyxml2::XMLElement* event);
   void onHandleEventSoundTrack(tinyxml2::XMLElement* event);
-  virtual void onHandleEventDialog(tinyxml2::XMLElement* event, const Vec2& pos = Vec2::ZERO);
+  virtual void onHandleEventDialog(tinyxml2::XMLElement* event);
 
 
   void formatString(std::string& str);
