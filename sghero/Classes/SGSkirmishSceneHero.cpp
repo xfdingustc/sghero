@@ -24,6 +24,8 @@ bool SGSkirmishSceneHero::init(const char* hero_name, HERO_SIDE side)
   __name = hero_name;
   __side = side;
 
+  __active = true;
+
   initActions();
   initAttackActions();
   initSpecActions();

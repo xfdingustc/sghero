@@ -17,6 +17,8 @@ public:
   bool initActions();
   bool initAttackActions();
   bool initSpecActions();
+
+  bool isActive() { return (__active && isVisible());}
   
   typedef enum {
     DIRECTION_NORTH,
@@ -43,6 +45,8 @@ private:
 
   DIRECTION getDirection(const char* direction);
   DIRECTION __face_direction;
+
+  bool __active;
 };
 
 #endif

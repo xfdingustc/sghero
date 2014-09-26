@@ -1,7 +1,7 @@
 #include "SGSkirmishScene.h"
 #include "SimpleAudioEngine.h"
 #include "SGGlobalSettings.h"
-
+#include "SGSKirmishSwitchScene.h"
 using namespace CocosDenshion;
 
 Scene* SGSkirmishScene::createScene()
@@ -31,6 +31,12 @@ bool SGSkirmishScene::init()
   __event_listener->onTouchMoved = CC_CALLBACK_2(SGSkirmishScene::onTouchMoved, this);
   __event_listener->setSwallowTouches(true);
   dispatcher->addEventListenerWithSceneGraphPriority(__event_listener,this);
+
+  //init turn:
+  __turn = SKIRMISH_TURN_OUR;
+
+  //init round;
+  __round = 0;
   return true;
 }
 
@@ -184,6 +190,21 @@ void SGSkirmishScene::onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSkirmishS
     }
 
     this->addChild(hero);
+    // add into hero list
+    switch (side)
+    {
+    case SGSkirmishSceneHero::HERO_SIDE_OURS:
+      __our_heroes.pushBack(hero);
+      break;
+    case SGSkirmishSceneHero::HERO_SIDE_FRIEND:
+      __friend_heroes.pushBack(hero);
+      break;
+    case SGSkirmishSceneHero::HERO_SIDE_ENEMY:
+      __enemy_heroes.pushBack(hero);
+      break;
+    default:
+      break;
+    }
     one_friend_hero = one_friend_hero->NextSiblingElement();
   }
 
@@ -276,9 +297,48 @@ void SGSkirmishScene::startSceneScript(float dt)
   scheduleUpdate();
 }
 
+void SGSkirmishScene::gameLogic()
+{
+  if (__round == 0) {
+    __round++;
+    __turn = SKIRMISH_TURN_OUR;
+    switchToNextRound();
+  }
+
+  switch(__turn) {
+  case SKIRMISH_TURN_OUR:
+    if (!getHero(__our_heroes)) {
+      __turn = SKIRMISH_TURN_FRIEND;
+      switchToNextRound();
+    }
+    break;
+  case SKIRMISH_TURN_FRIEND:
+    break;
+  case SKIRMISH_TURN_ENEMY:
+    break;
+  }
+}
+SGSkirmishSceneHero* SGSkirmishScene::getHero(SGSKirmishSceneHeroList& list)
+{
+  for (int i = 0; i < list.size(); i++) {
+    SGSkirmishSceneHero* hero = list.at(i);
+    if (hero->isActive()) {
+      return hero;
+    }
+  }
+  return NULL;
+}
+void SGSkirmishScene::switchToNextRound()
+{
+
+  Scene* scene = SGSkirmishSwitchScene::createScene(__round, __turn);
+  Director::getInstance()->pushScene(scene);
+}
+
 void SGSkirmishScene::update(float dt) {
   if (__event_list.size() == 0) {
-    return ;
+    gameLogic() ;
+    return;
   } 
   tinyxml2::XMLElement* event = __event_list.front();
   const char* name = event->Name();

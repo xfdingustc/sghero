@@ -137,7 +137,6 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\SGDramaScene.cpp" />
     <ClCompile Include="..\Classes\SGDramaSceneChapterScene.cpp" />
     <ClCompile Include="..\Classes\SGDramaSceneHero.cpp" />
-    <ClCompile Include="..\Classes\SGObserver.cpp" />
     <ClCompile Include="..\Classes\SGSceneHeroSpeakScene.cpp" />
     <ClCompile Include="..\Classes\SGDramaSceneInfoScene.cpp" />
     <ClCompile Include="..\Classes\SGDramaSceneSelectScene.cpp" />
@@ -145,6 +144,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\SGSceneBase.cpp" />
     <ClCompile Include="..\Classes\SGSkirmishScene.cpp" />
     <ClCompile Include="..\Classes\SGSkirmishSceneHero.cpp" />
+    <ClCompile Include="..\Classes\SGSKirmishSwitchScene.cpp" />
     <ClCompile Include="..\Classes\SGWelcomeScene.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -162,6 +162,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\SGSceneBase.h" />
     <ClInclude Include="..\Classes\SGSkirmishScene.h" />
     <ClInclude Include="..\Classes\SGSkirmishSceneHero.h" />
+    <ClInclude Include="..\Classes\SGSKirmishSwitchScene.h" />
     <ClInclude Include="..\Classes\SGWelcomeScene.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>

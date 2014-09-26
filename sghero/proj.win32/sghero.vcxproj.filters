@@ -63,8 +63,8 @@
     <ClCompile Include="..\Classes\SGSceneHeroSpeakScene.cpp">
       <Filter>Classes\SGSceneBase</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\SGObserver.cpp">
-      <Filter>Classes\SGUtils</Filter>
+    <ClCompile Include="..\Classes\SGSKirmishSwitchScene.cpp">
+      <Filter>Classes\SGSkirmishScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +112,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\SGObserver.h">
       <Filter>Classes\SGUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SGSKirmishSwitchScene.h">
+      <Filter>Classes\SGSkirmishScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

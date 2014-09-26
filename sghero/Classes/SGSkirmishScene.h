@@ -31,6 +31,8 @@ private:
   bool parseSkirmishSettings(tinyxml2::XMLElement* setting);
   bool parseSkrimishEvents(tinyxml2::XMLElement* events);
 
+  void gameLogic();
+  void switchToNextRound();
 
   void onHandleSettingMap(tinyxml2::XMLElement* setting);
   void onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSkirmishSceneHero::HERO_SIDE side);
@@ -47,7 +49,25 @@ private:
 
   int __map_width;
   int __map_height;
-  
+
+  // state
+  typedef enum {
+    SKIRMISH_TURN_OUR,
+    SKIRMISH_TURN_FRIEND,
+    SKIRMISH_TURN_ENEMY,
+  } SKIRMISH_TURN;
+  SKIRMISH_TURN __turn;
+
+  int __round;
+
+  // Hero List
+  typedef Vector<SGSkirmishSceneHero*> SGSKirmishSceneHeroList;
+  SGSKirmishSceneHeroList __our_heroes;
+  SGSKirmishSceneHeroList __friend_heroes;
+  SGSKirmishSceneHeroList __enemy_heroes;
+  SGSkirmishSceneHero* getHero(SGSKirmishSceneHeroList& list);
+
+
 
 };
 
