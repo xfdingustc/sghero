@@ -34,9 +34,10 @@ private:
 
   void checkTests();
   void gameLogic();
-  void gameLogicFriendTurn();
-  void gameLogicEnemyTurn();
+  bool gameLogicFriendTurn();
+  bool gameLogicEnemyTurn();
   void switchToNextRound();
+  void resetAllHeroActivity();
 
   void onHandleSettingMap(tinyxml2::XMLElement* setting);
   void onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSkirmishSceneHero::HERO_SIDE side);
@@ -44,7 +45,7 @@ private:
   void onHandleEventDelay(tinyxml2::XMLElement* event);
   void onHandleEventHeroRemove(tinyxml2::XMLElement* event);
   bool onHandleEventHeroTurn(tinyxml2::XMLElement* event);
-
+  bool onHandleEventHidenHeroAppear(tinyxml2::XMLElement* event);
   void onHandleEventDialog(tinyxml2::XMLElement* event);
 
   Vec2 mapPos2OpenGLPos(Vec2 origin);

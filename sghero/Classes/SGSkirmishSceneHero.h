@@ -19,6 +19,7 @@ public:
   bool initSpecActions();
 
   bool isActive() { return (__active && isVisible());}
+  void resetActivity() { __active = true; }
 
   // hero AI currently is dummy
   void oneMove() { __active = false; }

@@ -67,6 +67,11 @@ void SGSkirmishScene::mapMove(Vec2& delta)
   if (new_pos.y < 0) {
     new_pos.y = 0;
   }
+
+  if (map_size.width < size.width) {
+    new_pos.x = cur_postion.x;
+  }
+
   Vec2 new_pos_diff = new_pos - cur_postion;
 
   this->setPosition(this->getPosition() + new_pos_diff);
@@ -75,7 +80,7 @@ void SGSkirmishScene::mapMove(Vec2& delta)
 void SGSkirmishScene::requireFocus(const Vec2& pos)
 {
   Size size = Director::getInstance()->getVisibleSize();
-  Vec2 center(size.width, size.height);
+  Vec2 center(size.width / 2, size.height / 2);
 
   Vec2 delta = center - pos;
 
@@ -253,24 +258,29 @@ void SGSkirmishScene::onHandleEventHeroRemove(tinyxml2::XMLElement* event)
 
 bool SGSkirmishScene::onHandleEventHeroTurn(tinyxml2::XMLElement* event)
 {
-  std::string hero_name = event->Attribute("hero");
-  std::string target_hero_name = event->Attribute("target_hero");
-
-  SGSkirmishSceneHero* hero_sprite = (SGSkirmishSceneHero*)this->getChildByName(hero_name);
-  SGSkirmishSceneHero* target_hero_sprite = (SGSkirmishSceneHero*)this->getChildByName(target_hero_name);
-
-  Vec2 hero_pos = hero_sprite->getPosition();
-  Vec2 target_hero_pos = target_hero_sprite->getPosition();
-
   std::string direction;
-  if (target_hero_pos.x > hero_pos.x) {
-    direction = "east";
-  } else if (target_hero_pos.x < hero_pos.x) {
-    direction = "west";
-  } else if (target_hero_pos.y > hero_pos.y) {
-    direction = "north";
+  std::string hero_name = event->Attribute("hero");
+  SGSkirmishSceneHero* hero_sprite = (SGSkirmishSceneHero*)this->getChildByName(hero_name);
+  if (event->Attribute("face")) {
+    direction = event->Attribute("face");
   } else {
-    direction = "south";
+    std::string target_hero_name = event->Attribute("target_hero");
+   
+    SGSkirmishSceneHero* target_hero_sprite = (SGSkirmishSceneHero*)this->getChildByName(target_hero_name);
+
+    Vec2 hero_pos = hero_sprite->getPosition();
+    Vec2 target_hero_pos = target_hero_sprite->getPosition();
+
+  
+    if (target_hero_pos.x > hero_pos.x) {
+      direction = "east";
+    } else if (target_hero_pos.x < hero_pos.x) {
+      direction = "west";
+    } else if (target_hero_pos.y > hero_pos.y) {
+      direction = "north";
+    } else {
+      direction = "south";
+    }
   }
   hero_sprite->faceTo(direction.c_str());
 
@@ -306,6 +316,19 @@ void SGSkirmishScene::onHandleEventDialog(tinyxml2::XMLElement* event)
   SGSceneBase::onHandleEventDialog(event);
 }
 
+bool SGSkirmishScene::onHandleEventHidenHeroAppear(tinyxml2::XMLElement* event)
+{
+  std::string hero_name = event->Attribute("hero");
+  SGSkirmishSceneHero* hero = (SGSkirmishSceneHero*)this->getChildByName(hero_name);
+  if (hero) {
+    requireFocus(hero->getPosition());
+    
+    hero->setVisible(true);
+  }
+  __event_list.pop_front();
+  return true;
+}
+
 void SGSkirmishScene::startSceneScript(float dt)
 {
   scheduleUpdate();
@@ -318,16 +341,36 @@ void SGSkirmishScene::checkTests()
     tinyxml2::XMLElement* one_test = *it;
     //check the condition
     bool condition = false;
-    if (__round == atoi(one_test->Attribute("round"))) {
-      CCLog("Test condition meets");
-      tinyxml2::XMLElement* one_event = one_test->FirstChildElement();
-      while(one_event) {
-        __event_list.push_back(one_event);
-        one_event = one_event->NextSiblingElement();
+    if (one_test->Attribute("round")) {
+      if (__round != atoi(one_test->Attribute("round"))) {
+        continue;
       }
-      __test_list.erase(it);
-      return;
     }
+
+    if (one_test->Attribute("turn")) {
+      std::string turn_string = one_test->Attribute("turn");
+      SKIRMISH_TURN turn;
+      if (turn_string == "enemy") {
+        turn = SKIRMISH_TURN_ENEMY;
+      } else if (turn_string == "our") {
+        turn = SKIRMISH_TURN_OUR;
+      } else {
+        turn = SKIRMISH_TURN_FRIEND;
+      }
+      if (turn != __turn) {
+        continue;
+      }
+    }
+
+    CCLog("Test condition meets");
+    tinyxml2::XMLElement* one_event = one_test->FirstChildElement();
+    while(one_event) {
+      __event_list.push_back(one_event);
+      one_event = one_event->NextSiblingElement();
+    }
+    __test_list.erase(it);
+    return;
+
     
   }
 }
@@ -354,34 +397,54 @@ void SGSkirmishScene::gameLogic()
     gameLogicFriendTurn();
     break;
   case SKIRMISH_TURN_ENEMY:
-    gameLogicEnemyTurn();
+    if (true == gameLogicEnemyTurn()) {
+      resetAllHeroActivity();
+    }
     break;
   }
 }
 
-void SGSkirmishScene::gameLogicFriendTurn() 
+void SGSkirmishScene::resetAllHeroActivity()
+{
+  SGSKirmishSceneHeroList::iterator it;
+  for (it = __our_heroes.begin(); it != __our_heroes.end(); it++) {
+    SGSkirmishSceneHero* hero = *it;
+    hero->resetActivity();
+  }
+  for (it = __friend_heroes.begin(); it != __friend_heroes.end(); it++) {
+    SGSkirmishSceneHero* hero = *it;
+    hero->resetActivity();
+  }
+  for (it = __enemy_heroes.begin(); it != __enemy_heroes.end(); it++) {
+    SGSkirmishSceneHero* hero = *it;
+    hero->resetActivity();
+  }
+}
+bool SGSkirmishScene::gameLogicFriendTurn() 
 {
   SGSkirmishSceneHero* hero = getHero(__friend_heroes);
   if (!hero) {
     __turn = SKIRMISH_TURN_ENEMY;
     switchToNextRound();
-    return;
+    return true;
   }
   hero->oneMove();
   CCLOG("friend %s has moved", hero->getName().c_str());
+  return false;
 }
 
-void SGSkirmishScene::gameLogicEnemyTurn()
+bool SGSkirmishScene::gameLogicEnemyTurn()
 {
   SGSkirmishSceneHero* hero = getHero(__enemy_heroes);
   if (!hero) {
     __turn = SKIRMISH_TURN_OUR;
     __round++;
     switchToNextRound();
-    return;
+    return true;
   }
   hero->oneMove();
   CCLOG("enemy %s has moved", hero->getName().c_str());
+  return false;
 }
 SGSkirmishSceneHero* SGSkirmishScene::getHero(SGSKirmishSceneHeroList& list)
 {
@@ -395,7 +458,8 @@ SGSkirmishSceneHero* SGSkirmishScene::getHero(SGSKirmishSceneHeroList& list)
 }
 void SGSkirmishScene::switchToNextRound()
 {
-
+  CCLOG("switch to next round = %d turn = %d", __round, __turn);
+  return;
   Scene* scene = SGSkirmishSwitchScene::createScene(__round, __turn);
   Director::getInstance()->pushScene(scene);
 }
@@ -422,6 +486,8 @@ void SGSkirmishScene::update(float dt) {
     onHandleEventHeroRemove(event);
   } else if (!strcmp(name, "HeroTurn")) {
     onHandleEventHeroTurn(event);
+  } else if (!strcmp(name, "HidenHeroAppear")) {
+    onHandleEventHidenHeroAppear(event);
   }
 }
 

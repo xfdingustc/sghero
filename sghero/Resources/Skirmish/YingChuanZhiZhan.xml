@@ -68,14 +68,32 @@
 			<Dialog hero="弓兵01" content="快、快点来吧！" />
 			<HeroTurn hero="步兵01" target_hero="步兵02"/>
 			<Dialog hero="张宝" content="对方可真顽强。" />
-			<Dialog hero="张梁" content="哼，迟早要打败他们的！\n可恶的官军，竟敢攻打这里！\n一定要让他们后悔。" />
+			<Dialog hero="张梁" content="哼，迟早要打败他们的！\n可恶的官军，竟敢攻打这里！\n一定要让他们后悔。" />--->
 		</Event>
 		<Test>
 			<condition round="1">
-				<!---<HeroTurn hero="步兵01" face="north"/>
-				<HeroAction hero="步兵01" action="attack" /> -->
+				<HeroTurn hero="步兵01" face="north"/>
+				<HeroAction hero="步兵01" action="attack" />  
 				<Dialog hero="步兵01" content="再坚持一会儿！\n让他们知道官军不是好惹的！" />
-				
+			</condition>
+			<condition round="1" turn="enemy">
+				<HidenHeroAppear hero="刘备" />
+				<HidenHeroAppear hero="关羽" />
+				<HidenHeroAppear hero="张飞" />
+				<Dialog hero="刘备" content="看起来好像赶上了。\n不过在这种寡不敌众的情况下，\n此地官军好像也陷入苦战。" />
+				<HeroTurn hero="关羽" target_hero="刘备"/>
+				<HeroTurn hero="张飞" target_hero="刘备"/>
+				<Dialog hero="关羽" content="咱们应该趁势里外夹攻，\n不过我军兵力还是少了点……。" />
+				<Dialog hero="张飞" content="二哥你就会穷担心…\n我一个人就能应付他们了。" />
+				<Dialog hero="刘备" content="我们可不能丢下官军不管，\n从背后抄过去直捣鹿砦吧。\n冲啊！" />
+			</condition>
+			<condition round="2">
+				<Dialog hero="刘备" content="二弟、三弟，等一等，\n这样下去前方的官军会被歼灭，\n在这里放火吧。" />
+				<Dialog hero="关羽" content="对！把他们的注意力引到这里…\n说不定敌人也会因此动摇的。" />
+				<Dialog hero="张飞" content="那我去放火。" />
+				<Dialog hero="刘备" content="我可不想双方有太多的人无辜丧命，\n你可要把握好分寸。" />
+				<HeroAction hero="张飞" action="attack" /> 
+				<Delay time="1" />
 			</condition>
 		</Test>
 	</Section>
