@@ -30,8 +30,12 @@ private:
   bool parseSkirmishSceneXmlFile(const char* file);
   bool parseSkirmishSettings(tinyxml2::XMLElement* setting);
   bool parseSkrimishEvents(tinyxml2::XMLElement* events);
+  bool parseSkrimishTests(tinyxml2::XMLElement* tests);
 
+  void checkTests();
   void gameLogic();
+  void gameLogicFriendTurn();
+  void gameLogicEnemyTurn();
   void switchToNextRound();
 
   void onHandleSettingMap(tinyxml2::XMLElement* setting);
@@ -67,7 +71,8 @@ private:
   SGSKirmishSceneHeroList __enemy_heroes;
   SGSkirmishSceneHero* getHero(SGSKirmishSceneHeroList& list);
 
-
+  
+  SGSceneEventList __test_list;
 
 };
 

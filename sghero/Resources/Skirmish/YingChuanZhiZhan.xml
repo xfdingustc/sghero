@@ -71,9 +71,12 @@
 			<Dialog hero="张梁" content="哼，迟早要打败他们的！\n可恶的官军，竟敢攻打这里！\n一定要让他们后悔。" />
 		</Event>
 		<Test>
-			<RoundTest round="1">
+			<condition round="1">
+				<!---<HeroTurn hero="步兵01" face="north"/>
+				<HeroAction hero="步兵01" action="attack" /> -->
+				<Dialog hero="步兵01" content="再坚持一会儿！\n让他们知道官军不是好惹的！" />
 				
-			</RoundTest>
+			</condition>
 		</Test>
 	</Section>
 

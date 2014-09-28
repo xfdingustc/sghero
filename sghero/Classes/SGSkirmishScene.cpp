@@ -122,6 +122,10 @@ bool SGSkirmishScene::parseSkirmishSceneXmlFile(const char* file_name)
     parseSkrimishEvents(events);
   }
 
+  tinyxml2::XMLElement* tests = section->FirstChildElement("Test");
+  if (tests) {
+    parseSkrimishTests(tests);
+  }
 
   scheduleUpdate();
   return true;
@@ -146,6 +150,16 @@ bool SGSkirmishScene::parseSkrimishEvents(tinyxml2::XMLElement* events)
   while(one_event) {
     __event_list.push_back(one_event);
     one_event = one_event->NextSiblingElement();
+  }
+  return true;
+}
+
+bool SGSkirmishScene::parseSkrimishTests(tinyxml2::XMLElement* tests)
+{
+  tinyxml2::XMLElement* one_test = tests->FirstChildElement();
+  while(one_test) {
+    __test_list.push_back(one_test);
+    one_test = one_test->NextSiblingElement();
   }
   return true;
 }
@@ -297,13 +311,37 @@ void SGSkirmishScene::startSceneScript(float dt)
   scheduleUpdate();
 }
 
+void SGSkirmishScene::checkTests()
+{
+  SGSceneEventList::iterator it;
+  for (it = __test_list.begin(); it != __test_list.end(); it++) {
+    tinyxml2::XMLElement* one_test = *it;
+    //check the condition
+    bool condition = false;
+    if (__round == atoi(one_test->Attribute("round"))) {
+      CCLog("Test condition meets");
+      tinyxml2::XMLElement* one_event = one_test->FirstChildElement();
+      while(one_event) {
+        __event_list.push_back(one_event);
+        one_event = one_event->NextSiblingElement();
+      }
+      __test_list.erase(it);
+      return;
+    }
+    
+  }
+}
+
 void SGSkirmishScene::gameLogic()
 {
   if (__round == 0) {
     __round++;
     __turn = SKIRMISH_TURN_OUR;
     switchToNextRound();
+    return;
   }
+
+  checkTests();
 
   switch(__turn) {
   case SKIRMISH_TURN_OUR:
@@ -313,10 +351,37 @@ void SGSkirmishScene::gameLogic()
     }
     break;
   case SKIRMISH_TURN_FRIEND:
+    gameLogicFriendTurn();
     break;
   case SKIRMISH_TURN_ENEMY:
+    gameLogicEnemyTurn();
     break;
   }
+}
+
+void SGSkirmishScene::gameLogicFriendTurn() 
+{
+  SGSkirmishSceneHero* hero = getHero(__friend_heroes);
+  if (!hero) {
+    __turn = SKIRMISH_TURN_ENEMY;
+    switchToNextRound();
+    return;
+  }
+  hero->oneMove();
+  CCLOG("friend %s has moved", hero->getName().c_str());
+}
+
+void SGSkirmishScene::gameLogicEnemyTurn()
+{
+  SGSkirmishSceneHero* hero = getHero(__enemy_heroes);
+  if (!hero) {
+    __turn = SKIRMISH_TURN_OUR;
+    __round++;
+    switchToNextRound();
+    return;
+  }
+  hero->oneMove();
+  CCLOG("enemy %s has moved", hero->getName().c_str());
 }
 SGSkirmishSceneHero* SGSkirmishScene::getHero(SGSKirmishSceneHeroList& list)
 {

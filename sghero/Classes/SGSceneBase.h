@@ -18,6 +18,7 @@ protected:
 
   typedef std::list<tinyxml2::XMLElement*> SGSceneEventList;
   SGSceneEventList __event_list;
+  
 };
 
 #endif

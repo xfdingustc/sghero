@@ -19,6 +19,9 @@ public:
   bool initSpecActions();
 
   bool isActive() { return (__active && isVisible());}
+
+  // hero AI currently is dummy
+  void oneMove() { __active = false; }
   
   typedef enum {
     DIRECTION_NORTH,
