@@ -9,9 +9,9 @@ USING_NS_CC;
 class SGSceneBase : public Layer, public SGObserver {
 
 protected:
-  void onHandleEventSoundEffect(tinyxml2::XMLElement* event);
-  void onHandleEventSoundTrack(tinyxml2::XMLElement* event);
-  virtual void onHandleEventDialog(tinyxml2::XMLElement* event);
+  bool onHandleEventSoundEffect(tinyxml2::XMLElement* event);
+  bool onHandleEventSoundTrack(tinyxml2::XMLElement* event);
+  virtual bool onHandleEventDialog(tinyxml2::XMLElement* event);
 
 
   void formatString(std::string& str);

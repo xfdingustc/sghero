@@ -4,21 +4,21 @@
 
 using namespace CocosDenshion;
 
-void SGSceneBase::onHandleEventSoundEffect(tinyxml2::XMLElement* event)
+bool SGSceneBase::onHandleEventSoundEffect(tinyxml2::XMLElement* event)
 {
   const char* sound_effect = event->Attribute("effect");
   SimpleAudioEngine::getInstance()->playEffect(sound_effect, false);
-  __event_list.pop_front();
+  return true;
 }
 
-void SGSceneBase::onHandleEventSoundTrack(tinyxml2::XMLElement* event)
+bool SGSceneBase::onHandleEventSoundTrack(tinyxml2::XMLElement* event)
 {
   std::string track = event->Attribute("track");
   SimpleAudioEngine::getInstance()->playBackgroundMusic(track.c_str());
-  __event_list.pop_front();
+  return true;
 }
 
-void SGSceneBase::onHandleEventDialog(tinyxml2::XMLElement* event)
+bool SGSceneBase::onHandleEventDialog(tinyxml2::XMLElement* event)
 {
   std::string hero_name = event->Attribute("hero");
   std::string speak = event->Attribute("content");
@@ -35,7 +35,7 @@ void SGSceneBase::onHandleEventDialog(tinyxml2::XMLElement* event)
   layer->setObserver(this);
   Director::getInstance()->pushScene(scene);
  
-  __event_list.pop_front();
+  return true;
 }
 
 void SGSceneBase::formatString(std::string& str)

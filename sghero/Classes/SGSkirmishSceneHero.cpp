@@ -30,7 +30,7 @@ bool SGSkirmishSceneHero::init(const char* hero_name, HERO_SIDE side)
   initAttackActions();
   initSpecActions();
 
-  this->setAnchorPoint(Vec2::ZERO);
+  this->setAnchorPoint(Vec2(0.5f, 0.5f));
 
   this->setName(hero_name);
 }
@@ -274,6 +274,11 @@ void SGSkirmishSceneHero::faceTo(const char* direction)
   this->runAction(face_walk);
   
 }
+void SGSkirmishSceneHero::moveTo(Vec2& target_pos)
+{
+  this->setPosition(target_pos.x, target_pos.y);
+}
+
 
 void SGSkirmishSceneHero::doAttackAction()
 {

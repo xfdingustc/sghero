@@ -35,7 +35,7 @@
 		</EnemySetting>
 		
 		<Event>
-			<SoundTrack track="SoundTrack/Track08.mp3" />
+			<!---<SoundTrack track="SoundTrack/Track08.mp3" />
 			<Dialog hero="黄巾军01" content="去死吧！" />
 			<HeroAction hero="黄巾军01" action="attack" />
 			<HeroAction hero="弓兵02" action="attacked" />
@@ -72,9 +72,9 @@
 		</Event>
 		<Test>
 			<condition round="1">
-				<HeroTurn hero="步兵01" face="north"/>
+				<!---<HeroTurn hero="步兵01" face="north"/>
 				<HeroAction hero="步兵01" action="attack" />  
-				<Dialog hero="步兵01" content="再坚持一会儿！\n让他们知道官军不是好惹的！" />
+				<Dialog hero="步兵01" content="再坚持一会儿！\n让他们知道官军不是好惹的！" />--->
 			</condition>
 			<condition round="1" turn="enemy">
 				<HidenHeroAppear hero="刘备" />
@@ -86,14 +86,29 @@
 				<Dialog hero="关羽" content="咱们应该趁势里外夹攻，\n不过我军兵力还是少了点……。" />
 				<Dialog hero="张飞" content="二哥你就会穷担心…\n我一个人就能应付他们了。" />
 				<Dialog hero="刘备" content="我们可不能丢下官军不管，\n从背后抄过去直捣鹿砦吧。\n冲啊！" />
+				<HeroMove hero="刘备" x="11" y="5" face="south" />
+				<HeroMove hero="关羽" x="10" y="5" face="south" />
+				<HeroMove hero="张飞" x="12" y="5" face="south" />
 			</condition>
 			<condition round="2">
+				<!-- 张飞放火 -->
 				<Dialog hero="刘备" content="二弟、三弟，等一等，\n这样下去前方的官军会被歼灭，\n在这里放火吧。" />
 				<Dialog hero="关羽" content="对！把他们的注意力引到这里…\n说不定敌人也会因此动摇的。" />
 				<Dialog hero="张飞" content="那我去放火。" />
 				<Dialog hero="刘备" content="我可不想双方有太多的人无辜丧命，\n你可要把握好分寸。" />
 				<HeroAction hero="张飞" action="attack" /> 
 				<Delay time="1" />
+				<SkirmishObjAdd obj="fire" x="13" y="5" />
+				<Delay time="10" />
+				<!-- 关羽放火 -->
+				<HeroMove hero="关羽" x="8" y="5" face="south" />
+				<Dialog hero="关羽" content="这里也点上！" />
+				<HeroAction hero="关羽" action="attack" /> 
+				<Delay time="1" />
+				<SkirmishObjAdd obj="fire" x="6" y="4" />
+				<SkirmishObjAdd obj="fire" x="7" y="5" />
+				<Delay time="10" />
+				<!-- 朱雀召回 -->
 			</condition>
 		</Test>
 	</Section>

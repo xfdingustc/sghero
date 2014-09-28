@@ -23,6 +23,8 @@ public:
 
   // hero AI currently is dummy
   void oneMove() { __active = false; }
+
+  void moveTo(Vec2& target_pos);
   
   typedef enum {
     DIRECTION_NORTH,

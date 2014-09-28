@@ -2,6 +2,7 @@
 #include "SimpleAudioEngine.h"
 #include "SGGlobalSettings.h"
 #include "SGSKirmishSwitchScene.h"
+#include "SGSkirmishSceneObj.h"
 using namespace CocosDenshion;
 
 Scene* SGSkirmishScene::createScene()
@@ -169,7 +170,7 @@ bool SGSkirmishScene::parseSkrimishTests(tinyxml2::XMLElement* tests)
   return true;
 }
 
-void SGSkirmishScene::onHandleSettingMap(tinyxml2::XMLElement* setting)
+bool SGSkirmishScene::onHandleSettingMap(tinyxml2::XMLElement* setting)
 {
   std::string map = setting->Attribute("map");
   __map_width = atoi(setting->Attribute("width"));
@@ -187,10 +188,11 @@ void SGSkirmishScene::onHandleSettingMap(tinyxml2::XMLElement* setting)
   bg_map->setAnchorPoint(Vec2(0.0f, 1.0f));
   bg_map->setPosition(Vec2(0.0f, size.height));
   this->addChild(bg_map);
+  return true;
  
 }
 
-void SGSkirmishScene::onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSkirmishSceneHero::HERO_SIDE side)
+bool SGSkirmishScene::onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSkirmishSceneHero::HERO_SIDE side)
 {
   tinyxml2::XMLElement* one_friend_hero = setting->FirstChildElement();
 
@@ -226,10 +228,10 @@ void SGSkirmishScene::onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSkirmishS
     }
     one_friend_hero = one_friend_hero->NextSiblingElement();
   }
-
+  return true;
 }
 
-void SGSkirmishScene::onHandleEventHeroAction(tinyxml2::XMLElement* event)
+bool SGSkirmishScene::onHandleEventHeroAction(tinyxml2::XMLElement* event)
 {
   std::string hero_name = event->Attribute("hero");
   std::string action = event->Attribute("action");
@@ -237,22 +239,36 @@ void SGSkirmishScene::onHandleEventHeroAction(tinyxml2::XMLElement* event)
   SGSkirmishSceneHero* hero = (SGSkirmishSceneHero*)this->getChildByName(hero_name);
 
   hero->doAction(action.c_str());
-  __event_list.pop_front();
+  return true;
 }
 
-void SGSkirmishScene::onHandleEventDelay(tinyxml2::XMLElement* event)
+
+bool SGSkirmishScene::onHandleEventHeroMove(tinyxml2::XMLElement* event)
+{
+  std::string hero_name = event->Attribute("hero");
+  int x = atoi(event->Attribute("x"));
+  int y = atoi(event->Attribute("y"));
+  SGSkirmishSceneHero* hero = (SGSkirmishSceneHero*)this->getChildByName(hero_name);
+  hero->moveTo(mapPos2OpenGLPos(Vec2(x, y)));
+  std::string direction = event->Attribute("face");
+  hero->faceTo(direction.c_str());
+  return true;
+}
+
+
+bool SGSkirmishScene::onHandleEventDelay(tinyxml2::XMLElement* event)
 {
   float time = float(atoi(event->Attribute("time"))) ;
   unscheduleUpdate();
   scheduleOnce(schedule_selector(SGSkirmishScene::startSceneScript), time*0.1f);
-  __event_list.pop_front();
+  return true;
 }
 
-void SGSkirmishScene::onHandleEventHeroRemove(tinyxml2::XMLElement* event)
+bool SGSkirmishScene::onHandleEventHeroRemove(tinyxml2::XMLElement* event)
 {
   std::string name = event->Attribute("hero");
   this->removeChildByName(name);
-  __event_list.pop_front();
+  return true;
 
 }
 
@@ -283,13 +299,11 @@ bool SGSkirmishScene::onHandleEventHeroTurn(tinyxml2::XMLElement* event)
     }
   }
   hero_sprite->faceTo(direction.c_str());
-
-  __event_list.pop_front();
   return true;
 }
 
 
-void SGSkirmishScene::onHandleEventDialog(tinyxml2::XMLElement* event)
+bool SGSkirmishScene::onHandleEventDialog(tinyxml2::XMLElement* event)
 {
   std::string hero_name = event->Attribute("hero");
   SGSkirmishSceneHero* hero = (SGSkirmishSceneHero*)this->getChildByName(hero_name);
@@ -313,7 +327,7 @@ void SGSkirmishScene::onHandleEventDialog(tinyxml2::XMLElement* event)
   event->SetAttribute("x", dialog_win_pos.x);
   event->SetAttribute("y", dialog_win_pos.y);
 
-  SGSceneBase::onHandleEventDialog(event);
+  return SGSceneBase::onHandleEventDialog(event);
 }
 
 bool SGSkirmishScene::onHandleEventHidenHeroAppear(tinyxml2::XMLElement* event)
@@ -325,7 +339,18 @@ bool SGSkirmishScene::onHandleEventHidenHeroAppear(tinyxml2::XMLElement* event)
     
     hero->setVisible(true);
   }
-  __event_list.pop_front();
+  return true;
+}
+
+bool SGSkirmishScene::onHandleEventObjAdd(tinyxml2::XMLElement* event)
+{
+  std::string obj_name = event->Attribute("obj");
+  int x = atoi(event->Attribute("x"));
+  int y = atoi(event->Attribute("y"));
+  //currently only fire is supported so hard code here
+  SGSkirmishSceneObj* obj = SGSkirmishSceneObj::create(obj_name.c_str());
+  obj->setPosition(mapPos2OpenGLPos(Vec2(x, y)));
+  this->addChild(obj);
   return true;
 }
 
@@ -472,22 +497,32 @@ void SGSkirmishScene::update(float dt) {
   tinyxml2::XMLElement* event = __event_list.front();
   const char* name = event->Name();
 
+  bool ret = false;
+
   if (!strcmp(name, "SoundTrack")) {
-    onHandleEventSoundTrack(event);
+    ret = onHandleEventSoundTrack(event);
   } else if (!strcmp(name, "Dialog")) {
-    onHandleEventDialog(event);
+    ret = onHandleEventDialog(event);
   } else if (!strcmp(name, "HeroAction")) {
-    onHandleEventHeroAction(event);
+    ret = onHandleEventHeroAction(event);
   } else if (!strcmp(name, "SoundEffect")) {
-    onHandleEventSoundEffect(event);
+    ret = onHandleEventSoundEffect(event);
   } else if (!strcmp(name, "Delay")) {
-    onHandleEventDelay(event);
+    ret = onHandleEventDelay(event);
   } else if (!strcmp(name, "HeroRemove")) {
-    onHandleEventHeroRemove(event);
+    ret = onHandleEventHeroRemove(event);
   } else if (!strcmp(name, "HeroTurn")) {
-    onHandleEventHeroTurn(event);
+    ret = onHandleEventHeroTurn(event);
   } else if (!strcmp(name, "HidenHeroAppear")) {
-    onHandleEventHidenHeroAppear(event);
+    ret = onHandleEventHidenHeroAppear(event);
+  } else if (!strcmp(name, "HeroMove")) {
+    ret = onHandleEventHeroMove(event);
+  } else if (!strcmp(name, "SkirmishObjAdd")) {
+    ret = onHandleEventObjAdd(event);
+  }
+
+  if (ret) {
+    __event_list.pop_front();
   }
 }
 
@@ -497,7 +532,7 @@ Vec2 SGSkirmishScene::mapPos2OpenGLPos(Vec2 origin)
 
   Size size = this->getContentSize();
 
-  new_pos.x = origin.x * SG_SKIRMISH_SCENE_HERO_WALK_RES_WIDTH;
-  new_pos.y = size.height - (origin.y + 1) * SG_SKIRMISH_SCENE_HERO_WALK_RES_HEIGHT;
+  new_pos.x = (origin.x + 0.5f) * SG_SKIRMISH_SCENE_HERO_WALK_RES_WIDTH ;
+  new_pos.y = size.height - (origin.y + 0.5f) * SG_SKIRMISH_SCENE_HERO_WALK_RES_HEIGHT;
   return new_pos;
 }
