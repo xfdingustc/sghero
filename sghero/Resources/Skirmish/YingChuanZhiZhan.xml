@@ -4,6 +4,9 @@
 		<Map map="Skirmish/YingChuanZhiZhan.jpg" width="20" height="20" />
 		<Terrain terrain="Skirmish/YingChuanZhiZhan.ter" />
 		<Setting max_round="20" level="-2" OurChiefHero="曹操" weather="shine"/>
+		<OurSetting>
+			 <HeroAdd hero="曹操" x="7" y="0" face="east" hide="true" /> 
+		</OurSetting>
 		<FriendSetting>
 			<HeroAdd hero="刘备" x="14" y="1" face="west" level="+6" hide="true" AI="attack" />
 			<HeroAdd hero="关羽" x="13" y="2" face="west" level="+6" hide="true" AI="attack" />
@@ -167,6 +170,43 @@
 				<HeroAction hero="张宝" action="fragile" />
 				<Dialog hero="张宝" content="糟了…全都不听使唤……。" />
 				<HeroStatusChange side="enemy" status="chaos" />
+				<!-- 刘备对话 -->
+				<HeroTurn hero="关羽" face="south"/>
+				<Dialog hero="关羽" content="啊！" />
+				<HeroTurn hero="张飞" face="south"/>
+				<Dialog hero="关羽" content="这是怎么回事！？" />
+				<Dialog hero="刘备" content="不知道，现在管不了那么多了，\n眼前才是最重要的。" />
+				<HeroAction hero="刘备" action="attack" />
+				<Dialog hero="刘备" content="如今敌人一片混乱，\n正是取胜的好机会！\n目标是敌军主将张宝、张梁。\n冲吧！" />
+				<!-- 曹操军出场 -->
+				<SoundTrack track="SoundTrack/Track08.mp3" />
+				<HidenHeroAppear hero="骑兵01" />
+				<HidenHeroAppear hero="骑兵02" />
+				<HidenHeroAppear hero="曹操" />
+				<HeroMove hero="曹操" x="8" y="2" face="south" />
+				<HeroMove hero="骑兵01" x="7" y="2" face="south" />
+				<HeroMove hero="骑兵02" x="8" y="1" face="south" />
+				<Dialog hero="曹操" content="听说这边的官军正在苦战，\n这火势是……！？" />
+				<HeroTurn hero="曹操" target_hero="骑兵01"/>
+				<Dialog hero="骑兵01" content="队长！好像是那边的人放的火，\n不过不像是官军……。" />
+				<HeroTurn hero="曹操" target_hero="刘备"/>
+				<Dialog hero="曹操" content="嗯，好像是义军。" />
+				<HeroTurn hero="刘备" target_hero="骑兵02"/>
+				<Dialog hero="曹操" content="你们先去鹿砦！我到义军那边看看。" />
+				<Dialog hero="骑兵01" content="是！" />
+				<Dialog hero="骑兵02" content="是！" />
+				<HeroMove hero="骑兵01" x="9" y="7" face="south" />
+				<HeroMove hero="骑兵02" x="10" y="7" face="south" />
+				<HeroMove hero="曹操" x="11" y="4" face="south" />
+				<Dialog hero="曹操" content="我是官军骑兵队长，姓曹名操字孟德，\n奉朝廷之命讨伐黄巾军，\n请问阁下高姓大名。" />
+				<HeroTurn hero="刘备" target_hero="刘备"/>
+				<Dialog hero="刘备" content="我是刘备刘玄德，虽然只是农民出身，\n但看到当今天下大乱，为了拯救百姓，\n才率领义军起兵讨伐的。" />
+				<Dialog hero="刘备" content="希望让我与两位兄弟增援官军，\n一切还请曹大人差遣。" />
+				<Dialog hero="曹操" content="多亏了刘备先生，黄巾军已经陷入混乱，\n我也没必要下达什么指示了。" />
+				<Dialog hero="曹操" content="只要击毙鹿砦中的两人便可，\n你们还是自行奋战吧，那么后会有期。" />
+				<HeroMove hero="曹操" x="10" y="6" face="south" />
+				<HeroMove hero="刘备" x="9" y="6" face="south" />
+				<HeroTurn hero="关羽" target_hero="张宝"/>
 			</condition>
 		</Test>
 	</Section>

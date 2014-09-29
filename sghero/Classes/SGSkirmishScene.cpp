@@ -113,6 +113,7 @@ bool SGSkirmishScene::parseSkirmishSceneXmlFile(const char* file_name)
 
   tinyxml2::XMLError error = skirmish_scene_xml->LoadFile(file_name);
   if (tinyxml2::XML_SUCCESS != error) {
+    CCLOG("Parsing skirmish xml file error!!!");
     return false;
   }
 
@@ -140,12 +141,14 @@ bool SGSkirmishScene::parseSkirmishSceneXmlFile(const char* file_name)
 
 bool SGSkirmishScene::parseSkirmishSettings(tinyxml2::XMLElement* setting)
 {
-  const char* name = setting->Name();
-  if (!strcmp(name, "Map")) {
+  std::string name = setting->Name();
+  if (name == "Map") {
     onHandleSettingMap(setting);
-  } else if (!strcmp(name, "FriendSetting")) {
+  } else if (name == "OurSetting") {
+    onHandleHeroAdd(setting, SGSkirmishSceneHero::HERO_SIDE_OURS);
+  } else if (name == "FriendSetting") {
     onHandleHeroAdd(setting, SGSkirmishSceneHero::HERO_SIDE_FRIEND);
-  } else if (!strcmp(name, "EnemySetting")) {
+  } else if (name == "EnemySetting") {
     onHandleHeroAdd(setting, SGSkirmishSceneHero::HERO_SIDE_ENEMY);
   }
   return true;
