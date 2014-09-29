@@ -27,3 +27,40 @@ void SGSkirmishTerrain::loadTerrain(std::string& terrain_file)
     __terrain_info[i] = (SGSkirmishTerrainType)terrain[i];
   }
 }
+
+SGSkirmishArea& SGSkirmishTerrain::calcHeroAvailabePath(SGSkirmishSceneHero* hero)
+{
+  SGSkirmishArea* area = SGSkirmishArea::create();
+
+  int hero_stamina = 6;
+  // A* algorithm
+
+  typedef std::list<Step> StepList;
+  StepList* open_list = new StepList;
+  StepList* close_list = new StepList;
+
+  Step start_step;
+  start_step.__pos = Vec2(10.0f,6.0f);
+  start_step.__stamina = hero_stamina;
+
+  while(!open_list->empty()) {
+    Step open_step = open_list->front();
+    open_list->pop_front();
+
+    for (int i = SG_MOVE_STEP_RIGHT; i <= SG_MOVE_STEP_UP; i++) {
+      Step temp_move = moveHero((SGMoveStep) i, open_step);
+    }
+  }
+
+
+  return *area;
+
+}
+
+SGSkirmishTerrain::Step SGSkirmishTerrain::moveHero(SGMoveStep one_step, Step from)
+{
+  Step to = from;
+
+  Step current_pos = from;
+  return to;
+}

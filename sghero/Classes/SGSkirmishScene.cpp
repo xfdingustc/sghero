@@ -518,7 +518,7 @@ bool SGSkirmishScene::gameLogicEnemyTurn()
 
 void SGSkirmishScene::showHeroAvailabePath(SGSkirmishSceneHero* hero)
 {
-
+  //__terrain
 }
 
 SGSkirmishSceneHero* SGSkirmishScene::getHero(SGSKirmishSceneHeroList& list)

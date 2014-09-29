@@ -2,6 +2,8 @@
 #define SG_SKIRMISH_SCENE_TERRAIN_H
 
 #include "cocos2d.h"
+#include "SGSkirmishSceneHero.h"
+#include "SGSkirmishArea.h"
 USING_NS_CC;
 
 
@@ -12,6 +14,8 @@ public:
 
   SGSkirmishTerrain(std::string& terrain_file, Size size); 
   ~SGSkirmishTerrain();
+
+  SGSkirmishArea& calcHeroAvailabePath(SGSkirmishSceneHero* hero);
 
 private:
   typedef enum
@@ -48,6 +52,21 @@ private:
     SG_SKIRMISH_TERRAIN_UNDERGROUND = 0x1D,
 
   } SGSkirmishTerrainType;
+
+  typedef enum {
+    SG_MOVE_STEP_RIGHT,
+    SG_MOVE_STEP_DOWN,
+    SG_MOVE_STEP_LEFT,
+    SG_MOVE_STEP_UP,
+  } SGMoveStep;
+
+  typedef struct {
+    Vec2 __pos;
+    int __stamina;
+  } Step;
+  
+
+  Step moveHero(SGMoveStep one_step, Step from);
   void loadTerrain(std::string& terrain_file);
   int __width;
   int __height;
