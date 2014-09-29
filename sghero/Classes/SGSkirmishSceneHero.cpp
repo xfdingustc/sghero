@@ -1,6 +1,7 @@
 #include "SGSkirmishSceneHero.h"
 #include "SGHeroResourceUtils.h"
 #include "SGGlobalSettings.h"
+#include "SGSkirmishScene.h"
 
 SGSkirmishSceneHero* SGSkirmishSceneHero::create(const char* hero_name, HERO_SIDE side)
 {
@@ -49,10 +50,17 @@ bool SGSkirmishSceneHero::onTouchBegin(Touch *touch, Event *unused_event)
 
   if(rect.containsPoint(reallyPoint)){
     CCLOG("%s touched", this->getName().c_str());
+    showAvailablePath();
     return true;
   }
  
   return false;
+}
+
+void SGSkirmishSceneHero::showAvailablePath()
+{
+  SGSkirmishScene* skrimish = (SGSkirmishScene*)this->getParent();
+  skrimish->showHeroAvailabePath(this);
 }
 
 bool SGSkirmishSceneHero::initActions()

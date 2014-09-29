@@ -39,6 +39,8 @@ public:
 
   void setStatus(std::string& status);
   bool onTouchBegin(Touch *touch, Event *unused_event);
+
+  void showAvailablePath();
 private:
   std::string& getHeroResFile(const char* res_dir);
   std::string __name;

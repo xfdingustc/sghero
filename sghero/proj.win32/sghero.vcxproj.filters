@@ -72,6 +72,9 @@
     <ClCompile Include="..\Classes\SGSkirmishSceneMagicCall.cpp">
       <Filter>Classes\SGSkirmishScene</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\SGSkirmishTerrain.cpp">
+      <Filter>Classes\SGSkirmishScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -126,6 +129,9 @@
       <Filter>Classes\SGSkirmishScene</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\SGSkirmishSceneMagicCall.h">
+      <Filter>Classes\SGSkirmishScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SGSkirmishTerrain.h">
       <Filter>Classes\SGSkirmishScene</Filter>
     </ClInclude>
   </ItemGroup>

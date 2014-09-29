@@ -2,23 +2,30 @@
 #define SG_SKIRMISH_SCENE_H
 
 #include "cocos2d.h"
-#include "SGSkirmishSceneHero.h"
-#include "SGSceneBase.h"
 USING_NS_CC;
+
+#include "SGSceneBase.h"
+#include "SGSkirmishSceneHero.h"
+#include "SGSkirmishTerrain.h"
 #include "tinyxml2/tinyxml2.h"
 
 class SGSkirmishScene : public SGSceneBase
 {
+  friend SGSkirmishSceneHero;
 public:
   static Scene* createScene();
 
   CREATE_FUNC(SGSkirmishScene);
   virtual bool init();
+
+  virtual ~SGSkirmishScene();
+
   void update(float dt);
-  virtual void onExit();
+  
 
   bool onTouchBegan(Touch *touch, Event *unused_event) { return  true; };
   void onTouchMoved(Touch *touch, Event *unused_event);
+   
 private:
 
   void startSceneScript(float dt);
@@ -38,8 +45,10 @@ private:
   bool gameLogicEnemyTurn();
   void switchToNextRound();
   void resetAllHeroActivity();
+  void showHeroAvailabePath(SGSkirmishSceneHero* hero);
 
   bool onHandleSettingMap(tinyxml2::XMLElement* setting);
+  bool onHandleSettingTerrain(tinyxml2::XMLElement* setting);
   bool onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSkirmishSceneHero::HERO_SIDE side);
   bool onHandleEventHeroAction(tinyxml2::XMLElement* event);
   bool onHandleEventDelay(tinyxml2::XMLElement* event);
@@ -57,6 +66,7 @@ private:
 
   int __map_width;
   int __map_height;
+  SGSkirmishTerrain* __terrain;
 
   // state
   typedef enum {

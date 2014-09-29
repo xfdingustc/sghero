@@ -42,10 +42,9 @@ bool SGSkirmishScene::init()
   return true;
 }
 
-void SGSkirmishScene::onExit()
+SGSkirmishScene::~SGSkirmishScene()
 {
-  //Director::getInstance()->getEventDispatcher()->removeEventListener(__event_listener);
-  Layer::onExit();
+  delete __terrain;
 }
 
 
@@ -144,6 +143,8 @@ bool SGSkirmishScene::parseSkirmishSettings(tinyxml2::XMLElement* setting)
   std::string name = setting->Name();
   if (name == "Map") {
     onHandleSettingMap(setting);
+  } else if (name == "Terrain") {
+    onHandleSettingTerrain(setting);
   } else if (name == "OurSetting") {
     onHandleHeroAdd(setting, SGSkirmishSceneHero::HERO_SIDE_OURS);
   } else if (name == "FriendSetting") {
@@ -195,7 +196,13 @@ bool SGSkirmishScene::onHandleSettingMap(tinyxml2::XMLElement* setting)
   return true;
  
 }
+bool SGSkirmishScene::onHandleSettingTerrain(tinyxml2::XMLElement* setting)
+{
+  std::string terrain_file = FileUtils::getInstance()->fullPathForFilename(setting->Attribute("terrain"));
+  __terrain = SGSkirmishTerrain::create(terrain_file, Size(__map_width, __map_height));
+  return true;
 
+}
 bool SGSkirmishScene::onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSkirmishSceneHero::HERO_SIDE side)
 {
   tinyxml2::XMLElement* one_friend_hero = setting->FirstChildElement();
@@ -508,6 +515,12 @@ bool SGSkirmishScene::gameLogicEnemyTurn()
   CCLOG("enemy %s has moved", hero->getName().c_str());
   return false;
 }
+
+void SGSkirmishScene::showHeroAvailabePath(SGSkirmishSceneHero* hero)
+{
+
+}
+
 SGSkirmishSceneHero* SGSkirmishScene::getHero(SGSKirmishSceneHeroList& list)
 {
   for (int i = 0; i < list.size(); i++) {
