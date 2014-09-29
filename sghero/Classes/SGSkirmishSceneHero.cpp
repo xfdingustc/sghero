@@ -33,6 +33,26 @@ bool SGSkirmishSceneHero::init(const char* hero_name, HERO_SIDE side)
   this->setAnchorPoint(Vec2(0.5f, 0.5f));
 
   this->setName(hero_name);
+
+  auto dispatcher = Director::getInstance()->getEventDispatcher();
+  __event_listener = EventListenerTouchOneByOne::create();
+  __event_listener->onTouchBegan = CC_CALLBACK_2(SGSkirmishSceneHero::onTouchBegin, this);
+  __event_listener->setSwallowTouches(true);
+  dispatcher->addEventListenerWithSceneGraphPriority(__event_listener, this);
+}
+
+bool SGSkirmishSceneHero::onTouchBegin(Touch *touch, Event *unused_event)
+{
+  Vec2 touchPoint = touch->getLocation();
+  Vec2 reallyPoint = this->getParent()->convertToNodeSpace(touchPoint);
+  Rect rect = this->boundingBox();
+
+  if(rect.containsPoint(reallyPoint)){
+    CCLOG("%s touched", this->getName().c_str());
+    return true;
+  }
+ 
+  return false;
 }
 
 bool SGSkirmishSceneHero::initActions()

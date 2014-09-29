@@ -309,6 +309,7 @@ bool SGSkirmishScene::onHandleEventHeroTurn(tinyxml2::XMLElement* event)
 
 bool SGSkirmishScene::onHandleEventDialog(tinyxml2::XMLElement* event)
 {
+  return true;
   std::string hero_name = event->Attribute("hero");
   SGSkirmishSceneHero* hero = (SGSkirmishSceneHero*)this->getChildByName(hero_name);
   requireFocus(hero->getPosition());

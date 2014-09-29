@@ -38,7 +38,7 @@ public:
   void doAttackAction();
 
   void setStatus(std::string& status);
-
+  bool onTouchBegin(Touch *touch, Event *unused_event);
 private:
   std::string& getHeroResFile(const char* res_dir);
   std::string __name;
@@ -55,6 +55,8 @@ private:
   DIRECTION __face_direction;
 
   bool __active;
+
+  EventListenerTouchOneByOne* __event_listener;
 };
 
 #endif
