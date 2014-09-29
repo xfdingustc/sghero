@@ -34,6 +34,7 @@
 #define SELECT_WINDOW_BACKGROUND "Mark/SelectWindowTexture.png"
 
 #define DIAGLOG_WINDOW_ARROW_UP "Mark/speakDialogArrowUp.png"
+#define SG_SKIRMISH_SCENE_HERO_STATUS_CHAOS "Mark/chaos.png"
 
 #define TEXT_FONT_NAME "Microsoft YaHei"
 #define TEXT_FONT_SIZE 20

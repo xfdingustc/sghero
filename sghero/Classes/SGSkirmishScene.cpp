@@ -365,6 +365,28 @@ bool SGSkirmishScene::onHandleEventMagicCall(tinyxml2::XMLElement* event)
   return true;
 }
 
+bool SGSkirmishScene::onHandleEventHeroStatusChange(tinyxml2::XMLElement* event)
+{
+  if (event->Attribute("side")) {
+    std::string side = event->Attribute("side");
+    std::string status = event->Attribute("status");
+    SGSKirmishSceneHeroList& hero_list = __our_heroes;
+    if (side == "enemy") {
+      hero_list = __enemy_heroes;
+    } else if (side == "friend"){
+      hero_list = __friend_heroes;
+    } 
+    SGSKirmishSceneHeroList::iterator iter;
+    for (iter = hero_list.begin(); iter != hero_list.end(); iter++) {
+      SGSkirmishSceneHero* hero = *iter;
+      hero->setStatus(status);
+    }
+
+    
+  }
+  return true;
+}
+
 void SGSkirmishScene::startSceneScript(float dt)
 {
   scheduleUpdate();
@@ -532,6 +554,8 @@ void SGSkirmishScene::update(float dt) {
     ret = onHandleEventObjAdd(event);
   } else if (!strcmp(name, "MagicCall")) {
     ret = onHandleEventMagicCall(event);
+  } else if (!strcmp(name, "HeroStatusChange")) {
+    ret = onHandleEventHeroStatusChange(event);
   }
 
   if (ret) {

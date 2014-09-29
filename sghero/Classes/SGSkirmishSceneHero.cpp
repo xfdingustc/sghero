@@ -339,3 +339,14 @@ SGSkirmishSceneHero::DIRECTION SGSkirmishSceneHero::getDirection(const char* dir
 
   return DIRECTION_NORTH;
 }
+
+void SGSkirmishSceneHero::setStatus(std::string& status)
+{
+  if (status == "chaos") {
+    std::string chaos_res_file_full_path = FileUtils::getInstance()->fullPathForFilename(SG_SKIRMISH_SCENE_HERO_STATUS_CHAOS);
+    Sprite* chaos_sprite = Sprite::create(chaos_res_file_full_path);
+    chaos_sprite->setAnchorPoint(Vec2::ANCHOR_TOP_RIGHT);
+    chaos_sprite->setPosition(Vec2(SG_SKIRMISH_SCENE_HERO_WALK_RES_WIDTH, SG_SKIRMISH_SCENE_HERO_WALK_RES_HEIGHT));
+    this->addChild(chaos_sprite);
+  }
+}

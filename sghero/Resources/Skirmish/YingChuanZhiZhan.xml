@@ -127,6 +127,46 @@
 				<Delay time="1" />
 				<Dialog hero="张飞" content="谁！？" />
 				<MagicCall magic="zhuque" x="10" y="8"/>
+				<!-- 起火 -->
+				<SkirmishObjAdd obj="fire" x="14" y="5" />
+				<SkirmishObjAdd obj="fire" x="14" y="5" />
+				<SkirmishObjAdd obj="fire" x="15" y="5" />
+				<SkirmishObjAdd obj="fire" x="15" y="6" />
+				<SkirmishObjAdd obj="fire" x="15" y="7" />
+				<SkirmishObjAdd obj="fire" x="13" y="6" />
+				<SkirmishObjAdd obj="fire" x="14" y="6" />
+				<SkirmishObjAdd obj="fire" x="14" y="7" />
+				<SkirmishObjAdd obj="fire" x="14" y="8" />
+				<SkirmishObjAdd obj="fire" x="12" y="6" />
+				<SkirmishObjAdd obj="fire" x="12" y="7" />
+				<SkirmishObjAdd obj="fire" x="13" y="7" />
+				<SkirmishObjAdd obj="fire" x="13" y="8" />
+				<SkirmishObjAdd obj="fire" x="13" y="9" />
+				<SkirmishObjAdd obj="fire" x="6" y="5" />
+				<SkirmishObjAdd obj="fire" x="6" y="6" />
+				<SkirmishObjAdd obj="fire" x="5" y="6" />
+				<SkirmishObjAdd obj="fire" x="5" y="7" />
+				<SkirmishObjAdd obj="fire" x="5" y="8" />
+				<SkirmishObjAdd obj="fire" x="7" y="6" />
+				<SkirmishObjAdd obj="fire" x="7" y="7" />
+				<SkirmishObjAdd obj="fire" x="6" y="7" />
+				<SkirmishObjAdd obj="fire" x="6" y="8" />
+				<SkirmishObjAdd obj="fire" x="6" y="9" />
+				<!-- 黄巾贼陷入混乱 -->
+				<HeroTurn hero="黄巾军11" target_hero="张飞"/>
+				<HeroAction hero="黄巾军11" action="slowlyTurnAround" />
+				<Dialog hero="黄巾军11" content="火，火！" />
+				<HeroTurn hero="黄巾军10" target_hero="关羽"/>
+				<Dialog hero="黄巾军10" content="敌人从后面包抄过来了！" />
+				<HeroTurn hero="张梁" target_hero="关羽"/>
+				<Dialog hero="张梁" content="什么？你说有人偷袭……！" />
+				<HeroTurn hero="张宝" target_hero="关羽"/>
+				<Dialog hero="张宝" content="是官军的援兵吗？" />
+				<HeroTurn hero="张宝" face="south"/>
+				<Dialog hero="张宝" content="派人对付后面的敌人！" />
+				<HeroAction hero="张宝" action="fragile" />
+				<Dialog hero="张宝" content="糟了…全都不听使唤……。" />
+				<HeroStatusChange side="enemy" status="chaos" />
 			</condition>
 		</Test>
 	</Section>

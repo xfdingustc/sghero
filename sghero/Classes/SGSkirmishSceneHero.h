@@ -37,6 +37,8 @@ public:
   void doAction(const char* action);
   void doAttackAction();
 
+  void setStatus(std::string& status);
+
 private:
   std::string& getHeroResFile(const char* res_dir);
   std::string __name;

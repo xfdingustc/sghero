@@ -50,6 +50,7 @@ private:
   bool onHandleEventHeroMove(tinyxml2::XMLElement* event);
   bool onHandleEventObjAdd(tinyxml2::XMLElement* event);
   bool onHandleEventMagicCall(tinyxml2::XMLElement* event);
+  bool onHandleEventHeroStatusChange(tinyxml2::XMLElement* event);
   Vec2 mapPos2OpenGLPos(Vec2 origin);
 
   EventListenerTouchOneByOne* __event_listener;
