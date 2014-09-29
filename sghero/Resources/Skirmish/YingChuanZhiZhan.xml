@@ -15,7 +15,7 @@
 			<HeroAdd hero="骑兵01" x="6" y="0" face="east" level="0" hide="true" AI="attack" />
 			<HeroAdd hero="骑兵02" x="5" y="0" face="east" level="0" hide="true" AI="attack" />
 			<HeroAdd hero="策士01" x="12" y="16" face="north" level="0" hide="false" AI="attack" />
-			<!---<HeroAdd hero="许子将" x="12" y="17" face="north" level="0" hide="true" AI="negative" /> --->
+			<HeroAdd hero="许子将" x="12" y="17" face="north" level="0" hide="true" AI="negative" /> 
 		</FriendSetting>
 		<EnemySetting>
 			<HeroAdd hero="张宝" x="9" y="11" face="south" level="4" hide="false" AI="stay" />
@@ -109,6 +109,24 @@
 				<SkirmishObjAdd obj="fire" x="7" y="5" />
 				<Delay time="10" />
 				<!-- 朱雀召回 -->
+				<Delay time="1" />
+				<HeroTurn hero="张飞" face="east"/>
+				<Delay time="1" />
+				<HeroTurn hero="张飞" face="west"/>
+				<Delay time="1" />
+				<HeroTurn hero="张飞" face="south"/>
+				<Delay time="1" />
+				<Dialog hero="张飞" content="不行、不行啊，火势太小了！\n根本烧不到鹿砦！" />
+				<Dialog hero="许子将" content="呵、呵、呵！\n那么这样呢？" />
+				<Delay time="1" />
+				<HeroTurn hero="关羽" face="east"/>
+				<Delay time="1" />
+				<Dialog hero="关羽" content="咦？" />
+				<Delay time="1" />
+				<HeroTurn hero="张飞" face="west"/>
+				<Delay time="1" />
+				<Dialog hero="张飞" content="谁！？" />
+				<MagicCall magic="zhuque" x="10" y="8"/>
 			</condition>
 		</Test>
 	</Section>

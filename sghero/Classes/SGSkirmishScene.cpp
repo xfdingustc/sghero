@@ -3,6 +3,7 @@
 #include "SGGlobalSettings.h"
 #include "SGSKirmishSwitchScene.h"
 #include "SGSkirmishSceneObj.h"
+#include "SGSkirmishSceneMagicCall.h"
 using namespace CocosDenshion;
 
 Scene* SGSkirmishScene::createScene()
@@ -354,6 +355,16 @@ bool SGSkirmishScene::onHandleEventObjAdd(tinyxml2::XMLElement* event)
   return true;
 }
 
+bool SGSkirmishScene::onHandleEventMagicCall(tinyxml2::XMLElement* event)
+{
+  std::string magic_name = event->Attribute("magic");
+  int x = atoi(event->Attribute("x"));
+  int y = atoi(event->Attribute("y"));
+  Scene* scene = SGSkirmishSceneMagicCall::createScene(magic_name, mapPos2OpenGLPos(Vec2(x, y)));
+  Director::getInstance()->pushScene(scene);
+  return true;
+}
+
 void SGSkirmishScene::startSceneScript(float dt)
 {
   scheduleUpdate();
@@ -519,6 +530,8 @@ void SGSkirmishScene::update(float dt) {
     ret = onHandleEventHeroMove(event);
   } else if (!strcmp(name, "SkirmishObjAdd")) {
     ret = onHandleEventObjAdd(event);
+  } else if (!strcmp(name, "MagicCall")) {
+    ret = onHandleEventMagicCall(event);
   }
 
   if (ret) {

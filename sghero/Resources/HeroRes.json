@@ -15,7 +15,7 @@
 	{"name": "李儒", "res_name": "liru"},
 	{"name": "华雄", "res_name": "huaxiong"},
 	{"name": "貂蝉", "res_name": "diaochan"},
-	{"name": "许子将", "res_name": "xuzijiang"},
+	{"name": "许子将", "catagory": "priest", "res_name": "xuzijiang"},
 	{"name": "张梁", "catagory": "warlock", "res_name": "zhangliang"},
 	{"name": "张宝", "catagory": "warlock", "res_name": "zhangbao3"},
 	{"name": "黄巾军01", "catagory": "infantry", "res_name": "huangjinjun"},
