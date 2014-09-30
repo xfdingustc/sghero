@@ -2,9 +2,10 @@
 #define SG_SKIRMISH_SCENE_HERO_H
 
 #include "cocos2d.h"
+#include "SGSkirmishObj.h"
 USING_NS_CC;
 
-class SGSkirmishHero : public Sprite 
+class SGSkirmishHero : public SGSkirmishObj 
 {
 public:
   typedef enum {
@@ -25,9 +26,7 @@ public:
   void oneMove() { __active = false; }
 
   void moveTo(Vec2& target_pos);
-  void setMapPosition(Vec2& map_pos) { __map_position = map_pos; }
-  Vec2& getMapPosition() { return __map_position; }
-  
+    
   typedef enum {
     DIRECTION_NORTH,
     DIRECTION_WEST,
@@ -44,6 +43,7 @@ public:
 
   void showAvailablePath();
 private:
+  
   std::string& getHeroResFile(const char* res_dir);
   std::string __name;
 
@@ -62,7 +62,7 @@ private:
 
   EventListenerTouchOneByOne* __event_listener;
 
-  Vec2 __map_position;
+  
 };
 
 #endif

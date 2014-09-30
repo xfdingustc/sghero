@@ -2,7 +2,7 @@
 #include "SimpleAudioEngine.h"
 #include "SGGlobalSettings.h"
 #include "SGSKirmishSwitchScene.h"
-#include "SGSkirmishSceneObj.h"
+#include "SGSkirmishObj.h"
 #include "SGSkirmishSceneMagicCall.h"
 using namespace CocosDenshion;
 
@@ -216,9 +216,9 @@ bool SGSkirmishScene::onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSkirmishH
 
     SGSkirmishHero* hero = SGSkirmishHero::create(hero_name.c_str(), side);
     hero->faceTo(direction.c_str());
-    hero->setPosition(mapPos2OpenGLPos(Vec2(x,y)));
+    //hero->setPosition(mapPos2OpenGLPos(Vec2(x,y)));
     hero->setMapPosition(Vec2(x, y));
-
+    Vec2 hero_pos = hero->getPosition();
     if (!strcmp(hide, "true")) {
       hero->setVisible(false);
     }
@@ -262,7 +262,7 @@ bool SGSkirmishScene::onHandleEventHeroMove(tinyxml2::XMLElement* event)
   int x = atoi(event->Attribute("x"));
   int y = atoi(event->Attribute("y"));
   SGSkirmishHero* hero = (SGSkirmishHero*)this->getChildByName(hero_name);
-  hero->moveTo(mapPos2OpenGLPos(Vec2(x, y)));
+  //hero->moveTo(mapPos2OpenGLPos(Vec2(x, y)));
   hero->setMapPosition(Vec2(x, y));
   std::string direction = event->Attribute("face");
   hero->faceTo(direction.c_str());
@@ -363,8 +363,8 @@ bool SGSkirmishScene::onHandleEventObjAdd(tinyxml2::XMLElement* event)
   int x = atoi(event->Attribute("x"));
   int y = atoi(event->Attribute("y"));
   //currently only fire is supported so hard code here
-  SGSkirmishSceneObj* obj = SGSkirmishSceneObj::create(obj_name.c_str());
-  obj->setPosition(mapPos2OpenGLPos(Vec2(x, y)));
+  SGSkirmishObj* obj = SGSkirmishObj::create(obj_name.c_str());
+  obj->setMapPosition(Vec2(x, y));
   this->addChild(obj);
   return true;
 }
@@ -374,8 +374,8 @@ bool SGSkirmishScene::onHandleEventMagicCall(tinyxml2::XMLElement* event)
   std::string magic_name = event->Attribute("magic");
   int x = atoi(event->Attribute("x"));
   int y = atoi(event->Attribute("y"));
-  Scene* scene = SGSkirmishSceneMagicCall::createScene(magic_name, mapPos2OpenGLPos(Vec2(x, y)));
-  Director::getInstance()->pushScene(scene);
+  //Scene* scene = SGSkirmishSceneMagicCall::createScene(magic_name, mapPos2OpenGLPos(Vec2(x, y)));
+  //Director::getInstance()->pushScene(scene);
   return true;
 }
 
@@ -583,13 +583,3 @@ void SGSkirmishScene::update(float dt) {
   }
 }
 
-Vec2 SGSkirmishScene::mapPos2OpenGLPos(Vec2 origin)
-{
-  Vec2 new_pos;
-
-  Size size = Director::getInstance()->getVisibleSize();
-
-  new_pos.x = (origin.x + 0.5f) * SG_SKIRMISH_SCENE_HERO_WALK_RES_WIDTH ;
-  new_pos.y = size.height - (origin.y + 0.5f) * SG_SKIRMISH_SCENE_HERO_WALK_RES_HEIGHT;
-  return new_pos;
-}

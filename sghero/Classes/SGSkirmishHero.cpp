@@ -304,7 +304,7 @@ void SGSkirmishHero::faceTo(const char* direction)
 }
 void SGSkirmishHero::moveTo(Vec2& target_pos)
 {
-  this->setPosition(target_pos.x, target_pos.y);
+  this->setMapPosition(target_pos);
 }
 
 
@@ -378,3 +378,4 @@ void SGSkirmishHero::setStatus(std::string& status)
     this->addChild(chaos_sprite);
   }
 }
+
