@@ -146,11 +146,11 @@ bool SGSkirmishScene::parseSkirmishSettings(tinyxml2::XMLElement* setting)
   } else if (name == "Terrain") {
     onHandleSettingTerrain(setting);
   } else if (name == "OurSetting") {
-    onHandleHeroAdd(setting, SGSkirmishSceneHero::HERO_SIDE_OURS);
+    onHandleHeroAdd(setting, SGSkirmishHero::HERO_SIDE_OURS);
   } else if (name == "FriendSetting") {
-    onHandleHeroAdd(setting, SGSkirmishSceneHero::HERO_SIDE_FRIEND);
+    onHandleHeroAdd(setting, SGSkirmishHero::HERO_SIDE_FRIEND);
   } else if (name == "EnemySetting") {
-    onHandleHeroAdd(setting, SGSkirmishSceneHero::HERO_SIDE_ENEMY);
+    onHandleHeroAdd(setting, SGSkirmishHero::HERO_SIDE_ENEMY);
   }
   return true;
 }
@@ -203,7 +203,7 @@ bool SGSkirmishScene::onHandleSettingTerrain(tinyxml2::XMLElement* setting)
   return true;
 
 }
-bool SGSkirmishScene::onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSkirmishSceneHero::HERO_SIDE side)
+bool SGSkirmishScene::onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSkirmishHero::HERO_SIDE side)
 {
   tinyxml2::XMLElement* one_friend_hero = setting->FirstChildElement();
 
@@ -214,9 +214,11 @@ bool SGSkirmishScene::onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSkirmishS
     std::string direction = one_friend_hero->Attribute("face");
     const char* hide = one_friend_hero->Attribute("hide");
 
-    SGSkirmishSceneHero* hero = SGSkirmishSceneHero::create(hero_name.c_str(), side);
+    SGSkirmishHero* hero = SGSkirmishHero::create(hero_name.c_str(), side);
     hero->faceTo(direction.c_str());
     hero->setPosition(mapPos2OpenGLPos(Vec2(x,y)));
+    hero->setMapPosition(Vec2(x, y));
+
     if (!strcmp(hide, "true")) {
       hero->setVisible(false);
     }
@@ -225,13 +227,13 @@ bool SGSkirmishScene::onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSkirmishS
     // add into hero list
     switch (side)
     {
-    case SGSkirmishSceneHero::HERO_SIDE_OURS:
+    case SGSkirmishHero::HERO_SIDE_OURS:
       __our_heroes.pushBack(hero);
       break;
-    case SGSkirmishSceneHero::HERO_SIDE_FRIEND:
+    case SGSkirmishHero::HERO_SIDE_FRIEND:
       __friend_heroes.pushBack(hero);
       break;
-    case SGSkirmishSceneHero::HERO_SIDE_ENEMY:
+    case SGSkirmishHero::HERO_SIDE_ENEMY:
       __enemy_heroes.pushBack(hero);
       break;
     default:
@@ -247,7 +249,7 @@ bool SGSkirmishScene::onHandleEventHeroAction(tinyxml2::XMLElement* event)
   std::string hero_name = event->Attribute("hero");
   std::string action = event->Attribute("action");
 
-  SGSkirmishSceneHero* hero = (SGSkirmishSceneHero*)this->getChildByName(hero_name);
+  SGSkirmishHero* hero = (SGSkirmishHero*)this->getChildByName(hero_name);
 
   hero->doAction(action.c_str());
   return true;
@@ -259,8 +261,9 @@ bool SGSkirmishScene::onHandleEventHeroMove(tinyxml2::XMLElement* event)
   std::string hero_name = event->Attribute("hero");
   int x = atoi(event->Attribute("x"));
   int y = atoi(event->Attribute("y"));
-  SGSkirmishSceneHero* hero = (SGSkirmishSceneHero*)this->getChildByName(hero_name);
+  SGSkirmishHero* hero = (SGSkirmishHero*)this->getChildByName(hero_name);
   hero->moveTo(mapPos2OpenGLPos(Vec2(x, y)));
+  hero->setMapPosition(Vec2(x, y));
   std::string direction = event->Attribute("face");
   hero->faceTo(direction.c_str());
   return true;
@@ -287,13 +290,13 @@ bool SGSkirmishScene::onHandleEventHeroTurn(tinyxml2::XMLElement* event)
 {
   std::string direction;
   std::string hero_name = event->Attribute("hero");
-  SGSkirmishSceneHero* hero_sprite = (SGSkirmishSceneHero*)this->getChildByName(hero_name);
+  SGSkirmishHero* hero_sprite = (SGSkirmishHero*)this->getChildByName(hero_name);
   if (event->Attribute("face")) {
     direction = event->Attribute("face");
   } else {
     std::string target_hero_name = event->Attribute("target_hero");
    
-    SGSkirmishSceneHero* target_hero_sprite = (SGSkirmishSceneHero*)this->getChildByName(target_hero_name);
+    SGSkirmishHero* target_hero_sprite = (SGSkirmishHero*)this->getChildByName(target_hero_name);
 
     Vec2 hero_pos = hero_sprite->getPosition();
     Vec2 target_hero_pos = target_hero_sprite->getPosition();
@@ -318,7 +321,7 @@ bool SGSkirmishScene::onHandleEventDialog(tinyxml2::XMLElement* event)
 {
   return true;
   std::string hero_name = event->Attribute("hero");
-  SGSkirmishSceneHero* hero = (SGSkirmishSceneHero*)this->getChildByName(hero_name);
+  SGSkirmishHero* hero = (SGSkirmishHero*)this->getChildByName(hero_name);
   requireFocus(hero->getPosition());
   Vec2 dialog_win_pos;
   Vec2 hero_pos = hero->getPosition();
@@ -345,7 +348,7 @@ bool SGSkirmishScene::onHandleEventDialog(tinyxml2::XMLElement* event)
 bool SGSkirmishScene::onHandleEventHidenHeroAppear(tinyxml2::XMLElement* event)
 {
   std::string hero_name = event->Attribute("hero");
-  SGSkirmishSceneHero* hero = (SGSkirmishSceneHero*)this->getChildByName(hero_name);
+  SGSkirmishHero* hero = (SGSkirmishHero*)this->getChildByName(hero_name);
   if (hero) {
     requireFocus(hero->getPosition());
     
@@ -381,15 +384,15 @@ bool SGSkirmishScene::onHandleEventHeroStatusChange(tinyxml2::XMLElement* event)
   if (event->Attribute("side")) {
     std::string side = event->Attribute("side");
     std::string status = event->Attribute("status");
-    SGSKirmishSceneHeroList& hero_list = __our_heroes;
+    SGSkirmishHeroList& hero_list = __our_heroes;
     if (side == "enemy") {
       hero_list = __enemy_heroes;
     } else if (side == "friend"){
       hero_list = __friend_heroes;
     } 
-    SGSKirmishSceneHeroList::iterator iter;
+    SGSkirmishHeroList::iterator iter;
     for (iter = hero_list.begin(); iter != hero_list.end(); iter++) {
-      SGSkirmishSceneHero* hero = *iter;
+      SGSkirmishHero* hero = *iter;
       hero->setStatus(status);
     }
 
@@ -431,7 +434,7 @@ void SGSkirmishScene::checkTests()
       }
     }
 
-    CCLog("Test condition meets");
+    log("Test condition meets");
     tinyxml2::XMLElement* one_event = one_test->FirstChildElement();
     while(one_event) {
       __event_list.push_back(one_event);
@@ -475,23 +478,23 @@ void SGSkirmishScene::gameLogic()
 
 void SGSkirmishScene::resetAllHeroActivity()
 {
-  SGSKirmishSceneHeroList::iterator it;
+  SGSkirmishHeroList::iterator it;
   for (it = __our_heroes.begin(); it != __our_heroes.end(); it++) {
-    SGSkirmishSceneHero* hero = *it;
+    SGSkirmishHero* hero = *it;
     hero->resetActivity();
   }
   for (it = __friend_heroes.begin(); it != __friend_heroes.end(); it++) {
-    SGSkirmishSceneHero* hero = *it;
+    SGSkirmishHero* hero = *it;
     hero->resetActivity();
   }
   for (it = __enemy_heroes.begin(); it != __enemy_heroes.end(); it++) {
-    SGSkirmishSceneHero* hero = *it;
+    SGSkirmishHero* hero = *it;
     hero->resetActivity();
   }
 }
 bool SGSkirmishScene::gameLogicFriendTurn() 
 {
-  SGSkirmishSceneHero* hero = getHero(__friend_heroes);
+  SGSkirmishHero* hero = getHero(__friend_heroes);
   if (!hero) {
     __turn = SKIRMISH_TURN_ENEMY;
     switchToNextRound();
@@ -504,7 +507,7 @@ bool SGSkirmishScene::gameLogicFriendTurn()
 
 bool SGSkirmishScene::gameLogicEnemyTurn()
 {
-  SGSkirmishSceneHero* hero = getHero(__enemy_heroes);
+  SGSkirmishHero* hero = getHero(__enemy_heroes);
   if (!hero) {
     __turn = SKIRMISH_TURN_OUR;
     __round++;
@@ -516,15 +519,15 @@ bool SGSkirmishScene::gameLogicEnemyTurn()
   return false;
 }
 
-void SGSkirmishScene::showHeroAvailabePath(SGSkirmishSceneHero* hero)
+void SGSkirmishScene::showHeroAvailabePath(SGSkirmishHero* hero)
 {
   //__terrain
 }
 
-SGSkirmishSceneHero* SGSkirmishScene::getHero(SGSKirmishSceneHeroList& list)
+SGSkirmishHero* SGSkirmishScene::getHero(SGSkirmishHeroList& list)
 {
   for (int i = 0; i < list.size(); i++) {
-    SGSkirmishSceneHero* hero = list.at(i);
+    SGSkirmishHero* hero = list.at(i);
     if (hero->isActive()) {
       return hero;
     }
@@ -584,7 +587,7 @@ Vec2 SGSkirmishScene::mapPos2OpenGLPos(Vec2 origin)
 {
   Vec2 new_pos;
 
-  Size size = this->getContentSize();
+  Size size = Director::getInstance()->getVisibleSize();
 
   new_pos.x = (origin.x + 0.5f) * SG_SKIRMISH_SCENE_HERO_WALK_RES_WIDTH ;
   new_pos.y = size.height - (origin.y + 0.5f) * SG_SKIRMISH_SCENE_HERO_WALK_RES_HEIGHT;

@@ -144,7 +144,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\SGSceneBase.cpp" />
     <ClCompile Include="..\Classes\SGSkirmishArea.cpp" />
     <ClCompile Include="..\Classes\SGSkirmishScene.cpp" />
-    <ClCompile Include="..\Classes\SGSkirmishSceneHero.cpp" />
+    <ClCompile Include="..\Classes\SGSkirmishHero.cpp" />
     <ClCompile Include="..\Classes\SGSkirmishSceneMagicCall.cpp" />
     <ClCompile Include="..\Classes\SGSkirmishSceneObj.cpp" />
     <ClCompile Include="..\Classes\SGSkirmishTerrain.cpp" />
@@ -166,7 +166,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\SGSceneBase.h" />
     <ClInclude Include="..\Classes\SGSkirmishArea.h" />
     <ClInclude Include="..\Classes\SGSkirmishScene.h" />
-    <ClInclude Include="..\Classes\SGSkirmishSceneHero.h" />
+    <ClInclude Include="..\Classes\SGSkirmishHero.h" />
     <ClInclude Include="..\Classes\SGSkirmishSceneMagicCall.h" />
     <ClInclude Include="..\Classes\SGSkirmishSceneObj.h" />
     <ClInclude Include="..\Classes\SGSkirmishTerrain.h" />

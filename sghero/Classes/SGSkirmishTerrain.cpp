@@ -28,7 +28,7 @@ void SGSkirmishTerrain::loadTerrain(std::string& terrain_file)
   }
 }
 
-SGSkirmishArea& SGSkirmishTerrain::calcHeroAvailabePath(SGSkirmishSceneHero* hero)
+SGSkirmishArea& SGSkirmishTerrain::calcHeroAvailabePath(SGSkirmishHero* hero)
 {
   SGSkirmishArea* area = SGSkirmishArea::create();
 
@@ -48,7 +48,7 @@ SGSkirmishArea& SGSkirmishTerrain::calcHeroAvailabePath(SGSkirmishSceneHero* her
     open_list->pop_front();
 
     for (int i = SG_MOVE_STEP_RIGHT; i <= SG_MOVE_STEP_UP; i++) {
-      Step temp_move = moveHero((SGMoveStep) i, open_step);
+      //Step temp_move = moveHero((SGMoveStep) i, open_step);
     }
   }
 
@@ -57,10 +57,12 @@ SGSkirmishArea& SGSkirmishTerrain::calcHeroAvailabePath(SGSkirmishSceneHero* her
 
 }
 
-SGSkirmishTerrain::Step SGSkirmishTerrain::moveHero(SGMoveStep one_step, Step from)
+SGSkirmishTerrain::Step SGSkirmishTerrain::moveHero(SGSkirmishHero* hero, SGMoveStep one_step, Step step_from)
 {
-  Step to = from;
+  Step step_to = step_from;
 
-  Step current_pos = from;
-  return to;
+  Step current_step = step_from;
+  Vec2 origin_pos = hero->getMapPosition();
+
+  return step_to;
 }

@@ -5,13 +5,13 @@
 USING_NS_CC;
 
 #include "SGSceneBase.h"
-#include "SGSkirmishSceneHero.h"
+#include "SGSkirmishHero.h"
 #include "SGSkirmishTerrain.h"
 #include "tinyxml2/tinyxml2.h"
 
 class SGSkirmishScene : public SGSceneBase
 {
-  friend SGSkirmishSceneHero;
+  friend SGSkirmishHero;
 public:
   static Scene* createScene();
 
@@ -45,11 +45,11 @@ private:
   bool gameLogicEnemyTurn();
   void switchToNextRound();
   void resetAllHeroActivity();
-  void showHeroAvailabePath(SGSkirmishSceneHero* hero);
+  void showHeroAvailabePath(SGSkirmishHero* hero);
 
   bool onHandleSettingMap(tinyxml2::XMLElement* setting);
   bool onHandleSettingTerrain(tinyxml2::XMLElement* setting);
-  bool onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSkirmishSceneHero::HERO_SIDE side);
+  bool onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSkirmishHero::HERO_SIDE side);
   bool onHandleEventHeroAction(tinyxml2::XMLElement* event);
   bool onHandleEventDelay(tinyxml2::XMLElement* event);
   bool onHandleEventHeroRemove(tinyxml2::XMLElement* event);
@@ -79,11 +79,11 @@ private:
   int __round;
 
   // Hero List
-  typedef Vector<SGSkirmishSceneHero*> SGSKirmishSceneHeroList;
-  SGSKirmishSceneHeroList __our_heroes;
-  SGSKirmishSceneHeroList __friend_heroes;
-  SGSKirmishSceneHeroList __enemy_heroes;
-  SGSkirmishSceneHero* getHero(SGSKirmishSceneHeroList& list);
+  typedef Vector<SGSkirmishHero*> SGSkirmishHeroList;
+  SGSkirmishHeroList __our_heroes;
+  SGSkirmishHeroList __friend_heroes;
+  SGSkirmishHeroList __enemy_heroes;
+  SGSkirmishHero* getHero(SGSkirmishHeroList& list);
 
   
   SGSceneEventList __test_list;
