@@ -23,7 +23,7 @@ public:
   void update(float dt);
   
 
-  bool onTouchBegan(Touch *touch, Event *unused_event) { return  true; };
+  bool onTouchBegan(Touch *touch, Event *unused_event);
   void onTouchMoved(Touch *touch, Event *unused_event);
    
 private:
@@ -63,7 +63,7 @@ private:
   Vec2 mapPos2OpenGLPos(Vec2 origin);
 
   EventListenerTouchOneByOne* __event_listener;
-
+  SGSkirmishHero* __selected_hero;
   int __map_width;
   int __map_height;
   SGSkirmishTerrain* __terrain;
@@ -87,6 +87,9 @@ private:
 
   
   SGSceneEventList __test_list;
+
+  // const char var
+  static const char* WALK_PATH; 
 
 };
 

@@ -88,6 +88,22 @@ bool SGSkirmishTerrain::isInStepList(Step& step, StepList& step_list)
   return false;
 }
 
+SGSkirmishHero* SGSkirmishTerrain::findHero(Vec2& pos)
+{
+  Vector<SGSkirmishHero*>::iterator iter;
+  for (iter = __heroes.begin(); iter != __heroes.end(); iter++) {
+    SGSkirmishHero* hero = *iter;
+    Rect rect = hero->getBoundingBox();
+
+    if(rect.containsPoint(pos)){
+      CCLOG("%s touched", hero->getName().c_str());
+      return hero;
+    }  
+  }
+  return NULL;
+
+}
+
 SGSkirmishArea& SGSkirmishTerrain::calcHeroAvailabePath(SGSkirmishHero* hero)
 {
   SGSkirmishArea* area = SGSkirmishArea::create();

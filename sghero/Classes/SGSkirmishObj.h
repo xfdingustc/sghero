@@ -15,11 +15,10 @@ public:
 
   virtual bool init(const char* name);
   void setMapPosition(SGSkirmishMapPos& map_pos);
+  void setMapPosition(Vec2& pos);
   SGSkirmishMapPos& getMapPosition() { return __map_position; }
 protected:
   SGSkirmishMapPos __map_position;
-  Vec2& mapPos2OpenGLPos(SGSkirmishMapPos& origin);
-  
 };
 
 #endif

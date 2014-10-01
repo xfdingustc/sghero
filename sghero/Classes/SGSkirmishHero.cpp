@@ -3,6 +3,7 @@
 #include "SGGlobalSettings.h"
 #include "SGSkirmishScene.h"
 
+
 SGSkirmishHero* SGSkirmishHero::create(const char* hero_name, HERO_SIDE side, SGObserver* observer)
 {
   SGSkirmishHero* hero = new SGSkirmishHero(observer);
@@ -39,33 +40,8 @@ bool SGSkirmishHero::init(const char* hero_name, HERO_SIDE side)
   // init catagory
   initCatagory();
   
-
-  auto dispatcher = Director::getInstance()->getEventDispatcher();
-  __event_listener = EventListenerTouchOneByOne::create();
-  __event_listener->onTouchBegan = CC_CALLBACK_2(SGSkirmishHero::onTouchBegin, this);
-  __event_listener->setSwallowTouches(true);
-  dispatcher->addEventListenerWithSceneGraphPriority(__event_listener, this);
-}
-
-bool SGSkirmishHero::onTouchBegin(Touch *touch, Event *unused_event)
-{
-  Vec2 touchPoint = touch->getLocation();
-  Vec2 reallyPoint = this->getParent()->convertToNodeSpace(touchPoint);
-  Rect rect = this->getBoundingBox();
-
-  if(rect.containsPoint(reallyPoint)){
-    CCLOG("%s touched", this->getName().c_str());
-    showAvailablePath();
-    return true;
-  }
- 
-  return false;
-}
-
-void SGSkirmishHero::showAvailablePath()
-{
-  SGSkirmishScene* skrimish = (SGSkirmishScene*)this->getParent();
-  skrimish->showHeroAvailabePath(this);
+  //initDataNum();
+  
 }
 
 bool SGSkirmishHero::isRival(SGSkirmishHero* hero)
@@ -284,7 +260,7 @@ void SGSkirmishHero::initCatagory()
   } else if (catagory == "dancer") {
     __catagory = HERO_CATAGORY_DANCER;
   }
-
+  __stamina = 6;
 }
 
 void SGSkirmishHero::initDataNum()

@@ -10,6 +10,7 @@ class SGSkirmishArea : public Layer
 public:
   CREATE_FUNC(SGSkirmishArea);
   bool init() { return true;};
+  bool containPoint(Vec2& pos);
   void addOnePoint(SGSkirmishMapPos& pos);
   void show();
 private:

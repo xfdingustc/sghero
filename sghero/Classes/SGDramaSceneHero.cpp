@@ -110,7 +110,6 @@ bool SGDramaSceneHero::init(const char* hero_name)
   this->setName(hero_name);
 
   this->setScale(1.6);
-  //this->setAnchorPoint(Vec2::ZERO);
 
   return true;
 

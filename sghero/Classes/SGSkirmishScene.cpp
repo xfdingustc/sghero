@@ -6,6 +6,9 @@
 #include "SGSkirmishSceneMagicCall.h"
 using namespace CocosDenshion;
 
+const char* SGSkirmishScene::WALK_PATH = "walk_path"; 
+
+
 Scene* SGSkirmishScene::createScene()
 {
   Scene* scene = Scene::create();
@@ -39,6 +42,7 @@ bool SGSkirmishScene::init()
 
   //init round;
   __round = 0;
+  __selected_hero = NULL;
   return true;
 }
 
@@ -93,7 +97,29 @@ void SGSkirmishScene::notify()
   this->removeChildByName("arrow");
 }
 
+bool SGSkirmishScene::onTouchBegan(Touch *touch, Event *unused_event)
+{
+  Vec2 pos = this->convertToNodeSpace(touch->getLocation());
+  SGSkirmishHero* hero = __terrain->findHero(pos);
+  if (hero) {
+    showHeroAvailabePath(hero);
+    __selected_hero = hero;
+    return true;
+  }
 
+  if (!hero && __selected_hero) {
+    SGSkirmishArea* area = (SGSkirmishArea*)this->getChildByName(WALK_PATH);
+    if (area && area->containPoint(pos)) {
+      __selected_hero->setMapPosition(pos);
+
+      this->removeChildByName(WALK_PATH);
+      return true;
+    }
+  } 
+
+  return false;
+  
+}
 void SGSkirmishScene::onTouchMoved(Touch *touch, Event *unused_event)
 {
   mapMove(touch->getDelta());

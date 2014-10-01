@@ -17,6 +17,7 @@ public:
   ~SGSkirmishTerrain();
 
   SGSkirmishArea& calcHeroAvailabePath(SGSkirmishHero* hero);
+  SGSkirmishHero* findHero(Vec2& pos);
 
   void notify(const char* reason, void* ptr);
 private:

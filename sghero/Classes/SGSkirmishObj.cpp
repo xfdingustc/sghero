@@ -50,19 +50,15 @@ bool SGSkirmishObj::init(const char* name)
 void SGSkirmishObj::setMapPosition(SGSkirmishMapPos& map_pos) 
 { 
   __map_position = map_pos; 
-  Vec2 pos = mapPos2OpenGLPos(__map_position);
+  Vec2 pos = SGSkirmishMapPos::mapPos2OpenGLPos(__map_position);
   
   setPosition(pos);
   
 }
-
-Vec2& SGSkirmishObj::mapPos2OpenGLPos(SGSkirmishMapPos& origin)
+void SGSkirmishObj::setMapPosition(Vec2& pos)
 {
-  Vec2 new_pos;
-
-  Size size = Director::getInstance()->getVisibleSize();
-
-  new_pos.x = (origin.x + 0.5f) * SG_SKIRMISH_SCENE_HERO_WALK_RES_WIDTH ;
-  new_pos.y = size.height - (origin.y + 0.5f) * SG_SKIRMISH_SCENE_HERO_WALK_RES_HEIGHT;
-  return new_pos;
+  SGSkirmishMapPos map_pos = SGSkirmishMapPos::openGLPos2MapPos(pos);
+  setMapPosition(map_pos);
 }
+
+

@@ -63,9 +63,7 @@ public:
   void doAttackAction();
 
   void setStatus(std::string& status);
-  bool onTouchBegin(Touch *touch, Event *unused_event);
 
-  void showAvailablePath();
 
   bool isRival(SGSkirmishHero* hero);
 private:
@@ -87,7 +85,7 @@ private:
   bool __active;
   HERO_CATAGORY __catagory;
 
-  EventListenerTouchOneByOne* __event_listener;
+  
   int __stamina;
   
 };
