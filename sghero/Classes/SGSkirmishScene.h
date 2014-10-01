@@ -88,8 +88,33 @@ private:
   
   SGSceneEventList __test_list;
 
+  
+
+  // event handle state machine
+  typedef enum {
+    EVENT_HANDLE_STATE_NO_HERO_SELECTED,
+    EVENT_HANDLE_STATE_HERO_SELECTED,
+    EVENT_HANDLE_STATE_HERO_MOVED,
+    EVENT_HANDLE_STATE_ATTACK_SELECTED,
+    EVENT_HANDLE_STATE_MAGIC_SELECTED,
+    EVENT_HANDLE_STATE_ITEM_SELECTED,
+    EVENT_HANDLE_STATE_CANCEL_SELECTED,
+    EVENT_HANDLE_STATE_IDLE_SELECTED,
+  } EVENT_HANDLE_STATE;
+  EVENT_HANDLE_STATE __event_handle_state;
+
+  bool eventHandleStateMachine(Touch *touch);
+  void createActionSelectMenu();
+  void onAttack(Ref* pSender);
+  void onMagic(Ref* pSender) ;
+  void onItem(Ref* pSender);
+  void onIdle(Ref* pSender);
+  void onCancel(Ref* pSender);
+
+
   // const char var
   static const char* WALK_PATH; 
+  static const char* HERO_ACTION_MENU;
 
 };
 

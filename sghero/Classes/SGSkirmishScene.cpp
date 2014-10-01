@@ -7,6 +7,7 @@
 using namespace CocosDenshion;
 
 const char* SGSkirmishScene::WALK_PATH = "walk_path"; 
+const char* SGSkirmishScene::HERO_ACTION_MENU = "hero_action_menu";
 
 
 Scene* SGSkirmishScene::createScene()
@@ -43,6 +44,7 @@ bool SGSkirmishScene::init()
   //init round;
   __round = 0;
   __selected_hero = NULL;
+  __event_handle_state = EVENT_HANDLE_STATE_NO_HERO_SELECTED;
   return true;
 }
 
@@ -99,27 +101,116 @@ void SGSkirmishScene::notify()
 
 bool SGSkirmishScene::onTouchBegan(Touch *touch, Event *unused_event)
 {
-  Vec2 pos = this->convertToNodeSpace(touch->getLocation());
-  SGSkirmishHero* hero = __terrain->findHero(pos);
-  if (hero) {
-    showHeroAvailabePath(hero);
-    __selected_hero = hero;
-    return true;
-  }
-
-  if (!hero && __selected_hero) {
-    SGSkirmishArea* area = (SGSkirmishArea*)this->getChildByName(WALK_PATH);
-    if (area && area->containPoint(pos)) {
-      __selected_hero->setMapPosition(pos);
-
-      this->removeChildByName(WALK_PATH);
-      return true;
-    }
-  } 
-
-  return false;
+  return eventHandleStateMachine(touch);
   
 }
+
+bool SGSkirmishScene::eventHandleStateMachine(Touch *touch)
+{
+  Vec2 pos = this->convertToNodeSpace(touch->getLocation());
+  SGSkirmishHero* hero = NULL;
+  switch (__event_handle_state)
+  {
+  case EVENT_HANDLE_STATE_NO_HERO_SELECTED:
+    hero = __terrain->findHero(pos);
+    if (hero) {
+      showHeroAvailabePath(hero);
+      __selected_hero = hero;
+      __event_handle_state = EVENT_HANDLE_STATE_HERO_SELECTED;
+      return true;
+    }
+    break;
+  case EVENT_HANDLE_STATE_HERO_SELECTED:
+    hero = __terrain->findHero(pos);
+    if (hero) {
+      showHeroAvailabePath(hero);
+      __selected_hero = hero;
+      __event_handle_state = EVENT_HANDLE_STATE_HERO_SELECTED;
+      return true;
+    }
+    if (!hero && __selected_hero) {
+      SGSkirmishArea* area = (SGSkirmishArea*)this->getChildByName(WALK_PATH);
+      if (area && area->containPoint(pos)) {
+        __selected_hero->setMapPosition(pos);
+        this->removeChildByName(WALK_PATH);
+        createActionSelectMenu();
+        __event_handle_state = EVENT_HANDLE_STATE_HERO_MOVED;
+        return true;
+      }
+    } 
+    break;
+  case EVENT_HANDLE_STATE_HERO_MOVED:
+
+    break;
+  default:
+    break;
+  }
+
+  return false;
+
+}
+
+void SGSkirmishScene::createActionSelectMenu()
+{
+  LabelTTF *attackLabel = LabelTTF::create("Attack","Arial", 20);
+  MenuItemLabel *attackMenuItem = MenuItemLabel::create(attackLabel, this,
+    menu_selector(SGSkirmishScene::onAttack));
+  attackMenuItem->setPosition(ccp(0, 80));
+
+  LabelTTF *magicLabel = LabelTTF::create("Magic","Arial", 20);
+  MenuItemLabel *magicMenuItem = MenuItemLabel::create(magicLabel, this,
+    menu_selector(SGSkirmishScene::onMagic));
+  magicMenuItem->setPosition(ccp(0, 60));
+
+  LabelTTF *itemLabel = LabelTTF::create("Item","Arial", 20);
+  MenuItemLabel *itemMenuItem = MenuItemLabel::create(itemLabel, this,
+    menu_selector(SGSkirmishScene::onItem));
+  itemMenuItem->setPosition(ccp(0, 40));
+
+  LabelTTF *idleLabel = LabelTTF::create("Idle","Arial", 20);
+  MenuItemLabel *idleMenuItem = MenuItemLabel::create(idleLabel, this,
+    menu_selector(SGSkirmishScene::onIdle));
+  idleMenuItem->setPosition(ccp(0, 20));
+
+  LabelTTF *cancelLabel = LabelTTF::create("Cancel","Arial", 20);
+  MenuItemLabel *cancelMenuItem = MenuItemLabel::create(cancelLabel, this,
+    menu_selector(SGSkirmishScene::onCancel));
+  cancelMenuItem->setPosition(ccp(0, 0));
+
+  Menu* hero_action_menu_ = Menu::create(attackMenuItem, magicMenuItem,
+    itemMenuItem, idleMenuItem, cancelMenuItem,NULL);
+  hero_action_menu_->setPosition(__selected_hero->getPosition());
+  hero_action_menu_->setName(HERO_ACTION_MENU);
+  this->addChild(hero_action_menu_);
+}
+
+void SGSkirmishScene::onAttack(Ref* pSender)
+{
+  this->removeChildByName(HERO_ACTION_MENU);
+  __event_handle_state = EVENT_HANDLE_STATE_ATTACK_SELECTED;
+}
+void SGSkirmishScene::onMagic(Ref* pSender) 
+{
+  this->removeChildByName(HERO_ACTION_MENU);
+  __event_handle_state = EVENT_HANDLE_STATE_MAGIC_SELECTED;
+}
+void SGSkirmishScene::onItem(Ref* pSender) 
+{
+  this->removeChildByName(HERO_ACTION_MENU);
+  __event_handle_state = EVENT_HANDLE_STATE_ITEM_SELECTED;
+}
+void SGSkirmishScene::onIdle(Ref* pSender)
+{
+  this->removeChildByName(HERO_ACTION_MENU);
+  __event_handle_state = EVENT_HANDLE_STATE_IDLE_SELECTED;
+}
+void SGSkirmishScene::onCancel(Ref* pSender)
+{
+  this->removeChildByName(HERO_ACTION_MENU);
+  __event_handle_state = EVENT_HANDLE_STATE_CANCEL_SELECTED;
+}
+
+
 void SGSkirmishScene::onTouchMoved(Touch *touch, Event *unused_event)
 {
   mapMove(touch->getDelta());
