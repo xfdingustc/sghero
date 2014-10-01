@@ -214,9 +214,8 @@ bool SGSkirmishScene::onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSkirmishH
     std::string direction = one_friend_hero->Attribute("face");
     const char* hide = one_friend_hero->Attribute("hide");
 
-    SGSkirmishHero* hero = SGSkirmishHero::create(hero_name.c_str(), side);
+    SGSkirmishHero* hero = SGSkirmishHero::create(hero_name.c_str(), side, __terrain);
     hero->faceTo(direction.c_str());
-    hero->setObserver(__terrain);
     hero->setMapPosition(Vec2(x, y));
     Vec2 hero_pos = hero->getPosition();
     if (!strcmp(hide, "true")) {
@@ -363,8 +362,7 @@ bool SGSkirmishScene::onHandleEventObjAdd(tinyxml2::XMLElement* event)
   int x = atoi(event->Attribute("x"));
   int y = atoi(event->Attribute("y"));
   //currently only fire is supported so hard code here
-  SGSkirmishObj* obj = SGSkirmishObj::create(obj_name.c_str());
-  obj->setObserver(__terrain);
+  SGSkirmishObj* obj = SGSkirmishObj::create(obj_name.c_str(), __terrain);
   obj->setMapPosition(Vec2(x, y));
   this->addChild(obj);
   return true;

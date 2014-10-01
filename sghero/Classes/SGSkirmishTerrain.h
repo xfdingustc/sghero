@@ -18,7 +18,7 @@ public:
 
   SGSkirmishArea& calcHeroAvailabePath(SGSkirmishHero* hero);
 
-  void notify(SGObservable* object, const char* reason, void* ptr);
+  void notify(const char* reason, void* ptr);
 private:
   typedef enum
   {
@@ -52,7 +52,7 @@ private:
     SG_SKIRMISH_TERRAIN_SHIP = 0x1B,
     SG_SKIRMISH_TERRAIN_ALTAR = 0x1C,
     SG_SKIRMISH_TERRAIN_UNDERGROUND = 0x1D,
-
+    SG_SKIRMISH_TERRAIN_MAX,
   } SGSkirmishTerrainType;
 
   typedef enum {
@@ -72,7 +72,15 @@ private:
   void loadTerrain(std::string& terrain_file);
   int __width;
   int __height;
+
+  static int SteminaConsuming[SGSkirmishTerrain::SG_SKIRMISH_TERRAIN_MAX][SGSkirmishHero::HERO_CATAGORY_MAX];
+  SGSkirmishTerrainType getTerrainAt(Vec2& pos);
+  int getSteminaConsume(SGSkirmishHero::HERO_CATAGORY catagory, SGSkirmishTerrainType terrain);
   SGSkirmishTerrainType* __terrain_info;
+  SGSkirmishHero* getHero(Vec2& pos);
+  SGSkirmishObj* getObj(Vec2& pos);
+  Vector<SGSkirmishObj*> __objects;
+  Vector<SGSkirmishHero*> __heroes;
 };
 
 #endif

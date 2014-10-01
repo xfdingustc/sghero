@@ -3,9 +3,9 @@
 #include "SGGlobalSettings.h"
 #include "SGSkirmishScene.h"
 
-SGSkirmishHero* SGSkirmishHero::create(const char* hero_name, HERO_SIDE side)
+SGSkirmishHero* SGSkirmishHero::create(const char* hero_name, HERO_SIDE side, SGObserver* observer)
 {
-  SGSkirmishHero* hero = new SGSkirmishHero();
+  SGSkirmishHero* hero = new SGSkirmishHero(observer);
 
   if (hero && hero->init(hero_name, side)) {
     hero->autorelease();
@@ -34,6 +34,11 @@ bool SGSkirmishHero::init(const char* hero_name, HERO_SIDE side)
   this->setAnchorPoint(Vec2(0.5f, 0.5f));
 
   this->setName(hero_name);
+  notifyObserver("hero_add", reinterpret_cast<void*>(this));
+
+  // init catagory
+  initCatagory();
+  
 
   auto dispatcher = Director::getInstance()->getEventDispatcher();
   __event_listener = EventListenerTouchOneByOne::create();
@@ -61,6 +66,34 @@ void SGSkirmishHero::showAvailablePath()
 {
   SGSkirmishScene* skrimish = (SGSkirmishScene*)this->getParent();
   skrimish->showHeroAvailabePath(this);
+}
+
+bool SGSkirmishHero::isRival(SGSkirmishHero* hero)
+{
+  if (!hero) {
+    return false;
+  }
+  switch (this->__side)
+  {
+  case HERO_SIDE_OURS:
+  case HERO_SIDE_FRIEND:
+    if (hero->__side == HERO_SIDE_OURS || hero->__side == HERO_SIDE_FRIEND) {
+      return true;
+    } else {
+      return false;
+    }
+    break;
+  case HERO_SIDE_ENEMY:
+    if (hero->__side == HERO_SIDE_ENEMY) {
+      return true;
+    } else {
+      return false;
+    }
+    break;
+  default:
+    return false;
+    break;
+  }
 }
 
 bool SGSkirmishHero::initActions()
@@ -219,6 +252,39 @@ bool SGSkirmishHero::initSpecActions()
   animate_name = "attacked";
   __animate_map[animate_name] = animate_attack;
   return true;
+}
+
+void SGSkirmishHero::initCatagory()
+{
+  std::string catagory = SGHeroResourceUtils::getInstance()->getHeroResObj(__name)->catagory;
+  if (catagory == "lord") {
+    __catagory = HERO_CATAGORY_LORD;
+  } else if (catagory == "infantry") {
+    __catagory = HERO_CATAGORY_INFANTRY;
+  } else if (catagory == "archer" ) {
+    __catagory = HERO_CATAGORY_ARCHER;
+  } else if (catagory == "knight") {
+    __catagory = HERO_CATAGORY_ARCHER;
+  } else if (catagory == "horsearcher") {
+    __catagory = HERO_CATAGORY_HORSEARCHER;
+  } else if (catagory == "demolisher") {
+    __catagory = HERO_CATAGORY_DEMOLISHER;
+  } else if (catagory == "martialist") {
+    __catagory = HERO_CATAGORY_MARTIALIST;
+  } else if (catagory == "thief") {
+    __catagory = HERO_CATAGORY_THIEF;
+  } else if (catagory == "mage") {
+    __catagory = HERO_CATAGORY_MAGE;
+  } else if (catagory == "priest") {
+    __catagory = HERO_CATAGORY_PRIEST;
+  } else if (catagory == "warlock") {
+    __catagory = HERO_CATAGORY_WARLOCK;
+  } else if (catagory == "horsemage") {
+    __catagory = HERO_CATAGORY_HORSEMAGE;
+  } else if (catagory == "dancer") {
+    __catagory = HERO_CATAGORY_DANCER;
+  }
+
 }
 
 std::string& SGSkirmishHero::getHeroResFile(const char* res_dir)

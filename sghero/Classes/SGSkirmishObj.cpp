@@ -1,10 +1,10 @@
 #include "SGSkirmishObj.h"
 #include "SGGlobalSettings.h"
 
-SGSkirmishObj* SGSkirmishObj::create(const char* name)
+SGSkirmishObj* SGSkirmishObj::create(const char* name, SGObserver* observer)
 {
-  SGSkirmishObj* obj = new SGSkirmishObj;
-  if (obj->init(name)) {
+  SGSkirmishObj* obj = new SGSkirmishObj(observer);
+  if (obj && obj->init(name)) {
     obj->autorelease();
     return obj;
   } else {
@@ -18,6 +18,10 @@ bool SGSkirmishObj::init(const char* name)
   if (!Sprite::init()) {
     return false;
   }
+  
+  setName(name);
+  notifyObserver("object_add", (void*)this);
+  // init image
   Vector<SpriteFrame*>* animFrames = new Vector<SpriteFrame*>;
 
   for (int i = 0; i < 4; i++) {
@@ -46,8 +50,9 @@ void SGSkirmishObj::setMapPosition(Vec2& map_pos)
 { 
   __map_position = map_pos; 
   Vec2 pos = mapPos2OpenGLPos(__map_position);
-  notifyObserver(this, "pos_updated", (void*)&__map_position);
+  
   setPosition(pos);
+  
 }
 
 Vec2& SGSkirmishObj::mapPos2OpenGLPos(Vec2& origin)

@@ -1,20 +1,30 @@
 #ifndef SG_OBSERVER_H
 #define SG_OBSERVER_H
 
-class SGObservable;
 class SGObserver
 {
 public:
   virtual void notify() {} 
-  virtual void notify(SGObservable* object, const char* reason, void* ptr) {}
+  virtual void notify(const char* reason, void* ptr) {}
 };
 
 class SGObservable {
 public:
+  SGObservable() : __observer(NULL) {}
+  SGObservable(SGObserver* observer) : __observer(observer) {}
   void setObserver(SGObserver* observer) { __observer = observer; }
 protected:
-  void notifyObserver() { __observer->notify(); }
-  void notifyObserver(SGObservable* object, const char* reason, void* ptr) { __observer->notify(object, reason, ptr); }
+  void notifyObserver() { 
+    if (__observer) { 
+      __observer->notify(); 
+    } 
+  }
+
+  void notifyObserver(const char* reason, void* ptr) { 
+    if (__observer) {
+      __observer->notify(reason, ptr); 
+    }
+  }
 private:
   SGObserver* __observer;
 };

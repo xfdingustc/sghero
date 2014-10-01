@@ -13,7 +13,25 @@ public:
     HERO_SIDE_ENEMY,
     HERO_SIDE_FRIEND,
   } HERO_SIDE;
-  static SGSkirmishHero* create(const char* hero_name, HERO_SIDE side);
+
+  typedef enum {
+    HERO_CATAGORY_LORD,
+    HERO_CATAGORY_INFANTRY,
+    HERO_CATAGORY_ARCHER,
+    HERO_CATAGORY_KNIGHT,
+    HERO_CATAGORY_HORSEARCHER,
+    HERO_CATAGORY_DEMOLISHER,
+    HERO_CATAGORY_MARTIALIST,
+    HERO_CATAGORY_THIEF,
+    HERO_CATAGORY_MAGE,
+    HERO_CATAGORY_PRIEST,
+    HERO_CATAGORY_WARLOCK,
+    HERO_CATAGORY_HORSEMAGE,
+    HERO_CATAGORY_DANCER,
+    HERO_CATAGORY_MAX,
+  } HERO_CATAGORY;
+  static SGSkirmishHero* create(const char* hero_name, HERO_SIDE side, SGObserver* observer);
+  explicit SGSkirmishHero(SGObserver* observer) : SGSkirmishObj(observer) {}
   virtual bool init(const char* hero_name, HERO_SIDE side);
   bool initActions();
   bool initAttackActions();
@@ -26,6 +44,10 @@ public:
   void oneMove() { __active = false; }
 
   void moveTo(Vec2& target_pos);
+  
+  HERO_CATAGORY getCatagory() { return __catagory; }
+  void initCatagory();
+
     
   typedef enum {
     DIRECTION_NORTH,
@@ -42,6 +64,8 @@ public:
   bool onTouchBegin(Touch *touch, Event *unused_event);
 
   void showAvailablePath();
+
+  bool isRival(SGSkirmishHero* hero);
 private:
   
   std::string& getHeroResFile(const char* res_dir);
@@ -59,6 +83,7 @@ private:
   DIRECTION __face_direction;
 
   bool __active;
+  HERO_CATAGORY __catagory;
 
   EventListenerTouchOneByOne* __event_listener;
 

@@ -9,7 +9,9 @@ USING_NS_CC;
 class SGSkirmishObj : public Sprite , public SGObservable
 {
 public:
-  static SGSkirmishObj* create(const char* name);
+  static SGSkirmishObj* create(const char* name, SGObserver* observer);
+  explicit SGSkirmishObj(SGObserver* observer) : SGObservable(observer) {}
+
   virtual bool init(const char* name);
   void setMapPosition(Vec2& map_pos);
   Vec2& getMapPosition() { return __map_position; }

@@ -1,5 +1,39 @@
 #include "SGSkirmishTerrain.h"
 
+
+int SGSkirmishTerrain::SteminaConsuming[SGSkirmishTerrain::SG_SKIRMISH_TERRAIN_MAX][SGSkirmishHero::HERO_CATAGORY_MAX] =
+{
+  {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+  {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+  {2, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 2, 1 },
+  {2, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 2, 1 },
+  {3, 2, 2, 3, 3, 2, 2, 1, 2, 2, 2, 3, 2 },
+  {65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535 },
+  {65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535 },
+  {2, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 2, 1 },
+  {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+  {2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1 },
+  {3, 2, 2, 3, 3, 2, 2, 2, 2, 2, 2, 3, 1 },
+  {65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535 },
+  {65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535 },
+  {2, 1, 1, 2, 2, 1, 1, 2, 2, 2, 2, 2, 1 },
+  {65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535 },
+  {65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535 },
+  {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+  {65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535 },
+  {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+  {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+  {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+  {2, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 2, 1 },
+  {2, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 2, 1 },
+  {2, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 2, 1 },
+  {3, 2, 2, 3, 3, 2, 2, 2, 2, 2, 2, 3, 2 },
+  {2, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 2, 1 },
+  {65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535 },
+  {65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535 },
+  {65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535 },
+};
+
 SGSkirmishTerrain* SGSkirmishTerrain::create(std::string& terrain_file, Size size)
 {
   SGSkirmishTerrain* terrain = new SGSkirmishTerrain(terrain_file, size);
@@ -28,13 +62,16 @@ void SGSkirmishTerrain::loadTerrain(std::string& terrain_file)
   }
 }
 
-void SGSkirmishTerrain::notify(SGObservable* object, const char* reason, void* ptr)
+void SGSkirmishTerrain::notify(const char* reason, void* ptr)
 {
   std::string notify_reason = reason;
-  if (notify_reason == "pos_updated") {
-    SGSkirmishObj* hero = static_cast<SGSkirmishObj*>(object);
-    Vec2* pos = reinterpret_cast<Vec2*>(ptr);
-    log("%s position is updated %f %f", hero->getName().c_str(), pos->x, pos->y);
+  if (notify_reason == "hero_add") {
+    SGSkirmishHero* hero = reinterpret_cast<SGSkirmishHero*>(ptr);
+    __heroes.pushBack(hero);
+    log("%s added", hero->getName().c_str());
+  } else if (notify_reason == "object_add") {
+    SGSkirmishObj* object = reinterpret_cast<SGSkirmishObj*>(ptr);
+    __objects.pushBack(object);
   }
   
 }
@@ -68,6 +105,13 @@ SGSkirmishArea& SGSkirmishTerrain::calcHeroAvailabePath(SGSkirmishHero* hero)
 
 }
 
+
+
+int SGSkirmishTerrain::getSteminaConsume(SGSkirmishHero::HERO_CATAGORY catagory, SGSkirmishTerrainType terrain)
+{
+  return SteminaConsuming[terrain][catagory];
+}
+
 SGSkirmishTerrain::Step SGSkirmishTerrain::moveHero(SGSkirmishHero* hero, SGMoveStep one_step, Step step_from)
 {
   Step step_to = step_from;
@@ -75,6 +119,113 @@ SGSkirmishTerrain::Step SGSkirmishTerrain::moveHero(SGSkirmishHero* hero, SGMove
   Step current_step = step_from;
   Vec2 origin_pos = hero->getMapPosition();
 
+  Vec2 left_pos = origin_pos;
+  Vec2 right_pos = origin_pos;
+  Vec2 up_pos = origin_pos;
+  Vec2 down_pos = origin_pos;
+
+  left_pos.x--;
+  right_pos.x++;
+  up_pos.y++;
+  down_pos.y--;
+
+  bool is_original_pos = false;
+  bool valid_move = true;
+
+  if (origin_pos == current_step.__pos) {
+    is_original_pos = true;
+  }
+
+
+  switch (one_step)
+  {
+  case SG_MOVE_STEP_RIGHT:
+    step_to.__pos.x++;
+    if (getHero(right_pos) || getObj(right_pos)) {
+      valid_move = false;
+    }
+
+    if (!is_original_pos) {
+      if (hero->isRival(getHero(up_pos)) || hero->isRival(getHero(down_pos))) {
+        valid_move = false;
+      }
+    }
+    break;
+  case SG_MOVE_STEP_DOWN:
+    step_to.__pos.y++;
+    if (getHero(down_pos) || getObj(down_pos)) {
+      valid_move = false;
+    }
+
+    if (!is_original_pos) {
+      if (hero->isRival(getHero(up_pos)) || hero->isRival(getHero(right_pos))) {
+        valid_move = false;
+      }
+    }
+    break;
+  case SG_MOVE_STEP_LEFT:
+    step_to.__pos.x--;
+    if (getHero(left_pos) || getObj(left_pos)) {
+      valid_move = false;
+    }
+    if (!is_original_pos) {
+      if (hero->isRival(getHero(up_pos)) || hero->isRival(getHero(down_pos))) {
+        valid_move = false;
+      }
+    }
+    
+    break;
+  case SG_MOVE_STEP_UP:
+    step_to.__pos.y--;
+    if (getHero(up_pos) || getObj(up_pos)) {
+      valid_move = false;
+    }
+    if (!is_original_pos) {
+      if (hero->isRival(getHero(left_pos)) || hero->isRival(getHero(right_pos))) {
+        valid_move = false;
+      }
+    }
+    break;
+  default:
+    break;
+  }
+
+ 
+  if (step_to.__pos.x < 0 || step_to.__pos.y < 0 || valid_move == false) {
+    step_to.__stamina = -100;
+  } else {
+    step_to.__stamina -= getSteminaConsume(hero->getCatagory(), getTerrainAt(step_to.__pos));
+  }
+
   return step_to;
 }
 
+SGSkirmishTerrain::SGSkirmishTerrainType SGSkirmishTerrain::getTerrainAt(Vec2& pos)
+{
+  int x = pos.x;
+  int y = pos.y;
+  return (SGSkirmishTerrainType)(__terrain_info[y * __width + x]);
+}
+
+SGSkirmishHero* SGSkirmishTerrain::getHero(Vec2& pos)
+{
+  Vector<SGSkirmishHero*>::iterator iter;
+  for (iter == __heroes.begin(); iter != __heroes.end(); iter++) {
+    SGSkirmishHero* hero = *iter;
+    if (hero->getMapPosition() == pos) {
+      return hero;
+    }
+  }
+  return NULL;
+}
+SGSkirmishObj* SGSkirmishTerrain::getObj(Vec2& pos)
+{
+  Vector<SGSkirmishObj*>::iterator iter;
+  for (iter == __objects.begin(); iter != __objects.end(); iter++) {
+    SGSkirmishObj* obj = *iter;
+    if (obj->getMapPosition() == pos) {
+      return obj;
+    }
+  }
+  return NULL;
+}
