@@ -46,7 +46,7 @@ bool SGSkirmishObj::init(const char* name)
 }
 
 
-void SGSkirmishObj::setMapPosition(Vec2& map_pos) 
+void SGSkirmishObj::setMapPosition(SGSkirmishMapPos& map_pos) 
 { 
   __map_position = map_pos; 
   Vec2 pos = mapPos2OpenGLPos(__map_position);
@@ -55,7 +55,7 @@ void SGSkirmishObj::setMapPosition(Vec2& map_pos)
   
 }
 
-Vec2& SGSkirmishObj::mapPos2OpenGLPos(Vec2& origin)
+Vec2& SGSkirmishObj::mapPos2OpenGLPos(SGSkirmishMapPos& origin)
 {
   Vec2 new_pos;
 

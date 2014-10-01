@@ -62,11 +62,23 @@ private:
     SG_MOVE_STEP_UP,
   } SGMoveStep;
 
-  typedef struct {
-    Vec2 __pos;
-    int __stamina;
-  } Step;
   
+  typedef struct Step{
+    bool operator ==(const Step& a) const {
+      if (this->__pos == a.__pos && this->__stamina == a.__stamina) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    SGSkirmishMapPos __pos;
+    int __stamina;
+    
+  };
+  
+ 
+  typedef std::list<Step> StepList;
+  bool isInStepList(Step& step, StepList& step_list);
 
   Step moveHero(SGSkirmishHero* hero, SGMoveStep one_step, Step from);
   void loadTerrain(std::string& terrain_file);
@@ -74,11 +86,11 @@ private:
   int __height;
 
   static int SteminaConsuming[SGSkirmishTerrain::SG_SKIRMISH_TERRAIN_MAX][SGSkirmishHero::HERO_CATAGORY_MAX];
-  SGSkirmishTerrainType getTerrainAt(Vec2& pos);
+  SGSkirmishTerrainType getTerrainAt(SGSkirmishMapPos& pos);
   int getSteminaConsume(SGSkirmishHero::HERO_CATAGORY catagory, SGSkirmishTerrainType terrain);
   SGSkirmishTerrainType* __terrain_info;
-  SGSkirmishHero* getHero(Vec2& pos);
-  SGSkirmishObj* getObj(Vec2& pos);
+  SGSkirmishHero* getHero(SGSkirmishMapPos& pos);
+  SGSkirmishObj* getObj(SGSkirmishMapPos& pos);
   Vector<SGSkirmishObj*> __objects;
   Vector<SGSkirmishHero*> __heroes;
 };

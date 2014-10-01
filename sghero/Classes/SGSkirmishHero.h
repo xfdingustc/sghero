@@ -43,7 +43,7 @@ public:
   // hero AI currently is dummy
   void oneMove() { __active = false; }
 
-  void moveTo(Vec2& target_pos);
+  void moveTo(SGSkirmishMapPos& target_pos);
   
   HERO_CATAGORY getCatagory() { return __catagory; }
   void initCatagory();

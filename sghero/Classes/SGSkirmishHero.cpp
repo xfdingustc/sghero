@@ -368,7 +368,7 @@ void SGSkirmishHero::faceTo(const char* direction)
   this->runAction(face_walk);
   
 }
-void SGSkirmishHero::moveTo(Vec2& target_pos)
+void SGSkirmishHero::moveTo(SGSkirmishMapPos& target_pos)
 {
   this->setMapPosition(target_pos);
 }

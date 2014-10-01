@@ -76,6 +76,19 @@ void SGSkirmishTerrain::notify(const char* reason, void* ptr)
   
 }
 
+bool SGSkirmishTerrain::isInStepList(Step& step, StepList& step_list)
+{
+  StepList::iterator iter;
+
+  for (iter = step_list.begin(); iter != step_list.end(); iter++) {
+    Step one_step = *iter;
+    if (step.__pos == one_step.__pos) {
+      return true;
+    }
+  }
+  return false;
+}
+
 SGSkirmishArea& SGSkirmishTerrain::calcHeroAvailabePath(SGSkirmishHero* hero)
 {
   SGSkirmishArea* area = SGSkirmishArea::create();
@@ -83,21 +96,53 @@ SGSkirmishArea& SGSkirmishTerrain::calcHeroAvailabePath(SGSkirmishHero* hero)
   int hero_stamina = 6;
   // A* algorithm
 
-  typedef std::list<Step> StepList;
-  StepList* open_list = new StepList;
-  StepList* close_list = new StepList;
+  
+  StepList open_list;
+  StepList close_list;
+
 
   Step start_step;
-  start_step.__pos = Vec2(10.0f,6.0f);
+  start_step.__pos = hero->getMapPosition();
   start_step.__stamina = hero_stamina;
+  open_list.push_back(start_step);
 
-  while(!open_list->empty()) {
-    Step open_step = open_list->front();
-    open_list->pop_front();
+  while(!open_list.empty()) {
+    Step open_step = open_list.front();
+    open_list.pop_front();
 
     for (int i = SG_MOVE_STEP_RIGHT; i <= SG_MOVE_STEP_UP; i++) {
-      //Step temp_move = moveHero((SGMoveStep) i, open_step);
+      Step temp_move = moveHero(hero, (SGMoveStep) i, open_step);
+      if (temp_move.__stamina >=0 ) { // valid move
+        if (!isInStepList(temp_move, open_list) && !isInStepList(temp_move, close_list)) {
+          open_list.push_back(temp_move);
+        } else if(isInStepList(temp_move, open_list)) { // in Open list
+          StepList::iterator iter;
+          for (iter = open_list.begin(); iter != open_list.end(); iter++) {
+            Step one_step_in_openlist = *iter;
+            if (one_step_in_openlist.__pos == temp_move.__pos) {
+              if (one_step_in_openlist.__stamina < temp_move.__stamina) {
+                open_list.remove(one_step_in_openlist);
+                open_list.push_back(temp_move);
+              }
+            }
+          }
+        } else { // in close list
+          StepList::iterator iter;
+          for (iter = close_list.begin(); iter != close_list.end(); iter++) {
+            Step one_step_in_closelist = *iter;
+            if (one_step_in_closelist.__pos == temp_move.__pos) {
+              if (one_step_in_closelist.__stamina < temp_move.__stamina) {
+                close_list.remove(one_step_in_closelist);
+                open_list.push_back(temp_move);
+              }
+            } 
+
+          }
+        }
+
+      }
     }
+    close_list.push_back(open_step);
   }
 
 
@@ -117,17 +162,17 @@ SGSkirmishTerrain::Step SGSkirmishTerrain::moveHero(SGSkirmishHero* hero, SGMove
   Step step_to = step_from;
 
   Step current_step = step_from;
-  Vec2 origin_pos = hero->getMapPosition();
+  SGSkirmishMapPos origin_pos = hero->getMapPosition();
 
-  Vec2 left_pos = origin_pos;
-  Vec2 right_pos = origin_pos;
-  Vec2 up_pos = origin_pos;
-  Vec2 down_pos = origin_pos;
+  SGSkirmishMapPos left_pos = origin_pos;
+  SGSkirmishMapPos right_pos = origin_pos;
+  SGSkirmishMapPos up_pos = origin_pos;
+  SGSkirmishMapPos down_pos = origin_pos;
 
   left_pos.x--;
   right_pos.x++;
-  up_pos.y++;
-  down_pos.y--;
+  up_pos.y--;
+  down_pos.y++;
 
   bool is_original_pos = false;
   bool valid_move = true;
@@ -200,28 +245,30 @@ SGSkirmishTerrain::Step SGSkirmishTerrain::moveHero(SGSkirmishHero* hero, SGMove
   return step_to;
 }
 
-SGSkirmishTerrain::SGSkirmishTerrainType SGSkirmishTerrain::getTerrainAt(Vec2& pos)
+SGSkirmishTerrain::SGSkirmishTerrainType SGSkirmishTerrain::getTerrainAt(SGSkirmishMapPos& pos)
 {
   int x = pos.x;
   int y = pos.y;
   return (SGSkirmishTerrainType)(__terrain_info[y * __width + x]);
 }
 
-SGSkirmishHero* SGSkirmishTerrain::getHero(Vec2& pos)
+SGSkirmishHero* SGSkirmishTerrain::getHero(SGSkirmishMapPos& pos)
 {
+  log("check pos %f %f", pos.x, pos.y);
   Vector<SGSkirmishHero*>::iterator iter;
-  for (iter == __heroes.begin(); iter != __heroes.end(); iter++) {
+  for (iter = __heroes.begin(); iter != __heroes.end(); iter++) {
     SGSkirmishHero* hero = *iter;
+    log("hero %s x = %f y = %f", hero->getName().c_str(), hero->getMapPosition().x, hero->getMapPosition().y);
     if (hero->getMapPosition() == pos) {
       return hero;
     }
   }
   return NULL;
 }
-SGSkirmishObj* SGSkirmishTerrain::getObj(Vec2& pos)
+SGSkirmishObj* SGSkirmishTerrain::getObj(SGSkirmishMapPos& pos)
 {
   Vector<SGSkirmishObj*>::iterator iter;
-  for (iter == __objects.begin(); iter != __objects.end(); iter++) {
+  for (iter = __objects.begin(); iter != __objects.end(); iter++) {
     SGSkirmishObj* obj = *iter;
     if (obj->getMapPosition() == pos) {
       return obj;

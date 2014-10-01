@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "SGObserver.h"
+#include "SGSkirmishMapPos.h"
 USING_NS_CC;
 
 
@@ -13,11 +14,11 @@ public:
   explicit SGSkirmishObj(SGObserver* observer) : SGObservable(observer) {}
 
   virtual bool init(const char* name);
-  void setMapPosition(Vec2& map_pos);
-  Vec2& getMapPosition() { return __map_position; }
+  void setMapPosition(SGSkirmishMapPos& map_pos);
+  SGSkirmishMapPos& getMapPosition() { return __map_position; }
 protected:
-  Vec2 __map_position;
-  Vec2& mapPos2OpenGLPos(Vec2& origin);
+  SGSkirmishMapPos __map_position;
+  Vec2& mapPos2OpenGLPos(SGSkirmishMapPos& origin);
   
 };
 

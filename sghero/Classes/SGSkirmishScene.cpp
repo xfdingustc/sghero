@@ -216,7 +216,7 @@ bool SGSkirmishScene::onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSkirmishH
 
     SGSkirmishHero* hero = SGSkirmishHero::create(hero_name.c_str(), side, __terrain);
     hero->faceTo(direction.c_str());
-    hero->setMapPosition(Vec2(x, y));
+    hero->setMapPosition(SGSkirmishMapPos(x, y));
     Vec2 hero_pos = hero->getPosition();
     if (!strcmp(hide, "true")) {
       hero->setVisible(false);
@@ -262,7 +262,7 @@ bool SGSkirmishScene::onHandleEventHeroMove(tinyxml2::XMLElement* event)
   int y = atoi(event->Attribute("y"));
   SGSkirmishHero* hero = (SGSkirmishHero*)this->getChildByName(hero_name);
   //hero->moveTo(mapPos2OpenGLPos(Vec2(x, y)));
-  hero->setMapPosition(Vec2(x, y));
+  hero->setMapPosition(SGSkirmishMapPos(x, y));
   std::string direction = event->Attribute("face");
   hero->faceTo(direction.c_str());
   return true;
@@ -363,7 +363,7 @@ bool SGSkirmishScene::onHandleEventObjAdd(tinyxml2::XMLElement* event)
   int y = atoi(event->Attribute("y"));
   //currently only fire is supported so hard code here
   SGSkirmishObj* obj = SGSkirmishObj::create(obj_name.c_str(), __terrain);
-  obj->setMapPosition(Vec2(x, y));
+  obj->setMapPosition(SGSkirmishMapPos(x, y));
   this->addChild(obj);
   return true;
 }
@@ -520,7 +520,7 @@ bool SGSkirmishScene::gameLogicEnemyTurn()
 
 void SGSkirmishScene::showHeroAvailabePath(SGSkirmishHero* hero)
 {
-  //__terrain
+  __terrain->calcHeroAvailabePath(hero);
 }
 
 SGSkirmishHero* SGSkirmishScene::getHero(SGSkirmishHeroList& list)
