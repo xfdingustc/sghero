@@ -68,7 +68,6 @@ void SGSkirmishTerrain::notify(const char* reason, void* ptr)
   if (notify_reason == "hero_add") {
     SGSkirmishHero* hero = reinterpret_cast<SGSkirmishHero*>(ptr);
     __heroes.pushBack(hero);
-    log("%s added", hero->getName().c_str());
   } else if (notify_reason == "object_add") {
     SGSkirmishObj* object = reinterpret_cast<SGSkirmishObj*>(ptr);
     __objects.pushBack(object);
@@ -115,6 +114,7 @@ SGSkirmishArea& SGSkirmishTerrain::calcHeroAvailabePath(SGSkirmishHero* hero)
       if (temp_move.__stamina >=0 ) { // valid move
         if (!isInStepList(temp_move, open_list) && !isInStepList(temp_move, close_list)) {
           open_list.push_back(temp_move);
+          log("insert into open list x = %d y = %d", temp_move.__pos.x, temp_move.__pos.y);
         } else if(isInStepList(temp_move, open_list)) { // in Open list
           StepList::iterator iter;
           for (iter = open_list.begin(); iter != open_list.end(); iter++) {
@@ -123,6 +123,7 @@ SGSkirmishArea& SGSkirmishTerrain::calcHeroAvailabePath(SGSkirmishHero* hero)
               if (one_step_in_openlist.__stamina < temp_move.__stamina) {
                 open_list.remove(one_step_in_openlist);
                 open_list.push_back(temp_move);
+                log("replace open list x = %d y = %d", temp_move.__pos.x, temp_move.__pos.y);
               }
             }
           }
@@ -134,18 +135,25 @@ SGSkirmishArea& SGSkirmishTerrain::calcHeroAvailabePath(SGSkirmishHero* hero)
               if (one_step_in_closelist.__stamina < temp_move.__stamina) {
                 close_list.remove(one_step_in_closelist);
                 open_list.push_back(temp_move);
+                log("reinsert open list x = %d y = %d", temp_move.__pos.x, temp_move.__pos.y);
               }
             } 
 
           }
         }
 
-      }
+      } 
     }
+    log("insert close list x = %d y = %d", open_step.__pos.x, open_step.__pos.y);
     close_list.push_back(open_step);
   }
 
+  StepList::iterator iter;
+  for (iter = close_list.begin(); iter != close_list.end(); iter++) {
+    Step one_step = *iter;
+    area->addOnePoint(one_step.__pos);
 
+  }
   return *area;
 
 }
@@ -164,10 +172,10 @@ SGSkirmishTerrain::Step SGSkirmishTerrain::moveHero(SGSkirmishHero* hero, SGMove
   Step current_step = step_from;
   SGSkirmishMapPos origin_pos = hero->getMapPosition();
 
-  SGSkirmishMapPos left_pos = origin_pos;
-  SGSkirmishMapPos right_pos = origin_pos;
-  SGSkirmishMapPos up_pos = origin_pos;
-  SGSkirmishMapPos down_pos = origin_pos;
+  SGSkirmishMapPos left_pos = current_step.__pos;
+  SGSkirmishMapPos right_pos = current_step.__pos;
+  SGSkirmishMapPos up_pos = current_step.__pos;
+  SGSkirmishMapPos down_pos = current_step.__pos;
 
   left_pos.x--;
   right_pos.x++;
@@ -254,12 +262,11 @@ SGSkirmishTerrain::SGSkirmishTerrainType SGSkirmishTerrain::getTerrainAt(SGSkirm
 
 SGSkirmishHero* SGSkirmishTerrain::getHero(SGSkirmishMapPos& pos)
 {
-  log("check pos %f %f", pos.x, pos.y);
+  
   Vector<SGSkirmishHero*>::iterator iter;
   for (iter = __heroes.begin(); iter != __heroes.end(); iter++) {
     SGSkirmishHero* hero = *iter;
-    log("hero %s x = %f y = %f", hero->getName().c_str(), hero->getMapPosition().x, hero->getMapPosition().y);
-    if (hero->getMapPosition() == pos) {
+      if (hero->getMapPosition() == pos) {
       return hero;
     }
   }

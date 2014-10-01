@@ -78,16 +78,16 @@ bool SGSkirmishHero::isRival(SGSkirmishHero* hero)
   case HERO_SIDE_OURS:
   case HERO_SIDE_FRIEND:
     if (hero->__side == HERO_SIDE_OURS || hero->__side == HERO_SIDE_FRIEND) {
-      return true;
-    } else {
       return false;
+    } else {
+      return true;
     }
     break;
   case HERO_SIDE_ENEMY:
     if (hero->__side == HERO_SIDE_ENEMY) {
-      return true;
-    } else {
       return false;
+    } else {
+      return true;
     }
     break;
   default:

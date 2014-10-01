@@ -24,6 +24,7 @@ bool SGSkirmishObj::init(const char* name)
   // init image
   Vector<SpriteFrame*>* animFrames = new Vector<SpriteFrame*>;
 
+
   for (int i = 0; i < 4; i++) {
     std::string res_name = SG_SKIRMISH_SCENE_OBJ_RES_PATH;
     res_name.append(name);

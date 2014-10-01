@@ -2,6 +2,7 @@
 #define SG_SKIRMISH_AREA_H
 
 #include "cocos2d.h"
+#include "SGSkirmishMapPos.h"
 USING_NS_CC;
 
 class SGSkirmishArea : public Layer
@@ -9,9 +10,10 @@ class SGSkirmishArea : public Layer
 public:
   CREATE_FUNC(SGSkirmishArea);
   bool init() { return true;};
-  
+  void addOnePoint(SGSkirmishMapPos& pos);
+  void show();
 private:
-  typedef std::vector<Vec2> SGSkirmishPointList;
+  typedef std::vector<SGSkirmishMapPos> SGSkirmishPointList;
   SGSkirmishPointList  __point_list;
 };
 #endif
