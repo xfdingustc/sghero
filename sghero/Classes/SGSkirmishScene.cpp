@@ -520,7 +520,9 @@ bool SGSkirmishScene::gameLogicEnemyTurn()
 
 void SGSkirmishScene::showHeroAvailabePath(SGSkirmishHero* hero)
 {
+  this->removeChildByName("walk_path");
   SGSkirmishArea& area = __terrain->calcHeroAvailabePath(hero);
+  area.setName("walk_path");
   this->addChild(&area);
   area.show();
 }

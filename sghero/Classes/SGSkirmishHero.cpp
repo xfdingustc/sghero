@@ -287,6 +287,11 @@ void SGSkirmishHero::initCatagory()
 
 }
 
+void SGSkirmishHero::initDataNum()
+{
+  __stamina = 6;
+}
+
 std::string& SGSkirmishHero::getHeroResFile(const char* res_dir)
 {
   static std::string res_file;

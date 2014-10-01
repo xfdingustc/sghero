@@ -46,7 +46,9 @@ public:
   void moveTo(SGSkirmishMapPos& target_pos);
   
   HERO_CATAGORY getCatagory() { return __catagory; }
+  int getStamina() { return __stamina; }
   void initCatagory();
+  void initDataNum();
 
     
   typedef enum {
@@ -86,7 +88,7 @@ private:
   HERO_CATAGORY __catagory;
 
   EventListenerTouchOneByOne* __event_listener;
-
+  int __stamina;
   
 };
 

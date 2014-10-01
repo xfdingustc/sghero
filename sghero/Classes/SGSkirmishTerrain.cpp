@@ -92,10 +92,8 @@ SGSkirmishArea& SGSkirmishTerrain::calcHeroAvailabePath(SGSkirmishHero* hero)
 {
   SGSkirmishArea* area = SGSkirmishArea::create();
 
-  int hero_stamina = 6;
+  int hero_stamina = hero->getStamina();
   // A* algorithm
-
-  
   StepList open_list;
   StepList close_list;
 
@@ -114,7 +112,6 @@ SGSkirmishArea& SGSkirmishTerrain::calcHeroAvailabePath(SGSkirmishHero* hero)
       if (temp_move.__stamina >=0 ) { // valid move
         if (!isInStepList(temp_move, open_list) && !isInStepList(temp_move, close_list)) {
           open_list.push_back(temp_move);
-          log("insert into open list x = %d y = %d", temp_move.__pos.x, temp_move.__pos.y);
         } else if(isInStepList(temp_move, open_list)) { // in Open list
           StepList::iterator iter;
           for (iter = open_list.begin(); iter != open_list.end(); iter++) {
@@ -135,7 +132,6 @@ SGSkirmishArea& SGSkirmishTerrain::calcHeroAvailabePath(SGSkirmishHero* hero)
               if (one_step_in_closelist.__stamina < temp_move.__stamina) {
                 close_list.remove(one_step_in_closelist);
                 open_list.push_back(temp_move);
-                log("reinsert open list x = %d y = %d", temp_move.__pos.x, temp_move.__pos.y);
               }
             } 
 
@@ -144,7 +140,6 @@ SGSkirmishArea& SGSkirmishTerrain::calcHeroAvailabePath(SGSkirmishHero* hero)
 
       } 
     }
-    log("insert close list x = %d y = %d", open_step.__pos.x, open_step.__pos.y);
     close_list.push_back(open_step);
   }
 
@@ -244,7 +239,9 @@ SGSkirmishTerrain::Step SGSkirmishTerrain::moveHero(SGSkirmishHero* hero, SGMove
   }
 
  
-  if (step_to.__pos.x < 0 || step_to.__pos.y < 0 || valid_move == false) {
+  if (step_to.__pos.x < 0 || step_to.__pos.y < 0 || 
+      step_to.__pos.x >= __width || step_to.__pos.y >= __height ||
+      valid_move == false) {
     step_to.__stamina = -100;
   } else {
     step_to.__stamina -= getSteminaConsume(hero->getCatagory(), getTerrainAt(step_to.__pos));
