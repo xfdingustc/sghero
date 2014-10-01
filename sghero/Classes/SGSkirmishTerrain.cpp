@@ -28,6 +28,17 @@ void SGSkirmishTerrain::loadTerrain(std::string& terrain_file)
   }
 }
 
+void SGSkirmishTerrain::notify(SGObservable* object, const char* reason, void* ptr)
+{
+  std::string notify_reason = reason;
+  if (notify_reason == "pos_updated") {
+    SGSkirmishObj* hero = static_cast<SGSkirmishObj*>(object);
+    Vec2* pos = reinterpret_cast<Vec2*>(ptr);
+    log("%s position is updated %f %f", hero->getName().c_str(), pos->x, pos->y);
+  }
+  
+}
+
 SGSkirmishArea& SGSkirmishTerrain::calcHeroAvailabePath(SGSkirmishHero* hero)
 {
   SGSkirmishArea* area = SGSkirmishArea::create();
@@ -66,3 +77,4 @@ SGSkirmishTerrain::Step SGSkirmishTerrain::moveHero(SGSkirmishHero* hero, SGMove
 
   return step_to;
 }
+

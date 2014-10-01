@@ -46,6 +46,7 @@ void SGSkirmishObj::setMapPosition(Vec2& map_pos)
 { 
   __map_position = map_pos; 
   Vec2 pos = mapPos2OpenGLPos(__map_position);
+  notifyObserver(this, "pos_updated", (void*)&__map_position);
   setPosition(pos);
 }
 

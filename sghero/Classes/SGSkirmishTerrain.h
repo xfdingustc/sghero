@@ -2,12 +2,13 @@
 #define SG_SKIRMISH_SCENE_TERRAIN_H
 
 #include "cocos2d.h"
+#include "SGObserver.h"
 #include "SGSkirmishHero.h"
 #include "SGSkirmishArea.h"
 USING_NS_CC;
 
 
-class SGSkirmishTerrain 
+class SGSkirmishTerrain : public SGObserver
 {
 public:
   static SGSkirmishTerrain* create(std::string& terrain_file, Size size);
@@ -17,6 +18,7 @@ public:
 
   SGSkirmishArea& calcHeroAvailabePath(SGSkirmishHero* hero);
 
+  void notify(SGObservable* object, const char* reason, void* ptr);
 private:
   typedef enum
   {

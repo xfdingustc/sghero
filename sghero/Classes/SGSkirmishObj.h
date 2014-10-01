@@ -2,10 +2,11 @@
 #define SG_SKIRMISH_OBJ_H
 
 #include "cocos2d.h"
+#include "SGObserver.h"
 USING_NS_CC;
 
 
-class SGSkirmishObj : public Sprite 
+class SGSkirmishObj : public Sprite , public SGObservable
 {
 public:
   static SGSkirmishObj* create(const char* name);
