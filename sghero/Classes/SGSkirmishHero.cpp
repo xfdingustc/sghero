@@ -42,6 +42,7 @@ bool SGSkirmishHero::init(const char* hero_name, HERO_SIDE side)
   
   __status = HERO_STATUS_NORMAL;
   //initDataNum();
+  return true;
   
 }
 

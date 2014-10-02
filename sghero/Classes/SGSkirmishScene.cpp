@@ -48,6 +48,8 @@ bool SGSkirmishScene::init()
   __round = 0;
   __selected_hero = NULL;
   __event_handle_state = EVENT_HANDLE_STATE_NO_HERO_SELECTED;
+
+  scheduleOnce(schedule_selector(SGSkirmishScene::startSceneScript), 1.0f);
   return true;
 }
 
@@ -329,7 +331,6 @@ bool SGSkirmishScene::parseSkirmishSceneXmlFile(const char* file_name)
     parseSkrimishTests(tests);
   }
 
-  scheduleUpdate();
   return true;
 }
 
@@ -410,8 +411,11 @@ bool SGSkirmishScene::onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSkirmishH
     const char* hide = one_friend_hero->Attribute("hide");
 
     SGSkirmishHero* hero = SGSkirmishHero::create(hero_name.c_str(), side, __terrain);
+    if (!hero) {
+      log("Failed to allocate hero");
+      return true;
+    }
     hero->setMapPosition(SGSkirmishMapPos(x, y));
-    Vec2 hero_pos = hero->getPosition();
     if (!strcmp(hide, "true")) {
       hero->setVisible(false);
     }
@@ -582,14 +586,14 @@ bool SGSkirmishScene::onHandleEventHeroStatusChange(tinyxml2::XMLElement* event)
   if (event->Attribute("side")) {
     std::string side = event->Attribute("side");
     std::string status = event->Attribute("status");
-    SGSkirmishHeroList& hero_list = __our_heroes;
+    SGSkirmishHeroList* hero_list = &__our_heroes;
     if (side == "enemy") {
-      hero_list = __enemy_heroes;
+      hero_list = &__enemy_heroes;
     } else if (side == "friend"){
-      hero_list = __friend_heroes;
+      hero_list = &__friend_heroes;
     } 
     SGSkirmishHeroList::iterator iter;
-    for (iter = hero_list.begin(); iter != hero_list.end(); iter++) {
+    for (iter = hero_list->begin(); iter != hero_list->end(); iter++) {
       SGSkirmishHero* hero = *iter;
       hero->setStatus(status);
     }
@@ -657,12 +661,13 @@ void SGSkirmishScene::gameLogic()
   checkTests();
 
   switch(__turn) {
-  case SKIRMISH_TURN_OUR:
+  case SKIRMISH_TURN_OUR: {
     if (!getHero(__our_heroes)) {
       __turn = SKIRMISH_TURN_FRIEND;
       switchToNextRound();
-    }
+    } 
     break;
+                          }
   case SKIRMISH_TURN_FRIEND:
     gameLogicFriendTurn();
     break;
