@@ -4,6 +4,9 @@
 		<Map map="Skirmish/YingChuanZhiZhan.jpg" width="20" height="20" />
 		<Terrain terrain="Skirmish/YingChuanZhiZhan.ter" />
 		<Setting max_round="20" level="-2" OurChiefHero="曹操" weather="shine"/>
+		<OurSetting>
+			 <HeroAdd hero="曹操" x="7" y="0" face="east" hide="true" /> 
+		</OurSetting>
 		<FriendSetting>
 			<HeroAdd hero="刘备" x="14" y="1" face="west" level="+6" hide="true" AI="attack" />
 			<HeroAdd hero="关羽" x="13" y="2" face="west" level="+6" hide="true" AI="attack" />
@@ -15,7 +18,7 @@
 			<HeroAdd hero="骑兵01" x="6" y="0" face="east" level="0" hide="true" AI="attack" />
 			<HeroAdd hero="骑兵02" x="5" y="0" face="east" level="0" hide="true" AI="attack" />
 			<HeroAdd hero="策士01" x="12" y="16" face="north" level="0" hide="false" AI="attack" />
-			<!---<HeroAdd hero="许子将" x="12" y="17" face="north" level="0" hide="true" AI="negative" /> --->
+			<HeroAdd hero="许子将" x="12" y="17" face="north" level="0" hide="true" AI="negative" /> 
 		</FriendSetting>
 		<EnemySetting>
 			<HeroAdd hero="张宝" x="9" y="11" face="south" level="4" hide="false" AI="stay" />
@@ -35,21 +38,176 @@
 		</EnemySetting>
 		
 		<Event>
-			<!---<SoundTrack track="SoundTrack/Track08.mp3" />--->
+			<!---<SoundTrack track="SoundTrack/Track08.mp3" />
 			<Dialog hero="黄巾军01" content="去死吧！" />
 			<HeroAction hero="黄巾军01" action="attack" />
 			<HeroAction hero="弓兵02" action="attacked" />
-			<!---<SoundEffect effect="SoundEffects/Se36.wav" />  --->
+			<SoundEffect effect="SoundEffects/Se36.wav" />  
 			<Delay time="10" />
 			<HeroAction hero="弓兵02" action="fragile" />
-			<Dialog hero="黄巾军01" content="可、可恨……。" />
+			<Dialog hero="弓兵02" content="可、可恨……。" />
 			<HeroRemove hero="弓兵02" />
-			
+			<Dialog hero="黄巾军04" content="啊！" />
+			<HeroAction hero="黄巾军04" action="attack" />
+			<HeroAction hero="策士01" action="attacked" />
+			<SoundEffect effect="SoundEffects/Se35.wav" />  
+			<Delay time="10" />
+			<HeroAction hero="策士01" action="fragile" />
+			<HeroAction hero="弓兵01" action="wheeze" />
+			<HeroRemove hero="策士01" />
+			<HeroAction hero="弓兵01" action="wheeze" />
+			<Dialog hero="弓兵01" content="呼、呼、哈…支持不住了！\n再这样下去，我们会全军覆没的。" />
+			<Dialog hero="步兵01" content="可恶，黄巾军的人越来越多。" />
+			<HeroTurn hero="步兵01" target_hero="弓兵01"/>
+			<Dialog hero="步兵01" content="再过一会儿，骑兵队会来增援的，\n无论如何都要顶住！" />
+			<HeroTurn hero="步兵02" target_hero="步兵01"/>
+			<Dialog hero="步兵02" content="可是依我看，还是保住自家性命要紧，\n现在的官军谁不这么想。" />
+			<HeroTurn hero="步兵02" target_hero="张宝"/>
+			<Dialog hero="步兵02" content="何况咱们这里是战况最激烈的颍川，\n我看腐败的朝廷不会派兵赶来送死的。" />
+			<HeroTurn hero="步兵01" target_hero="步兵02"/>
+			<Dialog hero="步兵01" content="话虽如此，不过援军的骑兵队长是曹操，\n听说他是个厉害角色。" />
+			<HeroTurn hero="步兵01" target_hero="张宝"/>
+			<Dialog hero="步兵01" content="就信他这次吧。\n如今也只有等他来了。" />
+			<Dialog hero="弓兵01" content="快、快点来吧！" />
+			<HeroTurn hero="步兵01" target_hero="步兵02"/>
+			<Dialog hero="张宝" content="对方可真顽强。" />
+			<Dialog hero="张梁" content="哼，迟早要打败他们的！\n可恶的官军，竟敢攻打这里！\n一定要让他们后悔。" />--->
 		</Event>
 		<Test>
-			<RoundTest round="1">
-				
-			</RoundTest>
+			<condition round="1">
+				<!---<HeroTurn hero="步兵01" face="north"/>
+				<HeroAction hero="步兵01" action="attack" />  
+				<Dialog hero="步兵01" content="再坚持一会儿！\n让他们知道官军不是好惹的！" />--->
+			</condition>
+			<condition round="1" turn="enemy">
+				<HidenHeroAppear hero="刘备" />
+				<HidenHeroAppear hero="关羽" />
+				<HidenHeroAppear hero="张飞" />
+				<Dialog hero="刘备" content="看起来好像赶上了。\n不过在这种寡不敌众的情况下，\n此地官军好像也陷入苦战。" />
+				<HeroTurn hero="关羽" target_hero="刘备"/>
+				<HeroTurn hero="张飞" target_hero="刘备"/>
+				<Dialog hero="关羽" content="咱们应该趁势里外夹攻，\n不过我军兵力还是少了点……。" />
+				<Dialog hero="张飞" content="二哥你就会穷担心…\n我一个人就能应付他们了。" />
+				<Dialog hero="刘备" content="我们可不能丢下官军不管，\n从背后抄过去直捣鹿砦吧。\n冲啊！" />
+				<HeroMove hero="刘备" x="11" y="5" face="south" />
+				<HeroMove hero="关羽" x="10" y="5" face="south" />
+				<HeroMove hero="张飞" x="12" y="5" face="south" />
+			</condition>
+			<condition round="2">
+				<!-- 张飞放火 -->
+				<Dialog hero="刘备" content="二弟、三弟，等一等，\n这样下去前方的官军会被歼灭，\n在这里放火吧。" />
+				<Dialog hero="关羽" content="对！把他们的注意力引到这里…\n说不定敌人也会因此动摇的。" />
+				<Dialog hero="张飞" content="那我去放火。" />
+				<Dialog hero="刘备" content="我可不想双方有太多的人无辜丧命，\n你可要把握好分寸。" />
+				<HeroAction hero="张飞" action="attack" /> 
+				<Delay time="1" />
+				<SkirmishObjAdd obj="fire" x="13" y="5" />
+				<Delay time="10" />
+				<!-- 关羽放火 -->
+				<HeroMove hero="关羽" x="8" y="5" face="south" />
+				<Dialog hero="关羽" content="这里也点上！" />
+				<HeroAction hero="关羽" action="attack" /> 
+				<Delay time="1" />
+				<SkirmishObjAdd obj="fire" x="6" y="4" />
+				<SkirmishObjAdd obj="fire" x="7" y="5" />
+				<Delay time="10" />
+				<!-- 朱雀召回 -->
+				<Delay time="1" />
+				<HeroTurn hero="张飞" face="east"/>
+				<Delay time="1" />
+				<HeroTurn hero="张飞" face="west"/>
+				<Delay time="1" />
+				<HeroTurn hero="张飞" face="south"/>
+				<Delay time="1" />
+				<Dialog hero="张飞" content="不行、不行啊，火势太小了！\n根本烧不到鹿砦！" />
+				<Dialog hero="许子将" content="呵、呵、呵！\n那么这样呢？" />
+				<Delay time="1" />
+				<HeroTurn hero="关羽" face="east"/>
+				<Delay time="1" />
+				<Dialog hero="关羽" content="咦？" />
+				<Delay time="1" />
+				<HeroTurn hero="张飞" face="west"/>
+				<Delay time="1" />
+				<Dialog hero="张飞" content="谁！？" />
+				<MagicCall magic="zhuque" x="10" y="8"/>
+				<!-- 起火 -->
+				<SkirmishObjAdd obj="fire" x="14" y="5" />
+				<SkirmishObjAdd obj="fire" x="14" y="5" />
+				<SkirmishObjAdd obj="fire" x="15" y="5" />
+				<SkirmishObjAdd obj="fire" x="15" y="6" />
+				<SkirmishObjAdd obj="fire" x="15" y="7" />
+				<SkirmishObjAdd obj="fire" x="13" y="6" />
+				<SkirmishObjAdd obj="fire" x="14" y="6" />
+				<SkirmishObjAdd obj="fire" x="14" y="7" />
+				<SkirmishObjAdd obj="fire" x="14" y="8" />
+				<SkirmishObjAdd obj="fire" x="12" y="6" />
+				<SkirmishObjAdd obj="fire" x="12" y="7" />
+				<SkirmishObjAdd obj="fire" x="13" y="7" />
+				<SkirmishObjAdd obj="fire" x="13" y="8" />
+				<SkirmishObjAdd obj="fire" x="13" y="9" />
+				<SkirmishObjAdd obj="fire" x="6" y="5" />
+				<SkirmishObjAdd obj="fire" x="6" y="6" />
+				<SkirmishObjAdd obj="fire" x="5" y="6" />
+				<SkirmishObjAdd obj="fire" x="5" y="7" />
+				<SkirmishObjAdd obj="fire" x="5" y="8" />
+				<SkirmishObjAdd obj="fire" x="7" y="6" />
+				<SkirmishObjAdd obj="fire" x="7" y="7" />
+				<SkirmishObjAdd obj="fire" x="6" y="7" />
+				<SkirmishObjAdd obj="fire" x="6" y="8" />
+				<SkirmishObjAdd obj="fire" x="6" y="9" />
+				<!-- 黄巾贼陷入混乱 -->
+				<HeroTurn hero="黄巾军11" target_hero="张飞"/>
+				<HeroAction hero="黄巾军11" action="slowlyTurnAround" />
+				<Dialog hero="黄巾军11" content="火，火！" />
+				<HeroTurn hero="黄巾军10" target_hero="关羽"/>
+				<Dialog hero="黄巾军10" content="敌人从后面包抄过来了！" />
+				<HeroTurn hero="张梁" target_hero="关羽"/>
+				<Dialog hero="张梁" content="什么？你说有人偷袭……！" />
+				<HeroTurn hero="张宝" target_hero="关羽"/>
+				<Dialog hero="张宝" content="是官军的援兵吗？" />
+				<HeroTurn hero="张宝" face="south"/>
+				<Dialog hero="张宝" content="派人对付后面的敌人！" />
+				<HeroAction hero="张宝" action="fragile" />
+				<Dialog hero="张宝" content="糟了…全都不听使唤……。" />
+				<HeroStatusChange side="enemy" status="chaos" />
+				<!-- 刘备对话 -->
+				<HeroTurn hero="关羽" face="south"/>
+				<Dialog hero="关羽" content="啊！" />
+				<HeroTurn hero="张飞" face="south"/>
+				<Dialog hero="关羽" content="这是怎么回事！？" />
+				<Dialog hero="刘备" content="不知道，现在管不了那么多了，\n眼前才是最重要的。" />
+				<HeroAction hero="刘备" action="attack" />
+				<Dialog hero="刘备" content="如今敌人一片混乱，\n正是取胜的好机会！\n目标是敌军主将张宝、张梁。\n冲吧！" />
+				<!-- 曹操军出场 -->
+				<SoundTrack track="SoundTrack/Track08.mp3" />
+				<HidenHeroAppear hero="骑兵01" />
+				<HidenHeroAppear hero="骑兵02" />
+				<HidenHeroAppear hero="曹操" />
+				<HeroMove hero="曹操" x="8" y="2" face="south" />
+				<HeroMove hero="骑兵01" x="7" y="2" face="south" />
+				<HeroMove hero="骑兵02" x="8" y="1" face="south" />
+				<Dialog hero="曹操" content="听说这边的官军正在苦战，\n这火势是……！？" />
+				<HeroTurn hero="曹操" target_hero="骑兵01"/>
+				<Dialog hero="骑兵01" content="队长！好像是那边的人放的火，\n不过不像是官军……。" />
+				<HeroTurn hero="曹操" target_hero="刘备"/>
+				<Dialog hero="曹操" content="嗯，好像是义军。" />
+				<HeroTurn hero="刘备" target_hero="骑兵02"/>
+				<Dialog hero="曹操" content="你们先去鹿砦！我到义军那边看看。" />
+				<Dialog hero="骑兵01" content="是！" />
+				<Dialog hero="骑兵02" content="是！" />
+				<HeroMove hero="骑兵01" x="9" y="7" face="south" />
+				<HeroMove hero="骑兵02" x="10" y="7" face="south" />
+				<HeroMove hero="曹操" x="11" y="4" face="south" />
+				<Dialog hero="曹操" content="我是官军骑兵队长，姓曹名操字孟德，\n奉朝廷之命讨伐黄巾军，\n请问阁下高姓大名。" />
+				<HeroTurn hero="刘备" target_hero="刘备"/>
+				<Dialog hero="刘备" content="我是刘备刘玄德，虽然只是农民出身，\n但看到当今天下大乱，为了拯救百姓，\n才率领义军起兵讨伐的。" />
+				<Dialog hero="刘备" content="希望让我与两位兄弟增援官军，\n一切还请曹大人差遣。" />
+				<Dialog hero="曹操" content="多亏了刘备先生，黄巾军已经陷入混乱，\n我也没必要下达什么指示了。" />
+				<Dialog hero="曹操" content="只要击毙鹿砦中的两人便可，\n你们还是自行奋战吧，那么后会有期。" />
+				<HeroMove hero="曹操" x="10" y="6" face="south" />
+				<HeroMove hero="刘备" x="9" y="6" face="south" />
+				<HeroTurn hero="关羽" target_hero="张宝"/>
+			</condition>
 		</Test>
 	</Section>
 

@@ -6,6 +6,7 @@
 
 #define HERO_RESOURCE_JSON_FILE "HeroRes.json"
 #define SKIRMISH_SCENE_SWITCH_TEXT_JSON_FILE "SwitchSceneText.json"
+#define MENU_ITEM_TEXT_JSON_FILE "Menu.json"
 
 #define SG_DRAMA_SCENE_HERO_RES_PATH "DramaSceneObjects/"
 #define SG_HERO_FACE_RES_PATH "HeroFaces/"

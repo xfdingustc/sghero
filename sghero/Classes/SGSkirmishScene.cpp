@@ -4,6 +4,8 @@
 #include "SGSKirmishSwitchScene.h"
 #include "SGSkirmishObj.h"
 #include "SGSkirmishSceneMagicCall.h"
+#include "json/document.h"
+
 using namespace CocosDenshion;
 
 const char* SGSkirmishScene::WALK_PATH = "walk_path"; 
@@ -152,36 +154,64 @@ bool SGSkirmishScene::eventHandleStateMachine(Touch *touch)
 
 void SGSkirmishScene::createActionSelectMenu()
 {
-  LabelTTF *attackLabel = LabelTTF::create("Attack","Arial", 20);
-  MenuItemLabel *attackMenuItem = MenuItemLabel::create(attackLabel, this,
-    menu_selector(SGSkirmishScene::onAttack));
-  attackMenuItem->setPosition(ccp(0, 80));
+  rapidjson::Document menu_json;
+  std::string res_json_file = FileUtils::getInstance()->fullPathForFilename(MENU_ITEM_TEXT_JSON_FILE);
+  std::string json_data = FileUtils::getInstance()->getStringFromFile(res_json_file.c_str());
 
-  LabelTTF *magicLabel = LabelTTF::create("Magic","Arial", 20);
-  MenuItemLabel *magicMenuItem = MenuItemLabel::create(magicLabel, this,
-    menu_selector(SGSkirmishScene::onMagic));
-  magicMenuItem->setPosition(ccp(0, 60));
+  menu_json.Parse<rapidjson::kParseDefaultFlags>(json_data.c_str());
+  if (menu_json.HasParseError()) {
+    log("Parsing hero resource json file error!! %s", menu_json.GetParseError());
+    return;
+  } else if (menu_json.IsObject()) {
+    const rapidjson::Value &res_list = menu_json["HeroActionMenu"];
+    if (res_list.IsArray()) {
+      int i = 0;
+      const rapidjson::Value &val = res_list[i];
+      LabelTTF *attackLabel = LabelTTF::create(val["text"].GetString(),TEXT_FONT_NAME, TEXT_FONT_SIZE);
+      attackLabel->setColor(Color3B::BLACK);
+      MenuItemLabel *attackMenuItem = MenuItemLabel::create(attackLabel, this,
+        menu_selector(SGSkirmishScene::onAttack));
 
-  LabelTTF *itemLabel = LabelTTF::create("Item","Arial", 20);
-  MenuItemLabel *itemMenuItem = MenuItemLabel::create(itemLabel, this,
-    menu_selector(SGSkirmishScene::onItem));
-  itemMenuItem->setPosition(ccp(0, 40));
+      attackMenuItem->setPosition(ccp(0, TEXT_FONT_SIZE*4));
 
-  LabelTTF *idleLabel = LabelTTF::create("Idle","Arial", 20);
-  MenuItemLabel *idleMenuItem = MenuItemLabel::create(idleLabel, this,
-    menu_selector(SGSkirmishScene::onIdle));
-  idleMenuItem->setPosition(ccp(0, 20));
+      const rapidjson::Value &val1 = res_list[1];
+      LabelTTF *magicLabel = LabelTTF::create(val1["text"].GetString(),TEXT_FONT_NAME, TEXT_FONT_SIZE);
+      magicLabel->setColor(Color3B::BLACK);
+      MenuItemLabel *magicMenuItem = MenuItemLabel::create(magicLabel, this,
+        menu_selector(SGSkirmishScene::onMagic));
+      magicMenuItem->setPosition(ccp(0, TEXT_FONT_SIZE*3));
 
-  LabelTTF *cancelLabel = LabelTTF::create("Cancel","Arial", 20);
-  MenuItemLabel *cancelMenuItem = MenuItemLabel::create(cancelLabel, this,
-    menu_selector(SGSkirmishScene::onCancel));
-  cancelMenuItem->setPosition(ccp(0, 0));
+      const rapidjson::Value &val2  = res_list[2];
+      LabelTTF *itemLabel = LabelTTF::create(val2["text"].GetString(),TEXT_FONT_NAME, TEXT_FONT_SIZE);
+      itemLabel->setColor(Color3B::BLACK);
+      MenuItemLabel *itemMenuItem = MenuItemLabel::create(itemLabel, this,
+        menu_selector(SGSkirmishScene::onItem));
+      itemMenuItem->setPosition(ccp(0, TEXT_FONT_SIZE*2));
 
-  Menu* hero_action_menu_ = Menu::create(attackMenuItem, magicMenuItem,
-    itemMenuItem, idleMenuItem, cancelMenuItem,NULL);
-  hero_action_menu_->setPosition(__selected_hero->getPosition());
-  hero_action_menu_->setName(HERO_ACTION_MENU);
-  this->addChild(hero_action_menu_);
+      const rapidjson::Value &val3  = res_list[3];
+      LabelTTF *idleLabel = LabelTTF::create(val3["text"].GetString(),TEXT_FONT_NAME, TEXT_FONT_SIZE);
+      idleLabel->setColor(Color3B::BLACK);
+      MenuItemLabel *idleMenuItem = MenuItemLabel::create(idleLabel, this,
+        menu_selector(SGSkirmishScene::onIdle));
+      idleMenuItem->setPosition(ccp(0, TEXT_FONT_SIZE*1));
+
+      const rapidjson::Value &val4  = res_list[4];
+      LabelTTF *cancelLabel = LabelTTF::create(val4["text"].GetString(),TEXT_FONT_NAME, TEXT_FONT_SIZE);
+      cancelLabel->setColor(Color3B::BLACK);
+      MenuItemLabel *cancelMenuItem = MenuItemLabel::create(cancelLabel, this,
+        menu_selector(SGSkirmishScene::onCancel));
+      cancelMenuItem->setPosition(ccp(0, 0));
+
+      Menu* hero_action_menu = Menu::create(attackMenuItem, magicMenuItem,
+        itemMenuItem, idleMenuItem, cancelMenuItem,NULL);
+      hero_action_menu->setAnchorPoint(Vec2(0.0f, 0.5f));
+      Vec2 pos = __selected_hero->getPosition();
+      pos.x += __selected_hero->getContentSize().width;
+      hero_action_menu->setPosition(pos);
+      hero_action_menu->setName(HERO_ACTION_MENU);
+      this->addChild(hero_action_menu);
+    }
+  }
 }
 
 void SGSkirmishScene::onAttack(Ref* pSender)

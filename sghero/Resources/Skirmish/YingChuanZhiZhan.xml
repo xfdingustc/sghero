@@ -179,7 +179,7 @@
 				<HeroAction hero="刘备" action="attack" />
 				<Dialog hero="刘备" content="如今敌人一片混乱，\n正是取胜的好机会！\n目标是敌军主将张宝、张梁。\n冲吧！" />
 				<!-- 曹操军出场 -->
-				<SoundTrack track="SoundTrack/Track08.mp3" />
+				<!-- <SoundTrack track="SoundTrack/Track08.mp3" /> -->
 				<HidenHeroAppear hero="骑兵01" />
 				<HidenHeroAppear hero="骑兵02" />
 				<HidenHeroAppear hero="曹操" />
