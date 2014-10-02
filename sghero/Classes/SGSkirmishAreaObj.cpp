@@ -2,7 +2,7 @@
 #include "SGSkirmishAreaObj.h"
 
 
-SGSkirmishAreaObj* SGSkirmishAreaObj::create(const char* name)
+SGSkirmishAreaObj* SGSkirmishAreaObj::create(std::string& name)
 {
   SGSkirmishAreaObj* obj = new SGSkirmishAreaObj(NULL);
   if (obj && obj->init(name)) {
@@ -15,7 +15,7 @@ SGSkirmishAreaObj* SGSkirmishAreaObj::create(const char* name)
 }
 
 
-bool SGSkirmishAreaObj::init(const char* name)
+bool SGSkirmishAreaObj::init(std::string& name)
 {
   std::string res_name = SG_SKIRMISH_SCENE_OBJ_RES_PATH;
   res_name.append(name);

@@ -46,6 +46,7 @@ public:
   void moveTo(SGSkirmishMapPos& target_pos);
   
   HERO_CATAGORY getCatagory() { return __catagory; }
+  HERO_SIDE getSide() { return __side; }
   int getStamina() { return __stamina; }
   void initCatagory();
   void initDataNum();

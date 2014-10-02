@@ -1,3 +1,4 @@
+#include "SGGlobalSettings.h"
 #include "SGSkirmishTerrain.h"
 
 
@@ -103,10 +104,33 @@ SGSkirmishHero* SGSkirmishTerrain::findHero(Vec2& pos)
   return NULL;
 
 }
+SGSkirmishHero* SGSkirmishTerrain::findHero(SGSkirmishMapPos& map_pos)
+{
+  Vec2 pos = SGSkirmishMapPos::mapPos2OpenGLPos(map_pos);
+  return findHero(pos);
+}
+
+SGSkirmishHero* SGSkirmishTerrain::findEnemyHero(SGSkirmishArea* area, SGSkirmishHero* hero)
+{
+   SGSkirmishArea::SGSkirmishPointList* point_list = &area->__point_list;
+   SGSkirmishArea::SGSkirmishPointList::iterator iter;
+
+   for (iter = point_list->begin(); iter != point_list->end(); iter++) {
+     SGSkirmishMapPos pos = *iter;
+     SGSkirmishHero* one_hero = findHero(pos);
+     if (one_hero && hero->isRival(one_hero)) {
+        return one_hero;
+     }
+   }
+   return NULL;
+
+}
+
 
 SGSkirmishArea& SGSkirmishTerrain::calcHeroAvailabePath(SGSkirmishHero* hero)
 {
-  SGSkirmishArea* area = SGSkirmishArea::create();
+  std::string res_name = SG_SKIRMISH_AREA_PATH;
+  SGSkirmishArea* area = SGSkirmishArea::create(res_name);
 
   int hero_stamina = hero->getStamina();
   // A* algorithm

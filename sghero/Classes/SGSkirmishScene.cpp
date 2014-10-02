@@ -1,8 +1,9 @@
-#include "SGSkirmishScene.h"
 #include "SimpleAudioEngine.h"
 #include "SGGlobalSettings.h"
-#include "SGSKirmishSwitchScene.h"
+#include "SGSkirmishInfo.h"
 #include "SGSkirmishObj.h"
+#include "SGSkirmishScene.h"
+#include "SGSKirmishSwitchScene.h"
 #include "SGSkirmishSceneMagicCall.h"
 #include "json/document.h"
 
@@ -124,13 +125,13 @@ bool SGSkirmishScene::eventHandleStateMachine(Touch *touch)
     break;
   case EVENT_HANDLE_STATE_HERO_SELECTED:
     hero = __terrain->findHero(pos);
-    if (hero) {
+    if (hero && hero != __selected_hero) {
       showHeroAvailabePath(hero);
       __selected_hero = hero;
       __event_handle_state = EVENT_HANDLE_STATE_HERO_SELECTED;
       return true;
     }
-    if (!hero && __selected_hero) {
+    if ((hero && hero == __selected_hero) || (!hero && __selected_hero)) {
       SGSkirmishArea* area = (SGSkirmishArea*)this->getChildByName(WALK_PATH);
       if (area && area->containPoint(pos)) {
         __selected_hero->setMapPosition(pos);
@@ -143,6 +144,12 @@ bool SGSkirmishScene::eventHandleStateMachine(Touch *touch)
     break;
   case EVENT_HANDLE_STATE_HERO_MOVED:
 
+    break;
+  case EVENT_HANDLE_STATE_ATTACK_SELECTED:
+    hero = __terrain->findHero(pos);
+    if (hero && !__selected_hero->isRival(hero)) {
+      log("f");
+    }
     break;
   default:
     break;
@@ -214,10 +221,35 @@ void SGSkirmishScene::createActionSelectMenu()
   }
 }
 
+bool SGSkirmishScene::showAttackArea()
+{
+  std::string res_name = SG_SKIRMISH_AREA_ATTACK;
+  SGSkirmishArea* attack_area = SGSkirmishArea::create(res_name);
+  attack_area->addOnePoint(__selected_hero->getMapPosition().getUp());
+  attack_area->addOnePoint(__selected_hero->getMapPosition().getDown());
+  attack_area->addOnePoint(__selected_hero->getMapPosition().getLeft());
+  attack_area->addOnePoint(__selected_hero->getMapPosition().getRight());
+  attack_area->show();
+
+  if (!__terrain->findEnemyHero(attack_area, __selected_hero)) {
+    std::string info_msg =  "no_enemy_in_attack_area";
+    Scene* info = SGSkirmishInfo::createScene(info_msg);
+    Director::getInstance()->pushScene(info);
+    return false;
+  } else {
+    this->addChild(attack_area);
+    return true;
+  }
+
+}
+
+
 void SGSkirmishScene::onAttack(Ref* pSender)
 {
-  this->removeChildByName(HERO_ACTION_MENU);
-  __event_handle_state = EVENT_HANDLE_STATE_ATTACK_SELECTED;
+  if (showAttackArea()) {
+    this->removeChildByName(HERO_ACTION_MENU);
+    __event_handle_state = EVENT_HANDLE_STATE_ATTACK_SELECTED;
+  }
 }
 void SGSkirmishScene::onMagic(Ref* pSender) 
 {

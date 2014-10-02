@@ -6,9 +6,9 @@
 class SGSkirmishAreaObj :public SGSkirmishObj 
 {
 public:
-  static SGSkirmishAreaObj* create(const char* name);
+  static SGSkirmishAreaObj* create(std::string& name);
   SGSkirmishAreaObj(const char* name) : SGSkirmishObj(NULL) {}
-  virtual bool init(const char* name);
+  virtual bool init(std::string& name);
 
 };
 

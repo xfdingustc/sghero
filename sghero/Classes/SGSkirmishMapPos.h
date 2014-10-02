@@ -41,6 +41,32 @@ public:
     return map_pos;
   }
 
+  inline SGSkirmishMapPos getUp() {
+    SGSkirmishMapPos up;
+    up.x = x;
+    up.y = y-1;
+    return up;
+  }
+
+  inline SGSkirmishMapPos getDown() {
+    SGSkirmishMapPos down;
+    down.x = x;
+    down.y = y+1;
+    return down;
+  }
+  inline SGSkirmishMapPos getLeft() {
+    SGSkirmishMapPos left;
+    left.x = x-1;
+    left.y = y;
+    return left;
+  }
+  inline SGSkirmishMapPos getRight() {
+    SGSkirmishMapPos right;
+    right.x = x+1;
+    right.y = y;
+    return right;
+  }
+
 };
 
 #endif

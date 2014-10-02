@@ -18,7 +18,8 @@ public:
 
   SGSkirmishArea& calcHeroAvailabePath(SGSkirmishHero* hero);
   SGSkirmishHero* findHero(Vec2& pos);
-
+  SGSkirmishHero* findHero(SGSkirmishMapPos& pos);
+  SGSkirmishHero* findEnemyHero(SGSkirmishArea* area, SGSkirmishHero* hero);
   void notify(const char* reason, void* ptr);
 private:
   typedef enum

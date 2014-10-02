@@ -7,6 +7,7 @@
 #define HERO_RESOURCE_JSON_FILE "HeroRes.json"
 #define SKIRMISH_SCENE_SWITCH_TEXT_JSON_FILE "SwitchSceneText.json"
 #define MENU_ITEM_TEXT_JSON_FILE "Menu.json"
+#define INFO_TEXT_JSON_FILE "Info.json"
 
 #define SG_DRAMA_SCENE_HERO_RES_PATH "DramaSceneObjects/"
 #define SG_HERO_FACE_RES_PATH "HeroFaces/"
@@ -36,6 +37,9 @@
 
 #define DIAGLOG_WINDOW_ARROW_UP "Mark/speakDialogArrowUp.png"
 #define SG_SKIRMISH_SCENE_HERO_STATUS_CHAOS "Mark/chaos.png"
+
+#define SG_SKIRMISH_AREA_PATH "path"
+#define SG_SKIRMISH_AREA_ATTACK "attack"
 
 #define TEXT_FONT_NAME "Microsoft YaHei"
 #define TEXT_FONT_SIZE 20

@@ -7,14 +7,16 @@ USING_NS_CC;
 
 class SGSkirmishArea : public Layer
 {
+  friend class SGSkirmishTerrain;
 public:
-  CREATE_FUNC(SGSkirmishArea);
-  bool init() { return true;};
+  static SGSkirmishArea* create(std::string& name);
+  bool init();
   bool containPoint(Vec2& pos);
   void addOnePoint(SGSkirmishMapPos& pos);
   void show();
 private:
   typedef std::vector<SGSkirmishMapPos> SGSkirmishPointList;
   SGSkirmishPointList  __point_list;
+  std::string __name;
 };
 #endif
