@@ -40,6 +40,7 @@ bool SGSkirmishHero::init(const char* hero_name, HERO_SIDE side)
   // init catagory
   initCatagory();
   
+  __status = HERO_STATUS_NORMAL;
   //initDataNum();
   
 }
@@ -319,7 +320,7 @@ std::string& SGSkirmishHero::getHeroResFile(const char* res_dir)
 
 void SGSkirmishHero::faceTo(const char* direction)
 {
-  this->stopAllActions();
+  stopAllActions();
   __face_direction = getDirection(direction);
   std::string action_name;
   switch (__face_direction)
@@ -417,12 +418,38 @@ SGSkirmishHero::DIRECTION SGSkirmishHero::getDirection(const char* direction)
 
 void SGSkirmishHero::setStatus(std::string& status)
 {
+  HERO_STATUS hero_status;
   if (status == "chaos") {
-    std::string chaos_res_file_full_path = FileUtils::getInstance()->fullPathForFilename(SG_SKIRMISH_SCENE_HERO_STATUS_CHAOS);
-    Sprite* chaos_sprite = Sprite::create(chaos_res_file_full_path);
-    chaos_sprite->setAnchorPoint(Vec2::ANCHOR_TOP_RIGHT);
-    chaos_sprite->setPosition(Vec2(SG_SKIRMISH_SCENE_HERO_WALK_RES_WIDTH, SG_SKIRMISH_SCENE_HERO_WALK_RES_HEIGHT));
-    this->addChild(chaos_sprite);
+    hero_status = HERO_STATUS_CHAOS;
+  }
+  setStatus(hero_status);
+}
+
+
+void SGSkirmishHero::setStatus(HERO_STATUS status)
+{
+  __status = status;
+  switch (status)
+  {
+  case HERO_STATUS_CHAOS: 
+    {
+      std::string chaos_res_file_full_path = FileUtils::getInstance()->fullPathForFilename(SG_SKIRMISH_SCENE_HERO_STATUS_CHAOS);
+      Sprite* chaos_sprite = Sprite::create(chaos_res_file_full_path);
+      chaos_sprite->setAnchorPoint(Vec2::ANCHOR_TOP_RIGHT);
+      chaos_sprite->setPosition(Vec2(SG_SKIRMISH_SCENE_HERO_WALK_RES_WIDTH, SG_SKIRMISH_SCENE_HERO_WALK_RES_HEIGHT));
+      this->addChild(chaos_sprite);
+      break;
+    }
+  default:
+    break;
+  }
+}
+
+void SGSkirmishHero::setActive(bool active)
+{
+  __active = active;
+  if (!active) {
+    stopAllActions();
   }
 }
 

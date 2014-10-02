@@ -1,6 +1,9 @@
 {
     "Info":
     [
-	{"name": "no_enemy_in_attack_area", "text": "攻击范围内没有敌军"}
+	{"name": "no_enemy_in_attack_area", "text": "攻击范围内没有敌军"},
+	{"name": "not_enemy", "text": "无法攻击友军"},
+	{"name": "action_finished", "text": "英雄此轮已经行动过"}
+
     ]
 }

@@ -14,7 +14,7 @@ public:
   explicit SGSkirmishObj(SGObserver* observer) : SGObservable(observer) {}
 
   virtual bool init(const char* name);
-  void setMapPosition(SGSkirmishMapPos& map_pos);
+  virtual void setMapPosition(SGSkirmishMapPos& map_pos);
   void setMapPosition(Vec2& pos);
   SGSkirmishMapPos& getMapPosition() { return __map_position; }
 protected:

@@ -104,11 +104,11 @@ void SGSkirmishScene::notify()
 
 bool SGSkirmishScene::onTouchBegan(Touch *touch, Event *unused_event)
 {
-  return eventHandleStateMachine(touch);
+  return touchHandleStateMachine(touch);
   
 }
 
-bool SGSkirmishScene::eventHandleStateMachine(Touch *touch)
+bool SGSkirmishScene::touchHandleStateMachine(Touch *touch)
 {
   Vec2 pos = this->convertToNodeSpace(touch->getLocation());
   SGSkirmishHero* hero = NULL;
@@ -117,10 +117,16 @@ bool SGSkirmishScene::eventHandleStateMachine(Touch *touch)
   case EVENT_HANDLE_STATE_NO_HERO_SELECTED:
     hero = __terrain->findHero(pos);
     if (hero) {
-      showHeroAvailabePath(hero);
-      __selected_hero = hero;
-      __event_handle_state = EVENT_HANDLE_STATE_HERO_SELECTED;
-      return true;
+      if (hero->isActive()) {
+        showHeroAvailabePath(hero);
+        __selected_hero = hero;
+        __selected_hero->__previous_map_position = __selected_hero->getMapPosition();
+        __event_handle_state = EVENT_HANDLE_STATE_HERO_SELECTED;
+        return true;
+      } else {
+        std::string info_msg = "action_finished";
+        showInfo(info_msg);
+      }
     }
     break;
   case EVENT_HANDLE_STATE_HERO_SELECTED:
@@ -148,7 +154,9 @@ bool SGSkirmishScene::eventHandleStateMachine(Touch *touch)
   case EVENT_HANDLE_STATE_ATTACK_SELECTED:
     hero = __terrain->findHero(pos);
     if (hero && !__selected_hero->isRival(hero)) {
-      log("f");
+      std::string info_msg =  "not_enemy";
+      showInfo(info_msg);
+      return false;
     }
     break;
   default:
@@ -233,14 +241,20 @@ bool SGSkirmishScene::showAttackArea()
 
   if (!__terrain->findEnemyHero(attack_area, __selected_hero)) {
     std::string info_msg =  "no_enemy_in_attack_area";
-    Scene* info = SGSkirmishInfo::createScene(info_msg);
-    Director::getInstance()->pushScene(info);
+    showInfo(info_msg);
     return false;
   } else {
     this->addChild(attack_area);
     return true;
   }
 
+}
+
+
+void SGSkirmishScene::showInfo(std::string& info)
+{
+  Scene* info_scene = SGSkirmishInfo::createScene(info);
+  Director::getInstance()->pushScene(info_scene);
 }
 
 
@@ -264,12 +278,14 @@ void SGSkirmishScene::onItem(Ref* pSender)
 void SGSkirmishScene::onIdle(Ref* pSender)
 {
   this->removeChildByName(HERO_ACTION_MENU);
-  __event_handle_state = EVENT_HANDLE_STATE_IDLE_SELECTED;
+  __selected_hero->setActive(false);
+  __event_handle_state = EVENT_HANDLE_STATE_NO_HERO_SELECTED;
 }
 void SGSkirmishScene::onCancel(Ref* pSender)
 {
   this->removeChildByName(HERO_ACTION_MENU);
-  __event_handle_state = EVENT_HANDLE_STATE_CANCEL_SELECTED;
+  __selected_hero->setMapPosition(__selected_hero->__previous_map_position);
+  __event_handle_state = EVENT_HANDLE_STATE_NO_HERO_SELECTED;
 }
 
 
@@ -394,7 +410,6 @@ bool SGSkirmishScene::onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSkirmishH
     const char* hide = one_friend_hero->Attribute("hide");
 
     SGSkirmishHero* hero = SGSkirmishHero::create(hero_name.c_str(), side, __terrain);
-    hero->faceTo(direction.c_str());
     hero->setMapPosition(SGSkirmishMapPos(x, y));
     Vec2 hero_pos = hero->getPosition();
     if (!strcmp(hide, "true")) {
@@ -402,6 +417,8 @@ bool SGSkirmishScene::onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSkirmishH
     }
 
     this->addChild(hero);
+    hero->faceTo(direction.c_str());
+
     // add into hero list
     switch (side)
     {
@@ -469,6 +486,9 @@ bool SGSkirmishScene::onHandleEventHeroTurn(tinyxml2::XMLElement* event)
   std::string direction;
   std::string hero_name = event->Attribute("hero");
   SGSkirmishHero* hero_sprite = (SGSkirmishHero*)this->getChildByName(hero_name);
+  if (!hero_sprite) {
+    return true;
+  }
   if (event->Attribute("face")) {
     direction = event->Attribute("face");
   } else {
@@ -659,15 +679,15 @@ void SGSkirmishScene::resetAllHeroActivity()
   SGSkirmishHeroList::iterator it;
   for (it = __our_heroes.begin(); it != __our_heroes.end(); it++) {
     SGSkirmishHero* hero = *it;
-    hero->resetActivity();
+    hero->setActive(true);
   }
   for (it = __friend_heroes.begin(); it != __friend_heroes.end(); it++) {
     SGSkirmishHero* hero = *it;
-    hero->resetActivity();
+    hero->setActive(true);
   }
   for (it = __enemy_heroes.begin(); it != __enemy_heroes.end(); it++) {
     SGSkirmishHero* hero = *it;
-    hero->resetActivity();
+    hero->setActive(true);
   }
 }
 bool SGSkirmishScene::gameLogicFriendTurn() 

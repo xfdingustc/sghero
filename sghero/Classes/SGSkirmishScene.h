@@ -103,7 +103,7 @@ private:
   } EVENT_HANDLE_STATE;
   EVENT_HANDLE_STATE __event_handle_state;
 
-  bool eventHandleStateMachine(Touch *touch);
+  bool touchHandleStateMachine(Touch *touch);
   void onAttack(Ref* pSender);
   void onMagic(Ref* pSender) ;
   void onItem(Ref* pSender);
@@ -111,6 +111,8 @@ private:
   void onCancel(Ref* pSender);
   void createActionSelectMenu();
   bool showAttackArea();
+
+  void showInfo(std::string& info);
 
   // const char var
   static const char* WALK_PATH; 

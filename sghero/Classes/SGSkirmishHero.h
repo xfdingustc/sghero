@@ -13,6 +13,8 @@ public:
     HERO_SIDE_ENEMY,
     HERO_SIDE_FRIEND,
   } HERO_SIDE;
+  HERO_SIDE getSide() { return __side; }
+  bool isRival(SGSkirmishHero* hero);
 
   typedef enum {
     HERO_CATAGORY_LORD,
@@ -38,15 +40,19 @@ public:
   bool initSpecActions();
 
   bool isActive() { return (__active && isVisible());}
-  void resetActivity() { __active = true; }
+  void setActive(bool active); 
+
 
   // hero AI currently is dummy
   void oneMove() { __active = false; }
 
   void moveTo(SGSkirmishMapPos& target_pos);
-  
+
   HERO_CATAGORY getCatagory() { return __catagory; }
-  HERO_SIDE getSide() { return __side; }
+
+
+
+
   int getStamina() { return __stamina; }
   void initCatagory();
   void initDataNum();
@@ -63,12 +69,19 @@ public:
   void doAction(const char* action);
   void doAttackAction();
 
+  typedef enum {
+    HERO_STATUS_NORMAL,
+    HERO_STATUS_CHAOS,
+  } HERO_STATUS;
   void setStatus(std::string& status);
+  void setStatus(HERO_STATUS status);
+  HERO_STATUS getStatus() { return __status; }
 
 
-  bool isRival(SGSkirmishHero* hero);
+  SGSkirmishMapPos __previous_map_position;
+
 private:
-  
+
   std::string& getHeroResFile(const char* res_dir);
   std::string __name;
 
@@ -86,8 +99,9 @@ private:
   bool __active;
   HERO_CATAGORY __catagory;
 
-  
+  HERO_STATUS __status;
   int __stamina;
+
   
 };
 
