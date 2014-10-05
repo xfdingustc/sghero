@@ -8,7 +8,8 @@ class SGSkirmishStrategyAttack : public SGSkirmishStrategy
 public:
   SGSkirmishStrategyAttack(SGSkirmishTerrain* terrain) : SGSkirmishStrategy(terrain) {}
   void oneMove(SGSkirmishHero* hero);
-
+private:
+  SGSkirmishHero* getBestAssaultHero(SGSkirmishHero* hero);
 };
 
 #endif
