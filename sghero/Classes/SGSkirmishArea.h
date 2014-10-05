@@ -9,14 +9,18 @@ class SGSkirmishArea : public Layer
 {
   friend class SGSkirmishTerrain;
 public:
-  static SGSkirmishArea* create(std::string& name);
-  bool init();
-  bool containPoint(Vec2& pos);
-  void addOnePoint(SGSkirmishMapPos& pos);
-  void show();
+  typedef SGSkirmishMapPos::SGSkirmishPointList PointList;
+
+  static SGSkirmishArea*  create(std::string& name);
+  static SGSkirmishArea*  create(std::string& name, PointList& point_list);
+
+  void                    addOnePoint(SGSkirmishMapPos& pos);
+  bool                    containPoint(Vec2& pos);
+  bool                    init();
+  bool                    initWithPointList(PointList& point_list);
+  void                    show();
 private:
-  typedef std::vector<SGSkirmishMapPos> SGSkirmishPointList;
-  SGSkirmishPointList  __point_list;
-  std::string __name;
+  PointList               __point_list;
+  std::string             __name;
 };
 #endif

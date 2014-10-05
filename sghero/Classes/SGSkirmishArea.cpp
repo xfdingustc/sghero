@@ -14,6 +14,20 @@ SGSkirmishArea* SGSkirmishArea::create(std::string& name)
   }
   
 }
+SGSkirmishArea* SGSkirmishArea::create(std::string& name, PointList& point_list)
+{
+  SGSkirmishArea* area = new SGSkirmishArea;
+  if (area && area->initWithPointList(point_list)) {
+    area->__name = name;
+    area->autorelease();
+    return area;
+  } else {
+    delete area;
+    return NULL;
+  }
+}
+
+
 
 bool SGSkirmishArea::init()
 {
@@ -23,6 +37,16 @@ bool SGSkirmishArea::init()
   return true;
 }
 
+bool SGSkirmishArea::initWithPointList(PointList& point_list)
+{
+  PointList::iterator iter;
+  for (iter = point_list.begin(); iter != point_list.end(); iter++) {
+    addOnePoint(*iter);
+  }
+  return init();
+}
+
+
 void SGSkirmishArea::addOnePoint(SGSkirmishMapPos& pos)
 {
   __point_list.push_back(pos);
@@ -30,7 +54,7 @@ void SGSkirmishArea::addOnePoint(SGSkirmishMapPos& pos)
 
 bool SGSkirmishArea::containPoint(Vec2& pos)
 {
-  SGSkirmishPointList::iterator iter;
+  PointList::iterator iter;
 
   for (iter = __point_list.begin(); iter != __point_list.end(); iter++) {
     SGSkirmishMapPos map_pos = *iter;
@@ -42,7 +66,7 @@ bool SGSkirmishArea::containPoint(Vec2& pos)
 }
 void SGSkirmishArea::show()
 {
-  SGSkirmishPointList::iterator iter;
+  PointList::iterator iter;
   for (iter = __point_list.begin(); iter != __point_list.end(); iter++) {
     SGSkirmishMapPos pos = *iter;
     SGSkirmishAreaObj* obj = SGSkirmishAreaObj::create(__name);

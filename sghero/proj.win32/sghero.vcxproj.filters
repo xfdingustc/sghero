@@ -93,6 +93,9 @@
     <ClCompile Include="..\Classes\SGSkirmishStrategy.cpp">
       <Filter>Classes\SGSkirmishScene</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\SGSkirmishStrategyAttack.cpp">
+      <Filter>Classes\SGSkirmishScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -171,6 +174,9 @@
       <Filter>Classes\SGSkirmishScene</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\SGSkirmishStrategy.h">
+      <Filter>Classes\SGSkirmishScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SGSkirmishStrategyAttack.h">
       <Filter>Classes\SGSkirmishScene</Filter>
     </ClInclude>
   </ItemGroup>

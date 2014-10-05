@@ -9,12 +9,10 @@ class SGSkirmishHero : public SGSkirmishObj
 {
 public:
   typedef enum {
-    HERO_SIDE_OURS,
-    HERO_SIDE_ENEMY,
-    HERO_SIDE_FRIEND,
-  } HERO_SIDE;
-  HERO_SIDE getSide() { return __side; }
-  bool isRival(SGSkirmishHero* hero);
+    HERO_AI_ATTACK,
+    HERO_AI_STAY,
+    HERO_AI_DEFENSE,
+  } HERO_AI;
 
   typedef enum {
     HERO_CATAGORY_LORD,
@@ -32,87 +30,86 @@ public:
     HERO_CATAGORY_DANCER,
     HERO_CATAGORY_MAX,
   } HERO_CATAGORY;
-  static SGSkirmishHero* create(const char* hero_name, HERO_SIDE side, SGObserver* observer);
-  explicit SGSkirmishHero(SGObserver* observer) : SGSkirmishObj(observer) {}
-  virtual bool init(const char* hero_name, HERO_SIDE side);
-  bool initActions();
-  bool initAttackActions();
-  bool initSpecActions();
 
-  bool isActive() { return (__active && isVisible());}
-  void setActive(bool active); 
-
-
-  // hero AI currently is dummy
-  typedef enum {
-    HERO_AI_ATTACK,
-    HERO_AI_STAY,
-    HERO_AI_DEFENSE,
-  } HERO_AI;
-  void setAI(HERO_AI ai) { __ai = ai; }
-  void setAI(std::string& ai);
-  HERO_AI getAI() { return __ai; }
-
-  void oneMove();
-
-  void moveTo(SGSkirmishMapPos& target_pos);
-
-  HERO_CATAGORY getCatagory() { return __catagory; }
-
-
-
-
-  int getStamina() { return __stamina; }
-  void initCatagory();
-  void initDataNum();
-
-    
   typedef enum {
     HERO_DIRECTION_NORTH,
     HERO_DIRECTION_WEST,
     HERO_DIRECTION_SOUTH,
     HERO_DIRECTION_EAST, 
   } HERO_DIRECTION;
-  
-  void faceTo(const char* direction);
-  void faceTo(HERO_DIRECTION direction);
-  void doAction(const char* action);
-  void doAttackAction();
+
+  typedef enum {
+    HERO_SIDE_OURS,
+    HERO_SIDE_ENEMY,
+    HERO_SIDE_FRIEND,
+  } HERO_SIDE;
 
   typedef enum {
     HERO_STATUS_NORMAL,
     HERO_STATUS_CHAOS,
   } HERO_STATUS;
-  void setStatus(std::string& status);
-  void setStatus(HERO_STATUS status);
-  HERO_STATUS getStatus() { return __status; }
 
+  typedef Vector<SGSkirmishHero*> SGSkirmishHeroList;
+  typedef SGSkirmishMapPos::SGSkirmishPointList PointList;
+
+  static          SGSkirmishHero* create(const char* hero_name, HERO_SIDE side, SGObserver* observer);
+  explicit        SGSkirmishHero(SGObserver* observer) : SGSkirmishObj(observer) {}
+
+  void            doAction(const char* action);
+  void            doAttackAction();
+
+  void            faceTo(const char* direction);
+  void            faceTo(HERO_DIRECTION direction);
+
+  bool            init(const char* hero_name, HERO_SIDE side);
+  bool            initActions();
+  bool            initAttackActions();
+  void            initCatagory();
+  void            initDataNum();
+  bool            initSpecActions();
+
+  bool            isActive() { return (__active && isVisible());}
+  bool            isRival(SGSkirmishHero* hero);
+ 
+  void            moveTo(SGSkirmishMapPos& target_pos);
+
+  void            setActive(bool active); 
+  void            setAI(HERO_AI ai) { __ai = ai; }
+  void            setAI(std::string& ai);
+  void            setStatus(std::string& status);
+  void            setStatus(HERO_STATUS status);
+
+
+  HERO_AI         getAI() { return __ai; }
+  HERO_CATAGORY   getCatagory() { return __catagory; }
+  HERO_SIDE       getSide() { return __side; }
+  int             getStamina() { return __stamina; }
+  HERO_STATUS     getStatus() { return __status; }
+  PointList*      getAttackArea();
+  PointList*      getAttackAreaFromPosition(SGSkirmishMapPos& pos);
 
   SGSkirmishMapPos __previous_map_position;
 
 private:
-  void updataSprite();
-  std::string& getHeroResFile(const char* res_dir);
-  std::string __name;
+  typedef std::map<std::string, Animate*> ANIMATE_MAP;
+  HERO_DIRECTION  getDirection(const char* direction);
+  std::string&    getHeroResFile(const char* res_dir);
 
-  HERO_SIDE __side;
+  void            updataSprite(); 
+  HERO_AI         __ai;
+  ANIMATE_MAP     __animate_map;
+  bool            __active;
+  HERO_CATAGORY   __catagory;
+  HERO_DIRECTION  __direction;
+  std::string     __name;
+  HERO_SIDE       __side;
+  int             __stamina;
+  HERO_STATUS     __status;
+
+
   Vector<SpriteFrame*> __sprite_frames;
   Vector<SpriteFrame*> __attack_sprite_frames;
   Vector<SpriteFrame*> __spec_sprite_frames;
-
-  typedef std::map<std::string, Animate*> ANIMATE_MAP;
-  ANIMATE_MAP __animate_map;
-
-  HERO_DIRECTION getDirection(const char* direction);
-  HERO_DIRECTION __direction;
-
-  bool __active;
-  HERO_CATAGORY __catagory;
-
-  HERO_STATUS __status;
-  int __stamina;
-
-  HERO_AI __ai;
   
 };
 

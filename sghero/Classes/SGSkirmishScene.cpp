@@ -64,7 +64,6 @@ SGSkirmishScene::~SGSkirmishScene()
 void SGSkirmishScene::mapMove(Vec2& delta)
 {
   Vec2 cur_postion = this->getPosition();
-  CCLOG("cur position x = %f y = %f", cur_postion.x, cur_postion.y);
   Vec2 new_pos = cur_postion + delta;
   Size size = Director::getInstance()->getVisibleSize();
   Sprite* map = (Sprite*)this->getChildByName("map");
@@ -119,7 +118,7 @@ bool SGSkirmishScene::touchHandleStateMachine(Touch *touch)
   switch (__event_handle_state)
   {
   case EVENT_HANDLE_STATE_NO_HERO_SELECTED:
-    hero = __terrain->findHero(pos);
+    hero = __terrain->findHeroByPosition(pos);
     if (hero) {
       if (hero->isActive()) {
         showHeroAvailabePath(hero);
@@ -134,7 +133,7 @@ bool SGSkirmishScene::touchHandleStateMachine(Touch *touch)
     }
     break;
   case EVENT_HANDLE_STATE_HERO_SELECTED:
-    hero = __terrain->findHero(pos);
+    hero = __terrain->findHeroByPosition(pos);
     if (hero && hero != __selected_hero) {
       showHeroAvailabePath(hero);
       __selected_hero = hero;
@@ -156,7 +155,7 @@ bool SGSkirmishScene::touchHandleStateMachine(Touch *touch)
 
     break;
   case EVENT_HANDLE_STATE_ATTACK_SELECTED:
-    hero = __terrain->findHero(pos);
+    hero = __terrain->findHeroByPosition(pos);
     if (hero && !__selected_hero->isRival(hero)) {
       std::string info_msg =  "not_enemy";
       showInfo(info_msg);
@@ -236,14 +235,10 @@ void SGSkirmishScene::createActionSelectMenu()
 bool SGSkirmishScene::showAttackArea()
 {
   std::string res_name = SG_SKIRMISH_AREA_ATTACK;
-  SGSkirmishArea* attack_area = SGSkirmishArea::create(res_name);
-  attack_area->addOnePoint(__selected_hero->getMapPosition().getUp());
-  attack_area->addOnePoint(__selected_hero->getMapPosition().getDown());
-  attack_area->addOnePoint(__selected_hero->getMapPosition().getLeft());
-  attack_area->addOnePoint(__selected_hero->getMapPosition().getRight());
+  SGSkirmishArea* attack_area = SGSkirmishArea::create(res_name, *__selected_hero->getAttackArea());
   attack_area->show();
 
-  if (!__terrain->findEnemyHero(attack_area, __selected_hero)) {
+  if (!__terrain->findEnemyHeroInArea(attack_area, __selected_hero)) {
     std::string info_msg =  "no_enemy_in_attack_area";
     showInfo(info_msg);
     return false;
@@ -707,7 +702,7 @@ bool SGSkirmishScene::gameLogicFriendTurn()
     return true;
   }
   SGSkirmishHero::HERO_AI hero_ai = hero->getAI();
-  SGSkirmishStrategy* strategy = SGSkirmishStrategy::createStrategy(hero_ai);
+  SGSkirmishStrategy* strategy = SGSkirmishStrategy::createStrategy(hero_ai, __terrain);
   strategy->oneMove(hero);
   delete strategy;
   CCLOG("friend %s has moved", hero->getName().c_str());
@@ -724,7 +719,7 @@ bool SGSkirmishScene::gameLogicEnemyTurn()
     return true;
   }
   SGSkirmishHero::HERO_AI hero_ai = hero->getAI();
-  SGSkirmishStrategy* strategy = SGSkirmishStrategy::createStrategy(hero_ai);
+  SGSkirmishStrategy* strategy = SGSkirmishStrategy::createStrategy(hero_ai, __terrain);
   strategy->oneMove(hero);
   delete strategy;
   CCLOG("enemy %s has moved", hero->getName().c_str());

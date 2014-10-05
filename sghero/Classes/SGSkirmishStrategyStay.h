@@ -6,6 +6,7 @@
 class SGSkirmishStrategyStay : public SGSkirmishStrategy
 {
 public:
+  SGSkirmishStrategyStay(SGSkirmishTerrain* terrain) : SGSkirmishStrategy(terrain) {}
   void oneMove(SGSkirmishHero* hero);
 
 };

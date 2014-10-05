@@ -11,16 +11,22 @@ USING_NS_CC;
 class SGSkirmishTerrain : public SGObserver
 {
 public:
+  typedef SGSkirmishHero::SGSkirmishHeroList HeroList;
+  typedef SGSkirmishMapPos::SGSkirmishPointList PointList;
   static SGSkirmishTerrain* create(std::string& terrain_file, Size size);
 
   SGSkirmishTerrain(std::string& terrain_file, Size size); 
   ~SGSkirmishTerrain();
 
-  SGSkirmishArea& calcHeroAvailabePath(SGSkirmishHero* hero);
-  SGSkirmishHero* findHero(Vec2& pos);
-  SGSkirmishHero* findHero(SGSkirmishMapPos& pos);
-  SGSkirmishHero* findEnemyHero(SGSkirmishArea* area, SGSkirmishHero* hero);
-  void notify(const char* reason, void* ptr);
+
+  SGSkirmishArea&         calcHeroAvailabePath(SGSkirmishHero* hero);
+  HeroList*               findAssaultableEnemyHeroes(SGSkirmishHero* hero);
+  SGSkirmishHero*         findEnemyHeroInArea(SGSkirmishArea* area, SGSkirmishHero* hero);
+  SGSkirmishHero*         findHeroByPosition(Vec2& pos);
+  SGSkirmishHero*         findHeroByPosition(SGSkirmishMapPos& pos);
+  SGSkirmishHero*         findNearestEnemyHero(SGSkirmishHero* hero);
+
+  void                    notify(const char* reason, void* ptr);
 private:
   typedef enum
   {
@@ -78,23 +84,21 @@ private:
     
   };
   
- 
   typedef std::list<Step> StepList;
-  bool isInStepList(Step& step, StepList& step_list);
+  SGSkirmishObj*          getObj(SGSkirmishMapPos& pos);
+  SGSkirmishTerrainType   getTerrainAt(SGSkirmishMapPos& pos);
+  int                     getSteminaConsume(SGSkirmishHero::HERO_CATAGORY catagory, SGSkirmishTerrainType terrain);
+  bool                    isInStepList(Step& step, StepList& step_list);
+  void                    loadTerrain(std::string& terrain_file);
+  Step                    moveHero(SGSkirmishHero* hero, SGMoveStep one_step, Step from);
 
-  Step moveHero(SGSkirmishHero* hero, SGMoveStep one_step, Step from);
-  void loadTerrain(std::string& terrain_file);
-  int __width;
-  int __height;
+  static int              SteminaConsuming[SG_SKIRMISH_TERRAIN_MAX][SGSkirmishHero::HERO_CATAGORY_MAX];
+  int                     __width;
+  int                     __height;
 
-  static int SteminaConsuming[SGSkirmishTerrain::SG_SKIRMISH_TERRAIN_MAX][SGSkirmishHero::HERO_CATAGORY_MAX];
-  SGSkirmishTerrainType getTerrainAt(SGSkirmishMapPos& pos);
-  int getSteminaConsume(SGSkirmishHero::HERO_CATAGORY catagory, SGSkirmishTerrainType terrain);
-  SGSkirmishTerrainType* __terrain_info;
-  SGSkirmishHero* getHero(SGSkirmishMapPos& pos);
-  SGSkirmishObj* getObj(SGSkirmishMapPos& pos);
-  Vector<SGSkirmishObj*> __objects;
-  Vector<SGSkirmishHero*> __heroes;
+  Vector<SGSkirmishObj*>  __objects;
+  SGSkirmishTerrainType*  __terrain_info;
+  HeroList  __heroes;
 };
 
 #endif

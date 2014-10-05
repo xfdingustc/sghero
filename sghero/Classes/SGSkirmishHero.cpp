@@ -466,6 +466,30 @@ void SGSkirmishHero::setStatus(HERO_STATUS status)
   }
 }
 
+SGSkirmishHero::PointList* SGSkirmishHero::getAttackArea()
+{
+  return getAttackAreaFromPosition(this->getMapPosition());
+}
+
+SGSkirmishHero::PointList* SGSkirmishHero::getAttackAreaFromPosition(SGSkirmishMapPos& pos)
+{
+  static PointList point_list;
+
+  PointList::iterator iter;
+
+  for (iter = point_list.begin(); iter != point_list.end();) {
+    iter = point_list.erase(iter);
+  }
+
+  point_list.push_back(pos.getUp());
+  point_list.push_back(pos.getDown());
+  point_list.push_back(pos.getLeft());
+  point_list.push_back(pos.getRight());
+
+  return &point_list;
+}
+
+
 void SGSkirmishHero::setActive(bool active)
 {
   __active = active;
@@ -482,7 +506,3 @@ void SGSkirmishHero::updataSprite()
 }
 
 
-void SGSkirmishHero::oneMove() 
-{ 
-  setActive(false); 
-}

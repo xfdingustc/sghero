@@ -35,11 +35,6 @@ int SGSkirmishTerrain::SteminaConsuming[SGSkirmishTerrain::SG_SKIRMISH_TERRAIN_M
   {65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535 },
 };
 
-SGSkirmishTerrain* SGSkirmishTerrain::create(std::string& terrain_file, Size size)
-{
-  SGSkirmishTerrain* terrain = new SGSkirmishTerrain(terrain_file, size);
-  return terrain;
-}
 
 SGSkirmishTerrain::SGSkirmishTerrain(std::string& terrain_file, Size size)
   : __width(size.width),
@@ -53,79 +48,6 @@ SGSkirmishTerrain::~SGSkirmishTerrain()
 {
   delete __terrain_info;
 }
-
-void SGSkirmishTerrain::loadTerrain(std::string& terrain_file)
-{
-  ssize_t size;
-  unsigned char* terrain = FileUtils::getInstance()->getFileData(terrain_file, "rb", &size);
-  for (int i = 0; i < __width * __height; i++) {
-    __terrain_info[i] = (SGSkirmishTerrainType)terrain[i];
-  }
-}
-
-void SGSkirmishTerrain::notify(const char* reason, void* ptr)
-{
-  std::string notify_reason = reason;
-  if (notify_reason == "hero_add") {
-    SGSkirmishHero* hero = reinterpret_cast<SGSkirmishHero*>(ptr);
-    __heroes.pushBack(hero);
-  } else if (notify_reason == "object_add") {
-    SGSkirmishObj* object = reinterpret_cast<SGSkirmishObj*>(ptr);
-    __objects.pushBack(object);
-  }
-  
-}
-
-bool SGSkirmishTerrain::isInStepList(Step& step, StepList& step_list)
-{
-  StepList::iterator iter;
-
-  for (iter = step_list.begin(); iter != step_list.end(); iter++) {
-    Step one_step = *iter;
-    if (step.__pos == one_step.__pos) {
-      return true;
-    }
-  }
-  return false;
-}
-
-SGSkirmishHero* SGSkirmishTerrain::findHero(Vec2& pos)
-{
-  Vector<SGSkirmishHero*>::iterator iter;
-  for (iter = __heroes.begin(); iter != __heroes.end(); iter++) {
-    SGSkirmishHero* hero = *iter;
-    Rect rect = hero->getBoundingBox();
-
-    if(rect.containsPoint(pos)){
-      CCLOG("%s touched", hero->getName().c_str());
-      return hero;
-    }  
-  }
-  return NULL;
-
-}
-SGSkirmishHero* SGSkirmishTerrain::findHero(SGSkirmishMapPos& map_pos)
-{
-  Vec2 pos = SGSkirmishMapPos::mapPos2OpenGLPos(map_pos);
-  return findHero(pos);
-}
-
-SGSkirmishHero* SGSkirmishTerrain::findEnemyHero(SGSkirmishArea* area, SGSkirmishHero* hero)
-{
-   SGSkirmishArea::SGSkirmishPointList* point_list = &area->__point_list;
-   SGSkirmishArea::SGSkirmishPointList::iterator iter;
-
-   for (iter = point_list->begin(); iter != point_list->end(); iter++) {
-     SGSkirmishMapPos pos = *iter;
-     SGSkirmishHero* one_hero = findHero(pos);
-     if (one_hero && hero->isRival(one_hero)) {
-        return one_hero;
-     }
-   }
-   return NULL;
-
-}
-
 
 SGSkirmishArea& SGSkirmishTerrain::calcHeroAvailabePath(SGSkirmishHero* hero)
 {
@@ -194,6 +116,154 @@ SGSkirmishArea& SGSkirmishTerrain::calcHeroAvailabePath(SGSkirmishHero* hero)
 }
 
 
+SGSkirmishTerrain* SGSkirmishTerrain::create(std::string& terrain_file, Size size)
+{
+  SGSkirmishTerrain* terrain = new SGSkirmishTerrain(terrain_file, size);
+  return terrain;
+}
+
+
+SGSkirmishTerrain::HeroList* SGSkirmishTerrain::findAssaultableEnemyHeroes(SGSkirmishHero* hero)
+{
+  static HeroList assaultable_heroes;
+  HeroList::iterator iter;
+
+  // clear the list;
+  for (iter = assaultable_heroes.begin(); iter != assaultable_heroes.end();) {
+    iter = assaultable_heroes.erase(iter);
+  }
+
+  SGSkirmishArea& area = calcHeroAvailabePath(hero);
+  PointList& valid_walk_point_list = area.__point_list;
+  PointList::iterator walk_area_iter;
+  PointList::iterator attack_area_iter;
+
+  for (walk_area_iter = valid_walk_point_list.begin(); walk_area_iter != valid_walk_point_list.end(); walk_area_iter++) {
+    SGSkirmishMapPos one_valid_move_pos = *walk_area_iter;
+    PointList* attack_area = hero->getAttackAreaFromPosition(one_valid_move_pos);
+    for (attack_area_iter = attack_area->begin(); attack_area_iter != attack_area->end(); attack_area_iter++) {
+      SGSkirmishMapPos one_attack_pos = *attack_area_iter;
+      SGSkirmishHero* one_hero = findHeroByPosition(one_attack_pos);
+      if (one_hero && hero->isRival(one_hero)) {
+        HeroList::iterator hero_iter;
+        bool already_in_list = false;
+        for (hero_iter = assaultable_heroes.begin(); hero_iter != assaultable_heroes.end(); hero_iter++) {
+          SGSkirmishHero* one_list_in_list = *hero_iter;
+          if (one_list_in_list == one_hero) {
+            already_in_list = true;
+            break;
+          }
+        }
+        if (!already_in_list) {
+          assaultable_heroes.pushBack(one_hero);
+        }
+        break;
+      }
+
+    }
+  }
+
+  return &assaultable_heroes;
+}
+
+SGSkirmishHero* SGSkirmishTerrain::findEnemyHeroInArea(SGSkirmishArea* area, SGSkirmishHero* hero)
+{
+  SGSkirmishMapPos::SGSkirmishPointList* point_list = &area->__point_list;
+  SGSkirmishMapPos::SGSkirmishPointList::iterator iter;
+
+  for (iter = point_list->begin(); iter != point_list->end(); iter++) {
+    SGSkirmishMapPos pos = *iter;
+    SGSkirmishHero* one_hero = findHeroByPosition(pos);
+    if (one_hero && hero->isRival(one_hero)) {
+      return one_hero;
+    }
+  }
+  return NULL;
+
+}
+
+
+SGSkirmishHero* SGSkirmishTerrain::findHeroByPosition(Vec2& pos)
+{
+  Vector<SGSkirmishHero*>::iterator iter;
+  for (iter = __heroes.begin(); iter != __heroes.end(); iter++) {
+    SGSkirmishHero* hero = *iter;
+    Rect rect = hero->getBoundingBox();
+
+    if(rect.containsPoint(pos)){
+      return hero;
+    }  
+  }
+  return NULL;
+
+}
+SGSkirmishHero* SGSkirmishTerrain::findHeroByPosition(SGSkirmishMapPos& map_pos)
+{
+  Vec2 pos = SGSkirmishMapPos::mapPos2OpenGLPos(map_pos);
+  return findHeroByPosition(pos);
+}
+
+
+
+
+SGSkirmishHero* SGSkirmishTerrain::findNearestEnemyHero(SGSkirmishHero* hero)
+{
+  Vector<SGSkirmishHero*>::iterator iter;
+  int distance = 65535;
+  SGSkirmishHero* nearest_enemy_hero = NULL;
+  for (iter = __heroes.begin(); iter != __heroes.end(); iter++) {
+    SGSkirmishHero* enemy_hero = *iter;
+    if (hero->isRival(enemy_hero)){
+      int hero_distance;
+      SGSkirmishMapPos hero_pos = hero->getMapPosition();
+      SGSkirmishMapPos enemy_pos = hero->getMapPosition();
+      hero_distance = (hero_pos.x - enemy_pos.x) * (hero_pos.x - enemy_pos.x)
+                       + (hero_pos.y - enemy_pos.y) * (hero_pos.y - enemy_pos.y);
+      if (hero_distance < distance) {
+        distance = hero_distance;
+        nearest_enemy_hero = enemy_hero;
+      }
+    }
+  }
+  return nearest_enemy_hero;
+}
+
+
+void SGSkirmishTerrain::loadTerrain(std::string& terrain_file)
+{
+  ssize_t size;
+  unsigned char* terrain = FileUtils::getInstance()->getFileData(terrain_file, "rb", &size);
+  for (int i = 0; i < __width * __height; i++) {
+    __terrain_info[i] = (SGSkirmishTerrainType)terrain[i];
+  }
+}
+
+void SGSkirmishTerrain::notify(const char* reason, void* ptr)
+{
+  std::string notify_reason = reason;
+  if (notify_reason == "hero_add") {
+    SGSkirmishHero* hero = reinterpret_cast<SGSkirmishHero*>(ptr);
+    __heroes.pushBack(hero);
+  } else if (notify_reason == "object_add") {
+    SGSkirmishObj* object = reinterpret_cast<SGSkirmishObj*>(ptr);
+    __objects.pushBack(object);
+  }
+  
+}
+
+bool SGSkirmishTerrain::isInStepList(Step& step, StepList& step_list)
+{
+  StepList::iterator iter;
+
+  for (iter = step_list.begin(); iter != step_list.end(); iter++) {
+    Step one_step = *iter;
+    if (step.__pos == one_step.__pos) {
+      return true;
+    }
+  }
+  return false;
+}
+
 
 int SGSkirmishTerrain::getSteminaConsume(SGSkirmishHero::HERO_CATAGORY catagory, SGSkirmishTerrainType terrain)
 {
@@ -229,35 +299,35 @@ SGSkirmishTerrain::Step SGSkirmishTerrain::moveHero(SGSkirmishHero* hero, SGMove
   {
   case SG_MOVE_STEP_RIGHT:
     step_to.__pos.x++;
-    if (getHero(right_pos) || getObj(right_pos)) {
+    if (findHeroByPosition(right_pos) || getObj(right_pos)) {
       valid_move = false;
     }
 
     if (!is_original_pos) {
-      if (hero->isRival(getHero(up_pos)) || hero->isRival(getHero(down_pos))) {
+      if (hero->isRival(findHeroByPosition(up_pos)) || hero->isRival(findHeroByPosition(down_pos))) {
         valid_move = false;
       }
     }
     break;
   case SG_MOVE_STEP_DOWN:
     step_to.__pos.y++;
-    if (getHero(down_pos) || getObj(down_pos)) {
+    if (findHeroByPosition(down_pos) || getObj(down_pos)) {
       valid_move = false;
     }
 
     if (!is_original_pos) {
-      if (hero->isRival(getHero(up_pos)) || hero->isRival(getHero(right_pos))) {
+      if (hero->isRival(findHeroByPosition(up_pos)) || hero->isRival(findHeroByPosition(right_pos))) {
         valid_move = false;
       }
     }
     break;
   case SG_MOVE_STEP_LEFT:
     step_to.__pos.x--;
-    if (getHero(left_pos) || getObj(left_pos)) {
+    if (findHeroByPosition(left_pos) || getObj(left_pos)) {
       valid_move = false;
     }
     if (!is_original_pos) {
-      if (hero->isRival(getHero(up_pos)) || hero->isRival(getHero(down_pos))) {
+      if (hero->isRival(findHeroByPosition(up_pos)) || hero->isRival(findHeroByPosition(down_pos))) {
         valid_move = false;
       }
     }
@@ -265,11 +335,11 @@ SGSkirmishTerrain::Step SGSkirmishTerrain::moveHero(SGSkirmishHero* hero, SGMove
     break;
   case SG_MOVE_STEP_UP:
     step_to.__pos.y--;
-    if (getHero(up_pos) || getObj(up_pos)) {
+    if (findHeroByPosition(up_pos) || getObj(up_pos)) {
       valid_move = false;
     }
     if (!is_original_pos) {
-      if (hero->isRival(getHero(left_pos)) || hero->isRival(getHero(right_pos))) {
+      if (hero->isRival(findHeroByPosition(left_pos)) || hero->isRival(findHeroByPosition(right_pos))) {
         valid_move = false;
       }
     }
@@ -297,18 +367,7 @@ SGSkirmishTerrain::SGSkirmishTerrainType SGSkirmishTerrain::getTerrainAt(SGSkirm
   return (SGSkirmishTerrainType)(__terrain_info[y * __width + x]);
 }
 
-SGSkirmishHero* SGSkirmishTerrain::getHero(SGSkirmishMapPos& pos)
-{
-  
-  Vector<SGSkirmishHero*>::iterator iter;
-  for (iter = __heroes.begin(); iter != __heroes.end(); iter++) {
-    SGSkirmishHero* hero = *iter;
-      if (hero->getMapPosition() == pos) {
-      return hero;
-    }
-  }
-  return NULL;
-}
+
 SGSkirmishObj* SGSkirmishTerrain::getObj(SGSkirmishMapPos& pos)
 {
   Vector<SGSkirmishObj*>::iterator iter;
