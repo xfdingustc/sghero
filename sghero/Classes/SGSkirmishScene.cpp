@@ -3,6 +3,7 @@
 #include "SGSkirmishInfo.h"
 #include "SGSkirmishObj.h"
 #include "SGSkirmishScene.h"
+#include "SGSkirmishStrategy.h"
 #include "SGSKirmishSwitchScene.h"
 #include "SGSkirmishSceneMagicCall.h"
 #include "json/document.h"
@@ -55,6 +56,7 @@ bool SGSkirmishScene::init()
 
 SGSkirmishScene::~SGSkirmishScene()
 {
+  delete __scene_xml;
   delete __terrain;
 }
 
@@ -301,19 +303,19 @@ void SGSkirmishScene::onTouchMoved(Touch *touch, Event *unused_event)
 
 bool SGSkirmishScene::parseSkirmishSceneXmlFile(const char* file_name)
 {
-  tinyxml2::XMLDocument* skirmish_scene_xml = new tinyxml2::XMLDocument();
-  if (NULL == skirmish_scene_xml) {
+  __scene_xml = new tinyxml2::XMLDocument();
+  if (NULL == __scene_xml) {
     return false;
   }
 
 
-  tinyxml2::XMLError error = skirmish_scene_xml->LoadFile(file_name);
+  tinyxml2::XMLError error = __scene_xml->LoadFile(file_name);
   if (tinyxml2::XML_SUCCESS != error) {
     CCLOG("Parsing skirmish xml file error!!!");
     return false;
   }
 
-  tinyxml2::XMLElement* scene = skirmish_scene_xml->RootElement();
+  tinyxml2::XMLElement* scene = __scene_xml->RootElement();
   tinyxml2::XMLElement* section = scene->FirstChildElement("Section");
   tinyxml2::XMLElement* settings = section->FirstChildElement();
   while (settings) {
@@ -330,7 +332,6 @@ bool SGSkirmishScene::parseSkirmishSceneXmlFile(const char* file_name)
   if (tests) {
     parseSkrimishTests(tests);
   }
-
   return true;
 }
 
@@ -401,14 +402,14 @@ bool SGSkirmishScene::onHandleSettingTerrain(tinyxml2::XMLElement* setting)
 }
 bool SGSkirmishScene::onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSkirmishHero::HERO_SIDE side)
 {
-  tinyxml2::XMLElement* one_friend_hero = setting->FirstChildElement();
+  tinyxml2::XMLElement* one_hero = setting->FirstChildElement();
 
-  while(one_friend_hero) {
-    std::string hero_name = one_friend_hero->Attribute("hero");
-    int x = atoi(one_friend_hero->Attribute("x"));
-    int y = atoi(one_friend_hero->Attribute("y"));
-    std::string direction = one_friend_hero->Attribute("face");
-    const char* hide = one_friend_hero->Attribute("hide");
+  while(one_hero) {
+    std::string hero_name = one_hero->Attribute("hero");
+    int x = atoi(one_hero->Attribute("x"));
+    int y = atoi(one_hero->Attribute("y"));
+    std::string direction = one_hero->Attribute("face");
+    const char* hide = one_hero->Attribute("hide");
 
     SGSkirmishHero* hero = SGSkirmishHero::create(hero_name.c_str(), side, __terrain);
     if (!hero) {
@@ -422,6 +423,10 @@ bool SGSkirmishScene::onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSkirmishH
 
     this->addChild(hero);
     hero->faceTo(direction.c_str());
+    if (one_hero->Attribute("AI")) {
+      std::string hero_ai = one_hero->Attribute("AI");
+      hero->setAI(hero_ai);
+    }
 
     // add into hero list
     switch (side)
@@ -438,7 +443,7 @@ bool SGSkirmishScene::onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSkirmishH
     default:
       break;
     }
-    one_friend_hero = one_friend_hero->NextSiblingElement();
+    one_hero = one_hero->NextSiblingElement();
   }
   return true;
 }
@@ -576,8 +581,6 @@ bool SGSkirmishScene::onHandleEventMagicCall(tinyxml2::XMLElement* event)
   std::string magic_name = event->Attribute("magic");
   int x = atoi(event->Attribute("x"));
   int y = atoi(event->Attribute("y"));
-  //Scene* scene = SGSkirmishSceneMagicCall::createScene(magic_name, mapPos2OpenGLPos(Vec2(x, y)));
-  //Director::getInstance()->pushScene(scene);
   return true;
 }
 
@@ -703,7 +706,10 @@ bool SGSkirmishScene::gameLogicFriendTurn()
     switchToNextRound();
     return true;
   }
-  hero->oneMove();
+  SGSkirmishHero::HERO_AI hero_ai = hero->getAI();
+  SGSkirmishStrategy* strategy = SGSkirmishStrategy::createStrategy(hero_ai);
+  strategy->oneMove(hero);
+  delete strategy;
   CCLOG("friend %s has moved", hero->getName().c_str());
   return false;
 }
@@ -717,7 +723,10 @@ bool SGSkirmishScene::gameLogicEnemyTurn()
     switchToNextRound();
     return true;
   }
-  hero->oneMove();
+  SGSkirmishHero::HERO_AI hero_ai = hero->getAI();
+  SGSkirmishStrategy* strategy = SGSkirmishStrategy::createStrategy(hero_ai);
+  strategy->oneMove(hero);
+  delete strategy;
   CCLOG("enemy %s has moved", hero->getName().c_str());
   return false;
 }

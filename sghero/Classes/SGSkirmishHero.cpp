@@ -41,7 +41,8 @@ bool SGSkirmishHero::init(const char* hero_name, HERO_SIDE side)
   initCatagory();
   
   __status = HERO_STATUS_NORMAL;
-  //initDataNum();
+  __ai = HERO_AI_ATTACK;
+  initDataNum();
   return true;
   
 }
@@ -422,6 +423,20 @@ SGSkirmishHero::HERO_DIRECTION SGSkirmishHero::getDirection(const char* directio
   return HERO_DIRECTION_NORTH;
 }
 
+void SGSkirmishHero::setAI(std::string& ai)
+{
+  HERO_AI hero_ai = HERO_AI_ATTACK;
+  if (ai == "attack") {
+    hero_ai = HERO_AI_ATTACK;
+  } else if (ai == "defense") {
+    hero_ai = HERO_AI_DEFENSE;
+  } else if (ai == "stay") {
+    hero_ai = HERO_AI_STAY;
+  }
+  setAI(hero_ai);
+}
+
+
 void SGSkirmishHero::setStatus(std::string& status)
 {
   HERO_STATUS hero_status;
@@ -467,3 +482,7 @@ void SGSkirmishHero::updataSprite()
 }
 
 
+void SGSkirmishHero::oneMove() 
+{ 
+  setActive(false); 
+}

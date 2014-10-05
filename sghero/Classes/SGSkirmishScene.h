@@ -7,7 +7,7 @@ USING_NS_CC;
 #include "SGSceneBase.h"
 #include "SGSkirmishHero.h"
 #include "SGSkirmishTerrain.h"
-#include "tinyxml2/tinyxml2.h"
+
 
 class SGSkirmishScene : public SGSceneBase
 {

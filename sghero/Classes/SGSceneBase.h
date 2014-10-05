@@ -12,10 +12,9 @@ protected:
   bool onHandleEventSoundEffect(tinyxml2::XMLElement* event);
   bool onHandleEventSoundTrack(tinyxml2::XMLElement* event);
   virtual bool onHandleEventDialog(tinyxml2::XMLElement* event);
-
-
   void formatString(std::string& str);
 
+  tinyxml2::XMLDocument* __scene_xml;
   typedef std::list<tinyxml2::XMLElement*> SGSceneEventList;
   SGSceneEventList __event_list;
   

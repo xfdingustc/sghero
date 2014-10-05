@@ -44,7 +44,16 @@ public:
 
 
   // hero AI currently is dummy
-  void oneMove() { __active = false; }
+  typedef enum {
+    HERO_AI_ATTACK,
+    HERO_AI_STAY,
+    HERO_AI_DEFENSE,
+  } HERO_AI;
+  void setAI(HERO_AI ai) { __ai = ai; }
+  void setAI(std::string& ai);
+  HERO_AI getAI() { return __ai; }
+
+  void oneMove();
 
   void moveTo(SGSkirmishMapPos& target_pos);
 
@@ -103,6 +112,7 @@ private:
   HERO_STATUS __status;
   int __stamina;
 
+  HERO_AI __ai;
   
 };
 

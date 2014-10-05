@@ -51,9 +51,6 @@
     <ClCompile Include="..\Classes\SGDramaSceneInfoScene.cpp">
       <Filter>Classes\SGDramaScene</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\SGSkirmishScene.cpp">
-      <Filter>Classes\SGSkirmishScene</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\SGSceneBase.cpp">
       <Filter>Classes\SGSceneBase</Filter>
     </ClCompile>
@@ -79,6 +76,21 @@
       <Filter>Classes\SGSkirmishScene</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\SGSkirmishAreaObj.cpp">
+      <Filter>Classes\SGSkirmishScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SGSkirmishInfo.cpp">
+      <Filter>Classes\SGSkirmishScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SGSkirmishScene.cpp">
+      <Filter>Classes\SGSkirmishScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SGSceneEvent.cpp">
+      <Filter>Classes\SGSceneBase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SGSkirmishStrategyStay.cpp">
+      <Filter>Classes\SGSkirmishScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SGSkirmishStrategy.cpp">
       <Filter>Classes\SGSkirmishScene</Filter>
     </ClCompile>
   </ItemGroup>
@@ -147,6 +159,18 @@
       <Filter>Classes\SGSkirmishScene</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\SGSkirmishAreaObj.h">
+      <Filter>Classes\SGSkirmishScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SGSkirmishInfo.h">
+      <Filter>Classes\SGSkirmishScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SGSceneEvent.h">
+      <Filter>Classes\SGSceneBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SGSkirmishStrategyStay.h">
+      <Filter>Classes\SGSkirmishScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SGSkirmishStrategy.h">
       <Filter>Classes\SGSkirmishScene</Filter>
     </ClInclude>
   </ItemGroup>
