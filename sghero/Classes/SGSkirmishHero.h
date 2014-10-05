@@ -59,13 +59,14 @@ public:
 
     
   typedef enum {
-    DIRECTION_NORTH,
-    DIRECTION_WEST,
-    DIRECTION_SOUTH,
-    DIRECTION_EAST, 
-  } DIRECTION;
+    HERO_DIRECTION_NORTH,
+    HERO_DIRECTION_WEST,
+    HERO_DIRECTION_SOUTH,
+    HERO_DIRECTION_EAST, 
+  } HERO_DIRECTION;
   
   void faceTo(const char* direction);
+  void faceTo(HERO_DIRECTION direction);
   void doAction(const char* action);
   void doAttackAction();
 
@@ -81,7 +82,7 @@ public:
   SGSkirmishMapPos __previous_map_position;
 
 private:
-
+  void updataSprite();
   std::string& getHeroResFile(const char* res_dir);
   std::string __name;
 
@@ -93,8 +94,8 @@ private:
   typedef std::map<std::string, Animate*> ANIMATE_MAP;
   ANIMATE_MAP __animate_map;
 
-  DIRECTION getDirection(const char* direction);
-  DIRECTION __face_direction;
+  HERO_DIRECTION getDirection(const char* direction);
+  HERO_DIRECTION __direction;
 
   bool __active;
   HERO_CATAGORY __catagory;

@@ -321,36 +321,41 @@ std::string& SGSkirmishHero::getHeroResFile(const char* res_dir)
 
 void SGSkirmishHero::faceTo(const char* direction)
 {
+  faceTo(getDirection(direction));
+}
+
+void SGSkirmishHero::faceTo(HERO_DIRECTION direction)
+{
+  __direction = direction;
   stopAllActions();
-  __face_direction = getDirection(direction);
   std::string action_name;
-  switch (__face_direction)
+  switch (__direction)
   {
-  case DIRECTION_EAST:
+  case HERO_DIRECTION_EAST:
     setFlippedX(true);
     action_name = "face_west";
     break;
-  case DIRECTION_WEST:
+  case HERO_DIRECTION_WEST:
     setFlippedX(false);
     action_name = "face_west";
     break;
-  case DIRECTION_NORTH:
+  case HERO_DIRECTION_NORTH:
     setFlippedX(false);
     action_name = "face_north";
     break;
-  case DIRECTION_SOUTH:
+  case HERO_DIRECTION_SOUTH:
     setFlippedX(false);
     action_name = "face_south";
     break;
   default:
     break;
   }
-  
+
   Animate* animate = __animate_map[action_name];
   RepeatForever* face_walk = RepeatForever::create(animate);
   this->runAction(face_walk);
-  
 }
+
 void SGSkirmishHero::moveTo(SGSkirmishMapPos& target_pos)
 {
   this->setMapPosition(target_pos);
@@ -360,18 +365,18 @@ void SGSkirmishHero::moveTo(SGSkirmishMapPos& target_pos)
 void SGSkirmishHero::doAttackAction()
 {
   std::string action_name;
-  switch (__face_direction)
+  switch (__direction)
   {
-  case DIRECTION_NORTH:
+  case HERO_DIRECTION_NORTH:
     action_name = "attack_north";
     break;
-  case DIRECTION_SOUTH:
+  case HERO_DIRECTION_SOUTH:
     action_name = "attack_south";
     break;
-  case DIRECTION_EAST:
+  case HERO_DIRECTION_EAST:
     action_name = "attack_west";
     break;
-  case DIRECTION_WEST:
+  case HERO_DIRECTION_WEST:
     action_name = "attack_west";
     break;
   default:
@@ -402,19 +407,19 @@ void SGSkirmishHero::doAction(const char* action)
   }
 }
 
-SGSkirmishHero::DIRECTION SGSkirmishHero::getDirection(const char* direction)
+SGSkirmishHero::HERO_DIRECTION SGSkirmishHero::getDirection(const char* direction)
 {
   if (!strcmp(direction, "north")) {
-    return DIRECTION_NORTH;
+    return HERO_DIRECTION_NORTH;
   } else if (!strcmp(direction, "south")) {
-    return DIRECTION_SOUTH;
+    return HERO_DIRECTION_SOUTH;
   } else if (!strcmp(direction, "east")) {
-    return DIRECTION_EAST;
+    return HERO_DIRECTION_EAST;
   } else if (!strcmp(direction, "west")) {
-    return DIRECTION_WEST;
+    return HERO_DIRECTION_WEST;
   }
 
-  return DIRECTION_NORTH;
+  return HERO_DIRECTION_NORTH;
 }
 
 void SGSkirmishHero::setStatus(std::string& status)
@@ -449,8 +454,16 @@ void SGSkirmishHero::setStatus(HERO_STATUS status)
 void SGSkirmishHero::setActive(bool active)
 {
   __active = active;
-  if (!active) {
+  updataSprite();
+}
+
+void SGSkirmishHero::updataSprite()
+{
+  if (!__active) {
     stopAllActions();
+  } else {
+    faceTo(__direction);
   }
 }
+
 
