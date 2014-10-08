@@ -1,5 +1,7 @@
 #ifndef SG_OBSERVER_H
 #define SG_OBSERVER_H
+#include "cocos2d.h"
+USING_NS_CC;
 
 class SGObserver
 {
@@ -10,23 +12,15 @@ public:
 
 class SGObservable {
 public:
-  SGObservable() : __observer(NULL) {}
-  SGObservable(SGObserver* observer) : __observer(observer) {}
-  void setObserver(SGObserver* observer) { __observer = observer; }
+  //SGObservable() : __observer(NULL) {}
+  //SGObservable(SGObserver* observer) : __observer(observer) {}
+  void addObserver(SGObserver* observer); 
 protected:
-  void notifyObserver() { 
-    if (__observer) { 
-      __observer->notify(); 
-    } 
-  }
+  void notifyObserver();
 
-  void notifyObserver(const char* reason, void* ptr) { 
-    if (__observer) {
-      __observer->notify(reason, ptr); 
-    }
-  }
+  void notifyObserver(const char* reason, void* ptr);
 private:
-  SGObserver* __observer;
+  std::vector<SGObserver*> __observers;
 };
 
 #endif // !SG_OBSERVER_H

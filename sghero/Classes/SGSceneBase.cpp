@@ -32,7 +32,7 @@ bool SGSceneBase::onHandleEventDialog(tinyxml2::XMLElement* event)
 
   Scene* scene = SGSceneHeroSpeakScene::creatScene(hero_name.c_str(), speak.c_str(), win_pos);
   SGSceneHeroSpeakScene* layer = (SGSceneHeroSpeakScene*)scene->getChildByName("dialog_layer");
-  layer->setObserver(this);
+  layer->addObserver(this);
   Director::getInstance()->pushScene(scene);
  
   return true;

@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 USING_NS_CC;
 
+#include "SGObserver.h"
 #include "SGSceneBase.h"
 #include "SGSHero.h"
 #include "SGSTerrain.h"
@@ -28,11 +29,13 @@ public:
    
 private:
 
-  void startSceneScript(float dt);
+  void startSkirmish(float dt);
+  void stopSkirmish();
   void mapMove(Vec2& delta);
   void requireFocus(const Vec2& pos);
 
   void notify();
+  void notify(const char* reason, void* ptr);
 
   bool parseSkirmishSceneXmlFile(const char* file);
   bool parseSkirmishSettings(tinyxml2::XMLElement* setting);
@@ -43,6 +46,7 @@ private:
   void gameLogic();
   bool gameLogicFriendTurn();
   bool gameLogicEnemyTurn();
+  bool gameLogicMoveOneHero(SGSHero* hero);
   void switchToNextRound();
   void resetAllHeroActivity();
   void showHeroAvailabePath(SGSHero* hero);
@@ -60,7 +64,6 @@ private:
   bool onHandleEventObjAdd(tinyxml2::XMLElement* event);
   bool onHandleEventMagicCall(tinyxml2::XMLElement* event);
   bool onHandleEventHeroStatusChange(tinyxml2::XMLElement* event);
-  Vec2 mapPos2OpenGLPos(Vec2 origin);
 
   EventListenerTouchOneByOne* __event_listener;
   SGSHero* __selected_hero;

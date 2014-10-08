@@ -50,7 +50,7 @@ bool SGSkirmishScene::init()
   __selected_hero = NULL;
   __event_handle_state = EVENT_HANDLE_STATE_NO_HERO_SELECTED;
 
-  scheduleOnce(schedule_selector(SGSkirmishScene::startSceneScript), 1.0f);
+  scheduleOnce(schedule_selector(SGSkirmishScene::startSkirmish), 1.0f);
   return true;
 }
 
@@ -104,6 +104,15 @@ void SGSkirmishScene::notify()
 {
   this->removeChildByName("arrow");
 }
+
+void SGSkirmishScene::notify(const char* reason, void* ptr)
+{
+  std::string notify_reason = reason;
+  if (notify_reason == "hero_move_finished") {
+    startSkirmish(1.0f);
+  }
+}
+
 
 bool SGSkirmishScene::onTouchBegan(Touch *touch, Event *unused_event)
 {
@@ -471,8 +480,8 @@ bool SGSkirmishScene::onHandleEventHeroMove(tinyxml2::XMLElement* event)
 bool SGSkirmishScene::onHandleEventDelay(tinyxml2::XMLElement* event)
 {
   float time = float(atoi(event->Attribute("time"))) ;
-  unscheduleUpdate();
-  scheduleOnce(schedule_selector(SGSkirmishScene::startSceneScript), time*0.1f);
+  
+  scheduleOnce(schedule_selector(SGSkirmishScene::startSkirmish), time*0.1f);
   return true;
 }
 
@@ -600,9 +609,13 @@ bool SGSkirmishScene::onHandleEventHeroStatusChange(tinyxml2::XMLElement* event)
   return true;
 }
 
-void SGSkirmishScene::startSceneScript(float dt)
+void SGSkirmishScene::startSkirmish(float dt)
 {
   scheduleUpdate();
+}
+void SGSkirmishScene::stopSkirmish()
+{
+  unscheduleUpdate();
 }
 
 void SGSkirmishScene::checkTests()
@@ -700,10 +713,7 @@ bool SGSkirmishScene::gameLogicFriendTurn()
     switchToNextRound();
     return true;
   }
-  SGSHero::HERO_AI hero_ai = hero->getAI();
-  SGSStrategy* strategy = SGSStrategy::createStrategy(hero_ai, __terrain);
-  strategy->oneMove(hero);
-  delete strategy;
+  gameLogicMoveOneHero(hero);
   CCLOG("friend %s has moved", hero->getName().c_str());
   return false;
 }
@@ -717,13 +727,22 @@ bool SGSkirmishScene::gameLogicEnemyTurn()
     switchToNextRound();
     return true;
   }
-  SGSHero::HERO_AI hero_ai = hero->getAI();
-  SGSStrategy* strategy = SGSStrategy::createStrategy(hero_ai, __terrain);
-  strategy->oneMove(hero);
-  delete strategy;
+  gameLogicMoveOneHero(hero);
   CCLOG("enemy %s has moved", hero->getName().c_str());
   return false;
 }
+
+bool SGSkirmishScene::gameLogicMoveOneHero(SGSHero* hero)
+{
+  stopSkirmish();
+  SGSHero::HERO_AI hero_ai = hero->getAI();
+  SGSStrategy* strategy = SGSStrategy::createStrategy(hero_ai, __terrain);
+  strategy->addObserver(this);
+  strategy->oneMove(hero);
+  delete strategy;
+  return true;
+}
+
 
 void SGSkirmishScene::showHeroAvailabePath(SGSHero* hero)
 {

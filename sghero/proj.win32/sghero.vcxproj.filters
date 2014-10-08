@@ -57,27 +57,6 @@
     <ClCompile Include="..\Classes\SGSceneHeroSpeakScene.cpp">
       <Filter>Classes\SGSceneBase</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\SGSKirmishSwitchScene.cpp">
-      <Filter>Classes\SGSkirmishScene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\SGSkirmishSceneMagicCall.cpp">
-      <Filter>Classes\SGSkirmishScene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\SGSkirmishTerrain.cpp">
-      <Filter>Classes\SGSkirmishScene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\SGSkirmishArea.cpp">
-      <Filter>Classes\SGSkirmishScene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\SGSkirmishHero.cpp">
-      <Filter>Classes\SGSkirmishScene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\SGSkirmishObj.cpp">
-      <Filter>Classes\SGSkirmishScene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\SGSkirmishAreaObj.cpp">
-      <Filter>Classes\SGSkirmishScene</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\SGSkirmishInfo.cpp">
       <Filter>Classes\SGSkirmishScene</Filter>
     </ClCompile>
@@ -87,14 +66,38 @@
     <ClCompile Include="..\Classes\SGSceneEvent.cpp">
       <Filter>Classes\SGSceneBase</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\SGSkirmishStrategyStay.cpp">
+    <ClCompile Include="..\Classes\SGSTerrain.cpp">
       <Filter>Classes\SGSkirmishScene</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\SGSkirmishStrategy.cpp">
+    <ClCompile Include="..\Classes\SGSHero.cpp">
       <Filter>Classes\SGSkirmishScene</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\SGSkirmishStrategyAttack.cpp">
+    <ClCompile Include="..\Classes\SGSMagicCall.cpp">
       <Filter>Classes\SGSkirmishScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SGSStrategy.cpp">
+      <Filter>Classes\SGSkirmishScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SGSStrategyAttack.cpp">
+      <Filter>Classes\SGSkirmishScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SGSStrategyStay.cpp">
+      <Filter>Classes\SGSkirmishScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SGSAreaObj.cpp">
+      <Filter>Classes\SGSkirmishScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SGSArea.cpp">
+      <Filter>Classes\SGSkirmishScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SGSObj.cpp">
+      <Filter>Classes\SGSkirmishScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SGSSwitchScene.cpp">
+      <Filter>Classes\SGSkirmishScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SGObserver.cpp">
+      <Filter>Classes\SGUtils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -140,43 +143,43 @@
     <ClInclude Include="..\Classes\SGObserver.h">
       <Filter>Classes\SGUtils</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\SGSKirmishSwitchScene.h">
-      <Filter>Classes\SGSkirmishScene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\SGSkirmishSceneMagicCall.h">
-      <Filter>Classes\SGSkirmishScene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\SGSkirmishTerrain.h">
-      <Filter>Classes\SGSkirmishScene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\SGSkirmishArea.h">
-      <Filter>Classes\SGSkirmishScene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\SGSkirmishHero.h">
-      <Filter>Classes\SGSkirmishScene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\SGSkirmishObj.h">
-      <Filter>Classes\SGSkirmishScene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\SGSkirmishMapPos.h">
-      <Filter>Classes\SGSkirmishScene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\SGSkirmishAreaObj.h">
-      <Filter>Classes\SGSkirmishScene</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\SGSkirmishInfo.h">
       <Filter>Classes\SGSkirmishScene</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\SGSceneEvent.h">
       <Filter>Classes\SGSceneBase</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\SGSkirmishStrategyStay.h">
+    <ClInclude Include="..\Classes\SGSPoint.h">
       <Filter>Classes\SGSkirmishScene</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\SGSkirmishStrategy.h">
+    <ClInclude Include="..\Classes\SGSTerrain.h">
       <Filter>Classes\SGSkirmishScene</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\SGSkirmishStrategyAttack.h">
+    <ClInclude Include="..\Classes\SGSHero.h">
+      <Filter>Classes\SGSkirmishScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SGSMagicCall.h">
+      <Filter>Classes\SGSkirmishScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SGSStrategy.h">
+      <Filter>Classes\SGSkirmishScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SGSStrategyAttack.h">
+      <Filter>Classes\SGSkirmishScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SGSStrategyStay.h">
+      <Filter>Classes\SGSkirmishScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SGSAreaObj.h">
+      <Filter>Classes\SGSkirmishScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SGSArea.h">
+      <Filter>Classes\SGSkirmishScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SGSObj.h">
+      <Filter>Classes\SGSkirmishScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SGSSwitchScene.h">
       <Filter>Classes\SGSkirmishScene</Filter>
     </ClInclude>
   </ItemGroup>

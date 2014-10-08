@@ -8,9 +8,8 @@ void SGSStrategyAttack::oneMove(SGSHero* hero)
     log("%s is going to attack %s ", hero->getName().c_str(), best_assaultable_hero->getName().c_str());
     SGSPoint best_attacked_point = findBestAttackPoint(hero, best_assaultable_hero);
     hero->moveTo(best_attacked_point);
-
   }
-
+  notifyObserver("hero_move_finished", NULL);
   hero->setActive(false);
 }
 

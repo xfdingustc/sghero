@@ -11,7 +11,7 @@ class SGSObj : public Sprite , public SGObservable
 {
 public:
   static SGSObj* create(const char* name, SGObserver* observer);
-  explicit SGSObj(SGObserver* observer) : SGObservable(observer) {}
+  explicit SGSObj(SGObserver* observer)  { addObserver(observer); }
 
   virtual bool init(const char* name);
   virtual void setMapPosition(SGSPoint& map_pos);

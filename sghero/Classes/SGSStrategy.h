@@ -4,10 +4,11 @@
 #include "cocos2d.h"
 USING_NS_CC;
 
+#include "SGObserver.h"
 #include "SGSHero.h"
 #include "SGSTerrain.h"
 
-class SGSStrategy 
+class SGSStrategy : public SGObservable
 {
 public:
   static SGSStrategy* createStrategy(SGSHero::HERO_AI ai, SGSTerrain* terrain);
