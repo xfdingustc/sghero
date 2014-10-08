@@ -14,6 +14,8 @@ public:
   static SGSkirmishArea*  create(std::string& name);
   static SGSkirmishArea*  create(std::string& name, PointList& point_list);
 
+  virtual ~SGSkirmishArea();
+
   void                    addOnePoint(SGSkirmishMapPos& pos);
   bool                    containPoint(Vec2& pos);
   bool                    init();

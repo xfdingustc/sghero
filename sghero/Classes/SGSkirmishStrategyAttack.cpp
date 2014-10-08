@@ -7,7 +7,7 @@ void SGSkirmishStrategyAttack::oneMove(SGSkirmishHero* hero)
   if (best_assaultable_hero) {
     log("%s is going to attack %s ", hero->getName().c_str(), best_assaultable_hero->getName().c_str());
   }
-
+  //SGSkirmishMapPos pos = 
   hero->setActive(false);
 }
 

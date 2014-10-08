@@ -49,10 +49,16 @@ SGSkirmishTerrain::~SGSkirmishTerrain()
   delete __terrain_info;
 }
 
-SGSkirmishArea& SGSkirmishTerrain::calcHeroAvailabePath(SGSkirmishHero* hero)
+SGSkirmishTerrain::PointList& SGSkirmishTerrain::calcHeroAvailabePath(SGSkirmishHero* hero)
 {
   std::string res_name = SG_SKIRMISH_AREA_PATH;
-  SGSkirmishArea* area = SGSkirmishArea::create(res_name);
+  //SGSkirmishArea* area = SGSkirmishArea::create(res_name);
+  static PointList valid_path_list; 
+  PointList::iterator path_list_iter;
+  // clear the list;
+  for (path_list_iter = valid_path_list.begin(); path_list_iter != valid_path_list.end();) {
+    path_list_iter = valid_path_list.erase(path_list_iter);
+  }
 
   int hero_stamina = hero->getStamina();
   // A* algorithm
@@ -108,10 +114,10 @@ SGSkirmishArea& SGSkirmishTerrain::calcHeroAvailabePath(SGSkirmishHero* hero)
   StepList::iterator iter;
   for (iter = close_list.begin(); iter != close_list.end(); iter++) {
     Step one_step = *iter;
-    area->addOnePoint(one_step.__pos);
+    valid_path_list.push_back(one_step.__pos);
 
   }
-  return *area;
+  return valid_path_list;
 
 }
 
@@ -133,8 +139,7 @@ SGSkirmishTerrain::HeroList* SGSkirmishTerrain::findAssaultableEnemyHeroes(SGSki
     iter = assaultable_heroes.erase(iter);
   }
 
-  SGSkirmishArea& area = calcHeroAvailabePath(hero);
-  PointList& valid_walk_point_list = area.__point_list;
+  PointList& valid_walk_point_list = calcHeroAvailabePath(hero);
   PointList::iterator walk_area_iter;
   PointList::iterator attack_area_iter;
 
@@ -162,7 +167,6 @@ SGSkirmishTerrain::HeroList* SGSkirmishTerrain::findAssaultableEnemyHeroes(SGSki
 
     }
   }
-
   return &assaultable_heroes;
 }
 

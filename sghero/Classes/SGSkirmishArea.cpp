@@ -27,6 +27,9 @@ SGSkirmishArea* SGSkirmishArea::create(std::string& name, PointList& point_list)
   }
 }
 
+ SGSkirmishArea::~SGSkirmishArea()
+ {
+ }
 
 
 bool SGSkirmishArea::init()

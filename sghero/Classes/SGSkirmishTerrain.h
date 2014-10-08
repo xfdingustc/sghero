@@ -19,7 +19,7 @@ public:
   ~SGSkirmishTerrain();
 
 
-  SGSkirmishArea&         calcHeroAvailabePath(SGSkirmishHero* hero);
+  PointList&              calcHeroAvailabePath(SGSkirmishHero* hero);
   HeroList*               findAssaultableEnemyHeroes(SGSkirmishHero* hero);
   SGSkirmishHero*         findEnemyHeroInArea(SGSkirmishArea* area, SGSkirmishHero* hero);
   SGSkirmishHero*         findHeroByPosition(Vec2& pos);
