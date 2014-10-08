@@ -6,11 +6,11 @@
 class SGSkirmishStrategyAttack : public SGSkirmishStrategy
 {
 public:
-  SGSkirmishStrategyAttack(SGSkirmishTerrain* terrain) : SGSkirmishStrategy(terrain) {}
-  void oneMove(SGSkirmishHero* hero);
+  SGSkirmishStrategyAttack(SGSTerrain* terrain) : SGSkirmishStrategy(terrain) {}
+  void oneMove(SGSHero* hero);
 private:
-  SGSkirmishHeroList* findAssaultableEnemyHeroes(SGSkirmishHero* hero);
-  SGSkirmishHero*     getBestAssaultHero(SGSkirmishHero* hero);
+  SGSHeroList* findAssaultableEnemyHeroes(SGSHero* hero);
+  SGSHero*     getBestAssaultHero(SGSHero* hero);
 };
 
 #endif

@@ -1,7 +1,7 @@
 #include "SGSkirmishStrategyStay.h"
 
 
-void SGSkirmishStrategyStay::oneMove(SGSkirmishHero* hero)
+void SGSkirmishStrategyStay::oneMove(SGSHero* hero)
 {
   hero->setActive(false);
 }

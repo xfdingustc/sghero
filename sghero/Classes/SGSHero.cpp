@@ -1,12 +1,12 @@
-#include "SGSkirmishHero.h"
+#include "SGSHero.h"
 #include "SGHeroResourceUtils.h"
 #include "SGGlobalSettings.h"
 #include "SGSkirmishScene.h"
 
 
-SGSkirmishHero* SGSkirmishHero::create(const char* hero_name, HERO_SIDE side, SGObserver* observer)
+SGSHero* SGSHero::create(const char* hero_name, HERO_SIDE side, SGObserver* observer)
 {
-  SGSkirmishHero* hero = new SGSkirmishHero(observer);
+  SGSHero* hero = new SGSHero(observer);
 
   if (hero && hero->init(hero_name, side)) {
     hero->autorelease();
@@ -17,7 +17,7 @@ SGSkirmishHero* SGSkirmishHero::create(const char* hero_name, HERO_SIDE side, SG
   }
 }
 
-bool SGSkirmishHero::init(const char* hero_name, HERO_SIDE side)
+bool SGSHero::init(const char* hero_name, HERO_SIDE side)
 {
   if (!Sprite::init()) {
     return false;
@@ -47,7 +47,7 @@ bool SGSkirmishHero::init(const char* hero_name, HERO_SIDE side)
   
 }
 
-bool SGSkirmishHero::isRival(SGSkirmishHero* hero)
+bool SGSHero::isRival(SGSHero* hero)
 {
   if (!hero) {
     return false;
@@ -75,7 +75,7 @@ bool SGSkirmishHero::isRival(SGSkirmishHero* hero)
   }
 }
 
-bool SGSkirmishHero::initActions()
+bool SGSHero::initActions()
 {
   std::string hero_res_file_full_path = getHeroResFile(SG_SKIRMISH_SCENE_HERO_RES_PATH);
   // Init hero start picture
@@ -139,7 +139,7 @@ bool SGSkirmishHero::initActions()
   return true;
 }
 
-bool SGSkirmishHero::initAttackActions()
+bool SGSHero::initAttackActions()
 {
   std::string hero_attack_res_file_full_path = getHeroResFile(SG_SKIRMISH_SCENE_HERO_ATTACK_RES_PATH);
 
@@ -188,7 +188,7 @@ bool SGSkirmishHero::initAttackActions()
   return true;
 }
 
-bool SGSkirmishHero::initSpecActions()
+bool SGSHero::initSpecActions()
 {
   std::string hero_spec_res_file_full_path = getHeroResFile(SG_SKIRMISH_SCENE_HERO_SPEC_RES_PATH);
   Texture2D* texture = Director::getInstance()->getTextureCache()->addImage(hero_spec_res_file_full_path);
@@ -233,7 +233,7 @@ bool SGSkirmishHero::initSpecActions()
   return true;
 }
 
-void SGSkirmishHero::initCatagory()
+void SGSHero::initCatagory()
 {
   std::string catagory = SGHeroResourceUtils::getInstance()->getHeroResObj(__name)->catagory;
   if (catagory == "lord") {
@@ -266,12 +266,12 @@ void SGSkirmishHero::initCatagory()
   __stamina = 6;
 }
 
-void SGSkirmishHero::initDataNum()
+void SGSHero::initDataNum()
 {
   __stamina = 6;
 }
 
-std::string& SGSkirmishHero::getHeroResFile(const char* res_dir)
+std::string& SGSHero::getHeroResFile(const char* res_dir)
 {
   static std::string res_file;
 
@@ -320,12 +320,12 @@ std::string& SGSkirmishHero::getHeroResFile(const char* res_dir)
   return res_file;
 }
 
-void SGSkirmishHero::faceTo(const char* direction)
+void SGSHero::faceTo(const char* direction)
 {
   faceTo(getDirection(direction));
 }
 
-void SGSkirmishHero::faceTo(HERO_DIRECTION direction)
+void SGSHero::faceTo(HERO_DIRECTION direction)
 {
   __direction = direction;
   stopAllActions();
@@ -357,13 +357,13 @@ void SGSkirmishHero::faceTo(HERO_DIRECTION direction)
   this->runAction(face_walk);
 }
 
-void SGSkirmishHero::moveTo(SGSkirmishMapPos& target_pos)
+void SGSHero::moveTo(SGSPoint& target_pos)
 {
   this->setMapPosition(target_pos);
 }
 
 
-void SGSkirmishHero::doAttackAction()
+void SGSHero::doAttackAction()
 {
   std::string action_name;
   switch (__direction)
@@ -387,7 +387,7 @@ void SGSkirmishHero::doAttackAction()
   this->runAction(animate);
 }
 
-void SGSkirmishHero::doAction(const char* action)
+void SGSHero::doAction(const char* action)
 {
   this->stopAllActions();
   if (!strcmp(action, "attack")) {
@@ -408,7 +408,7 @@ void SGSkirmishHero::doAction(const char* action)
   }
 }
 
-SGSkirmishHero::HERO_DIRECTION SGSkirmishHero::getDirection(const char* direction)
+SGSHero::HERO_DIRECTION SGSHero::getDirection(const char* direction)
 {
   if (!strcmp(direction, "north")) {
     return HERO_DIRECTION_NORTH;
@@ -423,7 +423,7 @@ SGSkirmishHero::HERO_DIRECTION SGSkirmishHero::getDirection(const char* directio
   return HERO_DIRECTION_NORTH;
 }
 
-void SGSkirmishHero::setAI(std::string& ai)
+void SGSHero::setAI(std::string& ai)
 {
   HERO_AI hero_ai = HERO_AI_ATTACK;
   if (ai == "attack") {
@@ -437,7 +437,7 @@ void SGSkirmishHero::setAI(std::string& ai)
 }
 
 
-void SGSkirmishHero::setStatus(std::string& status)
+void SGSHero::setStatus(std::string& status)
 {
   HERO_STATUS hero_status;
   if (status == "chaos") {
@@ -447,7 +447,7 @@ void SGSkirmishHero::setStatus(std::string& status)
 }
 
 
-void SGSkirmishHero::setStatus(HERO_STATUS status)
+void SGSHero::setStatus(HERO_STATUS status)
 {
   __status = status;
   switch (status)
@@ -466,16 +466,16 @@ void SGSkirmishHero::setStatus(HERO_STATUS status)
   }
 }
 
-SGSkirmishPointList* SGSkirmishHero::getAttackArea()
+SGSPointList* SGSHero::getAttackArea()
 {
   return getAttackAreaFromPosition(this->getMapPosition());
 }
 
-SGSkirmishPointList* SGSkirmishHero::getAttackAreaFromPosition(SGSkirmishMapPos& pos)
+SGSPointList* SGSHero::getAttackAreaFromPosition(SGSPoint& pos)
 {
-  static SGSkirmishPointList point_list;
+  static SGSPointList point_list;
 
-  SGSkirmishPointList::iterator iter;
+  SGSPointList::iterator iter;
 
   for (iter = point_list.begin(); iter != point_list.end();) {
     iter = point_list.erase(iter);
@@ -490,13 +490,13 @@ SGSkirmishPointList* SGSkirmishHero::getAttackAreaFromPosition(SGSkirmishMapPos&
 }
 
 
-void SGSkirmishHero::setActive(bool active)
+void SGSHero::setActive(bool active)
 {
   __active = active;
   updataSprite();
 }
 
-void SGSkirmishHero::updataSprite()
+void SGSHero::updataSprite()
 {
   if (!__active) {
     stopAllActions();

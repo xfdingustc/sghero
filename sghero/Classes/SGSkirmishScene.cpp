@@ -114,7 +114,7 @@ bool SGSkirmishScene::onTouchBegan(Touch *touch, Event *unused_event)
 bool SGSkirmishScene::touchHandleStateMachine(Touch *touch)
 {
   Vec2 pos = this->convertToNodeSpace(touch->getLocation());
-  SGSkirmishHero* hero = NULL;
+  SGSHero* hero = NULL;
   switch (__event_handle_state)
   {
   case EVENT_HANDLE_STATE_NO_HERO_SELECTED:
@@ -338,11 +338,11 @@ bool SGSkirmishScene::parseSkirmishSettings(tinyxml2::XMLElement* setting)
   } else if (name == "Terrain") {
     onHandleSettingTerrain(setting);
   } else if (name == "OurSetting") {
-    onHandleHeroAdd(setting, SGSkirmishHero::HERO_SIDE_OURS);
+    onHandleHeroAdd(setting, SGSHero::HERO_SIDE_OURS);
   } else if (name == "FriendSetting") {
-    onHandleHeroAdd(setting, SGSkirmishHero::HERO_SIDE_FRIEND);
+    onHandleHeroAdd(setting, SGSHero::HERO_SIDE_FRIEND);
   } else if (name == "EnemySetting") {
-    onHandleHeroAdd(setting, SGSkirmishHero::HERO_SIDE_ENEMY);
+    onHandleHeroAdd(setting, SGSHero::HERO_SIDE_ENEMY);
   }
   return true;
 }
@@ -391,11 +391,11 @@ bool SGSkirmishScene::onHandleSettingMap(tinyxml2::XMLElement* setting)
 bool SGSkirmishScene::onHandleSettingTerrain(tinyxml2::XMLElement* setting)
 {
   std::string terrain_file = FileUtils::getInstance()->fullPathForFilename(setting->Attribute("terrain"));
-  __terrain = SGSkirmishTerrain::create(terrain_file, Size(__map_width, __map_height));
+  __terrain = SGSTerrain::create(terrain_file, Size(__map_width, __map_height));
   return true;
 
 }
-bool SGSkirmishScene::onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSkirmishHero::HERO_SIDE side)
+bool SGSkirmishScene::onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSHero::HERO_SIDE side)
 {
   tinyxml2::XMLElement* one_hero = setting->FirstChildElement();
 
@@ -406,12 +406,12 @@ bool SGSkirmishScene::onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSkirmishH
     std::string direction = one_hero->Attribute("face");
     const char* hide = one_hero->Attribute("hide");
 
-    SGSkirmishHero* hero = SGSkirmishHero::create(hero_name.c_str(), side, __terrain);
+    SGSHero* hero = SGSHero::create(hero_name.c_str(), side, __terrain);
     if (!hero) {
       log("Failed to allocate hero");
       return true;
     }
-    hero->setMapPosition(SGSkirmishMapPos(x, y));
+    hero->setMapPosition(SGSPoint(x, y));
     if (!strcmp(hide, "true")) {
       hero->setVisible(false);
     }
@@ -426,13 +426,13 @@ bool SGSkirmishScene::onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSkirmishH
     // add into hero list
     switch (side)
     {
-    case SGSkirmishHero::HERO_SIDE_OURS:
+    case SGSHero::HERO_SIDE_OURS:
       __our_heroes.pushBack(hero);
       break;
-    case SGSkirmishHero::HERO_SIDE_FRIEND:
+    case SGSHero::HERO_SIDE_FRIEND:
       __friend_heroes.pushBack(hero);
       break;
-    case SGSkirmishHero::HERO_SIDE_ENEMY:
+    case SGSHero::HERO_SIDE_ENEMY:
       __enemy_heroes.pushBack(hero);
       break;
     default:
@@ -448,7 +448,7 @@ bool SGSkirmishScene::onHandleEventHeroAction(tinyxml2::XMLElement* event)
   std::string hero_name = event->Attribute("hero");
   std::string action = event->Attribute("action");
 
-  SGSkirmishHero* hero = (SGSkirmishHero*)this->getChildByName(hero_name);
+  SGSHero* hero = (SGSHero*)this->getChildByName(hero_name);
 
   hero->doAction(action.c_str());
   return true;
@@ -460,9 +460,9 @@ bool SGSkirmishScene::onHandleEventHeroMove(tinyxml2::XMLElement* event)
   std::string hero_name = event->Attribute("hero");
   int x = atoi(event->Attribute("x"));
   int y = atoi(event->Attribute("y"));
-  SGSkirmishHero* hero = (SGSkirmishHero*)this->getChildByName(hero_name);
+  SGSHero* hero = (SGSHero*)this->getChildByName(hero_name);
   //hero->moveTo(mapPos2OpenGLPos(Vec2(x, y)));
-  hero->setMapPosition(SGSkirmishMapPos(x, y));
+  hero->setMapPosition(SGSPoint(x, y));
   std::string direction = event->Attribute("face");
   hero->faceTo(direction.c_str());
   return true;
@@ -489,7 +489,7 @@ bool SGSkirmishScene::onHandleEventHeroTurn(tinyxml2::XMLElement* event)
 {
   std::string direction;
   std::string hero_name = event->Attribute("hero");
-  SGSkirmishHero* hero_sprite = (SGSkirmishHero*)this->getChildByName(hero_name);
+  SGSHero* hero_sprite = (SGSHero*)this->getChildByName(hero_name);
   if (!hero_sprite) {
     return true;
   }
@@ -498,7 +498,7 @@ bool SGSkirmishScene::onHandleEventHeroTurn(tinyxml2::XMLElement* event)
   } else {
     std::string target_hero_name = event->Attribute("target_hero");
    
-    SGSkirmishHero* target_hero_sprite = (SGSkirmishHero*)this->getChildByName(target_hero_name);
+    SGSHero* target_hero_sprite = (SGSHero*)this->getChildByName(target_hero_name);
 
     Vec2 hero_pos = hero_sprite->getPosition();
     Vec2 target_hero_pos = target_hero_sprite->getPosition();
@@ -523,7 +523,7 @@ bool SGSkirmishScene::onHandleEventDialog(tinyxml2::XMLElement* event)
 {
   return true;
   std::string hero_name = event->Attribute("hero");
-  SGSkirmishHero* hero = (SGSkirmishHero*)this->getChildByName(hero_name);
+  SGSHero* hero = (SGSHero*)this->getChildByName(hero_name);
   requireFocus(hero->getPosition());
   Vec2 dialog_win_pos;
   Vec2 hero_pos = hero->getPosition();
@@ -550,7 +550,7 @@ bool SGSkirmishScene::onHandleEventDialog(tinyxml2::XMLElement* event)
 bool SGSkirmishScene::onHandleEventHidenHeroAppear(tinyxml2::XMLElement* event)
 {
   std::string hero_name = event->Attribute("hero");
-  SGSkirmishHero* hero = (SGSkirmishHero*)this->getChildByName(hero_name);
+  SGSHero* hero = (SGSHero*)this->getChildByName(hero_name);
   if (hero) {
     requireFocus(hero->getPosition());
     
@@ -566,7 +566,7 @@ bool SGSkirmishScene::onHandleEventObjAdd(tinyxml2::XMLElement* event)
   int y = atoi(event->Attribute("y"));
   //currently only fire is supported so hard code here
   SGSkirmishObj* obj = SGSkirmishObj::create(obj_name.c_str(), __terrain);
-  obj->setMapPosition(SGSkirmishMapPos(x, y));
+  obj->setMapPosition(SGSPoint(x, y));
   this->addChild(obj);
   return true;
 }
@@ -584,15 +584,15 @@ bool SGSkirmishScene::onHandleEventHeroStatusChange(tinyxml2::XMLElement* event)
   if (event->Attribute("side")) {
     std::string side = event->Attribute("side");
     std::string status = event->Attribute("status");
-    SGSkirmishHeroList* hero_list = &__our_heroes;
+    SGSHeroList* hero_list = &__our_heroes;
     if (side == "enemy") {
       hero_list = &__enemy_heroes;
     } else if (side == "friend"){
       hero_list = &__friend_heroes;
     } 
-    SGSkirmishHeroList::iterator iter;
+    SGSHeroList::iterator iter;
     for (iter = hero_list->begin(); iter != hero_list->end(); iter++) {
-      SGSkirmishHero* hero = *iter;
+      SGSHero* hero = *iter;
       hero->setStatus(status);
     }
 
@@ -679,29 +679,29 @@ void SGSkirmishScene::gameLogic()
 
 void SGSkirmishScene::resetAllHeroActivity()
 {
-  SGSkirmishHeroList::iterator it;
+  SGSHeroList::iterator it;
   for (it = __our_heroes.begin(); it != __our_heroes.end(); it++) {
-    SGSkirmishHero* hero = *it;
+    SGSHero* hero = *it;
     hero->setActive(true);
   }
   for (it = __friend_heroes.begin(); it != __friend_heroes.end(); it++) {
-    SGSkirmishHero* hero = *it;
+    SGSHero* hero = *it;
     hero->setActive(true);
   }
   for (it = __enemy_heroes.begin(); it != __enemy_heroes.end(); it++) {
-    SGSkirmishHero* hero = *it;
+    SGSHero* hero = *it;
     hero->setActive(true);
   }
 }
 bool SGSkirmishScene::gameLogicFriendTurn() 
 {
-  SGSkirmishHero* hero = getHero(__friend_heroes);
+  SGSHero* hero = getHero(__friend_heroes);
   if (!hero) {
     __turn = SKIRMISH_TURN_ENEMY;
     switchToNextRound();
     return true;
   }
-  SGSkirmishHero::HERO_AI hero_ai = hero->getAI();
+  SGSHero::HERO_AI hero_ai = hero->getAI();
   SGSkirmishStrategy* strategy = SGSkirmishStrategy::createStrategy(hero_ai, __terrain);
   strategy->oneMove(hero);
   delete strategy;
@@ -711,14 +711,14 @@ bool SGSkirmishScene::gameLogicFriendTurn()
 
 bool SGSkirmishScene::gameLogicEnemyTurn()
 {
-  SGSkirmishHero* hero = getHero(__enemy_heroes);
+  SGSHero* hero = getHero(__enemy_heroes);
   if (!hero) {
     __turn = SKIRMISH_TURN_OUR;
     __round++;
     switchToNextRound();
     return true;
   }
-  SGSkirmishHero::HERO_AI hero_ai = hero->getAI();
+  SGSHero::HERO_AI hero_ai = hero->getAI();
   SGSkirmishStrategy* strategy = SGSkirmishStrategy::createStrategy(hero_ai, __terrain);
   strategy->oneMove(hero);
   delete strategy;
@@ -726,7 +726,7 @@ bool SGSkirmishScene::gameLogicEnemyTurn()
   return false;
 }
 
-void SGSkirmishScene::showHeroAvailabePath(SGSkirmishHero* hero)
+void SGSkirmishScene::showHeroAvailabePath(SGSHero* hero)
 {
   this->removeChildByName("walk_path");
   std::string res_name = SG_SKIRMISH_AREA_PATH;
@@ -736,10 +736,10 @@ void SGSkirmishScene::showHeroAvailabePath(SGSkirmishHero* hero)
   area->show();
 }
 
-SGSkirmishHero* SGSkirmishScene::getHero(SGSkirmishHeroList& list)
+SGSHero* SGSkirmishScene::getHero(SGSHeroList& list)
 {
   for (int i = 0; i < list.size(); i++) {
-    SGSkirmishHero* hero = list.at(i);
+    SGSHero* hero = list.at(i);
     if (hero->isActive()) {
       return hero;
     }

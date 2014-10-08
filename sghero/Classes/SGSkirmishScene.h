@@ -5,13 +5,13 @@
 USING_NS_CC;
 
 #include "SGSceneBase.h"
-#include "SGSkirmishHero.h"
-#include "SGSkirmishTerrain.h"
+#include "SGSHero.h"
+#include "SGSTerrain.h"
 
 
 class SGSkirmishScene : public SGSceneBase
 {
-  friend SGSkirmishHero;
+  friend SGSHero;
 public:
   static Scene* createScene();
 
@@ -45,11 +45,11 @@ private:
   bool gameLogicEnemyTurn();
   void switchToNextRound();
   void resetAllHeroActivity();
-  void showHeroAvailabePath(SGSkirmishHero* hero);
+  void showHeroAvailabePath(SGSHero* hero);
 
   bool onHandleSettingMap(tinyxml2::XMLElement* setting);
   bool onHandleSettingTerrain(tinyxml2::XMLElement* setting);
-  bool onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSkirmishHero::HERO_SIDE side);
+  bool onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSHero::HERO_SIDE side);
   bool onHandleEventHeroAction(tinyxml2::XMLElement* event);
   bool onHandleEventDelay(tinyxml2::XMLElement* event);
   bool onHandleEventHeroRemove(tinyxml2::XMLElement* event);
@@ -63,10 +63,10 @@ private:
   Vec2 mapPos2OpenGLPos(Vec2 origin);
 
   EventListenerTouchOneByOne* __event_listener;
-  SGSkirmishHero* __selected_hero;
+  SGSHero* __selected_hero;
   int __map_width;
   int __map_height;
-  SGSkirmishTerrain* __terrain;
+  SGSTerrain* __terrain;
 
   // state
   typedef enum {
@@ -79,11 +79,11 @@ private:
   int __round;
 
   // Hero List
-  typedef Vector<SGSkirmishHero*> SGSkirmishHeroList;
-  SGSkirmishHeroList __our_heroes;
-  SGSkirmishHeroList __friend_heroes;
-  SGSkirmishHeroList __enemy_heroes;
-  SGSkirmishHero* getHero(SGSkirmishHeroList& list);
+  typedef Vector<SGSHero*> SGSHeroList;
+  SGSHeroList __our_heroes;
+  SGSHeroList __friend_heroes;
+  SGSHeroList __enemy_heroes;
+  SGSHero* getHero(SGSHeroList& list);
 
   
   SGSceneEventList __test_list;

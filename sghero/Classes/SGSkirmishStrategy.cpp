@@ -2,15 +2,15 @@
 #include "SGSkirmishStrategyAttack.h"
 #include "SGSkirmishStrategyStay.h"
 
-SGSkirmishStrategy* SGSkirmishStrategy::createStrategy(SGSkirmishHero::HERO_AI ai, SGSkirmishTerrain* terrain)
+SGSkirmishStrategy* SGSkirmishStrategy::createStrategy(SGSHero::HERO_AI ai, SGSTerrain* terrain)
 {
   SGSkirmishStrategy* strategy;
   switch (ai)
   {
-  case SGSkirmishHero::HERO_AI_ATTACK:
+  case SGSHero::HERO_AI_ATTACK:
     strategy = new SGSkirmishStrategyAttack(terrain);
     break;
-  case SGSkirmishHero::HERO_AI_STAY:
+  case SGSHero::HERO_AI_STAY:
     strategy = new SGSkirmishStrategyStay(terrain);
   default:
     strategy = new SGSkirmishStrategyStay(terrain);

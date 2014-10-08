@@ -5,7 +5,7 @@
 #include "SGSkirmishObj.h"
 USING_NS_CC;
 
-class SGSkirmishHero : public SGSkirmishObj 
+class SGSHero : public SGSkirmishObj 
 {
 public:
   typedef enum {
@@ -50,8 +50,8 @@ public:
   } HERO_STATUS;
 
 
-  static          SGSkirmishHero* create(const char* hero_name, HERO_SIDE side, SGObserver* observer);
-  explicit        SGSkirmishHero(SGObserver* observer) : SGSkirmishObj(observer) {}
+  static          SGSHero* create(const char* hero_name, HERO_SIDE side, SGObserver* observer);
+  explicit        SGSHero(SGObserver* observer) : SGSkirmishObj(observer) {}
 
   void            doAction(const char* action);
   void            doAttackAction();
@@ -67,9 +67,9 @@ public:
   bool            initSpecActions();
 
   bool            isActive() { return (__active && isVisible());}
-  bool            isRival(SGSkirmishHero* hero);
+  bool            isRival(SGSHero* hero);
  
-  void            moveTo(SGSkirmishMapPos& target_pos);
+  void            moveTo(SGSPoint& target_pos);
 
   void            setActive(bool active); 
   void            setAI(HERO_AI ai) { __ai = ai; }
@@ -83,10 +83,10 @@ public:
   HERO_SIDE       getSide() { return __side; }
   int             getStamina() { return __stamina; }
   HERO_STATUS     getStatus() { return __status; }
-  SGSkirmishPointList*      getAttackArea();
-  SGSkirmishPointList*      getAttackAreaFromPosition(SGSkirmishMapPos& pos);
+  SGSPointList*      getAttackArea();
+  SGSPointList*      getAttackAreaFromPosition(SGSPoint& pos);
 
-  SGSkirmishMapPos __previous_map_position;
+  SGSPoint __previous_map_position;
 
 private:
   typedef std::map<std::string, Animate*> ANIMATE_MAP;
@@ -111,7 +111,7 @@ private:
   
 };
 
-typedef Vector<SGSkirmishHero*> SGSkirmishHeroList;
+typedef Vector<SGSHero*> SGSHeroList;
 
 
 #endif

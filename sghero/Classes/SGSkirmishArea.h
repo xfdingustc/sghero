@@ -2,25 +2,25 @@
 #define SG_SKIRMISH_AREA_H
 
 #include "cocos2d.h"
-#include "SGSkirmishMapPos.h"
+#include "SGSPoint.h"
 USING_NS_CC;
 
 class SGSkirmishArea : public Layer
 {
-  friend class SGSkirmishTerrain;
+  friend class SGSTerrain;
 public:
   static SGSkirmishArea*  create(std::string& name);
-  static SGSkirmishArea*  create(std::string& name, SGSkirmishPointList& point_list);
+  static SGSkirmishArea*  create(std::string& name, SGSPointList& point_list);
 
   virtual ~SGSkirmishArea();
 
-  void                    addOnePoint(SGSkirmishMapPos& pos);
+  void                    addOnePoint(SGSPoint& pos);
   bool                    containPoint(Vec2& pos);
   bool                    init();
-  bool                    initWithPointList(SGSkirmishPointList& point_list);
+  bool                    initWithPointList(SGSPointList& point_list);
   void                    show();
 private:
-  SGSkirmishPointList               __point_list;
+  SGSPointList               __point_list;
   std::string             __name;
 };
 #endif

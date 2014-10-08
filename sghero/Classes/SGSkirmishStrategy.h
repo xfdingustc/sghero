@@ -4,17 +4,17 @@
 #include "cocos2d.h"
 USING_NS_CC;
 
-#include "SGSkirmishHero.h"
-#include "SGSkirmishTerrain.h"
+#include "SGSHero.h"
+#include "SGSTerrain.h"
 
 class SGSkirmishStrategy 
 {
 public:
-  static SGSkirmishStrategy* createStrategy(SGSkirmishHero::HERO_AI ai, SGSkirmishTerrain* terrain);
-  SGSkirmishStrategy(SGSkirmishTerrain* terrain) : __terrain(terrain) {}
-  virtual void oneMove(SGSkirmishHero* hero) = 0;
+  static SGSkirmishStrategy* createStrategy(SGSHero::HERO_AI ai, SGSTerrain* terrain);
+  SGSkirmishStrategy(SGSTerrain* terrain) : __terrain(terrain) {}
+  virtual void oneMove(SGSHero* hero) = 0;
 protected:
-  SGSkirmishTerrain* __terrain;
+  SGSTerrain* __terrain;
 };
 
 #endif
