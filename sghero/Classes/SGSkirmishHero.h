@@ -49,8 +49,6 @@ public:
     HERO_STATUS_CHAOS,
   } HERO_STATUS;
 
-  typedef Vector<SGSkirmishHero*> SGSkirmishHeroList;
-  typedef SGSkirmishMapPos::SGSkirmishPointList PointList;
 
   static          SGSkirmishHero* create(const char* hero_name, HERO_SIDE side, SGObserver* observer);
   explicit        SGSkirmishHero(SGObserver* observer) : SGSkirmishObj(observer) {}
@@ -85,8 +83,8 @@ public:
   HERO_SIDE       getSide() { return __side; }
   int             getStamina() { return __stamina; }
   HERO_STATUS     getStatus() { return __status; }
-  PointList*      getAttackArea();
-  PointList*      getAttackAreaFromPosition(SGSkirmishMapPos& pos);
+  SGSkirmishPointList*      getAttackArea();
+  SGSkirmishPointList*      getAttackAreaFromPosition(SGSkirmishMapPos& pos);
 
   SGSkirmishMapPos __previous_map_position;
 
@@ -112,5 +110,8 @@ private:
   Vector<SpriteFrame*> __spec_sprite_frames;
   
 };
+
+typedef Vector<SGSkirmishHero*> SGSkirmishHeroList;
+
 
 #endif

@@ -49,12 +49,12 @@ SGSkirmishTerrain::~SGSkirmishTerrain()
   delete __terrain_info;
 }
 
-SGSkirmishTerrain::PointList& SGSkirmishTerrain::calcHeroAvailabePath(SGSkirmishHero* hero)
+SGSkirmishPointList& SGSkirmishTerrain::calcHeroAvailabePath(SGSkirmishHero* hero)
 {
   std::string res_name = SG_SKIRMISH_AREA_PATH;
   //SGSkirmishArea* area = SGSkirmishArea::create(res_name);
-  static PointList valid_path_list; 
-  PointList::iterator path_list_iter;
+  static SGSkirmishPointList valid_path_list; 
+  SGSkirmishPointList::iterator path_list_iter;
   // clear the list;
   for (path_list_iter = valid_path_list.begin(); path_list_iter != valid_path_list.end();) {
     path_list_iter = valid_path_list.erase(path_list_iter);
@@ -129,51 +129,12 @@ SGSkirmishTerrain* SGSkirmishTerrain::create(std::string& terrain_file, Size siz
 }
 
 
-SGSkirmishTerrain::HeroList* SGSkirmishTerrain::findAssaultableEnemyHeroes(SGSkirmishHero* hero)
-{
-  static HeroList assaultable_heroes;
-  HeroList::iterator iter;
 
-  // clear the list;
-  for (iter = assaultable_heroes.begin(); iter != assaultable_heroes.end();) {
-    iter = assaultable_heroes.erase(iter);
-  }
-
-  PointList& valid_walk_point_list = calcHeroAvailabePath(hero);
-  PointList::iterator walk_area_iter;
-  PointList::iterator attack_area_iter;
-
-  for (walk_area_iter = valid_walk_point_list.begin(); walk_area_iter != valid_walk_point_list.end(); walk_area_iter++) {
-    SGSkirmishMapPos one_valid_move_pos = *walk_area_iter;
-    PointList* attack_area = hero->getAttackAreaFromPosition(one_valid_move_pos);
-    for (attack_area_iter = attack_area->begin(); attack_area_iter != attack_area->end(); attack_area_iter++) {
-      SGSkirmishMapPos one_attack_pos = *attack_area_iter;
-      SGSkirmishHero* one_hero = findHeroByPosition(one_attack_pos);
-      if (one_hero && hero->isRival(one_hero)) {
-        HeroList::iterator hero_iter;
-        bool already_in_list = false;
-        for (hero_iter = assaultable_heroes.begin(); hero_iter != assaultable_heroes.end(); hero_iter++) {
-          SGSkirmishHero* one_list_in_list = *hero_iter;
-          if (one_list_in_list == one_hero) {
-            already_in_list = true;
-            break;
-          }
-        }
-        if (!already_in_list) {
-          assaultable_heroes.pushBack(one_hero);
-        }
-        break;
-      }
-
-    }
-  }
-  return &assaultable_heroes;
-}
 
 SGSkirmishHero* SGSkirmishTerrain::findEnemyHeroInArea(SGSkirmishArea* area, SGSkirmishHero* hero)
 {
-  SGSkirmishMapPos::SGSkirmishPointList* point_list = &area->__point_list;
-  SGSkirmishMapPos::SGSkirmishPointList::iterator iter;
+  SGSkirmishPointList* point_list = &area->__point_list;
+  SGSkirmishPointList::iterator iter;
 
   for (iter = point_list->begin(); iter != point_list->end(); iter++) {
     SGSkirmishMapPos pos = *iter;

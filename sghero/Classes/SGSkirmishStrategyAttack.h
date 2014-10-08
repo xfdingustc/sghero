@@ -9,7 +9,8 @@ public:
   SGSkirmishStrategyAttack(SGSkirmishTerrain* terrain) : SGSkirmishStrategy(terrain) {}
   void oneMove(SGSkirmishHero* hero);
 private:
-  SGSkirmishHero* getBestAssaultHero(SGSkirmishHero* hero);
+  SGSkirmishHeroList* findAssaultableEnemyHeroes(SGSkirmishHero* hero);
+  SGSkirmishHero*     getBestAssaultHero(SGSkirmishHero* hero);
 };
 
 #endif

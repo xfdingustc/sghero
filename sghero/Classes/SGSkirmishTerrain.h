@@ -11,16 +11,13 @@ USING_NS_CC;
 class SGSkirmishTerrain : public SGObserver
 {
 public:
-  typedef SGSkirmishHero::SGSkirmishHeroList HeroList;
-  typedef SGSkirmishMapPos::SGSkirmishPointList PointList;
   static SGSkirmishTerrain* create(std::string& terrain_file, Size size);
 
   SGSkirmishTerrain(std::string& terrain_file, Size size); 
   ~SGSkirmishTerrain();
 
 
-  PointList&              calcHeroAvailabePath(SGSkirmishHero* hero);
-  HeroList*               findAssaultableEnemyHeroes(SGSkirmishHero* hero);
+  SGSkirmishPointList&              calcHeroAvailabePath(SGSkirmishHero* hero);
   SGSkirmishHero*         findEnemyHeroInArea(SGSkirmishArea* area, SGSkirmishHero* hero);
   SGSkirmishHero*         findHeroByPosition(Vec2& pos);
   SGSkirmishHero*         findHeroByPosition(SGSkirmishMapPos& pos);
@@ -98,7 +95,7 @@ private:
 
   Vector<SGSkirmishObj*>  __objects;
   SGSkirmishTerrainType*  __terrain_info;
-  HeroList  __heroes;
+  SGSkirmishHeroList      __heroes;
 };
 
 #endif

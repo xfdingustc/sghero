@@ -466,16 +466,16 @@ void SGSkirmishHero::setStatus(HERO_STATUS status)
   }
 }
 
-SGSkirmishHero::PointList* SGSkirmishHero::getAttackArea()
+SGSkirmishPointList* SGSkirmishHero::getAttackArea()
 {
   return getAttackAreaFromPosition(this->getMapPosition());
 }
 
-SGSkirmishHero::PointList* SGSkirmishHero::getAttackAreaFromPosition(SGSkirmishMapPos& pos)
+SGSkirmishPointList* SGSkirmishHero::getAttackAreaFromPosition(SGSkirmishMapPos& pos)
 {
-  static PointList point_list;
+  static SGSkirmishPointList point_list;
 
-  PointList::iterator iter;
+  SGSkirmishPointList::iterator iter;
 
   for (iter = point_list.begin(); iter != point_list.end();) {
     iter = point_list.erase(iter);

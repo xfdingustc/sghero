@@ -8,7 +8,6 @@ USING_NS_CC;
 class SGSkirmishMapPos 
 {
 public:
-  typedef std::vector<SGSkirmishMapPos> SGSkirmishPointList;
   int x;
   int y;
   SGSkirmishMapPos() : x(0), y(0) {}
@@ -69,5 +68,6 @@ public:
   }
 
 };
+typedef std::vector<SGSkirmishMapPos> SGSkirmishPointList;
 
 #endif
