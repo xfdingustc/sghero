@@ -108,7 +108,6 @@ void SGSkirmishScene::notify()
 bool SGSkirmishScene::onTouchBegan(Touch *touch, Event *unused_event)
 {
   return touchHandleStateMachine(touch);
-  
 }
 
 bool SGSkirmishScene::touchHandleStateMachine(Touch *touch)
@@ -166,7 +165,7 @@ bool SGSkirmishScene::touchHandleStateMachine(Touch *touch)
     break;
   }
 
-  return false;
+  return true;
 
 }
 

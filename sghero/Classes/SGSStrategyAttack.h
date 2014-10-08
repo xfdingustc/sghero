@@ -11,6 +11,7 @@ public:
 private:
   SGSHeroList* findAssaultableEnemyHeroes(SGSHero* hero);
   SGSHero*     getBestAssaultHero(SGSHero* hero);
+  SGSPoint&    findBestAttackPoint(SGSHero* attack_hero, SGSHero* defend_hero);
 };
 
 #endif

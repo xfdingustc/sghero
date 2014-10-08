@@ -6,8 +6,11 @@ void SGSStrategyAttack::oneMove(SGSHero* hero)
   SGSHero* best_assaultable_hero = getBestAssaultHero(hero);
   if (best_assaultable_hero) {
     log("%s is going to attack %s ", hero->getName().c_str(), best_assaultable_hero->getName().c_str());
+    SGSPoint best_attacked_point = findBestAttackPoint(hero, best_assaultable_hero);
+    hero->moveTo(best_attacked_point);
+
   }
-  //SGSPoint pos = __terrain->calcHeroAvailabePath()
+
   hero->setActive(false);
 }
 
@@ -69,4 +72,27 @@ SGSHeroList* SGSStrategyAttack::findAssaultableEnemyHeroes(SGSHero* hero)
     }
   }
   return &assaultable_heroes;
+}
+
+
+SGSPoint& SGSStrategyAttack::findBestAttackPoint(SGSHero* attack_hero, SGSHero* defend_hero)
+{
+  SGSPointList& pos_list = __terrain->calcHeroAvailabePath(attack_hero);
+  SGSPointList::iterator iter;
+
+  static SGSPoint best_attack_point = attack_hero->getMapPosition();
+  
+  for (iter = pos_list.begin(); iter != pos_list.end(); iter++) {
+    SGSPoint one_point = *iter;
+    SGSPointList* attack_area = attack_hero->getAttackAreaFromPosition(one_point);
+    SGSPointList::iterator attack_iter;
+    for (attack_iter = attack_area->begin(); attack_iter != attack_area->end(); attack_iter++) {
+      SGSPoint one_attack_point = *attack_iter;
+      if (one_attack_point == defend_hero->getMapPosition()) {
+        best_attack_point = one_point;
+      }
+    }
+  }
+
+  return best_attack_point;
 }
