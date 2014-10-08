@@ -4,12 +4,12 @@
 #include "cocos2d.h"
 USING_NS_CC;
 
-class SGSkirmishSceneMagicCall : public Layer 
+class SGSMagicCall : public Layer 
 {
 public:
   static Scene* createScene(std::string& magic, Vec2& pos);
 
-  static SGSkirmishSceneMagicCall* create(std::string& magic, Vec2& pos);
+  static SGSMagicCall* create(std::string& magic, Vec2& pos);
   bool init(std::string& magic, Vec2& pos);
 
   void actionFinished();

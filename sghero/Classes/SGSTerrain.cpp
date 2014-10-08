@@ -129,7 +129,7 @@ SGSTerrain* SGSTerrain::create(std::string& terrain_file, Size size)
 
 
 
-SGSHero* SGSTerrain::findEnemyHeroInArea(SGSkirmishArea* area, SGSHero* hero)
+SGSHero* SGSTerrain::findEnemyHeroInArea(SGSArea* area, SGSHero* hero)
 {
   SGSPointList* point_list = &area->__point_list;
   SGSPointList::iterator iter;
@@ -208,7 +208,7 @@ void SGSTerrain::notify(const char* reason, void* ptr)
     SGSHero* hero = reinterpret_cast<SGSHero*>(ptr);
     __heroes.pushBack(hero);
   } else if (notify_reason == "object_add") {
-    SGSkirmishObj* object = reinterpret_cast<SGSkirmishObj*>(ptr);
+    SGSObj* object = reinterpret_cast<SGSObj*>(ptr);
     __objects.pushBack(object);
   }
   
@@ -331,11 +331,11 @@ SGSTerrain::TERRAIN_TYPE SGSTerrain::getTerrainAt(SGSPoint& pos)
 }
 
 
-SGSkirmishObj* SGSTerrain::getObj(SGSPoint& pos)
+SGSObj* SGSTerrain::getObj(SGSPoint& pos)
 {
-  Vector<SGSkirmishObj*>::iterator iter;
+  Vector<SGSObj*>::iterator iter;
   for (iter = __objects.begin(); iter != __objects.end(); iter++) {
-    SGSkirmishObj* obj = *iter;
+    SGSObj* obj = *iter;
     if (obj->getMapPosition() == pos) {
       return obj;
     }

@@ -1,7 +1,7 @@
-#include "SGSkirmishStrategyAttack.h"
+#include "SGSStrategyAttack.h"
 
 
-void SGSkirmishStrategyAttack::oneMove(SGSHero* hero)
+void SGSStrategyAttack::oneMove(SGSHero* hero)
 {
   SGSHero* best_assaultable_hero = getBestAssaultHero(hero);
   if (best_assaultable_hero) {
@@ -11,7 +11,7 @@ void SGSkirmishStrategyAttack::oneMove(SGSHero* hero)
   hero->setActive(false);
 }
 
-SGSHero* SGSkirmishStrategyAttack::getBestAssaultHero(SGSHero* hero)
+SGSHero* SGSStrategyAttack::getBestAssaultHero(SGSHero* hero)
 {
 
   SGSHeroList* hero_list = findAssaultableEnemyHeroes(hero);
@@ -30,7 +30,7 @@ SGSHero* SGSkirmishStrategyAttack::getBestAssaultHero(SGSHero* hero)
 }
 
 
-SGSHeroList* SGSkirmishStrategyAttack::findAssaultableEnemyHeroes(SGSHero* hero)
+SGSHeroList* SGSStrategyAttack::findAssaultableEnemyHeroes(SGSHero* hero)
 {
   static SGSHeroList assaultable_heroes;
   SGSHeroList::iterator iter;

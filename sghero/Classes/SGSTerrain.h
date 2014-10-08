@@ -4,7 +4,7 @@
 #include "cocos2d.h"
 #include "SGObserver.h"
 #include "SGSHero.h"
-#include "SGSkirmishArea.h"
+#include "SGSArea.h"
 USING_NS_CC;
 
 
@@ -18,7 +18,7 @@ public:
 
 
   SGSPointList&              calcHeroAvailabePath(SGSHero* hero);
-  SGSHero*         findEnemyHeroInArea(SGSkirmishArea* area, SGSHero* hero);
+  SGSHero*         findEnemyHeroInArea(SGSArea* area, SGSHero* hero);
   SGSHero*         findHeroByPosition(Vec2& pos);
   SGSHero*         findHeroByPosition(SGSPoint& pos);
   SGSHero*         findNearestEnemyHero(SGSHero* hero);
@@ -82,7 +82,7 @@ private:
   };
   
   typedef std::list<Step> StepList;
-  SGSkirmishObj*          getObj(SGSPoint& pos);
+  SGSObj*          getObj(SGSPoint& pos);
   TERRAIN_TYPE   getTerrainAt(SGSPoint& pos);
   int                     getSteminaConsume(SGSHero::HERO_CATAGORY catagory, TERRAIN_TYPE terrain);
   bool                    isInStepList(Step& step, StepList& step_list);
@@ -93,7 +93,7 @@ private:
   int                     __width;
   int                     __height;
 
-  Vector<SGSkirmishObj*>  __objects;
+  Vector<SGSObj*>  __objects;
   TERRAIN_TYPE*  __terrain_info;
   SGSHeroList      __heroes;
 };

@@ -5,11 +5,11 @@
 #include "json/document.h"
 USING_NS_CC;
 
-class SGSkirmishSwitchScene : public LayerColor
+class SGSSwitchScene : public LayerColor
 {
 public:
   static Scene* createScene(int round, int turn);
-  CREATE_FUNC(SGSkirmishSwitchScene);
+  CREATE_FUNC(SGSSwitchScene);
   virtual bool init();
   void exitScene(float dt);
 private:

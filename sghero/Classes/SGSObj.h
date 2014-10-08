@@ -7,11 +7,11 @@
 USING_NS_CC;
 
 
-class SGSkirmishObj : public Sprite , public SGObservable
+class SGSObj : public Sprite , public SGObservable
 {
 public:
-  static SGSkirmishObj* create(const char* name, SGObserver* observer);
-  explicit SGSkirmishObj(SGObserver* observer) : SGObservable(observer) {}
+  static SGSObj* create(const char* name, SGObserver* observer);
+  explicit SGSObj(SGObserver* observer) : SGObservable(observer) {}
 
   virtual bool init(const char* name);
   virtual void setMapPosition(SGSPoint& map_pos);

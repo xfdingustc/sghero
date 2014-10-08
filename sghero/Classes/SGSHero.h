@@ -2,10 +2,10 @@
 #define SG_SKIRMISH_SCENE_HERO_H
 
 #include "cocos2d.h"
-#include "SGSkirmishObj.h"
+#include "SGSObj.h"
 USING_NS_CC;
 
-class SGSHero : public SGSkirmishObj 
+class SGSHero : public SGSObj 
 {
 public:
   typedef enum {
@@ -51,7 +51,7 @@ public:
 
 
   static          SGSHero* create(const char* hero_name, HERO_SIDE side, SGObserver* observer);
-  explicit        SGSHero(SGObserver* observer) : SGSkirmishObj(observer) {}
+  explicit        SGSHero(SGObserver* observer) : SGSObj(observer) {}
 
   void            doAction(const char* action);
   void            doAttackAction();

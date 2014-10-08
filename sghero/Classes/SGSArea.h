@@ -5,14 +5,14 @@
 #include "SGSPoint.h"
 USING_NS_CC;
 
-class SGSkirmishArea : public Layer
+class SGSArea : public Layer
 {
   friend class SGSTerrain;
 public:
-  static SGSkirmishArea*  create(std::string& name);
-  static SGSkirmishArea*  create(std::string& name, SGSPointList& point_list);
+  static SGSArea*  create(std::string& name);
+  static SGSArea*  create(std::string& name, SGSPointList& point_list);
 
-  virtual ~SGSkirmishArea();
+  virtual ~SGSArea();
 
   void                    addOnePoint(SGSPoint& pos);
   bool                    containPoint(Vec2& pos);

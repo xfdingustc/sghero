@@ -1,15 +1,15 @@
-#include "SGSKirmishSwitchScene.h"
+#include "SGSSwitchScene.h"
 #include "SGGlobalSettings.h"
 
 
-rapidjson::Document SGSkirmishSwitchScene::__text_json_doc;
-bool SGSkirmishSwitchScene::__json_parsed = false;
+rapidjson::Document SGSSwitchScene::__text_json_doc;
+bool SGSSwitchScene::__json_parsed = false;
 
-Scene* SGSkirmishSwitchScene::createScene(int round, int turn)
+Scene* SGSSwitchScene::createScene(int round, int turn)
 {
   Scene* scene = Scene::create();
 
-  SGSkirmishSwitchScene* layer = SGSkirmishSwitchScene::create();
+  SGSSwitchScene* layer = SGSSwitchScene::create();
 
   // Parse the text json file;
   if (!__json_parsed) {
@@ -45,17 +45,17 @@ Scene* SGSkirmishSwitchScene::createScene(int round, int turn)
   return scene;
 }
 
-bool SGSkirmishSwitchScene::init()
+bool SGSSwitchScene::init()
 {
   if (!LayerColor::initWithColor(Color4B::BLACK)) {
     return false;
   }
 
   // add touch event handler:
-  scheduleOnce(schedule_selector(SGSkirmishSwitchScene::exitScene), 3.0f);
+  scheduleOnce(schedule_selector(SGSSwitchScene::exitScene), 3.0f);
 }
 
-void SGSkirmishSwitchScene::exitScene(float dt)
+void SGSSwitchScene::exitScene(float dt)
 {
   Director::getInstance()->popScene();
 }

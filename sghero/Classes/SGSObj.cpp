@@ -1,9 +1,9 @@
-#include "SGSkirmishObj.h"
+#include "SGSObj.h"
 #include "SGGlobalSettings.h"
 
-SGSkirmishObj* SGSkirmishObj::create(const char* name, SGObserver* observer)
+SGSObj* SGSObj::create(const char* name, SGObserver* observer)
 {
-  SGSkirmishObj* obj = new SGSkirmishObj(observer);
+  SGSObj* obj = new SGSObj(observer);
   if (obj && obj->init(name)) {
     obj->autorelease();
     return obj;
@@ -13,7 +13,7 @@ SGSkirmishObj* SGSkirmishObj::create(const char* name, SGObserver* observer)
   }
 }
 
-bool SGSkirmishObj::init(const char* name)
+bool SGSObj::init(const char* name)
 {
   if (!Sprite::init()) {
     return false;
@@ -47,7 +47,7 @@ bool SGSkirmishObj::init(const char* name)
 }
 
 
-void SGSkirmishObj::setMapPosition(SGSPoint& map_pos) 
+void SGSObj::setMapPosition(SGSPoint& map_pos) 
 { 
   __map_position = map_pos; 
   Vec2 pos = SGSPoint::mapPos2OpenGLPos(__map_position);
@@ -55,7 +55,7 @@ void SGSkirmishObj::setMapPosition(SGSPoint& map_pos)
   setPosition(pos);
   
 }
-void SGSkirmishObj::setMapPosition(Vec2& pos)
+void SGSObj::setMapPosition(Vec2& pos)
 {
   SGSPoint map_pos = SGSPoint::openGLPos2MapPos(pos);
   setMapPosition(map_pos);

@@ -1,19 +1,19 @@
-#include "SGSkirmishSceneMagicCall.h"
+#include "SGSMagicCall.h"
 #include "SGGlobalSettings.h"
 
-Scene* SGSkirmishSceneMagicCall::createScene(std::string& magic, Vec2& pos)
+Scene* SGSMagicCall::createScene(std::string& magic, Vec2& pos)
 {
   Scene* scene = Scene::create();
 
-  SGSkirmishSceneMagicCall* layer = SGSkirmishSceneMagicCall::create(magic, pos);
+  SGSMagicCall* layer = SGSMagicCall::create(magic, pos);
 
   scene->addChild(layer);
   return scene;
 }
 
-SGSkirmishSceneMagicCall* SGSkirmishSceneMagicCall::create(std::string& magic, Vec2& pos)
+SGSMagicCall* SGSMagicCall::create(std::string& magic, Vec2& pos)
 {
-  SGSkirmishSceneMagicCall* magic_call = new SGSkirmishSceneMagicCall;
+  SGSMagicCall* magic_call = new SGSMagicCall;
   if (magic_call && magic_call->init(magic, pos)) {
     magic_call->autorelease();
     return magic_call;
@@ -22,7 +22,7 @@ SGSkirmishSceneMagicCall* SGSkirmishSceneMagicCall::create(std::string& magic, V
     return NULL;
   }
 }
-bool SGSkirmishSceneMagicCall::init(std::string& magic, Vec2& pos)
+bool SGSMagicCall::init(std::string& magic, Vec2& pos)
 {
   if (!Layer::init()) {
     return false;
@@ -59,13 +59,13 @@ bool SGSkirmishSceneMagicCall::init(std::string& magic, Vec2& pos)
   }
   Animation* animation = Animation::createWithSpriteFrames(*animFrames, 0.1f);
   Animate* animate = Animate::create(animation);
-  CallFunc * funcall= CallFunc::create(this, callfunc_selector(SGSkirmishSceneMagicCall::actionFinished));
+  CallFunc * funcall= CallFunc::create(this, callfunc_selector(SGSMagicCall::actionFinished));
   FiniteTimeAction* magicWithCallback = Sequence::create(animate, funcall, NULL);
   magic_sprite->runAction(magicWithCallback);
   return true;
 }
 
-void SGSkirmishSceneMagicCall::actionFinished()
+void SGSMagicCall::actionFinished()
 {
   Director::getInstance()->popScene();
 }

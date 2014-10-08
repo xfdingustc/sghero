@@ -1,11 +1,11 @@
 #include "SimpleAudioEngine.h"
 #include "SGGlobalSettings.h"
 #include "SGSkirmishInfo.h"
-#include "SGSkirmishObj.h"
+#include "SGSObj.h"
 #include "SGSkirmishScene.h"
-#include "SGSkirmishStrategy.h"
-#include "SGSKirmishSwitchScene.h"
-#include "SGSkirmishSceneMagicCall.h"
+#include "SGSStrategy.h"
+#include "SGSSwitchScene.h"
+#include "SGSMagicCall.h"
 #include "json/document.h"
 
 using namespace CocosDenshion;
@@ -141,7 +141,7 @@ bool SGSkirmishScene::touchHandleStateMachine(Touch *touch)
       return true;
     }
     if ((hero && hero == __selected_hero) || (!hero && __selected_hero)) {
-      SGSkirmishArea* area = (SGSkirmishArea*)this->getChildByName(WALK_PATH);
+      SGSArea* area = (SGSArea*)this->getChildByName(WALK_PATH);
       if (area && area->containPoint(pos)) {
         __selected_hero->setMapPosition(pos);
         this->removeChildByName(WALK_PATH);
@@ -235,7 +235,7 @@ void SGSkirmishScene::createActionSelectMenu()
 bool SGSkirmishScene::showAttackArea()
 {
   std::string res_name = SG_SKIRMISH_AREA_ATTACK;
-  SGSkirmishArea* attack_area = SGSkirmishArea::create(res_name, *__selected_hero->getAttackArea());
+  SGSArea* attack_area = SGSArea::create(res_name, *__selected_hero->getAttackArea());
   attack_area->show();
 
   if (!__terrain->findEnemyHeroInArea(attack_area, __selected_hero)) {
@@ -565,7 +565,7 @@ bool SGSkirmishScene::onHandleEventObjAdd(tinyxml2::XMLElement* event)
   int x = atoi(event->Attribute("x"));
   int y = atoi(event->Attribute("y"));
   //currently only fire is supported so hard code here
-  SGSkirmishObj* obj = SGSkirmishObj::create(obj_name.c_str(), __terrain);
+  SGSObj* obj = SGSObj::create(obj_name.c_str(), __terrain);
   obj->setMapPosition(SGSPoint(x, y));
   this->addChild(obj);
   return true;
@@ -702,7 +702,7 @@ bool SGSkirmishScene::gameLogicFriendTurn()
     return true;
   }
   SGSHero::HERO_AI hero_ai = hero->getAI();
-  SGSkirmishStrategy* strategy = SGSkirmishStrategy::createStrategy(hero_ai, __terrain);
+  SGSStrategy* strategy = SGSStrategy::createStrategy(hero_ai, __terrain);
   strategy->oneMove(hero);
   delete strategy;
   CCLOG("friend %s has moved", hero->getName().c_str());
@@ -719,7 +719,7 @@ bool SGSkirmishScene::gameLogicEnemyTurn()
     return true;
   }
   SGSHero::HERO_AI hero_ai = hero->getAI();
-  SGSkirmishStrategy* strategy = SGSkirmishStrategy::createStrategy(hero_ai, __terrain);
+  SGSStrategy* strategy = SGSStrategy::createStrategy(hero_ai, __terrain);
   strategy->oneMove(hero);
   delete strategy;
   CCLOG("enemy %s has moved", hero->getName().c_str());
@@ -730,7 +730,7 @@ void SGSkirmishScene::showHeroAvailabePath(SGSHero* hero)
 {
   this->removeChildByName("walk_path");
   std::string res_name = SG_SKIRMISH_AREA_PATH;
-  SGSkirmishArea* area = SGSkirmishArea::create(res_name, __terrain->calcHeroAvailabePath(hero));
+  SGSArea* area = SGSArea::create(res_name, __terrain->calcHeroAvailabePath(hero));
   area->setName("walk_path");
   this->addChild(area);
   area->show();
@@ -750,7 +750,7 @@ void SGSkirmishScene::switchToNextRound()
 {
   CCLOG("switch to next round = %d turn = %d", __round, __turn);
   return;
-  Scene* scene = SGSkirmishSwitchScene::createScene(__round, __turn);
+  Scene* scene = SGSSwitchScene::createScene(__round, __turn);
   Director::getInstance()->pushScene(scene);
 }
 

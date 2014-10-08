@@ -1,0 +1,20 @@
+#include "SGSStrategy.h"
+#include "SGSStrategyAttack.h"
+#include "SGSStrategyStay.h"
+
+SGSStrategy* SGSStrategy::createStrategy(SGSHero::HERO_AI ai, SGSTerrain* terrain)
+{
+  SGSStrategy* strategy;
+  switch (ai)
+  {
+  case SGSHero::HERO_AI_ATTACK:
+    strategy = new SGSStrategyAttack(terrain);
+    break;
+  case SGSHero::HERO_AI_STAY:
+    strategy = new SGSStrategyStay(terrain);
+  default:
+    strategy = new SGSStrategyStay(terrain);
+    break;
+  }
+  return strategy;
+}
