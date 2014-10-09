@@ -20,7 +20,7 @@ public:
   bool                    initWithPointList(SGSPointList& point_list);
   void                    show();
 private:
-  SGSPointList               __point_list;
+  SGSPointList            __point_list;
   std::string             __name;
 };
 #endif

@@ -50,6 +50,7 @@ private:
   void switchToNextRound();
   void resetAllHeroActivity();
   void showHeroAvailabePath(SGSHero* hero);
+  void strategyOneMoveFinished();
 
   bool onHandleSettingMap(tinyxml2::XMLElement* setting);
   bool onHandleSettingTerrain(tinyxml2::XMLElement* setting);

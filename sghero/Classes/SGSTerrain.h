@@ -17,7 +17,7 @@ public:
   ~SGSTerrain();
 
 
-  SGSPointList&              calcHeroAvailabePath(SGSHero* hero);
+  SGSPointList&    calcHeroAvailabePath(SGSHero* hero);
   SGSHero*         findEnemyHeroInArea(SGSArea* area, SGSHero* hero);
   SGSHero*         findHeroByPosition(Vec2& pos);
   SGSHero*         findHeroByPosition(SGSPoint& pos);

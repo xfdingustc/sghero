@@ -2,6 +2,12 @@
 #include "SGSStrategyAttack.h"
 #include "SGSStrategyStay.h"
 
+SGSStrategy::SGSStrategy(SGSTerrain* terrain) 
+  : __terrain(terrain)
+{
+}
+
+
 SGSStrategy* SGSStrategy::createStrategy(SGSHero::HERO_AI ai, SGSTerrain* terrain)
 {
   SGSStrategy* strategy;

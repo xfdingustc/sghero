@@ -211,7 +211,7 @@ void SGSTerrain::notify(const char* reason, void* ptr)
     SGSObj* object = reinterpret_cast<SGSObj*>(ptr);
     __objects.pushBack(object);
   }
-  
+  return ;
 }
 
 bool SGSTerrain::isInStepList(Step& step, StepList& step_list)

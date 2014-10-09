@@ -1,8 +1,16 @@
 #include "SGObserver.h"
 
 
+SGObserver::~SGObserver()
+{
+}
+
+
 void SGObservable::addObserver(SGObserver* observer)
 {
+  if (!observer) {
+    return;
+  }
   std::vector<SGObserver*>::iterator iter;
   for (iter = __observers.begin(); iter != __observers.end(); iter++) {
     SGObserver* one_observer = *iter;
@@ -12,6 +20,20 @@ void SGObservable::addObserver(SGObserver* observer)
     }
   }
   __observers.push_back(observer);
+}
+
+void SGObservable::removeObserver(SGObserver* observer)
+{
+  std::vector<SGObserver*>::iterator iter;
+  for (iter = __observers.begin(); iter != __observers.end(); iter++) {
+    SGObserver* one_observer = *iter;
+    // already have this observer
+    if (one_observer == observer) {
+      __observers.erase(iter);
+      return;
+    }
+  }
+  
 }
 
 

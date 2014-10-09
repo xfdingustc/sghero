@@ -5,6 +5,9 @@
 #include "SGSObj.h"
 USING_NS_CC;
 
+typedef std::function<void()> SGSHeroActionFinishedCallback;
+
+class SGSTerrain;
 class SGSHero : public SGSObj 
 {
 public:
@@ -48,8 +51,10 @@ public:
     HERO_STATUS_NORMAL,
     HERO_STATUS_CHAOS,
   } HERO_STATUS;
-
-
+  
+  void            attackActionFinished(Node* hero, void* ptr);
+  void            attackHero(SGSHero* defense_hero);
+  void            counterAttackFinished();
   static          SGSHero* create(const char* hero_name, HERO_SIDE side, SGObserver* observer);
   explicit        SGSHero(SGObserver* observer) : SGSObj(observer) {}
 
@@ -58,6 +63,16 @@ public:
 
   void            faceTo(const char* direction);
   void            faceTo(HERO_DIRECTION direction);
+
+  HERO_AI         getAI() { return __ai; }
+  Animate*        getAttackAnimate();
+  HERO_CATAGORY   getCatagory() { return __catagory; }
+  HERO_DIRECTION  getRelativeDirection(SGSHero* other_hero);
+  HERO_SIDE       getSide() { return __side; }
+  int             getStamina() { return __stamina; }
+  HERO_STATUS     getStatus() { return __status; }
+  SGSPointList*   getAttackArea();
+  SGSPointList*   getAttackAreaFromPosition(SGSPoint& pos);
 
   bool            init(const char* hero_name, HERO_SIDE side);
   bool            initActions();
@@ -70,21 +85,17 @@ public:
   bool            isRival(SGSHero* hero);
  
   void            moveTo(SGSPoint& target_pos);
+  void            oneAIMove(const SGSHeroActionFinishedCallback& callback, SGSTerrain* terrain);
 
+  void            setActionFinishedCallback(const SGSHeroActionFinishedCallback& callback);
   void            setActive(bool active); 
   void            setAI(HERO_AI ai) { __ai = ai; }
   void            setAI(std::string& ai);
+  void            setDirection(HERO_DIRECTION direction);
   void            setStatus(std::string& status);
   void            setStatus(HERO_STATUS status);
 
 
-  HERO_AI         getAI() { return __ai; }
-  HERO_CATAGORY   getCatagory() { return __catagory; }
-  HERO_SIDE       getSide() { return __side; }
-  int             getStamina() { return __stamina; }
-  HERO_STATUS     getStatus() { return __status; }
-  SGSPointList*      getAttackArea();
-  SGSPointList*      getAttackAreaFromPosition(SGSPoint& pos);
 
   SGSPoint __previous_map_position;
 
@@ -108,6 +119,8 @@ private:
   Vector<SpriteFrame*> __sprite_frames;
   Vector<SpriteFrame*> __attack_sprite_frames;
   Vector<SpriteFrame*> __spec_sprite_frames;
+
+  static SGSHeroActionFinishedCallback __move_finished_callback;
   
 };
 

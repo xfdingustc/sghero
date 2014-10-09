@@ -3,15 +3,17 @@
 
 #include "SGSStrategy.h"
 
-class SGSStrategyAttack : public SGSStrategy
+class SGSStrategyAttack : public SGSStrategy 
 {
 public:
   SGSStrategyAttack(SGSTerrain* terrain) : SGSStrategy(terrain) {}
-  void oneMove(SGSHero* hero);
+  bool oneMove(SGSHero* hero);
 private:
   SGSHeroList* findAssaultableEnemyHeroes(SGSHero* hero);
-  SGSHero*     getBestAssaultHero(SGSHero* hero);
   SGSPoint&    findBestAttackPoint(SGSHero* attack_hero, SGSHero* defend_hero);
+  SGSHero*     getBestAssaultHero(SGSHero* hero);
+
+
 };
 
 #endif

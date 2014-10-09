@@ -3,11 +3,13 @@
 
 #include "SGSStrategy.h"
 
-class SGSStrategyStay : public SGSStrategy
+
+
+class SGSStrategyStay : public SGSStrategy 
 {
 public:
   SGSStrategyStay(SGSTerrain* terrain) : SGSStrategy(terrain) {}
-  void oneMove(SGSHero* hero);
+  bool oneMove(SGSHero* hero);
 
 };
 

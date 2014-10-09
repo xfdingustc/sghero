@@ -1,35 +1,7 @@
 #include "SGSStrategyAttack.h"
 
 
-void SGSStrategyAttack::oneMove(SGSHero* hero)
-{
-  SGSHero* best_assaultable_hero = getBestAssaultHero(hero);
-  if (best_assaultable_hero) {
-    log("%s is going to attack %s ", hero->getName().c_str(), best_assaultable_hero->getName().c_str());
-    SGSPoint best_attacked_point = findBestAttackPoint(hero, best_assaultable_hero);
-    hero->moveTo(best_attacked_point);
-  }
-  notifyObserver("hero_move_finished", NULL);
-  hero->setActive(false);
-}
 
-SGSHero* SGSStrategyAttack::getBestAssaultHero(SGSHero* hero)
-{
-
-  SGSHeroList* hero_list = findAssaultableEnemyHeroes(hero);
-
-  SGSHeroList::iterator iter;
-
-  for (iter = hero_list->begin(); iter != hero_list->end(); iter++) {
-    SGSHero* enemy_hero = *iter;
-
-  }
-  if (!hero_list->empty()) { 
-    return hero_list->front();
-  } else {
-    return NULL;
-  }
-}
 
 
 SGSHeroList* SGSStrategyAttack::findAssaultableEnemyHeroes(SGSHero* hero)
@@ -94,4 +66,40 @@ SGSPoint& SGSStrategyAttack::findBestAttackPoint(SGSHero* attack_hero, SGSHero* 
   }
 
   return best_attack_point;
+}
+
+SGSHero* SGSStrategyAttack::getBestAssaultHero(SGSHero* hero)
+{
+
+  SGSHeroList* hero_list = findAssaultableEnemyHeroes(hero);
+
+  SGSHeroList::iterator iter;
+
+  for (iter = hero_list->begin(); iter != hero_list->end(); iter++) {
+    SGSHero* enemy_hero = *iter;
+
+  }
+  if (!hero_list->empty()) { 
+    return hero_list->front();
+  } else {
+    return NULL;
+  }
+}
+
+
+
+
+
+bool SGSStrategyAttack::oneMove(SGSHero* hero)
+{
+  SGSHero* best_assaultable_hero = getBestAssaultHero(hero);
+  if (best_assaultable_hero) {
+    log("%s is going to attack %s ", hero->getName().c_str(), best_assaultable_hero->getName().c_str());
+    SGSPoint best_attacked_point = findBestAttackPoint(hero, best_assaultable_hero);
+    hero->moveTo(best_attacked_point);
+    hero->attackHero(best_assaultable_hero);
+    return false;
+  } else {
+    return true;
+  }
 }

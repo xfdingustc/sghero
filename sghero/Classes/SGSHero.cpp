@@ -2,6 +2,46 @@
 #include "SGHeroResourceUtils.h"
 #include "SGGlobalSettings.h"
 #include "SGSkirmishScene.h"
+#include "SGSStrategy.h"
+
+SGSHeroActionFinishedCallback SGSHero::__move_finished_callback;
+
+
+void SGSHero::attackActionFinished(Node* hero, void* ptr)
+{
+  SGSHero* enemy_hero = (SGSHero*)ptr;
+  setActive(false);
+
+  // counterattack
+  enemy_hero->setDirection(enemy_hero->getRelativeDirection(this));
+  Animate* counter_attack_animate = enemy_hero->getAttackAnimate();
+  CallFunc * funcall= CallFunc::create(enemy_hero, callfunc_selector(SGSHero::counterAttackFinished));
+  FiniteTimeAction* counterAttackWithCallback = Sequence::create(counter_attack_animate, funcall, NULL);
+  enemy_hero->stopAllActions();
+  enemy_hero->runAction(counterAttackWithCallback);
+  this->doAction("attacked");
+}
+
+
+void SGSHero::attackHero(SGSHero* defense_hero)
+{
+  // attack
+  setDirection(getRelativeDirection(defense_hero));
+  Animate* attack_animate = this->getAttackAnimate();
+  __CCCallFuncND * funcall= __CCCallFuncND::create(this, callfuncND_selector(SGSHero::attackActionFinished, this), defense_hero);
+  FiniteTimeAction* attackWithCallback = Sequence::create(attack_animate, funcall, NULL);
+  this->stopAllActions();
+  this->runAction(attackWithCallback);
+  defense_hero->doAction("attacked");
+}
+
+void SGSHero::counterAttackFinished()
+{
+  updataSprite();
+  if (SGSHero::__move_finished_callback) {
+    SGSHero::__move_finished_callback();
+  }
+}
 
 
 SGSHero* SGSHero::create(const char* hero_name, HERO_SIDE side, SGObserver* observer)
@@ -263,7 +303,6 @@ void SGSHero::initCatagory()
   } else if (catagory == "dancer") {
     __catagory = HERO_CATAGORY_DANCER;
   }
-  __stamina = 6;
 }
 
 void SGSHero::initDataNum()
@@ -327,25 +366,21 @@ void SGSHero::faceTo(const char* direction)
 
 void SGSHero::faceTo(HERO_DIRECTION direction)
 {
-  __direction = direction;
+  setDirection(direction);
   stopAllActions();
   std::string action_name;
   switch (__direction)
   {
   case HERO_DIRECTION_EAST:
-    setFlippedX(true);
     action_name = "face_west";
     break;
   case HERO_DIRECTION_WEST:
-    setFlippedX(false);
     action_name = "face_west";
     break;
   case HERO_DIRECTION_NORTH:
-    setFlippedX(false);
     action_name = "face_north";
     break;
   case HERO_DIRECTION_SOUTH:
-    setFlippedX(false);
     action_name = "face_south";
     break;
   default:
@@ -362,8 +397,23 @@ void SGSHero::moveTo(SGSPoint& target_pos)
   this->setMapPosition(target_pos);
 }
 
+void SGSHero::oneAIMove(const SGSHeroActionFinishedCallback& callback, SGSTerrain* terrain)
+{
+  setActionFinishedCallback(callback);
+  HERO_AI hero_ai = getAI();
+  SGSStrategy* strategy = SGSStrategy::createStrategy(hero_ai, terrain);
+  bool ret = strategy->oneMove(this);
+  if (ret) {
+    setActive(false);
+    if (SGSHero::__move_finished_callback) {
+      __move_finished_callback();
+    }
+  }
+  
+}
 
-void SGSHero::doAttackAction()
+
+Animate* SGSHero::getAttackAnimate()
 {
   std::string action_name;
   switch (__direction)
@@ -383,8 +433,35 @@ void SGSHero::doAttackAction()
   default:
     break;
   }
-  Animate* animate = __animate_map[action_name];
-  this->runAction(animate);
+  return __animate_map[action_name];
+}
+
+
+SGSHero::HERO_DIRECTION SGSHero::getRelativeDirection(SGSHero* other_hero)
+{
+  HERO_DIRECTION direction;
+  Vec2 hero_pos = this->getPosition();
+  Vec2 target_hero_pos = other_hero->getPosition();
+
+
+  if (target_hero_pos.x > hero_pos.x) {
+    direction = HERO_DIRECTION_EAST;
+  } else if (target_hero_pos.x < hero_pos.x) {
+    direction = HERO_DIRECTION_WEST;
+  } else if (target_hero_pos.y > hero_pos.y) {
+    direction = HERO_DIRECTION_NORTH;
+  } else {
+    direction = HERO_DIRECTION_SOUTH;
+  }
+
+  return direction;
+
+}
+
+
+void SGSHero::doAttackAction()
+{
+  this->runAction(getAttackAnimate());
 }
 
 void SGSHero::doAction(const char* action)
@@ -489,6 +566,10 @@ SGSPointList* SGSHero::getAttackAreaFromPosition(SGSPoint& pos)
   return &point_list;
 }
 
+void  SGSHero::setActionFinishedCallback(const SGSHeroActionFinishedCallback& callback)
+{
+  SGSHero::__move_finished_callback = callback;
+}
 
 void SGSHero::setActive(bool active)
 {
@@ -496,13 +577,33 @@ void SGSHero::setActive(bool active)
   updataSprite();
 }
 
+void SGSHero::setDirection(HERO_DIRECTION direction)
+{
+  __direction = direction;
+  switch (__direction)
+  {
+  case HERO_DIRECTION_EAST:
+    setFlippedX(true);
+    break;
+  case HERO_DIRECTION_WEST:
+  case HERO_DIRECTION_NORTH:
+  case HERO_DIRECTION_SOUTH:
+    setFlippedX(false);
+    break;
+  default:
+    break;
+  }
+
+}
+
+
 void SGSHero::updataSprite()
 {
+  faceTo(__direction);
+
   if (!__active) {
     stopAllActions();
-  } else {
-    faceTo(__direction);
-  }
+  } 
 }
 
 
