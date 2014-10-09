@@ -10,12 +10,11 @@ SGSHeroActionFinishedCallback SGSHero::__move_finished_callback;
 void SGSHero::attackActionFinished(Node* hero, void* ptr)
 {
   SGSHero* enemy_hero = (SGSHero*)ptr;
-  setActive(false);
 
   // counterattack
   enemy_hero->setDirection(enemy_hero->getRelativeDirection(this));
   Animate* counter_attack_animate = enemy_hero->getAttackAnimate();
-  CallFunc * funcall= CallFunc::create(enemy_hero, callfunc_selector(SGSHero::counterAttackFinished));
+  __CCCallFuncND * funcall= __CCCallFuncND::create(enemy_hero, callfuncND_selector(SGSHero::counterAttackFinished, this), this);
   FiniteTimeAction* counterAttackWithCallback = Sequence::create(counter_attack_animate, funcall, NULL);
   enemy_hero->stopAllActions();
   enemy_hero->runAction(counterAttackWithCallback);
@@ -35,8 +34,13 @@ void SGSHero::attackHero(SGSHero* defense_hero)
   defense_hero->doAction("attacked");
 }
 
-void SGSHero::counterAttackFinished()
+void SGSHero::counterAttackFinished(Node* hero, void* ptr)
 {
+  SGSHero* enemy_hero = (SGSHero*)ptr;
+  enemy_hero->updataSprite();  
+  enemy_hero->setActive(false);
+
+  log("%s %s", this->getName().c_str(), enemy_hero->getName().c_str());
   updataSprite();
   if (SGSHero::__move_finished_callback) {
     SGSHero::__move_finished_callback();
@@ -600,9 +604,28 @@ void SGSHero::setDirection(HERO_DIRECTION direction)
 void SGSHero::updataSprite()
 {
   faceTo(__direction);
+  setColor(Color3B::WHITE);
 
   if (!__active) {
     stopAllActions();
+    SpriteFrame* frame;
+    switch (__direction)
+    {
+    case HERO_DIRECTION_SOUTH:
+      frame = __sprite_frames.at(0);
+      break;
+    case HERO_DIRECTION_NORTH:
+      frame = __sprite_frames.at(2);
+      break;
+    case HERO_DIRECTION_EAST:
+    case HERO_DIRECTION_WEST:
+      frame = __sprite_frames.at(4);
+      break;
+    default:
+      break;
+    }
+    setSpriteFrame(frame);
+    setColor(Color3B::GRAY);
   } 
 }
 

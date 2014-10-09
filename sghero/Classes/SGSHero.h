@@ -54,7 +54,7 @@ public:
   
   void            attackActionFinished(Node* hero, void* ptr);
   void            attackHero(SGSHero* defense_hero);
-  void            counterAttackFinished();
+  void            counterAttackFinished(Node* hero, void* ptr);
   static          SGSHero* create(const char* hero_name, HERO_SIDE side, SGObserver* observer);
   explicit        SGSHero(SGObserver* observer) : SGSObj(observer) {}
 
