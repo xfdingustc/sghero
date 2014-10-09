@@ -11,6 +11,17 @@ Scene* SGSSwitchScene::createScene(int round, int turn)
 
   SGSSwitchScene* layer = SGSSwitchScene::create();
 
+  Size win_size = Director::getInstance()->getVisibleSize();
+  RenderTexture* render_texture = RenderTexture::create(win_size.width, win_size.height);
+
+  render_texture->begin();
+  Director::getInstance()->getRunningScene()->visit();
+  render_texture->end();
+  render_texture->setPosition(Vec2(win_size.width/2, win_size.height/2)); 
+
+  layer->addChild(render_texture);
+
+
   // Parse the text json file;
   if (!__json_parsed) {
     std::string text_json_file = FileUtils::getInstance()->fullPathForFilename(SKIRMISH_SCENE_SWITCH_TEXT_JSON_FILE);
@@ -37,6 +48,7 @@ Scene* SGSSwitchScene::createScene(int round, int turn)
   Size size = Director::getInstance()->getVisibleSize();
   
   layer->__content_ttf = LabelTTF::create(content, TEXT_FONT_NAME, CHAPTER_TEXT_FONT_SIZE);
+  layer->__content_ttf->setColor(Color3B::BLACK);
   layer->__content_ttf->setPosition(Vec2(size.width/2, size.height/2));
   layer->addChild(layer->__content_ttf);
 

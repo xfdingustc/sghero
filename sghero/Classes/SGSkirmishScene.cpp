@@ -769,7 +769,6 @@ SGSHero* SGSkirmishScene::getHero(SGSHeroList& list)
 void SGSkirmishScene::switchToNextRound()
 {
   CCLOG("switch to next round = %d turn = %d", __round, __turn);
-  return;
   Scene* scene = SGSSwitchScene::createScene(__round, __turn);
   Director::getInstance()->pushScene(scene);
 }
