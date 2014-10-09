@@ -470,6 +470,7 @@ bool SGSkirmishScene::onHandleEventHeroMove(tinyxml2::XMLElement* event)
   int y = atoi(event->Attribute("y"));
   SGSHero* hero = (SGSHero*)this->getChildByName(hero_name);
   //hero->moveTo(mapPos2OpenGLPos(Vec2(x, y)));
+  __terrain->calcShortestPath(hero, SGSPoint(x, y));
   hero->setMapPosition(SGSPoint(x, y));
   std::string direction = event->Attribute("face");
   hero->faceTo(direction.c_str());
@@ -769,6 +770,7 @@ SGSHero* SGSkirmishScene::getHero(SGSHeroList& list)
 void SGSkirmishScene::switchToNextRound()
 {
   CCLOG("switch to next round = %d turn = %d", __round, __turn);
+  return;
   Scene* scene = SGSSwitchScene::createScene(__round, __turn);
   Director::getInstance()->pushScene(scene);
 }

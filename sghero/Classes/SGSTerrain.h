@@ -18,6 +18,7 @@ public:
 
 
   SGSPointList&    calcHeroAvailabePath(SGSHero* hero);
+  SGSPointList&    calcShortestPath(SGSHero* hero, SGSPoint& target_pos);
   SGSHero*         findEnemyHeroInArea(SGSArea* area, SGSHero* hero);
   SGSHero*         findHeroByPosition(Vec2& pos);
   SGSHero*         findHeroByPosition(SGSPoint& pos);
@@ -78,14 +79,16 @@ private:
     }
     SGSPoint __pos;
     int __stamina;
-    
+    Step* __parent;
   };
   
   typedef std::list<Step> StepList;
+  typedef std::list<Step*> StepPtrList;
   SGSObj*          getObj(SGSPoint& pos);
   TERRAIN_TYPE   getTerrainAt(SGSPoint& pos);
   int                     getSteminaConsume(SGSHero::HERO_CATAGORY catagory, TERRAIN_TYPE terrain);
   bool                    isInStepList(Step& step, StepList& step_list);
+  bool                    isInStepPtrList(Step* step, StepPtrList& step_list);
   void                    loadTerrain(std::string& terrain_file);
   Step                    moveHero(SGSHero* hero, STEP_DIRECTION one_step, Step from);
 

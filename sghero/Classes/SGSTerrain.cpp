@@ -120,6 +120,90 @@ SGSPointList& SGSTerrain::calcHeroAvailabePath(SGSHero* hero)
 }
 
 
+SGSPointList& SGSTerrain::calcShortestPath(SGSHero* hero, SGSPoint& target_pos)
+{
+  static SGSPointList shortest_path_list; 
+  SGSPointList::iterator shortest_path_list_iter;
+  // clear the list;
+  for (shortest_path_list_iter = shortest_path_list.begin(); shortest_path_list_iter != shortest_path_list.end();) {
+    shortest_path_list_iter = shortest_path_list.erase(shortest_path_list_iter);
+  }
+  // A* algorithm
+  typedef std::list<Step*> StepPtrList;
+  StepPtrList open_list;
+  StepPtrList close_list;
+
+  Step* start_step = new Step;
+  start_step->__pos = hero->getMapPosition();
+  start_step->__stamina = 100;
+  start_step->__parent = NULL;
+  open_list.push_back(start_step);
+
+  Step* last_step;
+
+  while(!open_list.empty()) {
+    Step* open_step = open_list.front();
+    open_list.pop_front();
+    if (open_step->__pos == target_pos) {
+      last_step = open_step;
+      break;
+    }
+    for (int i = STEP_RIGHT; i <= STEP_UP; i++) {
+      Step* temp_move = new Step;
+      *temp_move = moveHero(hero, (STEP_DIRECTION) i, *open_step);
+      if (temp_move->__stamina >=0 ) { // valid move
+        if (!isInStepPtrList(temp_move, open_list) && !isInStepPtrList(temp_move, close_list)) {
+          temp_move->__parent = open_step;
+          open_list.push_back(temp_move);
+          log("insert into openlist x = %d, y = %d", temp_move->__pos.x, temp_move->__pos.y);
+        } else if(isInStepPtrList(temp_move, open_list)) { // in Open list
+          StepPtrList::iterator iter;
+          for (iter = open_list.begin(); iter != open_list.end(); iter++) {
+            Step* one_step_in_openlist = *iter;
+            if (one_step_in_openlist->__pos == temp_move->__pos) {
+              if (one_step_in_openlist->__stamina < temp_move->__stamina) {
+                //iter = open_list.erase(iter);
+                open_list.remove(one_step_in_openlist);
+                delete one_step_in_openlist;
+                open_list.push_back(temp_move);
+                log("replace open list x = %d y = %d", temp_move->__pos.x, temp_move->__pos.y);
+                break;
+              }
+            } 
+          }
+        } else { // in close list
+          StepPtrList::iterator iter;
+          for (iter = close_list.begin(); iter != close_list.end(); iter++) {
+            Step* one_step_in_closelist = *iter;
+            if (one_step_in_closelist->__pos == temp_move->__pos) {
+              if (one_step_in_closelist->__stamina < temp_move->__stamina) {
+                log("remove close_list x = %d, y = %d", one_step_in_closelist->__pos.x, one_step_in_closelist->__pos.y);
+                close_list.remove(one_step_in_closelist);
+                delete one_step_in_closelist;
+                open_list.push_back(temp_move);
+                log("insert into close_list x = %d, y = %d", temp_move->__pos.x, temp_move->__pos.y);
+                break;
+              }
+            } 
+
+          }
+        }
+        close_list.push_back(open_step);
+        log("insert into close_list x = %d, y = %d", open_step->__pos.x, open_step->__pos.y);
+      } else {
+        delete temp_move;
+      }
+    }
+  }
+  while(last_step)
+  {
+    log("pos = %d %d", last_step->__pos.x, last_step->__pos.y);
+    last_step = last_step->__parent;
+  }
+  return shortest_path_list;
+}
+
+
 SGSTerrain* SGSTerrain::create(std::string& terrain_file, Size size)
 {
   SGSTerrain* terrain = new SGSTerrain(terrain_file, size);
@@ -225,6 +309,18 @@ bool SGSTerrain::isInStepList(Step& step, StepList& step_list)
     }
   }
   return false;
+}
+bool SGSTerrain::isInStepPtrList(Step* step, StepPtrList& step_list)
+{
+  StepPtrList::iterator iter;
+  for (iter = step_list.begin(); iter != step_list.end(); iter++) {
+    Step* one_step = *iter;
+    if (step->__pos == one_step->__pos) {
+      return true;
+    }
+  }
+  return false;
+
 }
 
 
