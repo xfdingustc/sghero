@@ -134,7 +134,7 @@ SGSPointList& SGSTerrain::calcShortestPath(SGSHero* hero, SGSPoint& target_pos)
 
   Step* start_step = new Step;
   start_step->__pos = hero->getMapPosition();
-  log("start step %d %d", start_step->__pos.x, start_step->__pos.y);
+
   start_step->__stamina = 100;
   start_step->__parent = NULL;
   open_list.push_back(start_step);
@@ -184,24 +184,21 @@ SGSPointList& SGSTerrain::calcShortestPath(SGSHero* hero, SGSPoint& target_pos)
 
           }
         }
-        close_list.push_back(open_step);
+        
       } else {
         delete temp_move;
       }
+      
     }
+    close_list.push_back(open_step);
   }
-
   while(last_step)
   {
     shortest_path_list.insert(shortest_path_list.begin(), last_step->__pos);
     last_step = last_step->__parent;
   }
-  for (shortest_path_list_iter = shortest_path_list.begin(); shortest_path_list_iter != shortest_path_list.end();) {
-    SGSPoint one_point = *shortest_path_list_iter++;
-    log("path is %d %d", one_point.x, one_point.y);
-  }
 
-#if 0
+
   // clear the list;
   StepPtrList::iterator ptr_list_iter;
   for (ptr_list_iter = open_list.begin(); ptr_list_iter != open_list.end();) {
@@ -211,10 +208,9 @@ SGSPointList& SGSTerrain::calcShortestPath(SGSHero* hero, SGSPoint& target_pos)
   }
   for (ptr_list_iter = close_list.begin(); ptr_list_iter != close_list.end();) {
     Step* one_step_in_closelist = *ptr_list_iter;
-    ptr_list_iter = open_list.erase(ptr_list_iter);
+    ptr_list_iter = close_list.erase(ptr_list_iter);
     delete one_step_in_closelist;
   }  
-#endif
   return shortest_path_list;
 
 }
