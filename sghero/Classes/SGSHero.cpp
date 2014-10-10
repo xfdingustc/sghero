@@ -4,7 +4,7 @@
 #include "SGSkirmishScene.h"
 #include "SGSStrategy.h"
 
-SGSHeroActionFinishedCallback SGSHero::__move_finished_callback;
+SGSHeroActionFinishedCallback SGSHero::__action_finished_callback;
 
 
 void SGSHero::attackActionFinished(Node* hero, void* ptr)
@@ -42,8 +42,8 @@ void SGSHero::counterAttackFinished(Node* hero, void* ptr)
 
   log("%s %s", this->getName().c_str(), enemy_hero->getName().c_str());
   updataSprite();
-  if (SGSHero::__move_finished_callback) {
-    SGSHero::__move_finished_callback();
+  if (SGSHero::__action_finished_callback) {
+    SGSHero::__action_finished_callback();
   }
 }
 
@@ -372,33 +372,56 @@ void SGSHero::faceTo(HERO_DIRECTION direction)
 {
   setDirection(direction);
   stopAllActions();
-  std::string action_name;
-  switch (__direction)
-  {
-  case HERO_DIRECTION_EAST:
-    action_name = "face_west";
-    break;
-  case HERO_DIRECTION_WEST:
-    action_name = "face_west";
-    break;
-  case HERO_DIRECTION_NORTH:
-    action_name = "face_north";
-    break;
-  case HERO_DIRECTION_SOUTH:
-    action_name = "face_south";
-    break;
-  default:
-    break;
-  }
-
-  Animate* animate = __animate_map[action_name];
+ 
+  Animate* animate = getWalkAnimate(direction);
   RepeatForever* face_walk = RepeatForever::create(animate);
   this->runAction(face_walk);
 }
 
+void SGSHero::moveOneStep(SGSPointList& path)
+{
+  if (path.empty()) {
+    SGSPoint point = getMapPosition();
+    log("%s finished move %d %d", this->getName().c_str(), point.x, point.y);
+    if (__action_finished_callback) {
+      __action_finished_callback();
+    }
+    return;
+  } 
+
+  SGSPoint target_pos = path.front();
+  path.erase(path.begin());
+  faceTo(getRelativeDirection(target_pos));
+  log("%s move one step to %d %d", this->getName().c_str(), target_pos.x, target_pos.y);
+
+  stopAllActions();
+  int actualDuration = 0.8f;
+  FiniteTimeAction *actionMove = MoveTo::create(actualDuration, SGSPoint::mapPos2OpenGLPos(target_pos));
+  __CCCallFuncND * funcall= __CCCallFuncND::create(this, callfuncND_selector(SGSHero::moveOneStepFinished, this), &path);
+  FiniteTimeAction* moveWithCallback = Sequence::create(actionMove, funcall, NULL);
+  Animate* animate = getWalkAnimate(__direction);
+  Repeat* walk = Repeat::create(animate, 300);
+  Spawn * walk_one_step = Spawn::create(walk, moveWithCallback, NULL);
+  this->runAction(walk_one_step);
+}
+
+void SGSHero::moveOneStepFinished(Node* node, void* ptr)
+{
+  SGSPointList* path = reinterpret_cast<SGSPointList*>(ptr);
+  moveOneStep(*path);
+}
+
+
 void SGSHero::moveTo(SGSPoint& target_pos)
 {
-  this->setMapPosition(target_pos);
+  log("%s move to %d %d", this->getName().c_str(), target_pos.x, target_pos.y);
+  SGSPointList& path = __terrain->calcShortestPath(this, target_pos);
+  if (path.empty()) {
+    log("Failed to find available path");
+    return;
+  }
+  moveOneStep(path);
+
 }
 
 void SGSHero::oneAIMove(const SGSHeroActionFinishedCallback& callback, SGSTerrain* terrain)
@@ -409,8 +432,8 @@ void SGSHero::oneAIMove(const SGSHeroActionFinishedCallback& callback, SGSTerrai
   bool ret = strategy->oneMove(this);
   if (ret) {
     setActive(false);
-    if (SGSHero::__move_finished_callback) {
-      __move_finished_callback();
+    if (SGSHero::__action_finished_callback) {
+      __action_finished_callback();
     }
   }
   
@@ -443,9 +466,14 @@ Animate* SGSHero::getAttackAnimate()
 
 SGSHero::HERO_DIRECTION SGSHero::getRelativeDirection(SGSHero* other_hero)
 {
+  return getRelativeDirection(other_hero->getMapPosition());
+}
+
+SGSHero::HERO_DIRECTION SGSHero::getRelativeDirection(SGSPoint& point)
+{
   HERO_DIRECTION direction;
   Vec2 hero_pos = this->getPosition();
-  Vec2 target_hero_pos = other_hero->getPosition();
+  Vec2 target_hero_pos = SGSPoint::mapPos2OpenGLPos(point);
 
 
   if (target_hero_pos.x > hero_pos.x) {
@@ -459,7 +487,30 @@ SGSHero::HERO_DIRECTION SGSHero::getRelativeDirection(SGSHero* other_hero)
   }
 
   return direction;
+}
 
+Animate* SGSHero::getWalkAnimate(SGSHero::HERO_DIRECTION direction)
+{
+  std::string action_name;
+  switch (direction)
+  {
+  case HERO_DIRECTION_EAST:
+    action_name = "face_west";
+    break;
+  case HERO_DIRECTION_WEST:
+    action_name = "face_west";
+    break;
+  case HERO_DIRECTION_NORTH:
+    action_name = "face_north";
+    break;
+  case HERO_DIRECTION_SOUTH:
+    action_name = "face_south";
+    break;
+  default:
+    break;
+  }
+
+  return __animate_map[action_name];
 }
 
 
@@ -572,7 +623,7 @@ SGSPointList* SGSHero::getAttackAreaFromPosition(SGSPoint& pos)
 
 void  SGSHero::setActionFinishedCallback(const SGSHeroActionFinishedCallback& callback)
 {
-  SGSHero::__move_finished_callback = callback;
+  SGSHero::__action_finished_callback = callback;
 }
 
 void SGSHero::setActive(bool active)

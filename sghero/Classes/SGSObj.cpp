@@ -49,8 +49,7 @@ bool SGSObj::init(const char* name)
 
 void SGSObj::setMapPosition(SGSPoint& map_pos) 
 { 
-  __map_position = map_pos; 
-  Vec2 pos = SGSPoint::mapPos2OpenGLPos(__map_position);
+  Vec2 pos = SGSPoint::mapPos2OpenGLPos(map_pos);
   
   setPosition(pos);
   

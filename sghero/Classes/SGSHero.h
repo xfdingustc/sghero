@@ -66,13 +66,15 @@ public:
 
   HERO_AI         getAI() { return __ai; }
   Animate*        getAttackAnimate();
+  SGSPointList*   getAttackArea();
+  SGSPointList*   getAttackAreaFromPosition(SGSPoint& pos);
   HERO_CATAGORY   getCatagory() { return __catagory; }
   HERO_DIRECTION  getRelativeDirection(SGSHero* other_hero);
+  HERO_DIRECTION  getRelativeDirection(SGSPoint& point);
   HERO_SIDE       getSide() { return __side; }
   int             getStamina() { return __stamina; }
   HERO_STATUS     getStatus() { return __status; }
-  SGSPointList*   getAttackArea();
-  SGSPointList*   getAttackAreaFromPosition(SGSPoint& pos);
+  Animate*        getWalkAnimate(HERO_DIRECTION direction);
 
   bool            init(const char* hero_name, HERO_SIDE side);
   bool            initActions();
@@ -84,6 +86,8 @@ public:
   bool            isActive() { return (__active && isVisible());}
   bool            isRival(SGSHero* hero);
  
+  void            moveOneStep(SGSPointList& path);
+  void            moveOneStepFinished(Node* node, void* ptr);
   void            moveTo(SGSPoint& target_pos);
   void            oneAIMove(const SGSHeroActionFinishedCallback& callback, SGSTerrain* terrain);
 
@@ -94,10 +98,11 @@ public:
   void            setDirection(HERO_DIRECTION direction);
   void            setStatus(std::string& status);
   void            setStatus(HERO_STATUS status);
+  void            setTerrain(SGSTerrain* terrain) { __terrain = terrain; };
 
 
 
-  SGSPoint __previous_map_position;
+  SGSPoint        __previous_map_position;
 
 private:
   typedef std::map<std::string, Animate*> ANIMATE_MAP;
@@ -114,13 +119,13 @@ private:
   HERO_SIDE       __side;
   int             __stamina;
   HERO_STATUS     __status;
-
+  SGSTerrain*     __terrain;
 
   Vector<SpriteFrame*> __sprite_frames;
   Vector<SpriteFrame*> __attack_sprite_frames;
   Vector<SpriteFrame*> __spec_sprite_frames;
 
-  static SGSHeroActionFinishedCallback __move_finished_callback;
+  static SGSHeroActionFinishedCallback __action_finished_callback;
   
 };
 

@@ -16,9 +16,11 @@ public:
   virtual bool init(const char* name);
   virtual void setMapPosition(SGSPoint& map_pos);
   void setMapPosition(Vec2& pos);
-  SGSPoint& getMapPosition() { return __map_position; }
+  SGSPoint getMapPosition() { 
+    Vec2 pos = getPosition();
+    return SGSPoint::openGLPos2MapPos(pos); 
+  }
 protected:
-  SGSPoint __map_position;
 };
 
 #endif

@@ -420,6 +420,7 @@ bool SGSkirmishScene::onHandleHeroAdd(tinyxml2::XMLElement* setting, SGSHero::HE
       return true;
     }
     hero->setMapPosition(SGSPoint(x, y));
+    hero->setTerrain(__terrain);
     if (!strcmp(hide, "true")) {
       hero->setVisible(false);
     }
@@ -469,11 +470,10 @@ bool SGSkirmishScene::onHandleEventHeroMove(tinyxml2::XMLElement* event)
   int x = atoi(event->Attribute("x"));
   int y = atoi(event->Attribute("y"));
   SGSHero* hero = (SGSHero*)this->getChildByName(hero_name);
-  //hero->moveTo(mapPos2OpenGLPos(Vec2(x, y)));
-  __terrain->calcShortestPath(hero, SGSPoint(x, y));
-  hero->setMapPosition(SGSPoint(x, y));
+  stopSkirmish();
+  hero->moveTo(SGSPoint(x, y));
   std::string direction = event->Attribute("face");
-  hero->faceTo(direction.c_str());
+  //hero->faceTo(direction.c_str());
   return true;
 }
 
@@ -481,7 +481,7 @@ bool SGSkirmishScene::onHandleEventHeroMove(tinyxml2::XMLElement* event)
 bool SGSkirmishScene::onHandleEventDelay(tinyxml2::XMLElement* event)
 {
   float time = float(atoi(event->Attribute("time"))) ;
-  
+  stopSkirmish();
   scheduleOnce(schedule_selector(SGSkirmishScene::startSkirmish), time*0.1f);
   return true;
 }
@@ -585,6 +585,9 @@ bool SGSkirmishScene::onHandleEventMagicCall(tinyxml2::XMLElement* event)
   std::string magic_name = event->Attribute("magic");
   int x = atoi(event->Attribute("x"));
   int y = atoi(event->Attribute("y"));
+  Scene* scene = SGSMagicCall::createScene(magic_name, SGSPoint::mapPos2OpenGLPos(SGSPoint(x,y)));
+  Director::getInstance()->pushScene(scene);
+
   return true;
 }
 
