@@ -21,16 +21,19 @@ public:
 
   virtual ~SGSkirmishScene();
 
-  void update(float dt);
-  
+  static SGSkirmishScene* getCurrentSkirmish() { return SGSkirmishScene::__current_skirmish_scene; }
 
   bool onTouchBegan(Touch *touch, Event *unused_event);
   void onTouchMoved(Touch *touch, Event *unused_event);
+  
+  void startSkirmish(float dt);
+  void stopSkirmish();
+
+  void update(float dt);
+
    
 private:
 
-  void startSkirmish(float dt);
-  void stopSkirmish();
   void mapMove(Vec2& delta);
   void requireFocus(const Vec2& pos);
 
@@ -121,6 +124,8 @@ private:
   // const char var
   static const char* WALK_PATH; 
   static const char* HERO_ACTION_MENU;
+
+  static SGSkirmishScene* __current_skirmish_scene;
 
 };
 

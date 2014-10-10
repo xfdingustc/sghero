@@ -12,13 +12,15 @@ using namespace CocosDenshion;
 
 const char* SGSkirmishScene::WALK_PATH = "walk_path"; 
 const char* SGSkirmishScene::HERO_ACTION_MENU = "hero_action_menu";
-
+SGSkirmishScene* SGSkirmishScene::__current_skirmish_scene;
 
 Scene* SGSkirmishScene::createScene()
 {
   Scene* scene = Scene::create();
 
   SGSkirmishScene* layer = SGSkirmishScene::create();
+
+  SGSkirmishScene::__current_skirmish_scene = layer;
 
   scene->addChild(layer);
 
@@ -151,7 +153,7 @@ bool SGSkirmishScene::touchHandleStateMachine(Touch *touch)
     if ((hero && hero == __selected_hero) || (!hero && __selected_hero)) {
       SGSArea* area = (SGSArea*)this->getChildByName(WALK_PATH);
       if (area && area->containPoint(pos)) {
-        __selected_hero->setMapPosition(pos);
+        __selected_hero->moveTo(SGSPoint::openGLPos2MapPos(pos));
         this->removeChildByName(WALK_PATH);
         createActionSelectMenu();
         __event_handle_state = EVENT_HANDLE_STATE_HERO_MOVED;
@@ -470,10 +472,8 @@ bool SGSkirmishScene::onHandleEventHeroMove(tinyxml2::XMLElement* event)
   int x = atoi(event->Attribute("x"));
   int y = atoi(event->Attribute("y"));
   SGSHero* hero = (SGSHero*)this->getChildByName(hero_name);
-  stopSkirmish();
   hero->moveTo(SGSPoint(x, y));
   std::string direction = event->Attribute("face");
-  //hero->faceTo(direction.c_str());
   return true;
 }
 

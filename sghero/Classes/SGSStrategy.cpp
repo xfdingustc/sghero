@@ -18,6 +18,7 @@ SGSStrategy* SGSStrategy::createStrategy(SGSHero::HERO_AI ai, SGSTerrain* terrai
     break;
   case SGSHero::HERO_AI_STAY:
     strategy = new SGSStrategyStay(terrain);
+    break;
   default:
     strategy = new SGSStrategyStay(terrain);
     break;

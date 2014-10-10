@@ -71,6 +71,7 @@ public:
   HERO_CATAGORY   getCatagory() { return __catagory; }
   HERO_DIRECTION  getRelativeDirection(SGSHero* other_hero);
   HERO_DIRECTION  getRelativeDirection(SGSPoint& point);
+  HERO_DIRECTION  getRelativeDirectionFrom(SGSPoint& point, SGSPoint& from);
   HERO_SIDE       getSide() { return __side; }
   int             getStamina() { return __stamina; }
   HERO_STATUS     getStatus() { return __status; }

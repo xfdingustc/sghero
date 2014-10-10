@@ -383,9 +383,7 @@ void SGSHero::moveOneStep(SGSPointList& path)
   if (path.empty()) {
     SGSPoint point = getMapPosition();
     log("%s finished move %d %d", this->getName().c_str(), point.x, point.y);
-    if (__action_finished_callback) {
-      __action_finished_callback();
-    }
+    SGSkirmishScene::getCurrentSkirmish()->startSkirmish(0.0f);
     return;
   } 
 
@@ -414,12 +412,37 @@ void SGSHero::moveOneStepFinished(Node* node, void* ptr)
 
 void SGSHero::moveTo(SGSPoint& target_pos)
 {
-  log("%s move to %d %d", this->getName().c_str(), target_pos.x, target_pos.y);
+  SGSkirmishScene::getCurrentSkirmish()->stopSkirmish();
+
   SGSPointList& path = __terrain->calcShortestPath(this, target_pos);
   if (path.empty()) {
     log("Failed to find available path");
     return;
+  } else {
+    path.erase(path.begin());
   }
+  static SGSPoint previous_pos = getMapPosition();
+  Vector<FiniteTimeAction*> move_action_sequence;
+
+#if 0
+  SGSPointList::iterator iter;
+  for (iter = path.begin(); iter != path.end(); iter++) {
+    SGSPoint target_pos = *iter;
+    Vec2 move_vec = SGSPoint::mapPos2OpenGLPos(target_pos) - SGSPoint::mapPos2OpenGLPos(previous_pos);
+    int actualDuration = 0.8f;
+    FiniteTimeAction *actionMove = MoveBy::create(actualDuration, move_vec);
+    HERO_DIRECTION direction = getRelativeDirectionFrom(target_pos, previous_pos);
+    Animate* animate = getWalkAnimate(direction);
+    Repeat* walk = Repeat::create(animate, 4);
+    Spawn * walk_one_step = Spawn::create(walk, actionMove, NULL);
+    move_action_sequence.pushBack(walk_one_step);
+    previous_pos = target_pos;
+  }
+  Sequence* sequence = Sequence::create(move_action_sequence);
+  stopAllActions();
+  this->runAction(sequence);
+  return;
+#endif
   moveOneStep(path);
 
 }
@@ -471,8 +494,13 @@ SGSHero::HERO_DIRECTION SGSHero::getRelativeDirection(SGSHero* other_hero)
 
 SGSHero::HERO_DIRECTION SGSHero::getRelativeDirection(SGSPoint& point)
 {
+  return getRelativeDirectionFrom(point, getMapPosition());
+}
+
+SGSHero::HERO_DIRECTION SGSHero::getRelativeDirectionFrom(SGSPoint& point, SGSPoint& from)
+{
   HERO_DIRECTION direction;
-  Vec2 hero_pos = this->getPosition();
+  Vec2 hero_pos = SGSPoint::mapPos2OpenGLPos(from);
   Vec2 target_hero_pos = SGSPoint::mapPos2OpenGLPos(point);
 
 
@@ -488,6 +516,7 @@ SGSHero::HERO_DIRECTION SGSHero::getRelativeDirection(SGSPoint& point)
 
   return direction;
 }
+
 
 Animate* SGSHero::getWalkAnimate(SGSHero::HERO_DIRECTION direction)
 {
