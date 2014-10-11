@@ -1,0 +1,312 @@
+{
+    "entities": [
+        {
+            "entity": {
+                "category": "lord", 
+                "res_name": "caocao", 
+                "name": "曹操"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "infantry", 
+                "res_name": "lique", 
+                "name": "李傕"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "", 
+                "res_name": "zhangji", 
+                "name": "张济"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "", 
+                "res_name": "yuanshao", 
+                "name": "袁绍"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "", 
+                "res_name": "fanchou", 
+                "name": "樊稠"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "", 
+                "res_name": "dongzhuo", 
+                "name": "董卓"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "lord", 
+                "res_name": "liubei", 
+                "name": "刘备"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "knight", 
+                "res_name": "guanyu", 
+                "name": "关羽"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "knight", 
+                "res_name": "zhangfei", 
+                "name": "张飞"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "", 
+                "res_name": "wangyun", 
+                "name": "王允"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "", 
+                "res_name": "lvbu", 
+                "name": "吕布"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "", 
+                "res_name": "liru", 
+                "name": "李儒"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "", 
+                "res_name": "huaxiong", 
+                "name": "华雄"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "dancer", 
+                "res_name": "diaochan", 
+                "name": "貂蝉"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "priest", 
+                "res_name": "xuzijiang", 
+                "name": "许子将"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "warlock", 
+                "res_name": "zhangliang", 
+                "name": "张梁"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "warlock", 
+                "res_name": "zhangbao3", 
+                "name": "张宝"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "infantry", 
+                "res_name": "huangjinjun", 
+                "name": "黄巾军01"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "infantry", 
+                "res_name": "huangjinjun", 
+                "name": "黄巾军02"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "infantry", 
+                "res_name": "huangjinjun", 
+                "name": "黄巾军03"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "infantry", 
+                "res_name": "huangjinjun", 
+                "name": "黄巾军04"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "infantry", 
+                "res_name": "huangjinjun", 
+                "name": "黄巾军05"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "infantry", 
+                "res_name": "huangjinjun", 
+                "name": "黄巾军06"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "infantry", 
+                "res_name": "huangjinjun", 
+                "name": "黄巾军07"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "infantry", 
+                "res_name": "huangjinjun", 
+                "name": "黄巾军08"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "infantry", 
+                "res_name": "huangjinjun", 
+                "name": "黄巾军09"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "infantry", 
+                "res_name": "huangjinjun", 
+                "name": "黄巾军10"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "infantry", 
+                "res_name": "huangjinjun", 
+                "name": "黄巾军11"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "infantry", 
+                "res_name": "huangjinjun", 
+                "name": "黄巾军12"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "infantry", 
+                "res_name": "bubing01", 
+                "name": "步兵01"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "infantry", 
+                "res_name": "bubing02", 
+                "name": "步兵02"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "archer", 
+                "res_name": "shibing05", 
+                "name": "弓兵01"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "archer", 
+                "res_name": "shibing06", 
+                "name": "弓兵02"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "knight", 
+                "res_name": "shibing01", 
+                "name": "骑兵01"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "knight", 
+                "res_name": "shibing02", 
+                "name": "骑兵02"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "mage", 
+                "res_name": "wenguan01", 
+                "name": "策士01"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "mage", 
+                "res_name": "wenguan02", 
+                "name": "策士02"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "", 
+                "res_name": "shibing01", 
+                "name": "士兵01"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "", 
+                "res_name": "shibing02", 
+                "name": "士兵02"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "", 
+                "res_name": "wenguan01", 
+                "name": "文官01"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "", 
+                "res_name": "wenguan02", 
+                "name": "文官02"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "", 
+                "res_name": "wenguan03", 
+                "name": "文官03"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "", 
+                "res_name": "wenguan04", 
+                "name": "文官04"
+            }
+        }, 
+        {
+            "entity": {
+                "category": "", 
+                "res_name": "wenguan05", 
+                "name": "文官05"
+            }
+        }
+    ]
+}

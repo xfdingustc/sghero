@@ -18,21 +18,21 @@ public:
   } HERO_AI;
 
   typedef enum {
-    HERO_CATAGORY_LORD,
-    HERO_CATAGORY_INFANTRY,
-    HERO_CATAGORY_ARCHER,
-    HERO_CATAGORY_KNIGHT,
-    HERO_CATAGORY_HORSEARCHER,
-    HERO_CATAGORY_DEMOLISHER,
-    HERO_CATAGORY_MARTIALIST,
-    HERO_CATAGORY_THIEF,
-    HERO_CATAGORY_MAGE,
-    HERO_CATAGORY_PRIEST,
-    HERO_CATAGORY_WARLOCK,
-    HERO_CATAGORY_HORSEMAGE,
-    HERO_CATAGORY_DANCER,
-    HERO_CATAGORY_MAX,
-  } HERO_CATAGORY;
+    HERO_category_LORD,
+    HERO_category_INFANTRY,
+    HERO_category_ARCHER,
+    HERO_category_KNIGHT,
+    HERO_category_HORSEARCHER,
+    HERO_category_DEMOLISHER,
+    HERO_category_MARTIALIST,
+    HERO_category_THIEF,
+    HERO_category_MAGE,
+    HERO_category_PRIEST,
+    HERO_category_WARLOCK,
+    HERO_category_HORSEMAGE,
+    HERO_category_DANCER,
+    HERO_category_MAX,
+  } HERO_category;
 
   typedef enum {
     HERO_DIRECTION_NORTH,
@@ -68,7 +68,7 @@ public:
   Animate*        getAttackAnimate();
   SGSPointList*   getAttackArea();
   SGSPointList*   getAttackAreaFromPosition(SGSPoint& pos);
-  HERO_CATAGORY   getCatagory() { return __catagory; }
+  HERO_category   getcategory() { return __category; }
   HERO_DIRECTION  getRelativeDirection(SGSHero* other_hero);
   HERO_DIRECTION  getRelativeDirection(SGSPoint& point);
   HERO_DIRECTION  getRelativeDirectionFrom(SGSPoint& point, SGSPoint& from);
@@ -80,7 +80,7 @@ public:
   bool            init(const char* hero_name, HERO_SIDE side);
   bool            initActions();
   bool            initAttackActions();
-  void            initCatagory();
+  void            initcategory();
   void            initDataNum();
   bool            initSpecActions();
 
@@ -90,6 +90,7 @@ public:
   void            moveOneStep(SGSPointList& path);
   void            moveOneStepFinished(Node* node, void* ptr);
   void            moveTo(SGSPoint& target_pos);
+  void            moveToAndAttack(SGSPoint& target_pos, SGSHero* enemy_hero);
   void            oneAIMove(const SGSHeroActionFinishedCallback& callback, SGSTerrain* terrain);
 
   void            setActionFinishedCallback(const SGSHeroActionFinishedCallback& callback);
@@ -114,7 +115,7 @@ private:
   HERO_AI         __ai;
   ANIMATE_MAP     __animate_map;
   bool            __active;
-  HERO_CATAGORY   __catagory;
+  HERO_category   __category;
   HERO_DIRECTION  __direction;
   std::string     __name;
   HERO_SIDE       __side;

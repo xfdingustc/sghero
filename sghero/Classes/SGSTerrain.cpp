@@ -2,7 +2,7 @@
 #include "SGSTerrain.h"
 
 
-int SGSTerrain::SteminaConsuming[SGSTerrain::TERRAIN_MAX][SGSHero::HERO_CATAGORY_MAX] =
+int SGSTerrain::SteminaConsuming[SGSTerrain::TERRAIN_MAX][SGSHero::HERO_category_MAX] =
 {
   {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
   {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
@@ -336,9 +336,9 @@ bool SGSTerrain::isInStepPtrList(Step* step, StepPtrList& step_list)
 }
 
 
-int SGSTerrain::getSteminaConsume(SGSHero::HERO_CATAGORY catagory, TERRAIN_TYPE terrain)
+int SGSTerrain::getSteminaConsume(SGSHero::HERO_category category, TERRAIN_TYPE terrain)
 {
-  return SteminaConsuming[terrain][catagory];
+  return SteminaConsuming[terrain][category];
 }
 
 SGSTerrain::Step SGSTerrain::moveHero(SGSHero* hero, STEP_DIRECTION one_step, Step step_from)
@@ -425,7 +425,7 @@ SGSTerrain::Step SGSTerrain::moveHero(SGSHero* hero, STEP_DIRECTION one_step, St
       valid_move == false) {
     step_to.__stamina = -100;
   } else {
-    step_to.__stamina -= getSteminaConsume(hero->getCatagory(), getTerrainAt(step_to.__pos));
+    step_to.__stamina -= getSteminaConsume(hero->getcategory(), getTerrainAt(step_to.__pos));
   }
 
   return step_to;

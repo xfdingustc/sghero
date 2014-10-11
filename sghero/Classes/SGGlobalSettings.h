@@ -4,7 +4,7 @@
 #define WINDOW_WIDTH 1024
 #define WINDOW_HEIGHT 768
 
-#define HERO_RESOURCE_JSON_FILE "HeroRes.json"
+#define HERO_RESOURCE_JSON_FILE "Hero_Res.json"
 #define SKIRMISH_SCENE_SWITCH_TEXT_JSON_FILE "SwitchSceneText.json"
 #define MENU_ITEM_TEXT_JSON_FILE "Menu.json"
 #define INFO_TEXT_JSON_FILE "Info.json"

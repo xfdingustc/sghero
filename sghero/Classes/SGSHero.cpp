@@ -81,8 +81,8 @@ bool SGSHero::init(const char* hero_name, HERO_SIDE side)
   this->setName(hero_name);
   notifyObserver("hero_add", reinterpret_cast<void*>(this));
 
-  // init catagory
-  initCatagory();
+  // init category
+  initcategory();
   
   __status = HERO_STATUS_NORMAL;
   __ai = HERO_AI_ATTACK;
@@ -277,35 +277,35 @@ bool SGSHero::initSpecActions()
   return true;
 }
 
-void SGSHero::initCatagory()
+void SGSHero::initcategory()
 {
-  std::string catagory = SGHeroResourceUtils::getInstance()->getHeroResObj(__name)->catagory;
-  if (catagory == "lord") {
-    __catagory = HERO_CATAGORY_LORD;
-  } else if (catagory == "infantry") {
-    __catagory = HERO_CATAGORY_INFANTRY;
-  } else if (catagory == "archer" ) {
-    __catagory = HERO_CATAGORY_ARCHER;
-  } else if (catagory == "knight") {
-    __catagory = HERO_CATAGORY_ARCHER;
-  } else if (catagory == "horsearcher") {
-    __catagory = HERO_CATAGORY_HORSEARCHER;
-  } else if (catagory == "demolisher") {
-    __catagory = HERO_CATAGORY_DEMOLISHER;
-  } else if (catagory == "martialist") {
-    __catagory = HERO_CATAGORY_MARTIALIST;
-  } else if (catagory == "thief") {
-    __catagory = HERO_CATAGORY_THIEF;
-  } else if (catagory == "mage") {
-    __catagory = HERO_CATAGORY_MAGE;
-  } else if (catagory == "priest") {
-    __catagory = HERO_CATAGORY_PRIEST;
-  } else if (catagory == "warlock") {
-    __catagory = HERO_CATAGORY_WARLOCK;
-  } else if (catagory == "horsemage") {
-    __catagory = HERO_CATAGORY_HORSEMAGE;
-  } else if (catagory == "dancer") {
-    __catagory = HERO_CATAGORY_DANCER;
+  std::string category = SGHeroResourceUtils::getInstance()->getHeroResObj(__name)->category;
+  if (category == "lord") {
+    __category = HERO_category_LORD;
+  } else if (category == "infantry") {
+    __category = HERO_category_INFANTRY;
+  } else if (category == "archer" ) {
+    __category = HERO_category_ARCHER;
+  } else if (category == "knight") {
+    __category = HERO_category_ARCHER;
+  } else if (category == "horsearcher") {
+    __category = HERO_category_HORSEARCHER;
+  } else if (category == "demolisher") {
+    __category = HERO_category_DEMOLISHER;
+  } else if (category == "martialist") {
+    __category = HERO_category_MARTIALIST;
+  } else if (category == "thief") {
+    __category = HERO_category_THIEF;
+  } else if (category == "mage") {
+    __category = HERO_category_MAGE;
+  } else if (category == "priest") {
+    __category = HERO_category_PRIEST;
+  } else if (category == "warlock") {
+    __category = HERO_category_WARLOCK;
+  } else if (category == "horsemage") {
+    __category = HERO_category_HORSEMAGE;
+  } else if (category == "dancer") {
+    __category = HERO_category_DANCER;
   }
 }
 
@@ -334,7 +334,7 @@ std::string& SGSHero::getHeroResFile(const char* res_dir)
   }
   if (hero_res_obj->res_name.empty()) {
     // use default resource
-    hero_res_file.append(hero_res_obj->catagory);
+    hero_res_file.append(hero_res_obj->category);
     // add side info
     if (HERO_SIDE_FRIEND == __side) {
       hero_res_file.append("_friend");
@@ -351,7 +351,7 @@ std::string& SGSHero::getHeroResFile(const char* res_dir)
   if (!FileUtils::getInstance()->isFileExist(hero_res_file)) {
     // use default resource;
     hero_res_file = res_dir;
-    hero_res_file.append(hero_res_obj->catagory);
+    hero_res_file.append(hero_res_obj->category);
     if (HERO_SIDE_FRIEND == __side) {
       hero_res_file.append("_friend");
     } else if (HERO_SIDE_ENEMY == __side) {
@@ -421,10 +421,11 @@ void SGSHero::moveTo(SGSPoint& target_pos)
   } else {
     path.erase(path.begin());
   }
+
+#if 0
   static SGSPoint previous_pos = getMapPosition();
   Vector<FiniteTimeAction*> move_action_sequence;
 
-#if 0
   SGSPointList::iterator iter;
   for (iter = path.begin(); iter != path.end(); iter++) {
     SGSPoint target_pos = *iter;
@@ -446,6 +447,12 @@ void SGSHero::moveTo(SGSPoint& target_pos)
   moveOneStep(path);
 
 }
+
+void SGSHero::moveToAndAttack(SGSPoint& target_pos, SGSHero* enemy_hero)
+{
+
+}
+
 
 void SGSHero::oneAIMove(const SGSHeroActionFinishedCallback& callback, SGSTerrain* terrain)
 {

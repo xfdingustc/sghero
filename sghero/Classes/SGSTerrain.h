@@ -86,13 +86,13 @@ private:
   typedef std::list<Step*> StepPtrList;
   SGSObj*          getObj(SGSPoint& pos);
   TERRAIN_TYPE   getTerrainAt(SGSPoint& pos);
-  int                     getSteminaConsume(SGSHero::HERO_CATAGORY catagory, TERRAIN_TYPE terrain);
+  int                     getSteminaConsume(SGSHero::HERO_category category, TERRAIN_TYPE terrain);
   bool                    isInStepList(Step& step, StepList& step_list);
   bool                    isInStepPtrList(Step* step, StepPtrList& step_list);
   void                    loadTerrain(std::string& terrain_file);
   Step                    moveHero(SGSHero* hero, STEP_DIRECTION one_step, Step from);
 
-  static int              SteminaConsuming[TERRAIN_MAX][SGSHero::HERO_CATAGORY_MAX];
+  static int              SteminaConsuming[TERRAIN_MAX][SGSHero::HERO_category_MAX];
   int                     __width;
   int                     __height;
 

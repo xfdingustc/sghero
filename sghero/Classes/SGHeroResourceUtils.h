@@ -12,7 +12,7 @@ public:
   class SGHeroResourceObject {
   public:
     std::string name;
-    std::string catagory;
+    std::string category;
     std::string res_name;
   };
 

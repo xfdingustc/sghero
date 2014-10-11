@@ -32,14 +32,15 @@ void SGHeroResourceUtils::init()
     CCLOG("Parsing hero resource json file error!! %s", hero_res.GetParseError());
     return;
   } else if (hero_res.IsObject()) {
-    const rapidjson::Value &res_list = hero_res["Resource"];
+    const rapidjson::Value &res_list = hero_res["entities"];
     if (res_list.IsArray()) {
       for (int i = 0; i < res_list.Size(); i++) {
-        const rapidjson::Value &val = res_list[i];
+        const rapidjson::Value &entity = res_list[i];
+        const rapidjson::Value &val = entity["entity"];
         SGHeroResourceObject* new_hero = new SGHeroResourceObject;
         new_hero->name = val["name"].GetString();
-        if (val.HasMember("catagory")) {
-          new_hero->catagory = val["catagory"].GetString();
+        if (val.HasMember("category")) {
+          new_hero->category = val["category"].GetString();
         }
         if (val.HasMember("res_name")) {
           new_hero->res_name = val["res_name"].GetString();
