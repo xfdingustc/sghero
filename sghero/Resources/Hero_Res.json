@@ -3,309 +3,2913 @@
         {
             "entity": {
                 "category": "lord", 
+                "agility": 80.0, 
+                "force": 82.0, 
+                "name": "曹操", 
+                "biographies": "字孟德。文武兼备的一代奸雄，有杰出的战略眼光和预见能力。扫平黄巾后，又征讨董卓，挟天子以令诸侯。经大小数十战役，统一了北方，奠定了魏国的基础。", 
+                "intelligence": 92.0, 
+                "hp": 102.0, 
                 "res_name": "caocao", 
-                "name": "曹操"
+                "command": 98.0, 
+                "mp": 30.0, 
+                "retreat": "难道天不佑我吗……太不甘心了！", 
+                "luck": 84.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 90.0, 
+                "force": 98.0, 
+                "name": "夏侯惇", 
+                "biographies": "字元让，魏前将军，曹操的族弟。征讨吕布时，被曹性射中左眼，他拔箭啖目、鼓勇而战，反倒刺死曹性。深受曹操信任，曹丕继位后，任大将军。", 
+                "intelligence": 64.0, 
+                "hp": 106.0, 
+                "res_name": "xiahoudun", 
+                "command": 82.0, 
+                "mp": 10.0, 
+                "retreat": "对不起、孟德！", 
+                "luck": 66.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 78.0, 
+                "force": 92.0, 
+                "name": "张辽", 
+                "biographies": "字文远，智勇双全的一代名将，曹操麾下五大将之首。其指挥才能在合淝战役时发挥得淋漓尽致，仅以八百精兵就大破东吴十万大军，威震逍遥津。", 
+                "intelligence": 96.0, 
+                "hp": 103.0, 
+                "res_name": "zhangliao", 
+                "command": 84.0, 
+                "mp": 18.0, 
+                "retreat": "失策！！", 
+                "luck": 94.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 68.0, 
+                "force": 96.0, 
+                "name": "关羽", 
+                "biographies": "字云长。桃园结义后，随大哥刘备征战，同扶汉室。他是武勇忠义的代名词。曾斩颜良、诛文丑。千里寻主，水淹七军，威震华夏。倍受刘备信任，为蜀汉五虎将之首。", 
+                "intelligence": 90.0, 
+                "hp": 107.0, 
+                "res_name": "guanyu", 
+                "command": 98.0, 
+                "mp": 12.0, 
+                "retreat": "哦哦？居然打退了我关羽！？", 
+                "luck": 62.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 64.0, 
+                "force": 92.0, 
+                "name": "曹彰", 
+                "biographies": "字子文，曹操的三子。曹操很赏识他的勇略，称他为「黄须儿」。与刘备争夺汉中之际，曾经活跃一时。晚年因为受到其兄曹丕的疏远，在失意中死去。", 
+                "intelligence": 58.0, 
+                "hp": 102.0, 
+                "res_name": "caozhang", 
+                "command": 76.0, 
+                "mp": 8.0, 
+                "retreat": "父亲…………！", 
+                "luck": 60.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 70.0, 
+                "force": 88.0, 
+                "name": "曹仁", 
+                "biographies": "字子孝，曹操的族弟。自曹操起兵就跟随征战。当战局不利时，就激励部下继续英勇奋战，经常能反败为胜，陈矫称赞他有「鬼神之勇」。后任魏大司马。", 
+                "intelligence": 66.0, 
+                "hp": 100.0, 
+                "res_name": "caoren", 
+                "command": 76.0, 
+                "mp": 14.0, 
+                "retreat": "可恶！太嚣张了！", 
+                "luck": 62.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "horsearcher", 
+                "agility": 66.0, 
+                "force": 92.0, 
+                "name": "夏侯渊", 
+                "biographies": "字妙才，迎娶曹操之女为妻。是魏国征西将军，善于突袭的勇将。后来驻守定军山时，中了法正之计，被黄忠斩杀。", 
+                "intelligence": 62.0, 
+                "hp": 105.0, 
+                "res_name": "xiahouyuan", 
+                "command": 80.0, 
+                "mp": 17.0, 
+                "retreat": "我不会忘记这个屈辱的！", 
+                "luck": 78.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "horsearcher", 
+                "agility": 74.0, 
+                "force": 90.0, 
+                "name": "张郃", 
+                "biographies": "字俊艾，起初是袁绍部下。官渡之战时，与高览一起投奔曹操。是五大将之一，屡建战功。连诸葛亮也承认他勇猛过人，是蜀国的大患。", 
+                "intelligence": 66.0, 
+                "hp": 102.0, 
+                "res_name": "zhanghe", 
+                "command": 68.0, 
+                "mp": 16.0, 
+                "retreat": "原来我的弓术还差远了……。", 
+                "luck": 92.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "horsearcher", 
+                "agility": 58.0, 
+                "force": 70.0, 
+                "name": "曹丕", 
+                "biographies": "字子桓，曹操的次子。因长子曹昂战死，被立为世子。父亲死后，继任魏王。他逼迫献帝禅让，建立魏王朝而即位称帝。后来他将后事托付司马懿和曹休后才死去。", 
+                "intelligence": 68.0, 
+                "hp": 101.0, 
+                "res_name": "caopi", 
+                "command": 92.0, 
+                "mp": 21.0, 
+                "retreat": "怎么可能输给这种家伙……。", 
+                "luck": 100.0
             }
         }, 
         {
             "entity": {
                 "category": "infantry", 
-                "res_name": "lique", 
-                "name": "李傕"
+                "agility": 62.0, 
+                "force": 90.0, 
+                "name": "庞德", 
+                "biographies": "字令明，马超的心腹猛将。被曹操擒获后降曹，为曹军建功。关羽攻樊城时，他抬棺战关羽，几乎将关羽击败。后被关羽水淹七军，被俘后不降而死。", 
+                "intelligence": 78.0, 
+                "hp": 120.0, 
+                "res_name": "pangde", 
+                "command": 96.0, 
+                "mp": 11.0, 
+                "retreat": "暂且退兵吧。", 
+                "luck": 60.0
             }
         }, 
         {
             "entity": {
-                "category": "", 
-                "res_name": "zhangji", 
-                "name": "张济"
+                "category": "infantry", 
+                "agility": 54.0, 
+                "force": 78.0, 
+                "name": "乐进", 
+                "biographies": "字文谦。本是曹操麾下的文官，后来转为武将，被列为五大将之一。他与张辽、李典共同把守合淝，抵御东吴进攻，立下了赫赫战功。", 
+                "intelligence": 76.0, 
+                "hp": 118.0, 
+                "res_name": "lejin", 
+                "command": 92.0, 
+                "mp": 15.0, 
+                "retreat": "唔唔唔、撤退吧。", 
+                "luck": 86.0
             }
         }, 
         {
             "entity": {
-                "category": "", 
-                "res_name": "yuanshao", 
-                "name": "袁绍"
+                "category": "infantry", 
+                "agility": 74.0, 
+                "force": 82.0, 
+                "name": "李典", 
+                "biographies": "字曼成，魏破虏将军。从讨伐黄巾军时就跟随曹操，历经百战。性格冷静谨慎，多次制止同僚的胡作非为。与张辽、乐进一起镇守合淝。", 
+                "intelligence": 68.0, 
+                "hp": 114.0, 
+                "res_name": "lidian", 
+                "command": 90.0, 
+                "mp": 17.0, 
+                "retreat": "事已至此，只有撤退了。", 
+                "luck": 56.0
             }
         }, 
         {
             "entity": {
-                "category": "", 
-                "res_name": "fanchou", 
-                "name": "樊稠"
+                "category": "infantry", 
+                "agility": 66.0, 
+                "force": 64.0, 
+                "name": "曹洪", 
+                "biographies": "字子廉，曹操的表弟。与兄长曹仁一起投奔曹操。身为曹军的核心大将，转战各地，奋战沙场。曾数次救曹操于危难中。", 
+                "intelligence": 82.0, 
+                "hp": 110.0, 
+                "res_name": "caohong", 
+                "command": 78.0, 
+                "mp": 13.0, 
+                "retreat": "挫折才是好男儿成长的食粮。", 
+                "luck": 70.0
             }
         }, 
         {
             "entity": {
-                "category": "", 
-                "res_name": "dongzhuo", 
-                "name": "董卓"
+                "category": "archer", 
+                "agility": 78.0, 
+                "force": 92.0, 
+                "name": "徐晃", 
+                "biographies": "字公明。曹操部下五大将之一。原为杨奉部下，被满宠说服后改仕曹操。曾经为了援救樊城，突破敌军的重重包围。连曹操也为他的果敢勇猛而惊叹。", 
+                "intelligence": 56.0, 
+                "hp": 103.0, 
+                "res_name": "xuhuang", 
+                "command": 90.0, 
+                "mp": 11.0, 
+                "retreat": "快快撤兵！！", 
+                "luck": 96.0
             }
         }, 
         {
             "entity": {
-                "category": "lord", 
-                "res_name": "liubei", 
-                "name": "刘备"
+                "category": "archer", 
+                "agility": 92.0, 
+                "force": 78.0, 
+                "name": "于禁", 
+                "biographies": "字文则。严谨忠实，在官渡之战中立下大功，甚得曹操的赏识，被推举为五大将之一。但后来却变得贪生怕死，在樊城被关羽水淹七军擒获后，甚至乞求活命。", 
+                "intelligence": 60.0, 
+                "hp": 96.0, 
+                "res_name": "yujin", 
+                "command": 76.0, 
+                "mp": 14.0, 
+                "retreat": "本该不是如此的！", 
+                "luck": 98.0
             }
         }, 
         {
             "entity": {
-                "category": "knight", 
-                "res_name": "guanyu", 
-                "name": "关羽"
+                "category": "thief", 
+                "agility": 68.0, 
+                "force": 98.0, 
+                "name": "许褚", 
+                "biographies": "字仲康。很受曹操信任，与典韦一起统领曹操的近卫军。与马超交战时，单挑不分胜负。后来曹操危难，他拼死护主，被曹操赐名为「虎痴」。", 
+                "intelligence": 36.0, 
+                "hp": 119.0, 
+                "res_name": "xuchu", 
+                "command": 90.0, 
+                "mp": 21.0, 
+                "retreat": "喔喔喔、这下不行了！撤退！", 
+                "luck": 98.0
             }
         }, 
         {
             "entity": {
-                "category": "knight", 
-                "res_name": "zhangfei", 
-                "name": "张飞"
-            }
-        }, 
-        {
-            "entity": {
-                "category": "", 
-                "res_name": "wangyun", 
-                "name": "王允"
-            }
-        }, 
-        {
-            "entity": {
-                "category": "", 
-                "res_name": "lvbu", 
-                "name": "吕布"
-            }
-        }, 
-        {
-            "entity": {
-                "category": "", 
-                "res_name": "liru", 
-                "name": "李儒"
-            }
-        }, 
-        {
-            "entity": {
-                "category": "", 
-                "res_name": "huaxiong", 
-                "name": "华雄"
+                "category": "martialist", 
+                "agility": 98.0, 
+                "force": 100.0, 
+                "name": "典韦", 
+                "biographies": "被誉为「古之恶来」的勇将。因其勇猛甚受曹操喜爱，被任命为近卫军统帅。张绣夜袭曹营时，为了让曹操逃脱，他舍命坚守辕门，挺立而死，死后许久仍无人敢近。", 
+                "intelligence": 52.0, 
+                "hp": 102.0, 
+                "res_name": "dianwei", 
+                "command": 76.0, 
+                "mp": 23.0, 
+                "retreat": "主公！！我对不起您！", 
+                "luck": 68.0
             }
         }, 
         {
             "entity": {
                 "category": "dancer", 
+                "agility": 100.0, 
+                "force": 76.0, 
+                "name": "貂蝉", 
+                "biographies": "善于歌舞的绝代佳人，有可爱的面容，又有敢于深入敌穴施展「连环计」的胆量。", 
+                "intelligence": 68.0, 
+                "hp": 87.0, 
                 "res_name": "diaochan", 
-                "name": "貂蝉"
+                "command": 64.0, 
+                "mp": 35.0, 
+                "retreat": "我无法再战了…、请您保重……。", 
+                "luck": 82.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "demolisher", 
+                "agility": 52.0, 
+                "force": 72.0, 
+                "name": "刘晔", 
+                "biographies": "字子阳。受郭嘉推荐，仕奉曹操。在官渡之战时，献投石车图，破了审配土山下射之计。效力于曹氏三代并多次献计。任魏国的太中大夫。", 
+                "intelligence": 84.0, 
+                "hp": 91.0, 
+                "res_name": "liuye", 
+                "command": 78.0, 
+                "mp": 22.0, 
+                "retreat": "技不如人，回去再练过吧。", 
+                "luck": 82.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "horsemage", 
+                "agility": 46.0, 
+                "force": 78.0, 
+                "name": "司马懿", 
+                "biographies": "字仲达，仕奉曹家四代的著名谋臣。以杰出的聪明才智，使诸葛亮六出祁山都无功而返，保住了三秦之地。后来排除异己，掌握实权，为建立晋朝打下基础。", 
+                "intelligence": 100.0, 
+                "hp": 100.0, 
+                "res_name": "simayi", 
+                "command": 68.0, 
+                "mp": 48.0, 
+                "retreat": "撤退是明智之举。", 
+                "luck": 42.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "mage", 
+                "agility": 56.0, 
+                "force": 54.0, 
+                "name": "荀彧", 
+                "biographies": "字文若。有王佐之才，曹操称之为「吾之张良也」，倍受重用，是卓越的战略家。官渡之战中鼓励一度消沉的曹操，最后促使曹军大捷。", 
+                "intelligence": 98.0, 
+                "hp": 96.0, 
+                "res_name": "xunyu", 
+                "command": 82.0, 
+                "mp": 41.0, 
+                "retreat": "撤退也是一种战术。", 
+                "luck": 62.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "mage", 
+                "agility": 64.0, 
+                "force": 58.0, 
+                "name": "程昱", 
+                "biographies": "字仲德，经荀彧保举辅佐曹操，是曹操的主要军师之一。兖州被夺后，激励垂头丧气的曹操，鼓舞斗志。在仓亭之战时，献「十面埋伏」之计大败袁绍。", 
+                "intelligence": 92.0, 
+                "hp": 91.0, 
+                "res_name": "chengyu", 
+                "command": 62.0, 
+                "mp": 43.0, 
+                "retreat": "三十六计走为上策。", 
+                "luck": 76.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "warlock", 
+                "agility": 82.0, 
+                "force": 22.0, 
+                "name": "郭嘉", 
+                "biographies": "字奉孝，曹操最信赖的谋臣。平定河北时病殒，年仅三十八岁。曹操大哭曰「天丧吾也」。赤壁大败后，曹操叹息道∶「若奉孝在，决不使吾有此大失也」。", 
+                "intelligence": 98.0, 
+                "hp": 80.0, 
+                "res_name": "guojia", 
+                "command": 64.0, 
+                "mp": 46.0, 
+                "retreat": "真是气死我也。", 
+                "luck": 90.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "warlock", 
+                "agility": 80.0, 
+                "force": 52.0, 
+                "name": "贾诩", 
+                "biographies": "字文和。年轻时就被比喻为「张良·陈平」的谋士。任曹操的谋臣时，发挥了卓越的才智。曹丕之所以能即位，他有极大的功劳。", 
+                "intelligence": 96.0, 
+                "hp": 88.0, 
+                "res_name": "jiaxu", 
+                "command": 68.0, 
+                "mp": 40.0, 
+                "retreat": "嗯……、难道我失算了？", 
+                "luck": 78.0
             }
         }, 
         {
             "entity": {
                 "category": "priest", 
-                "res_name": "xuzijiang", 
-                "name": "许子将"
+                "agility": 76.0, 
+                "force": 34.0, 
+                "name": "荀攸", 
+                "biographies": "字公达，荀彧之侄。与荀彧一起为曹操效力。擅长军事，经常在战场上献计，击败敌军。赤壁之战中，他与程昱一起担任随军参谋。", 
+                "intelligence": 94.0, 
+                "hp": 82.0, 
+                "res_name": "xunyou", 
+                "command": 80.0, 
+                "mp": 50.0, 
+                "retreat": "太遗憾了……", 
+                "luck": 78.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "priest", 
+                "agility": 78.0, 
+                "force": 54.0, 
+                "name": "满宠", 
+                "biographies": "字伯宁。被刘晔举荐，效力于曹操。曾说服徐晃降曹。辅佐曹仁力守樊城时，曹仁一度想放弃城池，他力劝曹仁坚守，因而反败为胜。他也曾经大胜呼应蜀军北伐的吴军。", 
+                "intelligence": 90.0, 
+                "hp": 81.0, 
+                "res_name": "manchong", 
+                "command": 68.0, 
+                "mp": 49.0, 
+                "retreat": "既然如此……干脆撤退吧！", 
+                "luck": 84.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 60.0, 
+                "force": 76.0, 
+                "name": "夏侯恩", 
+                "biographies": "曹操的背剑官，负责掌管曹操的青釭剑。于长阪坡抢夺民财时，死于赵云枪下，青釭剑遂被赵云所夺。", 
+                "intelligence": 58.0, 
+                "hp": 100.0, 
+                "res_name": "xiahouen", 
+                "command": 74.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 82.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 66.0, 
+                "force": 86.0, 
+                "name": "文聘", 
+                "biographies": "刘表麾下将领。刘琮献荆州投降后，他也不得已降曹。曹操很赏识他的忠义，封他为关内侯。曹丕伐吴大败时，便是他背负曹丕逃脱的。", 
+                "intelligence": 64.0, 
+                "hp": 100.0, 
+                "res_name": "wenpin", 
+                "command": 82.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 60.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 68.0, 
+                "force": 92.0, 
+                "name": "夏侯杰", 
+                "biographies": "曹操部将。曹操进攻新野刘备时，他被匹马单枪立于长阪桥上怒喝曹军的张飞吓得落马而死。", 
+                "intelligence": 50.0, 
+                "hp": 100.0, 
+                "res_name": "xiahoujie", 
+                "command": 86.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 64.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "archer", 
+                "agility": 56.0, 
+                "force": 72.0, 
+                "name": "郭淮", 
+                "biographies": "字伯济，魏国行军司马。在曹真、司马懿的节制下统军。后就任雍州刺史，追击反叛魏国的夏侯霸。曾设计救出了被蜀军围困在铁笼山的司马昭。", 
+                "intelligence": 54.0, 
+                "hp": 90.0, 
+                "res_name": "guohuai", 
+                "command": 58.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 86.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "horsearcher", 
+                "agility": 54.0, 
+                "force": 76.0, 
+                "name": "曹安民", 
+                "biographies": "曹操之侄。曹操遭到张绣夜袭时和曹操一起逃走，但是没能逃脱因而战死。", 
+                "intelligence": 64.0, 
+                "hp": 100.0, 
+                "res_name": "caoanmin", 
+                "command": 62.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 84.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 62.0, 
+                "force": 84.0, 
+                "name": "曹昂", 
+                "biographies": "字子修，曹操的长子。张绣夜袭曹营时，他将坐骑让与曹操，使曹操幸免于难，自己却死于乱军之中。", 
+                "intelligence": 60.0, 
+                "hp": 100.0, 
+                "res_name": "caoang", 
+                "command": 68.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 96.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "lord", 
+                "agility": 74.0, 
+                "force": 78.0, 
+                "name": "刘备", 
+                "biographies": "字玄德，东汉中山靖王刘胜之后。被曹操认为是当世英雄，招揽了不少英雄豪杰、贤才隐士，后来亲自建立蜀国。献帝逊位后，自立为蜀汉皇帝。", 
+                "intelligence": 76.0, 
+                "hp": 100.0, 
+                "res_name": "liubei", 
+                "command": 72.0, 
+                "mp": 30.0, 
+                "retreat": "", 
+                "luck": 100.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 72.0, 
+                "force": 100.0, 
+                "name": "张飞", 
+                "biographies": "字翼德。与刘备、关羽桃园结义后，随刘备征战，同扶汉室。曾匹马单枪拒曹军于长阪；刘备入川时，他率军出战攻无不克。后被封为车骑将军，是蜀汉五虎将之一。", 
+                "intelligence": 46.0, 
+                "hp": 100.0, 
+                "res_name": "zhangfei", 
+                "command": 74.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 76.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 66.0, 
+                "force": 96.0, 
+                "name": "赵云", 
+                "biographies": "字子龙。蜀汉五虎将之一，是智勇双全的勇将。长阪坡一战，怀抱阿斗，视曹操百万军如无物；取汉中时，又单枪匹马击溃曹操追兵，被刘备赞为「一身是胆」。", 
+                "intelligence": 68.0, 
+                "hp": 100.0, 
+                "res_name": "zhaoyun", 
+                "command": 82.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 64.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "sorcerer", 
+                "agility": 68.0, 
+                "force": 34.0, 
+                "name": "诸葛亮", 
+                "biographies": "字孔明，号卧龙先生，蜀汉丞相。刘备三顾茅庐请他出仕后，他出计献策使无处立身的刘备建立蜀汉。刘备死后，他又继承遗志，为匡扶汉室鞠躬尽瘁，死而后已。", 
+                "intelligence": 100.0, 
+                "hp": 80.0, 
+                "res_name": "zhugeliang", 
+                "command": 92.0, 
+                "mp": 60.0, 
+                "retreat": "", 
+                "luck": 82.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "horsearcher", 
+                "agility": 56.0, 
+                "force": 92.0, 
+                "name": "黄忠", 
+                "biographies": "字汉升。原为韩玄部下，曾与关羽激战三日不分胜负。归顺刘备后，在汉中战役中建立奇功，成为蜀汉五虎将之一。此后，人们把老当益壮的人都称誉为「老黄忠」。", 
+                "intelligence": 62.0, 
+                "hp": 100.0, 
+                "res_name": "huangzhong", 
+                "command": 68.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 58.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 74.0, 
+                "force": 94.0, 
+                "name": "魏延", 
+                "biographies": "字文长。受刘备重托任汉中太守。武艺高强，为蜀汉屡立战功。因为与诸葛亮有嫌隙，故在其死后反叛。但被获授锦囊妙计的杨仪等人杀死。", 
+                "intelligence": 54.0, 
+                "hp": 100.0, 
+                "res_name": "weiyan", 
+                "command": 58.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 52.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "priest", 
+                "agility": 62.0, 
+                "force": 46.0, 
+                "name": "法正", 
+                "biographies": "字孝直，为刘备取蜀立下了大功。擅长谋略，向刘备进言攻打汉中，使曹操为之震动。后来夷陵之战时，众人都无法劝阻刘备，诸葛亮叹道∶「若法孝直在…」", 
+                "intelligence": 86.0, 
+                "hp": 80.0, 
+                "res_name": "fazheng", 
+                "command": 48.0, 
+                "mp": 50.0, 
+                "retreat": "", 
+                "luck": 58.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "priest", 
+                "agility": 72.0, 
+                "force": 38.0, 
+                "name": "伊籍", 
+                "biographies": "字机伯。原为刘表幕僚，曾向刘备透露的卢妨主和蔡瑁加害刘备的计谋。后改仕刘备，著有「蜀科」。此人机智伶俐，连孙权也叹服于他的能言善辩。", 
+                "intelligence": 80.0, 
+                "hp": 80.0, 
+                "res_name": "yiji", 
+                "command": 42.0, 
+                "mp": 50.0, 
+                "retreat": "", 
+                "luck": 62.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "archer", 
+                "agility": 62.0, 
+                "force": 76.0, 
+                "name": "孙乾", 
+                "biographies": "字公祐，原是陶谦部下。陶谦死后，辅佐继任的刘备。作为刘备早期主要的参谋和外交官，多次建功。刘备入川后，他的待遇仅次于糜竺。", 
+                "intelligence": 66.0, 
+                "hp": 90.0, 
+                "res_name": "sunqian", 
+                "command": 58.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 76.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "horsearcher", 
+                "agility": 62.0, 
+                "force": 72.0, 
+                "name": "糜竺", 
+                "biographies": "字子仲，本是富商，在陶谦手下任别驾从事。陶谦死后，辅佐刘备。刘备入川后，他被任命为安汉将军，其位甚至在诸葛亮之上。", 
+                "intelligence": 68.0, 
+                "hp": 100.0, 
+                "res_name": "mizhu", 
+                "command": 68.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 74.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "horsearcher", 
+                "agility": 66.0, 
+                "force": 78.0, 
+                "name": "糜芳", 
+                "biographies": "字子方，糜竺之弟。任关羽的部下，镇守荆州南郡。听从傅士仁的劝说，背叛关羽，投降了东吴。后返回蜀国，被刘备追究罪责而处死。", 
+                "intelligence": 52.0, 
+                "hp": 100.0, 
+                "res_name": "mifang", 
+                "command": 56.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 70.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "archer", 
+                "agility": 50.0, 
+                "force": 54.0, 
+                "name": "简雍", 
+                "biographies": "字宪和，刘备部下。与刘备同乡，自刘备举兵起义就跟随身边，经常担任使者参谋，非常活跃。据说他性格沈静，处事淡然。刘备入川后，封他为昭德将军。", 
+                "intelligence": 68.0, 
+                "hp": 90.0, 
+                "res_name": "jianyong", 
+                "command": 72.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 76.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "thief", 
+                "agility": 68.0, 
+                "force": 80.0, 
+                "name": "廖化", 
+                "biographies": "字元俭，关羽千里寻兄时收的部下。五虎将死后，他是为数不多的勇将之一，很受诸葛亮信赖。诸葛亮死后，他与姜维等人一起支撑蜀国。", 
+                "intelligence": 34.0, 
+                "hp": 100.0, 
+                "res_name": "liaohua", 
+                "command": 64.0, 
+                "mp": 20.0, 
+                "retreat": "", 
+                "luck": 78.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "infantry", 
+                "agility": 68.0, 
+                "force": 64.0, 
+                "name": "刘封", 
+                "biographies": "刘备的养子。由于守卫上庸时，拒绝派兵增援被东吴围困、身陷绝境的关羽。因此激怒了刘备，遂于成都被斩。", 
+                "intelligence": 74.0, 
+                "hp": 110.0, 
+                "res_name": "liufeng", 
+                "command": 78.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 60.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 66.0, 
+                "force": 90.0, 
+                "name": "关平", 
+                "biographies": "河北关定之子，关羽的义子。身为其义父的左右手转战南北，与关羽一起在麦城被杀。他性情稳重谦和，很受部下诸将的爱戴。", 
+                "intelligence": 68.0, 
+                "hp": 100.0, 
+                "res_name": "guanping", 
+                "command": 74.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 62.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "thief", 
+                "agility": 68.0, 
+                "force": 92.0, 
+                "name": "周仓", 
+                "biographies": "原为黄巾军余党，非常崇拜关羽。在卧牛山做强盗时，巧遇单骑走千里的关羽，于是跟随关羽，担任部将奋战沙场。关羽遇害后，他也自刎殉死。", 
+                "intelligence": 42.0, 
+                "hp": 100.0, 
+                "res_name": "zhoucang", 
+                "command": 62.0, 
+                "mp": 20.0, 
+                "retreat": "", 
+                "luck": 84.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 54.0, 
+                "force": 84.0, 
+                "name": "严颜", 
+                "biographies": "蜀将。在刘璋手下众将中以勇猛著称，任巴西太守。顽强抵抗张飞的猛攻，在中计被俘后，受张飞的诚意打动而归降。以后成为老将黄忠的副将，建立了奇功。", 
+                "intelligence": 62.0, 
+                "hp": 100.0, 
+                "res_name": "yanyan", 
+                "command": 68.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 58.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "mage", 
+                "agility": 60.0, 
+                "force": 58.0, 
+                "name": "马良", 
+                "biographies": "字季常，人称白眉马良。刘备入川后，他是关羽的主要谋士。他与诸葛亮交厚，尊亮为兄。力谏刘备不打夷陵，却不被采纳。后来诸葛亮南征时病死于蜀。", 
+                "intelligence": 84.0, 
+                "hp": 90.0, 
+                "res_name": "maliang", 
+                "command": 66.0, 
+                "mp": 40.0, 
+                "retreat": "", 
+                "luck": 66.0
             }
         }, 
         {
             "entity": {
                 "category": "warlock", 
-                "res_name": "zhangliang", 
-                "name": "张梁"
+                "agility": 74.0, 
+                "force": 74.0, 
+                "name": "马谡", 
+                "biographies": "字幼常，马良之弟。才华外露，被诸葛亮当作接班人，但刘备临终说他言过其实不可大用。街亭之战时，因为纸上谈兵导致失败，被诸葛亮挥泪斩首。", 
+                "intelligence": 88.0, 
+                "hp": 80.0, 
+                "res_name": "masu", 
+                "command": 58.0, 
+                "mp": 40.0, 
+                "retreat": "", 
+                "luck": 52.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 54.0, 
+                "force": 58.0, 
+                "name": "王甫", 
+                "biographies": "字国山，蜀国随军司马。关羽进攻襄阳时，忠告关羽留神荆州的防守。关羽杀出麦城后，他死守麦城。但是不久得知关羽死讯，便从城楼跳下自杀。", 
+                "intelligence": 78.0, 
+                "hp": 110.0, 
+                "res_name": "wangfu", 
+                "command": 76.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 60.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 64.0, 
+                "force": 88.0, 
+                "name": "沙摩可", 
+                "biographies": "蛮王，生得碧眼红脸。率兵帮助刘备进攻东吴，并于战斗中放箭射死了名将甘宁。陆逊火烧八百里连营后，率部败退的途中，被吴将周泰斩杀。", 
+                "intelligence": 28.0, 
+                "hp": 100.0, 
+                "res_name": "shamoke", 
+                "command": 52.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 68.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 52.0, 
+                "force": 90.0, 
+                "name": "关兴", 
+                "biographies": "字安国，关羽的次子。在刘备调解下与张苞结为义兄弟。征吴时为报父仇而战，立下了大功，没有辱没名将之后的名声。诸葛亮给了他很高的评价。", 
+                "intelligence": 60.0, 
+                "hp": 100.0, 
+                "res_name": "guanxing", 
+                "command": 80.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 66.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 60.0, 
+                "force": 92.0, 
+                "name": "张苞", 
+                "biographies": "张飞的长子。为报杀父之仇，参加了夷陵之战，立下了显赫的战功。诸葛亮对他和关兴寄予厚望，常常带在身边。参加北伐时，不幸落马重伤致死。", 
+                "intelligence": 52.0, 
+                "hp": 100.0, 
+                "res_name": "zhangbao", 
+                "command": 78.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 64.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "mage", 
+                "agility": 58.0, 
+                "force": 42.0, 
+                "name": "蒋琬", 
+                "biographies": "字公琰。冷静沉着，被诸葛亮认为是可担当国家重任的人才。诸葛亮死后任蜀国的尚书令，主管政事。", 
+                "intelligence": 82.0, 
+                "hp": 90.0, 
+                "res_name": "jiangwan", 
+                "command": 60.0, 
+                "mp": 40.0, 
+                "retreat": "", 
+                "luck": 60.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "priest", 
+                "agility": 70.0, 
+                "force": 40.0, 
+                "name": "费祎", 
+                "biographies": "字文伟，诸葛亮的参谋。是颇有能力的文官，留守后方，支援北伐。诸葛亮死后，他继承遗志，与蒋琬一起支撑走向没落的蜀国。", 
+                "intelligence": 80.0, 
+                "hp": 80.0, 
+                "res_name": "feiyi", 
+                "command": 48.0, 
+                "mp": 50.0, 
+                "retreat": "", 
+                "luck": 74.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "xiliangcavalry", 
+                "agility": 66.0, 
+                "force": 94.0, 
+                "name": "马超", 
+                "biographies": "字孟起，马腾的长子。少年英武，被称为「锦马超」。为报杀父之仇而起兵攻曹，曾杀得曹操割须弃袍，但最终仍被击败。投奔刘备后，被封为蜀汉五虎将之一。", 
+                "intelligence": 40.0, 
+                "hp": 110.0, 
+                "res_name": "machao", 
+                "command": 86.0, 
+                "mp": 5.0, 
+                "retreat": "", 
+                "luck": 64.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "xiliangcavalry", 
+                "agility": 50.0, 
+                "force": 86.0, 
+                "name": "马岱", 
+                "biographies": "马超的堂弟。和马超一起归顺刘备，南征北战屡建战功，诸葛亮很赏识他的忠义和才干。诸葛亮死前，亲授锦囊妙计给他，杀掉了日后反叛的魏延。", 
+                "intelligence": 48.0, 
+                "hp": 110.0, 
+                "res_name": "madai", 
+                "command": 90.0, 
+                "mp": 5.0, 
+                "retreat": "", 
+                "luck": 42.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "archer", 
+                "agility": 52.0, 
+                "force": 78.0, 
+                "name": "王平", 
+                "biographies": "字子均。原是魏国的牙门将，因对蜀作战时不受上司徐晃重用，遂降蜀。南征、北伐中表现活跃。街亭之战时任马谡副将，持正确主张，却不被马谡采纳。", 
+                "intelligence": 68.0, 
+                "hp": 90.0, 
+                "res_name": "wangping", 
+                "command": 84.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 76.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 64.0, 
+                "force": 68.0, 
+                "name": "李严", 
+                "biographies": "字正方，原是刘璋部下，刘备入川时归顺刘备。其勇猛与黄忠不分高下，得到刘备的高度评价。与诸葛亮等人同为刘备托孤之臣。", 
+                "intelligence": 74.0, 
+                "hp": 110.0, 
+                "res_name": "liyan", 
+                "command": 80.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 56.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "martialist", 
+                "agility": 90.0, 
+                "force": 80.0, 
+                "name": "吴懿", 
+                "biographies": "字子远，刘璋的义兄。刘备攻打西川时投降。后来任刘备的部下，参加了北伐。其妹（吴夫人）嫁给了刘备，生下刘理与刘永。", 
+                "intelligence": 46.0, 
+                "hp": 90.0, 
+                "res_name": "wuyi", 
+                "command": 82.0, 
+                "mp": 20.0, 
+                "retreat": "", 
+                "luck": 52.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "infantry", 
+                "agility": 68.0, 
+                "force": 82.0, 
+                "name": "吴兰", 
+                "biographies": "蜀将。刘备入川后成为刘备部下，担任马超的副将与魏国作战，屡建战功。在斜谷之战中，与曹操之子曹彰交手，不敌被杀。", 
+                "intelligence": 72.0, 
+                "hp": 110.0, 
+                "res_name": "wulan", 
+                "command": 80.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 62.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "martialist", 
+                "agility": 92.0, 
+                "force": 84.0, 
+                "name": "雷铜", 
+                "biographies": "刘璋手下大将。与吴懿等人率军与刘备军交战，被包围后投降。守备巴西时，英勇善战，抵抗来犯的魏将张郃。但后来中了埋伏，被张郃刺死。", 
+                "intelligence": 42.0, 
+                "hp": 90.0, 
+                "res_name": "leitong", 
+                "command": 78.0, 
+                "mp": 20.0, 
+                "retreat": "", 
+                "luck": 60.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "horsearcher", 
+                "agility": 66.0, 
+                "force": 62.0, 
+                "name": "刘琦", 
+                "biographies": "刘表的长子。遭到欲立刘琮为王的蔡夫人等人的排挤，感到处境危险，故求救于诸葛亮，诸葛亮以「申生在内则死，重耳在外而安」劝他驻守外地，才逃过劫难。", 
+                "intelligence": 68.0, 
+                "hp": 100.0, 
+                "res_name": "liuqi", 
+                "command": 50.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 74.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "infantry", 
+                "agility": 50.0, 
+                "force": 74.0, 
+                "name": "孟达", 
+                "biographies": "字子庆。刘备入川时，他担任内应，颇立功绩。后因不肯救助危急中的关羽，恐刘备处罚而降魏。深得曹丕的宠爱，被破格提拔。后谋反不成，为司马懿所杀。", 
+                "intelligence": 72.0, 
+                "hp": 110.0, 
+                "res_name": "mengda", 
+                "command": 82.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 36.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 56.0, 
+                "force": 92.0, 
+                "name": "关索", 
+                "biographies": "关羽的三子。荆州失陷时逃难养伤。诸葛亮南征时投奔从军，担任先锋。凭借父辈传下来的武勇，与蛮王孟获大战，立下了功劳。", 
+                "intelligence": 56.0, 
+                "hp": 100.0, 
+                "res_name": "guansuo", 
+                "command": 80.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 62.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "infantry", 
+                "agility": 52.0, 
+                "force": 40.0, 
+                "name": "刘禅", 
+                "biographies": "字公嗣，刘备的长子，蜀后主。昏愚而好酒色，因宠用宦官黄皓，导致国力衰退。魏军攻川时，不顾众人反对，自缚于车，出城投降。可说是昏君的代名词。", 
+                "intelligence": 56.0, 
+                "hp": 110.0, 
+                "res_name": "liushan", 
+                "command": 54.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 86.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "martialist", 
+                "agility": 84.0, 
+                "force": 76.0, 
+                "name": "张嶷", 
+                "biographies": "字伯岐，蜀将。参加了诸葛亮的南征和北伐。后为救出姜维，被魏军射死。据史书记载，他在外交方面颇有贡献。平定了异民族，并得到他们的信赖。", 
+                "intelligence": 48.0, 
+                "hp": 90.0, 
+                "res_name": "zhangyi2", 
+                "command": 70.0, 
+                "mp": 20.0, 
+                "retreat": "", 
+                "luck": 68.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "mage", 
+                "agility": 70.0, 
+                "force": 84.0, 
+                "name": "姜维", 
+                "biographies": "字伯约。诸葛亮发现了他的才干，因而全力培养他，临死前还向他传授兵法，把蜀国的未来托付给他。他不负所望，至死都贯彻了诸葛亮的遗志。", 
+                "intelligence": 92.0, 
+                "hp": 90.0, 
+                "res_name": "jiangwei", 
+                "command": 88.0, 
+                "mp": 40.0, 
+                "retreat": "", 
+                "luck": 54.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "infantry", 
+                "agility": 74.0, 
+                "force": 70.0, 
+                "name": "张翼", 
+                "biographies": "字伯恭。本是刘璋部下，后来投降刘备。南征北伐时，都曾领军参加，表现活跃。车骑将军夏侯霸死后，与廖化分领其位，任左车骑将军。", 
+                "intelligence": 64.0, 
+                "hp": 110.0, 
+                "res_name": "zhangyi4", 
+                "command": 78.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 62.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "beartrainer", 
+                "agility": 52.0, 
+                "force": 90.0, 
+                "name": "孟获", 
+                "biographies": "南蛮王。刘备死后，率蛮兵十万，反叛蜀国。经过著名的「七擒七纵」后，终于归顺。之后诸葛亮仍然命他统治南蛮，自守疆土。", 
+                "intelligence": 18.0, 
+                "hp": 110.0, 
+                "res_name": "menghuo", 
+                "command": 78.0, 
+                "mp": 5.0, 
+                "retreat": "", 
+                "luck": 48.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "dancer", 
+                "agility": 98.0, 
+                "force": 84.0, 
+                "name": "祝融", 
+                "biographies": "南蛮王孟获的妻子，是传说中火神祝融的后裔。善使飞刀，单挑中，曾生擒蜀将张嶷、马忠，但在乘胜追击时中计被俘。", 
+                "intelligence": 30.0, 
+                "hp": 90.0, 
+                "res_name": "zhurong", 
+                "command": 70.0, 
+                "mp": 20.0, 
+                "retreat": "", 
+                "luck": 38.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "tigertrainer", 
+                "agility": 74.0, 
+                "force": 80.0, 
+                "name": "孟优", 
+                "biographies": "南蛮王孟获之弟。帮助兄长抵抗诸葛亮，并将智者朵思大王引见给了遭到惨败的孟获。最终仍不敌诸葛亮的智谋，与其兄一起归顺，并发誓永不反叛。", 
+                "intelligence": 46.0, 
+                "hp": 90.0, 
+                "res_name": "mengyou", 
+                "command": 74.0, 
+                "mp": 5.0, 
+                "retreat": "", 
+                "luck": 44.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "thief", 
+                "agility": 52.0, 
+                "force": 70.0, 
+                "name": "刘辟", 
+                "biographies": "黄巾军大将。黄巾之乱被镇压后，与龚都一起率领残党盘踞在汝南。一直协助刘备并把汝南让给了刘备。后与曹军部将高览交战时被杀。", 
+                "intelligence": 54.0, 
+                "hp": 100.0, 
+                "res_name": "liupi", 
+                "command": 68.0, 
+                "mp": 20.0, 
+                "retreat": "", 
+                "luck": 80.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "thief", 
+                "agility": 58.0, 
+                "force": 72.0, 
+                "name": "龚都", 
+                "biographies": "黄巾军大将。黄巾之乱被镇压后，率领余部盘踞在汝南。官渡之战时，协助袁绍和刘备，在曹军后方骚扰。后与曹军交战时，被夏侯渊所杀。", 
+                "intelligence": 36.0, 
+                "hp": 100.0, 
+                "res_name": "gongdu", 
+                "command": 52.0, 
+                "mp": 20.0, 
+                "retreat": "", 
+                "luck": 82.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "lord", 
+                "agility": 78.0, 
+                "force": 74.0, 
+                "name": "孙权", 
+                "biographies": "字仲谋，孙坚次子。继承父兄的伟业，统治江东。多谋善断，广泛提拔人才并尽其所能，因此取得赤壁之战的胜利。是吴王朝第一代皇帝。", 
+                "intelligence": 82.0, 
+                "hp": 100.0, 
+                "res_name": "sunquan", 
+                "command": 80.0, 
+                "mp": 30.0, 
+                "retreat": "", 
+                "luck": 92.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "governor", 
+                "agility": 62.0, 
+                "force": 78.0, 
+                "name": "周瑜", 
+                "biographies": "字公瑾，人称美周郎。东吴都督，奉孙策遗命辅佐年幼的孙权。智谋高远，是东吴的栋梁。在赤壁之战中，以五万破曹军八十三万大军，创造了以寡击众的杰出战例。", 
+                "intelligence": 98.0, 
+                "hp": 90.0, 
+                "res_name": "zhouyu", 
+                "command": 80.0, 
+                "mp": 30.0, 
+                "retreat": "", 
+                "luck": 38.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "mage", 
+                "agility": 52.0, 
+                "force": 52.0, 
+                "name": "鲁肃", 
+                "biographies": "字子敬。一直主张联刘抗曹。赤壁之战时，辅佐周瑜联合刘备，打败了曹操。与周瑜关系很好。周瑜死后继任都督，肩负重任。", 
+                "intelligence": 94.0, 
+                "hp": 90.0, 
+                "res_name": "lusu", 
+                "command": 64.0, 
+                "mp": 40.0, 
+                "retreat": "", 
+                "luck": 68.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "priest", 
+                "agility": 70.0, 
+                "force": 36.0, 
+                "name": "诸葛瑾", 
+                "biographies": "字子瑜，诸葛亮之兄，经鲁肃推举仕吴。为人敦厚诚实，因此深受孙权信任。孙策死后，劝孙权顺曹操而绝袁绍。后期为吴蜀修好而屡次出使蜀国。", 
+                "intelligence": 92.0, 
+                "hp": 80.0, 
+                "res_name": "zhugejin", 
+                "command": 48.0, 
+                "mp": 50.0, 
+                "retreat": "", 
+                "luck": 72.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "mage", 
+                "agility": 52.0, 
+                "force": 80.0, 
+                "name": "吕蒙", 
+                "biographies": "字子明。原是一介武夫，受孙权教诲，学习文武之道，成长为智勇兼备的名将。鲁肃死后就任东吴都督，最早看出陆逊的才干，与陆逊合作，并杀死了关羽。", 
+                "intelligence": 88.0, 
+                "hp": 90.0, 
+                "res_name": "lvmeng", 
+                "command": 76.0, 
+                "mp": 40.0, 
+                "retreat": "", 
+                "luck": 46.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "governor", 
+                "agility": 54.0, 
+                "force": 76.0, 
+                "name": "陆逊", 
+                "biographies": "字伯言，孙权的军师。用兵谋略不在前任军师周瑜、鲁肃、吕蒙之下。献计夺取荆州，击败关羽；夷陵之战任吴军统帅，击败了来势汹汹的刘备。", 
+                "intelligence": 96.0, 
+                "hp": 90.0, 
+                "res_name": "luxun", 
+                "command": 82.0, 
+                "mp": 30.0, 
+                "retreat": "", 
+                "luck": 60.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "infantry", 
+                "agility": 62.0, 
+                "force": 60.0, 
+                "name": "潘璋", 
+                "biographies": "字文珪。与朱然协力，生擒了关羽，并因此功获赏关羽的青龙偃月刀。后来被关兴追杀途中，恍惚中看到了关羽的亡灵，惊愕之际被关兴斩杀。", 
+                "intelligence": 62.0, 
+                "hp": 110.0, 
+                "res_name": "panzhang", 
+                "command": 78.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 52.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "horsearcher", 
+                "agility": 64.0, 
+                "force": 70.0, 
+                "name": "徐盛", 
+                "biographies": "孙权部下，他的胆大在东吴首屈一指。曹丕征吴战役中，用疑兵之计吓退曹军，为以后的胜利奠定了基础。不屈服于任何强敌，勇猛顽强，身经百战。", 
+                "intelligence": 74.0, 
+                "hp": 100.0, 
+                "res_name": "xusheng", 
+                "command": 72.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 74.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "pirate", 
+                "agility": 82.0, 
+                "force": 96.0, 
+                "name": "甘宁", 
+                "biographies": "字兴霸，是吴军首屈一指的勇将。曾仅率百骑夜袭曹营而无一伤亡，使孙权欢呼「曹操有张辽，吾有甘兴霸」，很得孙权信任。", 
+                "intelligence": 52.0, 
+                "hp": 90.0, 
+                "res_name": "ganning", 
+                "command": 80.0, 
+                "mp": 20.0, 
+                "retreat": "", 
+                "luck": 54.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 68.0, 
+                "force": 90.0, 
+                "name": "凌统", 
+                "biographies": "字公绩，吴将凌操之子。与甘宁有杀父之仇，常想报复。后来与乐进单挑时，险些被斩，多亏甘宁相救，二人才终于和解，并结为生死之交。", 
+                "intelligence": 56.0, 
+                "hp": 100.0, 
+                "res_name": "lingtong", 
+                "command": 76.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 60.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "pirate", 
+                "agility": 80.0, 
+                "force": 94.0, 
+                "name": "周泰", 
+                "biographies": "字幼平，因勇猛得到孙权信赖。在宣城他为了护主，身负十二伤；后来在合淝战役中又救了孙权。孙权因此在宴席上将他身上的伤一一指与众人，盛赞其勇。", 
+                "intelligence": 52.0, 
+                "hp": 90.0, 
+                "res_name": "zhoutai", 
+                "command": 68.0, 
+                "mp": 20.0, 
+                "retreat": "", 
+                "luck": 58.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "pirate", 
+                "agility": 74.0, 
+                "force": 78.0, 
+                "name": "蒋钦", 
+                "biographies": "字公奕。与周泰一起归顺孙策。攻打南郡时任先锋，被曹仁击败，几乎被周瑜问罪斩首。征讨关羽时，指挥水军，包围关羽。", 
+                "intelligence": 50.0, 
+                "hp": 90.0, 
+                "res_name": "jiangqin", 
+                "command": 56.0, 
+                "mp": 20.0, 
+                "retreat": "", 
+                "luck": 52.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "mage", 
+                "agility": 50.0, 
+                "force": 24.0, 
+                "name": "张昭", 
+                "biographies": "字子布，「江东二张」之一。与张纮一起被孙策聘用，长于内政。孙策临终对孙权说∶外事不决问周瑜，内事不决问张昭。孙权经常向他征求意见，视之如父。", 
+                "intelligence": 92.0, 
+                "hp": 80.0, 
+                "res_name": "zhangzhao", 
+                "command": 46.0, 
+                "mp": 40.0, 
+                "retreat": "", 
+                "luck": 76.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "archer", 
+                "agility": 64.0, 
+                "force": 72.0, 
+                "name": "陈武", 
+                "biographies": "字子烈，吴将。黄面赤眼，容貌怪异。孙策与刘繇交战时投奔孙策。在赤壁之战中，出任第四队大将出战。在濡须与庞德交手，因战袍被挂住而被杀。", 
+                "intelligence": 50.0, 
+                "hp": 90.0, 
+                "res_name": "chenwu", 
+                "command": 68.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 78.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "mage", 
+                "agility": 68.0, 
+                "force": 64.0, 
+                "name": "庞统", 
+                "biographies": "字士元，人称凤雏。与诸葛亮齐名并同时辅佐刘备。取西川时任总指挥，为了胜过诸葛亮，不顾军情急躁冒进，使刘备受挫，自己也被射死在落凤坡。", 
+                "intelligence": 98.0, 
+                "hp": 90.0, 
+                "res_name": "pangtong", 
+                "command": 68.0, 
+                "mp": 40.0, 
+                "retreat": "", 
+                "luck": 50.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 52.0, 
+                "force": 90.0, 
+                "name": "黄盖", 
+                "biographies": "字公覆。自孙坚举兵即为其部下，江东三代老臣。在赤壁之战中，自献苦肉计诈降曹操，终使吴军火烧赤壁，大破曹军。他也因此扬名天下。", 
+                "intelligence": 58.0, 
+                "hp": 100.0, 
+                "res_name": "huanggai", 
+                "command": 78.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 54.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "archer", 
+                "agility": 66.0, 
+                "force": 82.0, 
+                "name": "全琮", 
+                "biographies": "字子璜，吴将。讨伐山越族立过大功。与陆逊一起出征，打击被诈降的吴将周鲂诱来的魏军。击败了薛乔，获得胜利。", 
+                "intelligence": 56.0, 
+                "hp": 90.0, 
+                "res_name": "quancong", 
+                "command": 64.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 90.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "infantry", 
+                "agility": 56.0, 
+                "force": 58.0, 
+                "name": "董袭", 
+                "biographies": "字元代，吴将。曾向孙策推举虞翻和名医华佗。在濡须大战中，虽顽强奋战，但由于战船被大风吹翻，落水溺死。孙权找到他的尸体后，厚葬了他。", 
+                "intelligence": 70.0, 
+                "hp": 110.0, 
+                "res_name": "dongxi", 
+                "command": 74.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 68.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "horsearcher", 
+                "agility": 64.0, 
+                "force": 84.0, 
+                "name": "韩当", 
+                "biographies": "字公义，东吴孙氏三代老将。参加了杨州进攻战、赤壁之战、进攻关羽和夷陵之战等众多战役，指挥东吴水军的一翼。", 
+                "intelligence": 60.0, 
+                "hp": 100.0, 
+                "res_name": "handang", 
+                "command": 76.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 82.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 64.0, 
+                "force": 94.0, 
+                "name": "太史慈", 
+                "biographies": "字子义，原为刘繇部下。武艺高强，尤擅弓箭，曾与孙策单挑不分胜负。后被孙策俘获，感孙策的仁德而降，为东吴的建国立下大功。", 
+                "intelligence": 68.0, 
+                "hp": 100.0, 
+                "res_name": "taishici ", 
+                "command": 88.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 60.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "martialist", 
+                "agility": 90.0, 
+                "force": 76.0, 
+                "name": "丁奉", 
+                "biographies": "字承渊，东吴名将。与张布一起杀孙琛，并升任大将军。在东吴后期的作战中，发挥了关键的作用。", 
+                "intelligence": 46.0, 
+                "hp": 90.0, 
+                "res_name": "dingfeng", 
+                "command": 74.0, 
+                "mp": 20.0, 
+                "retreat": "", 
+                "luck": 52.0
             }
         }, 
         {
             "entity": {
                 "category": "warlock", 
+                "agility": 74.0, 
+                "force": 40.0, 
+                "name": "张紘", 
+                "biographies": "字子纲，著名的「江东二张」之一。具有敏锐的洞察力，被周瑜誉为有「经天纬地之才」。辅佐孙策和孙权，屡屡进谏。临终上表劝孙权迁都建业。", 
+                "intelligence": 90.0, 
+                "hp": 80.0, 
+                "res_name": "zhanghong", 
+                "command": 42.0, 
+                "mp": 40.0, 
+                "retreat": "", 
+                "luck": 66.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 58.0, 
+                "force": 90.0, 
+                "name": "程普", 
+                "biographies": "字德谋，惯使铁脊蛇矛。效力于东吴孙氏三代的老将。在赤壁之战中任副都督，协助正都督周瑜击败曹操大军。", 
+                "intelligence": 68.0, 
+                "hp": 100.0, 
+                "res_name": "chengpu", 
+                "command": 84.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 56.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "lord", 
+                "agility": 76.0, 
+                "force": 92.0, 
+                "name": "孙坚", 
+                "biographies": "字文台，兵法家孙子的后裔。任长沙太守时，参加了反董卓同盟并任先锋。第一个攻进洛阳城，得到了传国玉玺。后来在攻打刘表时中了埋伏，战死。", 
+                "intelligence": 72.0, 
+                "hp": 100.0, 
+                "res_name": "sunjian", 
+                "command": 80.0, 
+                "mp": 30.0, 
+                "retreat": "", 
+                "luck": 84.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "lord", 
+                "agility": 78.0, 
+                "force": 94.0, 
+                "name": "孙策", 
+                "biographies": "字伯符，孙坚的长子。继承其父的遗志，平定了江东，打下了吴王朝的基础。人称「小霸王」，勇猛无比。可惜年纪轻轻就遭人暗杀，便把未遂的志愿托付给了弟弟孙权。", 
+                "intelligence": 54.0, 
+                "hp": 100.0, 
+                "res_name": "sunce", 
+                "command": 86.0, 
+                "mp": 30.0, 
+                "retreat": "", 
+                "luck": 52.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "lord", 
+                "agility": 80.0, 
+                "force": 70.0, 
+                "name": "袁绍", 
+                "biographies": "字本初，名门望族袁家头领。十八镇诸侯伐董卓时，他被推举为盟主之后，为称霸中原与曹操决战。因不听忠言且优柔寡断而众叛亲离，导致在官渡大败。", 
+                "intelligence": 74.0, 
+                "hp": 100.0, 
+                "res_name": "yuanshao", 
+                "command": 76.0, 
+                "mp": 30.0, 
+                "retreat": "", 
+                "luck": 78.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "priest", 
+                "agility": 74.0, 
+                "force": 48.0, 
+                "name": "逢纪", 
+                "biographies": "字元图，袁绍的幕僚。献计夺取了冀州，解决了袁绍缺少军粮的问题，使袁绍逐渐成为北方第一大势力。对抗意识强烈，官渡之战后进谗言逼得田丰自杀。", 
+                "intelligence": 84.0, 
+                "hp": 80.0, 
+                "res_name": "fengji", 
+                "command": 66.0, 
+                "mp": 50.0, 
+                "retreat": "", 
+                "luck": 66.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "warlock", 
+                "agility": 74.0, 
+                "force": 40.0, 
+                "name": "郭图", 
+                "biographies": "袁绍的谋臣。常与慎重的沮授对立。官渡之战时持主战论，因为形势判断有误，导致袁军大败。袁绍死后，辅佐袁谭，抵抗曹军而战死。", 
+                "intelligence": 92.0, 
+                "hp": 80.0, 
+                "res_name": "guotu", 
+                "command": 56.0, 
+                "mp": 40.0, 
+                "retreat": "", 
+                "luck": 68.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "priest", 
+                "agility": 72.0, 
+                "force": 46.0, 
+                "name": "许攸", 
+                "biographies": "字子远，袁绍的谋士。官渡之战时，因袁绍不信任他而投降以前的密友曹操，并带来了袁军囤粮于乌巢的重要情报，为曹操战胜袁绍立下了大功。", 
+                "intelligence": 82.0, 
+                "hp": 80.0, 
+                "res_name": "xuyou", 
+                "command": 30.0, 
+                "mp": 50.0, 
+                "retreat": "", 
+                "luck": 48.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "mage", 
+                "agility": 60.0, 
+                "force": 52.0, 
+                "name": "沮授", 
+                "biographies": "袁绍的谋士。献计战胜公孙瓒，其智谋不亚于诸葛亮。在官渡之战中，力主与曹操进行持久战，但不被重视。袁绍兵败后被擒，企图盗马逃走未成被斩首。", 
+                "intelligence": 94.0, 
+                "hp": 90.0, 
+                "res_name": "jushou", 
+                "command": 68.0, 
+                "mp": 40.0, 
+                "retreat": "", 
+                "luck": 36.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "mage", 
+                "agility": 66.0, 
+                "force": 50.0, 
+                "name": "审配", 
+                "biographies": "袁绍的首席幕僚。官渡之战时两度献策，但都被刘晔识破。袁绍死后，辅佐袁尚与袁谭相争，造成袁家灭亡。被曹操俘获后不投降，朝袁绍陵墓方向跪拜后就义。", 
+                "intelligence": 90.0, 
+                "hp": 90.0, 
+                "res_name": "shenpei", 
+                "command": 64.0, 
+                "mp": 40.0, 
+                "retreat": "", 
+                "luck": 38.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "horsearcher", 
+                "agility": 62.0, 
+                "force": 80.0, 
+                "name": "高览", 
+                "biographies": "袁绍麾下大将。在官渡之战时，曾与曹营猛将许褚交过手。后来与同僚张郃一起归顺曹操。在汝南之战中，被刘备部将赵云刺死。", 
+                "intelligence": 54.0, 
+                "hp": 100.0, 
+                "res_name": "gaolan", 
+                "command": 68.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 78.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 64.0, 
+                "force": 94.0, 
+                "name": "颜良", 
+                "biographies": "袁绍部下猛将，与文丑一起被誉为「勇冠三军」之将。官渡之战任先锋，斩宋宪、魏续，败徐晃，使曹军诸将失色，不敢与他交手。后被当时寄身曹操的关羽所杀。", 
+                "intelligence": 42.0, 
+                "hp": 100.0, 
+                "res_name": "yanliang", 
+                "command": 70.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 56.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 66.0, 
+                "force": 94.0, 
+                "name": "文丑", 
+                "biographies": "河北最强大的袁绍军中堪与颜良并称的猛将。在官渡之战时，为报颜良被杀之仇而出征，虽中了曹操的诱兵之计，仍击退张辽、徐晃，但也死于关羽刀下。", 
+                "intelligence": 36.0, 
+                "hp": 100.0, 
+                "res_name": "wenchou", 
+                "command": 74.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 62.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "mage", 
+                "agility": 56.0, 
+                "force": 54.0, 
+                "name": "田丰", 
+                "biographies": "字元皓，袁绍的谋士。博学多才，具有优秀军师的资质。但由于性格刚直而不能迎合袁绍。在官渡之战中，因主张打持久战激怒袁绍，被囚禁。", 
+                "intelligence": 96.0, 
+                "hp": 90.0, 
+                "res_name": "tianfeng", 
+                "command": 68.0, 
+                "mp": 40.0, 
+                "retreat": "", 
+                "luck": 38.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "infantry", 
+                "agility": 68.0, 
+                "force": 72.0, 
+                "name": "淳于琼", 
+                "biographies": "袁绍手下大将。原与袁绍、曹操一样，同是西园八校尉之一。官渡之战时，在乌巢看守军粮。因贪酒误事，被曹操趁机火攻后，导致袁军大败。", 
+                "intelligence": 40.0, 
+                "hp": 110.0, 
+                "res_name": "chunyuqiong", 
+                "command": 56.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 52.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "demolisher", 
+                "agility": 38.0, 
+                "force": 72.0, 
+                "name": "辛评", 
+                "biographies": "原是韩馥部下。韩馥逃亡后，他转而辅佐袁氏，任袁谭的参谋。出使曹操时，曹操劝他留下，他坚辞不从。但袁谭却因其弟辛毗已降曹而疑忌他，他因而气死。", 
+                "intelligence": 82.0, 
+                "hp": 90.0, 
+                "res_name": "xinping", 
+                "command": 80.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 74.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 58.0, 
+                "force": 74.0, 
+                "name": "袁谭", 
+                "biographies": "字显思，袁绍的长子。父亲死后，与伪造遗书而被立为继承人的小弟袁尚不和。兴兵攻打袁尚，试图恢复对袁家的统治权。遭到曹操进攻后被杀。", 
+                "intelligence": 52.0, 
+                "hp": 100.0, 
+                "res_name": "yuantan", 
+                "command": 70.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 56.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 52.0, 
+                "force": 70.0, 
+                "name": "袁熙", 
+                "biographies": "字显奕，袁绍的次子。帮助其弟袁尚与兄袁谭争位，并与曹操交战。其妻甄氏是有名的美女，后被曹丕夺走为妻，后生曹睿。", 
+                "intelligence": 68.0, 
+                "hp": 100.0, 
+                "res_name": "yuanxi", 
+                "command": 66.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 54.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 60.0, 
+                "force": 72.0, 
+                "name": "袁尚", 
+                "biographies": "字显甫，袁绍的三子。因容貌英俊而甚得其父的喜爱，拟立为继承人。但是由于袁绍在正式任命他为继承人之前病故，导致内部不和，造成了袁家的迅速衰败。", 
+                "intelligence": 56.0, 
+                "hp": 100.0, 
+                "res_name": "yuanshang", 
+                "command": 74.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 62.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "horsearcher", 
+                "agility": 64.0, 
+                "force": 72.0, 
+                "name": "高干", 
+                "biographies": "并州刺史，袁绍之侄。在袁绍官渡失利后出兵救助袁绍。后来在壶关举兵反曹，与曹操帐下名将李典、乐进等人交手，英勇善战，但最后失败。", 
+                "intelligence": 62.0, 
+                "hp": 100.0, 
+                "res_name": "gaogan", 
+                "command": 56.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 74.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "priest", 
+                "agility": 68.0, 
+                "force": 42.0, 
+                "name": "辛毗", 
+                "biographies": "字佐治，辛评之弟，辅佐袁谭。袁氏灭亡后效力于曹操，颇受信任。司马懿在五丈原与诸葛亮对峙时，他送去了魏主曹睿的诏书，平息了愤怒的军心。", 
+                "intelligence": 86.0, 
+                "hp": 80.0, 
+                "res_name": "xinpi", 
+                "command": 48.0, 
+                "mp": 50.0, 
+                "retreat": "", 
+                "luck": 76.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "archer", 
+                "agility": 54.0, 
+                "force": 76.0, 
+                "name": "沮鹄", 
+                "biographies": "袁绍的幕僚沮授之子，效力于袁尚，守备邯郸。敌将张辽攻来，出战与张辽交手不敌，正要逃脱时被弓箭射中。", 
+                "intelligence": 50.0, 
+                "hp": 90.0, 
+                "res_name": "juhu", 
+                "command": 52.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 78.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "xiliangcavalry", 
+                "agility": 94.0, 
+                "force": 100.0, 
+                "name": "吕布", 
+                "biographies": "字奉先，被誉为「人中吕布，马中赤兔」的猛将。武艺高强，弓马娴熟，但生性反复无常，几次叛杀其主。最后也因部下背叛而被曹操擒获，缢死后斩首。", 
+                "intelligence": 12.0, 
+                "hp": 110.0, 
+                "res_name": "lvbu", 
+                "command": 100.0, 
+                "mp": 5.0, 
+                "retreat": "", 
+                "luck": 84.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "xiliangcavalry", 
+                "agility": 58.0, 
+                "force": 78.0, 
+                "name": "魏续", 
+                "biographies": "吕布部将。与侯成、宋宪一起背叛吕布，投降曹操。白马之战时，与颜良单挑，仅一回合即被斩杀。", 
+                "intelligence": 42.0, 
+                "hp": 110.0, 
+                "res_name": "weixu", 
+                "command": 76.0, 
+                "mp": 5.0, 
+                "retreat": "", 
+                "luck": 44.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 56.0, 
+                "force": 74.0, 
+                "name": "宋宪", 
+                "biographies": "吕布麾下大将。见同僚侯成因琐碎小事被棒责，与侯成和魏续一起投降曹操。后来与袁绍军交战时，被猛将颜良斩杀。", 
+                "intelligence": 52.0, 
+                "hp": 100.0, 
+                "res_name": "songxian", 
+                "command": 74.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 60.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "xiliangcavalry", 
+                "agility": 62.0, 
+                "force": 88.0, 
+                "name": "高顺", 
+                "biographies": "吕布部将。是跟随吕布转战各地的猛将，绰号「陷阵营」。吕布败北后，他也被俘，一言不发，昂然就义。", 
+                "intelligence": 48.0, 
+                "hp": 110.0, 
+                "res_name": "gaoshun", 
+                "command": 90.0, 
+                "mp": 5.0, 
+                "retreat": "", 
+                "luck": 38.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 52.0, 
+                "force": 76.0, 
+                "name": "侯成", 
+                "biographies": "吕布部将，与曹军对垒时，无意中违反吕布禁酒令而遭毒打，怀恨在心，与魏续、宋宪一起叛变，盗走吕布赤兔马降曹。", 
+                "intelligence": 54.0, 
+                "hp": 100.0, 
+                "res_name": "houcheng", 
+                "command": 70.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 54.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "horsearcher", 
+                "agility": 64.0, 
+                "force": 72.0, 
+                "name": "曹性", 
+                "biographies": "吕布麾下大将。见同僚高顺被夏侯惇追赶，于阵中放箭，正中夏侯惇左目。不一会被盛怒的夏侯惇斩杀。", 
+                "intelligence": 50.0, 
+                "hp": 100.0, 
+                "res_name": "caoxing", 
+                "command": 74.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 76.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "thief", 
+                "agility": 62.0, 
+                "force": 74.0, 
+                "name": "臧霸", 
+                "biographies": "字宣高。为陶谦的部下，在讨伐黄巾军方面表现活跃。后来成为吕布部下，各处转战。在与曹操作战时，联合各处山贼，很让曹操头痛。吕布灭亡后，归顺曹操。", 
+                "intelligence": 36.0, 
+                "hp": 100.0, 
+                "res_name": "zangba", 
+                "command": 52.0, 
+                "mp": 20.0, 
+                "retreat": "", 
+                "luck": 90.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "mage", 
+                "agility": 62.0, 
+                "force": 68.0, 
+                "name": "陈宫", 
+                "biographies": "字公台。帮助行刺董卓失败的曹操，并与之同行。但见曹操滥杀无辜，鄙而弃之，后成为吕布的谋臣。虽然多次献计，但最后还是与吕布一起被杀。", 
+                "intelligence": 90.0, 
+                "hp": 90.0, 
+                "res_name": "chengong", 
+                "command": 76.0, 
+                "mp": 40.0, 
+                "retreat": "", 
+                "luck": 52.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "xiliangcavalry", 
+                "agility": 52.0, 
+                "force": 88.0, 
+                "name": "董卓", 
+                "biographies": "西凉刺史。趁何进诛杀十常侍之际，进军洛阳，掌握了军政大权。废少帝立献帝，推行暴政，败坏朝纲。造成天下大乱，开启了三国时代的帷幕。", 
+                "intelligence": 46.0, 
+                "hp": 110.0, 
+                "res_name": "dongzhuo", 
+                "command": 92.0, 
+                "mp": 5.0, 
+                "retreat": "", 
+                "luck": 48.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 64.0, 
+                "force": 78.0, 
+                "name": "张济", 
+                "biographies": "董卓之车骑将军。张绣的叔父。其妻邹氏是倾国美女。因军粮不足，去进攻南阳的刘表，中箭身亡。", 
+                "intelligence": 68.0, 
+                "hp": 100.0, 
+                "res_name": "zhangji", 
+                "command": 74.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 56.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 58.0, 
+                "force": 74.0, 
+                "name": "郭汜", 
+                "biographies": "董卓部将。董卓被杀后，听从贾诩建议，率兵急袭长安，杀死王允等人，并与李傕共掌朝政。后来沦为山贼，被部下伍习所杀。", 
+                "intelligence": 62.0, 
+                "hp": 110.0, 
+                "res_name": "guosi", 
+                "command": 78.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 64.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 52.0, 
+                "force": 84.0, 
+                "name": "徐荣", 
+                "biographies": "董卓部将。追击遭到吕布伏兵的袭击后败逃的曹操，一箭射中曹操肩头，但被飞马赶到的夏侯惇刺死。", 
+                "intelligence": 50.0, 
+                "hp": 100.0, 
+                "res_name": "xurong", 
+                "command": 74.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 56.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "infantry", 
+                "agility": 62.0, 
+                "force": 76.0, 
+                "name": "李傕", 
+                "biographies": "董卓爱将。董卓被杀之后，与郭汜一起率军以报仇为名，重占长安。杀王允，挟献帝，逐吕布，继续推行暴政。后来中了杨彪的离间计，与郭汜自相残杀。", 
+                "intelligence": 60.0, 
+                "hp": 110.0, 
+                "res_name": "lique", 
+                "command": 76.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 52.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "mage", 
+                "agility": 58.0, 
+                "force": 50.0, 
+                "name": "李儒", 
+                "biographies": "董卓的女婿和军师。屡屡献计，帮助董卓掌大权、收吕布、破诸侯。识破了王允的「连环计」，劝谏董卓但董卓不听。董卓被杀后他也被处死。", 
+                "intelligence": 92.0, 
+                "hp": 90.0, 
+                "res_name": "liru", 
+                "command": 66.0, 
+                "mp": 40.0, 
+                "retreat": "", 
+                "luck": 62.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 54.0, 
+                "force": 72.0, 
+                "name": "樊稠", 
+                "biographies": "董卓部将。董卓死后，击退了兴兵讨逆的马腾、韩遂，追击敌军时，因为念旧，放走同乡韩遂，他因此被李傕、郭汜杀害。", 
+                "intelligence": 48.0, 
+                "hp": 100.0, 
+                "res_name": "fanchou", 
+                "command": 62.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 60.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "xiliangcavalry", 
+                "agility": 56.0, 
+                "force": 90.0, 
+                "name": "华雄", 
+                "biographies": "董卓手下的勇将，身长九尺。十八镇诸侯伐董卓时，他自请军令，大破孙坚，斩鲍忠、祖茂、俞涉、潘凤等将，后被关羽一刀斩杀。", 
+                "intelligence": 38.0, 
+                "hp": 110.0, 
+                "res_name": "huaxiong", 
+                "command": 82.0, 
+                "mp": 5.0, 
+                "retreat": "", 
+                "luck": 54.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "warlock", 
+                "agility": 72.0, 
+                "force": 34.0, 
+                "name": "李肃", 
+                "biographies": "董卓部下。把赤兔马献给吕布，并说服吕布叛变，改投董卓。后来参加了王允暗杀董卓的计画，假冒敕使，把董卓诱骗到宫中。", 
+                "intelligence": 82.0, 
+                "hp": 80.0, 
+                "res_name": "lisu", 
+                "command": 38.0, 
+                "mp": 40.0, 
+                "retreat": "", 
+                "luck": 58.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 60.0, 
+                "force": 64.0, 
+                "name": "袁术", 
+                "biographies": "字公路。袁绍的异母兄弟，南阳太守。为人怠慢刻薄。得到玉玺后，僭称帝号，导致众叛亲离，被刘备所破，吐血数升后惨死。", 
+                "intelligence": 62.0, 
+                "hp": 100.0, 
+                "res_name": "yuanshu", 
+                "command": 58.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 52.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 68.0, 
+                "force": 80.0, 
+                "name": "纪灵", 
+                "biographies": "袁术部下，惯使三尖两刃刀。刘备率军进攻时，他与名将关羽单挑三十回合不分胜负。后来奉袁术之命进攻刘备，但由于吕布从中调停而退兵。", 
+                "intelligence": 66.0, 
+                "hp": 100.0, 
+                "res_name": "jiling", 
+                "command": 84.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 38.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "xiliangcavalry", 
+                "agility": 66.0, 
+                "force": 90.0, 
+                "name": "马腾", 
+                "biographies": "字寿成。西凉猛将，东汉名将马援之后。受献帝衣带诏书之托，与董承等十三人共立血书，誓杀曹操。事情败露后，被曹操诱到京城杀害。", 
+                "intelligence": 52.0, 
+                "hp": 110.0, 
+                "res_name": "mateng", 
+                "command": 94.0, 
+                "mp": 5.0, 
+                "retreat": "", 
+                "luck": 40.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "mage", 
+                "agility": 62.0, 
+                "force": 82.0, 
+                "name": "韩遂", 
+                "biographies": "字文约。为了替义兄马腾报仇，与马腾之子马超共同起兵攻曹。但后来马超中了贾诩的离间计与他反目，他因此被迫降曹。", 
+                "intelligence": 74.0, 
+                "hp": 110.0, 
+                "res_name": "hansui", 
+                "command": 88.0, 
+                "mp": 40.0, 
+                "retreat": "", 
+                "luck": 36.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "warlock", 
+                "agility": 52.0, 
+                "force": 44.0, 
+                "name": "张鲁", 
+                "biographies": "字公祺，五斗米道的「师君」。在汉中建立了教派国家。遭曹操进攻后，把粮食封仓留给曹军。曹操感叹他的仁德，在他投降后厚待他。", 
+                "intelligence": 88.0, 
+                "hp": 80.0, 
+                "res_name": "zhanglu", 
+                "command": 60.0, 
+                "mp": 40.0, 
+                "retreat": "", 
+                "luck": 76.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 58.0, 
+                "force": 74.0, 
+                "name": "张卫", 
+                "biographies": "五斗米道的教祖张鲁之弟。极力主张与曹操对战。后与曹军战于巴中，战而无功，被许褚斩杀。", 
+                "intelligence": 56.0, 
+                "hp": 100.0, 
+                "res_name": "zhangwei", 
+                "command": 70.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 62.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "mage", 
+                "agility": 62.0, 
+                "force": 48.0, 
+                "name": "阎圃", 
+                "biographies": "张鲁部下。担任参谋屡次献计。当张鲁听信杨松谗言欲杀庞德时，他力劝不成。张鲁投降后，他也被曹操封为列侯。", 
+                "intelligence": 84.0, 
+                "hp": 90.0, 
+                "res_name": "yanpu", 
+                "command": 56.0, 
+                "mp": 40.0, 
+                "retreat": "", 
+                "luck": 60.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 58.0, 
+                "force": 80.0, 
+                "name": "张绣", 
+                "biographies": "张济之侄。张济死后，他率军帮助刘表，与曹操交战。在军师贾诩的指导下，屡屡获胜。后来听从贾诩劝告，归顺了曹操，受到重用。", 
+                "intelligence": 62.0, 
+                "hp": 100.0, 
+                "res_name": "zhangxiu", 
+                "command": 76.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 56.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "martialist", 
+                "agility": 92.0, 
+                "force": 82.0, 
+                "name": "胡车儿", 
+                "biographies": "张绣部下勇士。出身异民族，张绣军第一豪杰。据说可以背负五百斤重物，一日行七百里。战曹操时，献计并亲自实施，把猛将典韦的铁戟偷来。", 
+                "intelligence": 26.0, 
+                "hp": 90.0, 
+                "res_name": "hucheer", 
+                "command": 72.0, 
+                "mp": 20.0, 
+                "retreat": "", 
+                "luck": 58.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "cavalry", 
+                "agility": 58.0, 
+                "force": 74.0, 
+                "name": "陶谦", 
+                "biographies": "徐州刺史，讨伐董卓的十八镇诸侯之一。曹操为报父仇兴兵攻徐州时，因自己年老多病而三让徐州于前来援救的刘备。", 
+                "intelligence": 72.0, 
+                "hp": 100.0, 
+                "res_name": "taoqian", 
+                "command": 64.0, 
+                "mp": 10.0, 
+                "retreat": "", 
+                "luck": 56.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "warlock", 
+                "agility": 72.0, 
+                "force": 42.0, 
+                "name": "张宝", 
+                "biographies": "张角之弟。与其兄张角一起举兵造反，发动了黄巾之乱。自称地公将军，用其兄传授的妖术指挥贼兵作战。后来被部下严政刺杀。", 
+                "intelligence": 80.0, 
+                "hp": 80.0, 
                 "res_name": "zhangbao3", 
-                "name": "张宝"
+                "command": 62.0, 
+                "mp": 40.0, 
+                "retreat": "", 
+                "luck": 62.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "warlock", 
+                "agility": 74.0, 
+                "force": 56.0, 
+                "name": "张梁", 
+                "biographies": "张角、张宝之弟。与其兄一起举兵造反，发动了黄巾之乱。自称人公将军，在张角死后，继续指挥贼兵。后败于官军，在曲阳战死。", 
+                "intelligence": 76.0, 
+                "hp": 80.0, 
+                "res_name": "zhangliang", 
+                "command": 52.0, 
+                "mp": 40.0, 
+                "retreat": "", 
+                "luck": 56.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "immortal", 
+                "agility": 78.0, 
+                "force": 6.0, 
+                "name": "梦梅", 
+                "biographies": "不明", 
+                "intelligence": 96.0, 
+                "hp": 80.0, 
+                "res_name": "mengmei", 
+                "command": 14.0, 
+                "mp": 60.0, 
+                "retreat": "", 
+                "luck": 98.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "king", 
+                "agility": 58.0, 
+                "force": 36.0, 
+                "name": "献帝", 
+                "biographies": "后汉王朝最后的皇帝。名协，字伯和。董卓废了少帝后继任皇帝位，时年九岁。", 
+                "intelligence": 76.0, 
+                "hp": 80.0, 
+                "res_name": "xiandi", 
+                "command": 64.0, 
+                "mp": 5.0, 
+                "retreat": "", 
+                "luck": 100.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "mage", 
+                "agility": 60.0, 
+                "force": 60.0, 
+                "name": "杨修", 
+                "biographies": "", 
+                "intelligence": 60.0, 
+                "hp": 100.0, 
+                "res_name": "yangxiu", 
+                "command": 60.0, 
+                "mp": 100.0, 
+                "retreat": "", 
+                "luck": 60.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "mage", 
+                "agility": 60.0, 
+                "force": 60.0, 
+                "name": "徐庶", 
+                "biographies": "", 
+                "intelligence": 60.0, 
+                "hp": 100.0, 
+                "res_name": "xushu", 
+                "command": 60.0, 
+                "mp": 100.0, 
+                "retreat": "", 
+                "luck": 60.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "mage", 
+                "agility": 60.0, 
+                "force": 60.0, 
+                "name": "徐母", 
+                "biographies": "", 
+                "intelligence": 60.0, 
+                "hp": 100.0, 
+                "res_name": "xumu", 
+                "command": 60.0, 
+                "mp": 100.0, 
+                "retreat": "", 
+                "luck": 60.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "mage", 
+                "agility": 60.0, 
+                "force": 60.0, 
+                "name": "王允", 
+                "biographies": "", 
+                "intelligence": 60.0, 
+                "hp": 100.0, 
+                "res_name": "wangyun", 
+                "command": 60.0, 
+                "mp": 100.0, 
+                "retreat": "", 
+                "luck": 60.0
+            }
+        }, 
+        {
+            "entity": {
+                "category": "priest", 
+                "agility": 60.0, 
+                "force": 60.0, 
+                "name": "许子将", 
+                "biographies": "", 
+                "intelligence": 60.0, 
+                "hp": 100.0, 
+                "res_name": "xuzijiang", 
+                "command": 60.0, 
+                "mp": 100.0, 
+                "retreat": "", 
+                "luck": 60.0
             }
         }, 
         {
             "entity": {
                 "category": "infantry", 
+                "agility": 60.0, 
+                "force": 60.0, 
+                "name": "黄巾军01", 
+                "biographies": "", 
+                "intelligence": 60.0, 
+                "hp": 100.0, 
                 "res_name": "huangjinjun", 
-                "name": "黄巾军01"
+                "command": 60.0, 
+                "mp": 100.0, 
+                "retreat": "", 
+                "luck": 60.0
             }
         }, 
         {
             "entity": {
                 "category": "infantry", 
+                "agility": 60.0, 
+                "force": 60.0, 
+                "name": "黄巾军02", 
+                "biographies": "", 
+                "intelligence": 60.0, 
+                "hp": 100.0, 
                 "res_name": "huangjinjun", 
-                "name": "黄巾军02"
+                "command": 60.0, 
+                "mp": 100.0, 
+                "retreat": "", 
+                "luck": 60.0
             }
         }, 
         {
             "entity": {
                 "category": "infantry", 
+                "agility": 60.0, 
+                "force": 60.0, 
+                "name": "黄巾军03", 
+                "biographies": "", 
+                "intelligence": 60.0, 
+                "hp": 100.0, 
                 "res_name": "huangjinjun", 
-                "name": "黄巾军03"
+                "command": 60.0, 
+                "mp": 100.0, 
+                "retreat": "", 
+                "luck": 60.0
             }
         }, 
         {
             "entity": {
                 "category": "infantry", 
+                "agility": 60.0, 
+                "force": 60.0, 
+                "name": "黄巾军04", 
+                "biographies": "", 
+                "intelligence": 60.0, 
+                "hp": 100.0, 
                 "res_name": "huangjinjun", 
-                "name": "黄巾军04"
+                "command": 60.0, 
+                "mp": 100.0, 
+                "retreat": "", 
+                "luck": 60.0
             }
         }, 
         {
             "entity": {
                 "category": "infantry", 
+                "agility": 60.0, 
+                "force": 60.0, 
+                "name": "黄巾军05", 
+                "biographies": "", 
+                "intelligence": 60.0, 
+                "hp": 100.0, 
                 "res_name": "huangjinjun", 
-                "name": "黄巾军05"
+                "command": 60.0, 
+                "mp": 100.0, 
+                "retreat": "", 
+                "luck": 60.0
             }
         }, 
         {
             "entity": {
                 "category": "infantry", 
+                "agility": 60.0, 
+                "force": 60.0, 
+                "name": "黄巾军06", 
+                "biographies": "", 
+                "intelligence": 60.0, 
+                "hp": 100.0, 
                 "res_name": "huangjinjun", 
-                "name": "黄巾军06"
+                "command": 60.0, 
+                "mp": 100.0, 
+                "retreat": "", 
+                "luck": 60.0
             }
         }, 
         {
             "entity": {
                 "category": "infantry", 
+                "agility": 60.0, 
+                "force": 60.0, 
+                "name": "黄巾军07", 
+                "biographies": "", 
+                "intelligence": 60.0, 
+                "hp": 100.0, 
                 "res_name": "huangjinjun", 
-                "name": "黄巾军07"
+                "command": 60.0, 
+                "mp": 100.0, 
+                "retreat": "", 
+                "luck": 60.0
             }
         }, 
         {
             "entity": {
                 "category": "infantry", 
+                "agility": 60.0, 
+                "force": 60.0, 
+                "name": "黄巾军08", 
+                "biographies": "", 
+                "intelligence": 60.0, 
+                "hp": 100.0, 
                 "res_name": "huangjinjun", 
-                "name": "黄巾军08"
+                "command": 60.0, 
+                "mp": 100.0, 
+                "retreat": "", 
+                "luck": 60.0
             }
         }, 
         {
             "entity": {
                 "category": "infantry", 
+                "agility": 60.0, 
+                "force": 60.0, 
+                "name": "黄巾军09", 
+                "biographies": "", 
+                "intelligence": 60.0, 
+                "hp": 100.0, 
                 "res_name": "huangjinjun", 
-                "name": "黄巾军09"
+                "command": 60.0, 
+                "mp": 100.0, 
+                "retreat": "", 
+                "luck": 60.0
             }
         }, 
         {
             "entity": {
                 "category": "infantry", 
+                "agility": 60.0, 
+                "force": 60.0, 
+                "name": "黄巾军10", 
+                "biographies": "", 
+                "intelligence": 60.0, 
+                "hp": 100.0, 
                 "res_name": "huangjinjun", 
-                "name": "黄巾军10"
+                "command": 60.0, 
+                "mp": 100.0, 
+                "retreat": "", 
+                "luck": 60.0
             }
         }, 
         {
             "entity": {
                 "category": "infantry", 
+                "agility": 60.0, 
+                "force": 60.0, 
+                "name": "黄巾军11", 
+                "biographies": "", 
+                "intelligence": 60.0, 
+                "hp": 100.0, 
                 "res_name": "huangjinjun", 
-                "name": "黄巾军11"
+                "command": 60.0, 
+                "mp": 100.0, 
+                "retreat": "", 
+                "luck": 60.0
             }
         }, 
         {
             "entity": {
                 "category": "infantry", 
+                "agility": 60.0, 
+                "force": 60.0, 
+                "name": "黄巾军12", 
+                "biographies": "", 
+                "intelligence": 60.0, 
+                "hp": 100.0, 
                 "res_name": "huangjinjun", 
-                "name": "黄巾军12"
+                "command": 60.0, 
+                "mp": 100.0, 
+                "retreat": "", 
+                "luck": 60.0
             }
         }, 
         {
             "entity": {
                 "category": "infantry", 
+                "agility": 60.0, 
+                "force": 60.0, 
+                "name": "步兵01", 
+                "biographies": "", 
+                "intelligence": 60.0, 
+                "hp": 100.0, 
                 "res_name": "bubing01", 
-                "name": "步兵01"
+                "command": 60.0, 
+                "mp": 100.0, 
+                "retreat": "", 
+                "luck": 60.0
             }
         }, 
         {
             "entity": {
                 "category": "infantry", 
+                "agility": 60.0, 
+                "force": 60.0, 
+                "name": "步兵02", 
+                "biographies": "", 
+                "intelligence": 60.0, 
+                "hp": 100.0, 
                 "res_name": "bubing02", 
-                "name": "步兵02"
+                "command": 60.0, 
+                "mp": 100.0, 
+                "retreat": "", 
+                "luck": 60.0
             }
         }, 
         {
             "entity": {
                 "category": "archer", 
+                "agility": 60.0, 
+                "force": 60.0, 
+                "name": "弓兵01", 
+                "biographies": "", 
+                "intelligence": 60.0, 
+                "hp": 100.0, 
                 "res_name": "shibing05", 
-                "name": "弓兵01"
+                "command": 60.0, 
+                "mp": 100.0, 
+                "retreat": "", 
+                "luck": 60.0
             }
         }, 
         {
             "entity": {
                 "category": "archer", 
+                "agility": 60.0, 
+                "force": 60.0, 
+                "name": "弓兵02", 
+                "biographies": "", 
+                "intelligence": 60.0, 
+                "hp": 100.0, 
                 "res_name": "shibing06", 
-                "name": "弓兵02"
+                "command": 60.0, 
+                "mp": 100.0, 
+                "retreat": "", 
+                "luck": 60.0
             }
         }, 
         {
             "entity": {
-                "category": "knight", 
+                "category": "cavalry", 
+                "agility": 60.0, 
+                "force": 60.0, 
+                "name": "骑兵01", 
+                "biographies": "", 
+                "intelligence": 60.0, 
+                "hp": 100.0, 
                 "res_name": "shibing01", 
-                "name": "骑兵01"
+                "command": 60.0, 
+                "mp": 100.0, 
+                "retreat": "", 
+                "luck": 60.0
             }
         }, 
         {
             "entity": {
-                "category": "knight", 
+                "category": "cavalry", 
+                "agility": 60.0, 
+                "force": 60.0, 
+                "name": "骑兵02", 
+                "biographies": "", 
+                "intelligence": 60.0, 
+                "hp": 100.0, 
                 "res_name": "shibing02", 
-                "name": "骑兵02"
+                "command": 60.0, 
+                "mp": 100.0, 
+                "retreat": "", 
+                "luck": 60.0
             }
         }, 
         {
             "entity": {
                 "category": "mage", 
+                "agility": 60.0, 
+                "force": 60.0, 
+                "name": "策士01", 
+                "biographies": "", 
+                "intelligence": 60.0, 
+                "hp": 100.0, 
                 "res_name": "wenguan01", 
-                "name": "策士01"
+                "command": 60.0, 
+                "mp": 100.0, 
+                "retreat": "", 
+                "luck": 60.0
             }
         }, 
         {
             "entity": {
                 "category": "mage", 
+                "agility": 60.0, 
+                "force": 60.0, 
+                "name": "策士02", 
+                "biographies": "", 
+                "intelligence": 60.0, 
+                "hp": 100.0, 
                 "res_name": "wenguan02", 
-                "name": "策士02"
+                "command": 60.0, 
+                "mp": 100.0, 
+                "retreat": "", 
+                "luck": 60.0
             }
         }, 
         {
             "entity": {
-                "category": "", 
+                "category": "infantry", 
+                "agility": 60.0, 
+                "force": 60.0, 
+                "name": "士兵01", 
+                "biographies": "", 
+                "intelligence": 60.0, 
+                "hp": 100.0, 
                 "res_name": "shibing01", 
-                "name": "士兵01"
+                "command": 60.0, 
+                "mp": 100.0, 
+                "retreat": "", 
+                "luck": 60.0
             }
         }, 
         {
             "entity": {
-                "category": "", 
+                "category": "infantry", 
+                "agility": 60.0, 
+                "force": 60.0, 
+                "name": "士兵02", 
+                "biographies": "", 
+                "intelligence": 60.0, 
+                "hp": 100.0, 
                 "res_name": "shibing02", 
-                "name": "士兵02"
+                "command": 60.0, 
+                "mp": 100.0, 
+                "retreat": "", 
+                "luck": 60.0
             }
         }, 
         {
             "entity": {
-                "category": "", 
+                "category": "mage", 
+                "agility": 60.0, 
+                "force": 60.0, 
+                "name": "文官01", 
+                "biographies": "", 
+                "intelligence": 60.0, 
+                "hp": 100.0, 
                 "res_name": "wenguan01", 
-                "name": "文官01"
+                "command": 60.0, 
+                "mp": 100.0, 
+                "retreat": "", 
+                "luck": 60.0
             }
         }, 
         {
             "entity": {
-                "category": "", 
+                "category": "mage", 
+                "agility": 60.0, 
+                "force": 60.0, 
+                "name": "文官02", 
+                "biographies": "", 
+                "intelligence": 60.0, 
+                "hp": 100.0, 
                 "res_name": "wenguan02", 
-                "name": "文官02"
+                "command": 60.0, 
+                "mp": 100.0, 
+                "retreat": "", 
+                "luck": 60.0
             }
         }, 
         {
             "entity": {
-                "category": "", 
+                "category": "mage", 
+                "agility": 60.0, 
+                "force": 60.0, 
+                "name": "文官03", 
+                "biographies": "", 
+                "intelligence": 60.0, 
+                "hp": 100.0, 
                 "res_name": "wenguan03", 
-                "name": "文官03"
+                "command": 60.0, 
+                "mp": 100.0, 
+                "retreat": "", 
+                "luck": 60.0
             }
         }, 
         {
             "entity": {
-                "category": "", 
+                "category": "mage", 
+                "agility": 60.0, 
+                "force": 60.0, 
+                "name": "文官04", 
+                "biographies": "", 
+                "intelligence": 60.0, 
+                "hp": 100.0, 
                 "res_name": "wenguan04", 
-                "name": "文官04"
+                "command": 60.0, 
+                "mp": 100.0, 
+                "retreat": "", 
+                "luck": 60.0
             }
         }, 
         {
             "entity": {
-                "category": "", 
+                "category": "mage", 
+                "agility": 60.0, 
+                "force": 60.0, 
+                "name": "文官05", 
+                "biographies": "", 
+                "intelligence": 60.0, 
+                "hp": 100.0, 
                 "res_name": "wenguan05", 
-                "name": "文官05"
+                "command": 60.0, 
+                "mp": 100.0, 
+                "retreat": "", 
+                "luck": 60.0
             }
         }
     ]

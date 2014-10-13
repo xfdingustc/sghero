@@ -39,14 +39,31 @@ void SGHeroResourceUtils::init()
         const rapidjson::Value &val = entity["entity"];
         SGHeroResourceObject* new_hero = new SGHeroResourceObject;
         new_hero->name = val["name"].GetString();
+        log("parsing %s", new_hero->name.c_str());
         if (val.HasMember("category")) {
           new_hero->category = val["category"].GetString();
         }
         if (val.HasMember("res_name")) {
           new_hero->res_name = val["res_name"].GetString();
         }
-        
-        
+        if (val.HasMember("force")) {
+          new_hero->force = static_cast<int>(val["force"].GetDouble());
+        }
+        if (val.HasMember("command")) {
+          new_hero->command = static_cast<int>(val["command"].GetDouble());
+        }
+        if (val.HasMember("intelligence")) {
+          new_hero->intelligence = static_cast<int>(val["intelligence"].GetDouble());
+        }
+        if (val.HasMember("luck")) {
+          new_hero->luck = static_cast<int>(val["luck"].GetDouble());
+        }
+        if (val.HasMember("hp")) {
+          new_hero->hp = static_cast<int>(val["hp"].GetDouble());
+        }
+        if (val.HasMember("mp")) {
+          new_hero->mp = static_cast<int>(val["mp"].GetDouble());
+        }
         
         heroes_map.insert(HERO_MAP_TYPE::value_type(new_hero->name, new_hero));
       }

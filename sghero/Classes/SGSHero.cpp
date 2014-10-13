@@ -82,7 +82,7 @@ bool SGSHero::init(const char* hero_name, HERO_SIDE side)
   notifyObserver("hero_add", reinterpret_cast<void*>(this));
 
   // init category
-  initcategory();
+  initCategory();
   
   __status = HERO_STATUS_NORMAL;
   __ai = HERO_AI_ATTACK;
@@ -277,35 +277,35 @@ bool SGSHero::initSpecActions()
   return true;
 }
 
-void SGSHero::initcategory()
+void SGSHero::initCategory()
 {
   std::string category = SGHeroResourceUtils::getInstance()->getHeroResObj(__name)->category;
   if (category == "lord") {
-    __category = HERO_category_LORD;
+    __category = HERO_CATEGORY_LORD;
   } else if (category == "infantry") {
-    __category = HERO_category_INFANTRY;
+    __category = HERO_CATEGORY_INFANTRY;
   } else if (category == "archer" ) {
-    __category = HERO_category_ARCHER;
-  } else if (category == "knight") {
-    __category = HERO_category_ARCHER;
+    __category = HERO_CATEGORY_ARCHER;
+  } else if (category == "cavalry") {
+    __category = HERO_CATEGORY_CAVALRY;
   } else if (category == "horsearcher") {
-    __category = HERO_category_HORSEARCHER;
+    __category = HERO_CATEGORY_HORSEARCHER;
   } else if (category == "demolisher") {
-    __category = HERO_category_DEMOLISHER;
+    __category = HERO_CATEGORY_DEMOLISHER;
   } else if (category == "martialist") {
-    __category = HERO_category_MARTIALIST;
+    __category = HERO_CATEGORY_MARTIALIST;
   } else if (category == "thief") {
-    __category = HERO_category_THIEF;
+    __category = HERO_CATEGORY_THIEF;
   } else if (category == "mage") {
-    __category = HERO_category_MAGE;
+    __category = HERO_CATEGORY_MAGE;
   } else if (category == "priest") {
-    __category = HERO_category_PRIEST;
+    __category = HERO_CATEGORY_PRIEST;
   } else if (category == "warlock") {
-    __category = HERO_category_WARLOCK;
+    __category = HERO_CATEGORY_WARLOCK;
   } else if (category == "horsemage") {
-    __category = HERO_category_HORSEMAGE;
+    __category = HERO_CATEGORY_HORSEMAGE;
   } else if (category == "dancer") {
-    __category = HERO_category_DANCER;
+    __category = HERO_CATEGORY_DANCER;
   }
 }
 

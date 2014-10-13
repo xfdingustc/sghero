@@ -92,7 +92,7 @@ private:
   void                    loadTerrain(std::string& terrain_file);
   Step                    moveHero(SGSHero* hero, STEP_DIRECTION one_step, Step from);
 
-  static int              SteminaConsuming[TERRAIN_MAX][SGSHero::HERO_category_MAX];
+  static int              SteminaConsuming[TERRAIN_MAX][SGSHero::HERO_CATEGORY_MAX];
   int                     __width;
   int                     __height;
 

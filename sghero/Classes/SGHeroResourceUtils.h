@@ -14,6 +14,14 @@ public:
     std::string name;
     std::string category;
     std::string res_name;
+    int force;
+    int command;
+    int intelligence;
+    int agility;
+    int luck;
+    int hp;
+    int mp;
+
   };
 
   SGHeroResourceObject* getHeroResObj(std::string name);

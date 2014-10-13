@@ -2,7 +2,7 @@
 #include "SGSTerrain.h"
 
 
-int SGSTerrain::SteminaConsuming[SGSTerrain::TERRAIN_MAX][SGSHero::HERO_category_MAX] =
+int SGSTerrain::SteminaConsuming[SGSTerrain::TERRAIN_MAX][SGSHero::HERO_CATEGORY_MAX] =
 {
   {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
   {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },

@@ -18,20 +18,20 @@ public:
   } HERO_AI;
 
   typedef enum {
-    HERO_category_LORD,
-    HERO_category_INFANTRY,
-    HERO_category_ARCHER,
-    HERO_category_KNIGHT,
-    HERO_category_HORSEARCHER,
-    HERO_category_DEMOLISHER,
-    HERO_category_MARTIALIST,
-    HERO_category_THIEF,
-    HERO_category_MAGE,
-    HERO_category_PRIEST,
-    HERO_category_WARLOCK,
-    HERO_category_HORSEMAGE,
-    HERO_category_DANCER,
-    HERO_category_MAX,
+    HERO_CATEGORY_LORD,
+    HERO_CATEGORY_INFANTRY,
+    HERO_CATEGORY_ARCHER,
+    HERO_CATEGORY_CAVALRY,
+    HERO_CATEGORY_HORSEARCHER,
+    HERO_CATEGORY_DEMOLISHER,
+    HERO_CATEGORY_MARTIALIST,
+    HERO_CATEGORY_THIEF,
+    HERO_CATEGORY_MAGE,
+    HERO_CATEGORY_PRIEST,
+    HERO_CATEGORY_WARLOCK,
+    HERO_CATEGORY_HORSEMAGE,
+    HERO_CATEGORY_DANCER,
+    HERO_CATEGORY_MAX,
   } HERO_category;
 
   typedef enum {
@@ -80,7 +80,7 @@ public:
   bool            init(const char* hero_name, HERO_SIDE side);
   bool            initActions();
   bool            initAttackActions();
-  void            initcategory();
+  void            initCategory();
   void            initDataNum();
   bool            initSpecActions();
 
