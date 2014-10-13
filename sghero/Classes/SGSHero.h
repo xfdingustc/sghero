@@ -113,15 +113,24 @@ private:
 
   void            updataSprite(); 
   HERO_AI         __ai;
+  int             __agility;
   ANIMATE_MAP     __animate_map;
   bool            __active;
   HERO_category   __category;
+  int             __command;
   HERO_DIRECTION  __direction;
+  int             __hp;
+  int             __intelligence;
+  int             __luck;
+  int             __mp;
   std::string     __name;
   HERO_SIDE       __side;
   int             __stamina;
   HERO_STATUS     __status;
+  int             __strength;
   SGSTerrain*     __terrain;
+
+
 
   Vector<SpriteFrame*> __sprite_frames;
   Vector<SpriteFrame*> __attack_sprite_frames;

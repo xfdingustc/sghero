@@ -39,7 +39,6 @@ void SGHeroResourceUtils::init()
         const rapidjson::Value &val = entity["entity"];
         SGHeroResourceObject* new_hero = new SGHeroResourceObject;
         new_hero->name = val["name"].GetString();
-        log("parsing %s", new_hero->name.c_str());
         if (val.HasMember("category")) {
           new_hero->category = val["category"].GetString();
         }
