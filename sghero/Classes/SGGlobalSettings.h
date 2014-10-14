@@ -4,6 +4,8 @@
 #define WINDOW_WIDTH 1024
 #define WINDOW_HEIGHT 768
 
+#define GLOBAL_SCALE 0.5
+
 #define HERO_RESOURCE_JSON_FILE "Hero_Res.json"
 #define SKIRMISH_SCENE_SWITCH_TEXT_JSON_FILE "SwitchSceneText.json"
 #define MENU_ITEM_TEXT_JSON_FILE "Menu.json"
@@ -35,13 +37,15 @@
 #define DIALOG_WINDOW_BACKGROUND "Mark/DialogWindowTexture.png"
 #define SELECT_WINDOW_BACKGROUND "Mark/SelectWindowTexture.png"
 
+#define INFO_PANEL_BACKGROUND "Mark/lambskin.jpg"
+
 #define DIAGLOG_WINDOW_ARROW_UP "Mark/speakDialogArrowUp.png"
 #define SG_SKIRMISH_SCENE_HERO_STATUS_CHAOS "Mark/chaos.png"
 
 #define SG_SKIRMISH_AREA_PATH "path"
 #define SG_SKIRMISH_AREA_ATTACK "attack"
 
-#define TEXT_FONT_NAME "Microsoft YaHei"
+#define TEXT_FONT_NAME "fonts/libian.ttf"
 #define TEXT_FONT_SIZE 20
 #define CHAPTER_TEXT_FONT_SIZE 50
 #endif

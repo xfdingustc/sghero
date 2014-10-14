@@ -120,9 +120,11 @@ private:
   int             __command;
   HERO_DIRECTION  __direction;
   int             __hp;
+  int             __hp_max;
   int             __intelligence;
   int             __luck;
   int             __mp;
+  int             __mp_max;
   std::string     __name;
   HERO_SIDE       __side;
   int             __stamina;

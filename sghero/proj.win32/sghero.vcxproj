@@ -146,6 +146,8 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\SGSceneBase.cpp" />
     <ClCompile Include="..\Classes\SGSArea.cpp" />
     <ClCompile Include="..\Classes\SGSAreaObj.cpp" />
+    <ClCompile Include="..\Classes\SGSControlPanel.cpp" />
+    <ClCompile Include="..\Classes\SGSInfoPanel.cpp" />
     <ClCompile Include="..\Classes\SGSStrategyAttack.cpp" />
     <ClCompile Include="..\Classes\SGSStrategyStay.cpp" />
     <ClCompile Include="..\Classes\SGSStrategy.cpp" />
@@ -174,6 +176,8 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\SGSceneBase.h" />
     <ClInclude Include="..\Classes\SGSArea.h" />
     <ClInclude Include="..\Classes\SGSAreaObj.h" />
+    <ClInclude Include="..\Classes\SGSControlPanel.h" />
+    <ClInclude Include="..\Classes\SGSInfoPanel.h" />
     <ClInclude Include="..\Classes\SGSStrategy.h" />
     <ClInclude Include="..\Classes\SGSkirmishInfo.h" />
     <ClInclude Include="..\Classes\SGSPoint.h" />

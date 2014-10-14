@@ -5,8 +5,10 @@
 USING_NS_CC;
 
 #include "SGObserver.h"
+#include "SGSControlPanel.h"
 #include "SGSceneBase.h"
 #include "SGSHero.h"
+#include "SGSInfoPanel.h"
 #include "SGSTerrain.h"
 
 
@@ -126,7 +128,8 @@ private:
   static const char* HERO_ACTION_MENU;
 
   static SGSkirmishScene* __current_skirmish_scene;
-
+  SGSControlPanel* __control_panel;
+  SGSInfoPanel* __info_panel;
 };
 
 #endif

@@ -47,7 +47,7 @@ Scene* SGSceneHeroSpeakScene::creatScene(const char* hero_name, const char* cont
   dialog_win->addChild(content_bg_layer);
 
   // step4: create dialog content TTF
-  LabelTTF* content_ttf = LabelTTF::create(content, TEXT_FONT_NAME, TEXT_FONT_SIZE);
+  Label* content_ttf = Label::create(content, TEXT_FONT_NAME, TEXT_FONT_SIZE);
   content_ttf->setHorizontalAlignment(TextHAlignment::LEFT);
   content_ttf->setColor(Color3B::BLACK);
   content_ttf->setAnchorPoint(Vec2(0.0f, 1.0f));

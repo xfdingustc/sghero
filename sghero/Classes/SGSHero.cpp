@@ -318,8 +318,8 @@ void SGSHero::initDataNum()
   __intelligence = hero_res_obj->intelligence;
   __agility = hero_res_obj->agility;
   __luck = hero_res_obj->luck;
-  __hp = hero_res_obj->hp;
-  __mp = hero_res_obj->mp;
+  __hp = __hp_max = hero_res_obj->hp;
+  __mp = __mp_max = hero_res_obj->mp;
 }
 
 std::string& SGSHero::getHeroResFile(const char* res_dir)

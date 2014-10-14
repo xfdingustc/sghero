@@ -99,6 +99,12 @@
     <ClCompile Include="..\Classes\SGObserver.cpp">
       <Filter>Classes\SGUtils</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\SGSControlPanel.cpp">
+      <Filter>Classes\SGSkirmishScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SGSInfoPanel.cpp">
+      <Filter>Classes\SGSkirmishScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -180,6 +186,12 @@
       <Filter>Classes\SGSkirmishScene</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\SGSSwitchScene.h">
+      <Filter>Classes\SGSkirmishScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SGSControlPanel.h">
+      <Filter>Classes\SGSkirmishScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SGSInfoPanel.h">
       <Filter>Classes\SGSkirmishScene</Filter>
     </ClInclude>
   </ItemGroup>
