@@ -53,6 +53,7 @@ private:
   bool gameLogicEnemyTurn();
   bool gameLogicMoveOneHero(SGSHero* hero);
   void resetAllHeroActivity();
+  void setAttackedHero(SGSHero* hero);
   void setSeletedHero(SGSHero* hero);
   void showHeroAvailabePath(SGSHero* hero);
   void strategyOneMoveFinished();
@@ -74,6 +75,7 @@ private:
 
   EventListenerTouchOneByOne* __event_listener;
   SGSHero* __selected_hero;
+  SGSHero* __attacked_hero;
   int __map_width;
   int __map_height;
   SGSTerrain* __terrain;

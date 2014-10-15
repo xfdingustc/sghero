@@ -14,13 +14,16 @@ public:
   bool init();
 
   void showFirstHeroInfo(SGSHero* hero);
+  void showSecondHeroInfo(SGSHero* hero);
 private:
+  void showHeroInfo(Layer* layer, SGSHero* hero);
+  Layer* __top_half;
+  Layer* __bottom_half;
   std::string __force_text;
   std::string __command_text;
   std::string __intelligence_text;
   std::string __agility_text;
   std::string __luck_text;
-  std::string getAttributeText(const char* attribute);
 
 };
 

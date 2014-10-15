@@ -179,6 +179,10 @@ bool SGSkirmishScene::touchHandleStateMachine(Touch *touch)
       std::string info_msg =  "not_enemy";
       showInfo(info_msg);
       return false;
+    } else if (__attacked_hero != hero){
+      setAttackedHero(hero);
+    } else {
+      __selected_hero->attackHero(hero);
     }
     break;
   default:
@@ -729,6 +733,15 @@ void SGSkirmishScene::setSeletedHero(SGSHero* hero)
     __selected_hero->__previous_map_position = __selected_hero->getMapPosition();
   } 
   return;
+}
+
+void SGSkirmishScene::setAttackedHero(SGSHero* hero)
+{
+  __attacked_hero = hero;
+  if (__attacked_hero) {
+    __info_panel->showSecondHeroInfo(hero);
+
+  }
 }
 
 
