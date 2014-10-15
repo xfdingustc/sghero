@@ -313,7 +313,7 @@ void SGSHero::initDataNum()
 {
   __stamina = 6;
   SGHeroResourceUtils::SGHeroResourceObject* hero_res_obj = SGHeroResourceUtils::getInstance()->getHeroResObj(__name);
-  __strength = hero_res_obj->force;
+  __force = hero_res_obj->force;
   __command = hero_res_obj->command;
   __intelligence = hero_res_obj->intelligence;
   __agility = hero_res_obj->agility;

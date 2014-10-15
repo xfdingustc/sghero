@@ -25,6 +25,7 @@ public:
   };
 
   SGHeroResourceObject* getHeroResObj(std::string name);
+  std::string& getHeroFaceImage(std::string& hero_name);
 
 private:
   typedef std::map<std::string, SGHeroResourceObject*> HERO_MAP_TYPE;

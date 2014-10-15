@@ -54,6 +54,9 @@ void SGHeroResourceUtils::init()
         if (val.HasMember("intelligence")) {
           new_hero->intelligence = static_cast<int>(val["intelligence"].GetDouble());
         }
+        if (val.HasMember("agility")) {
+          new_hero->agility = static_cast<int>(val["agility"].GetDouble());
+        }
         if (val.HasMember("luck")) {
           new_hero->luck = static_cast<int>(val["luck"].GetDouble());
         }
@@ -80,4 +83,15 @@ SGHeroResourceUtils::SGHeroResourceObject* SGHeroResourceUtils::getHeroResObj(st
   }
   CCLOG("Cannot found resouce info for hero %s", name.c_str());
   return NULL;
+}
+
+std::string& SGHeroResourceUtils::getHeroFaceImage(std::string& hero_name)
+{
+  static std::string hero_face_image;
+  std::string hero_face_res = SG_HERO_FACE_RES_PATH;
+  hero_face_res.append(getHeroResObj(hero_name)->res_name);
+  hero_face_res.append(".png");
+
+  hero_face_image = FileUtils::getInstance()->fullPathForFilename(hero_face_res);
+  return hero_face_image;
 }

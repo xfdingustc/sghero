@@ -10,6 +10,7 @@
 #define SKIRMISH_SCENE_SWITCH_TEXT_JSON_FILE "SwitchSceneText.json"
 #define MENU_ITEM_TEXT_JSON_FILE "Menu.json"
 #define INFO_TEXT_JSON_FILE "Info.json"
+#define HERO_INFO_TEXT_JSON_FILE "HeroInfoText.json"
 
 #define SG_DRAMA_SCENE_HERO_RES_PATH "DramaSceneObjects/"
 #define SG_HERO_FACE_RES_PATH "HeroFaces/"

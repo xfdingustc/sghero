@@ -52,10 +52,11 @@ private:
   bool gameLogicFriendTurn();
   bool gameLogicEnemyTurn();
   bool gameLogicMoveOneHero(SGSHero* hero);
-  void switchToNextRound();
   void resetAllHeroActivity();
+  void setSeletedHero(SGSHero* hero);
   void showHeroAvailabePath(SGSHero* hero);
   void strategyOneMoveFinished();
+  void switchToNextRound();
 
   bool onHandleSettingMap(tinyxml2::XMLElement* setting);
   bool onHandleSettingTerrain(tinyxml2::XMLElement* setting);

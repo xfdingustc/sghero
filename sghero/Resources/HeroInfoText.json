@@ -1,0 +1,10 @@
+{
+    "Info":
+    [
+	{"name": "force", "text": "武力"},
+	{"name": "command","text": "统率力"},
+	{"name": "intelligence","text": "智力"},
+	{"name": "agility","text": "敏捷"},
+	{"name": "luck","text": "运气"}
+    ]
+}

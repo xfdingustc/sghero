@@ -64,11 +64,16 @@ public:
   void            faceTo(const char* direction);
   void            faceTo(HERO_DIRECTION direction);
 
+  int             getAgility() { return __agility; }
   HERO_AI         getAI() { return __ai; }
   Animate*        getAttackAnimate();
   SGSPointList*   getAttackArea();
   SGSPointList*   getAttackAreaFromPosition(SGSPoint& pos);
   HERO_category   getcategory() { return __category; }
+  int             getCommand() { return __command; }
+  int             getForce() { return __force; }
+  int             getLuck() { return __luck; }
+  int             getIntelligence() { return __intelligence; } 
   HERO_DIRECTION  getRelativeDirection(SGSHero* other_hero);
   HERO_DIRECTION  getRelativeDirection(SGSPoint& point);
   HERO_DIRECTION  getRelativeDirectionFrom(SGSPoint& point, SGSPoint& from);
@@ -119,6 +124,7 @@ private:
   HERO_category   __category;
   int             __command;
   HERO_DIRECTION  __direction;
+  int             __force;
   int             __hp;
   int             __hp_max;
   int             __intelligence;
@@ -129,7 +135,6 @@ private:
   HERO_SIDE       __side;
   int             __stamina;
   HERO_STATUS     __status;
-  int             __strength;
   SGSTerrain*     __terrain;
 
 

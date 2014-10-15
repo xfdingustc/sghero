@@ -142,8 +142,7 @@ bool SGSkirmishScene::touchHandleStateMachine(Touch *touch)
     if (hero) {
       if (hero->isActive()) {
         showHeroAvailabePath(hero);
-        __selected_hero = hero;
-        __selected_hero->__previous_map_position = __selected_hero->getMapPosition();
+        setSeletedHero(hero);
         __event_handle_state = EVENT_HANDLE_STATE_HERO_SELECTED;
         return true;
       } else {
@@ -156,7 +155,7 @@ bool SGSkirmishScene::touchHandleStateMachine(Touch *touch)
     hero = __terrain->findHeroByPosition(pos);
     if (hero && hero != __selected_hero) {
       showHeroAvailabePath(hero);
-      __selected_hero = hero;
+      setSeletedHero(hero);
       __event_handle_state = EVENT_HANDLE_STATE_HERO_SELECTED;
       return true;
     }
@@ -210,35 +209,35 @@ void SGSkirmishScene::createActionSelectMenu()
       MenuItemLabel *attackMenuItem = MenuItemLabel::create(attackLabel, this,
         menu_selector(SGSkirmishScene::onAttack));
 
-      attackMenuItem->setPosition(ccp(0, TEXT_FONT_SIZE*4));
+      attackMenuItem->setPosition(Vec2(0, TEXT_FONT_SIZE*4));
 
       const rapidjson::Value &val1 = res_list[1];
       Label *magicLabel = Label::create(val1["text"].GetString(),TEXT_FONT_NAME, TEXT_FONT_SIZE);
       magicLabel->setColor(Color3B::BLACK);
       MenuItemLabel *magicMenuItem = MenuItemLabel::create(magicLabel, this,
         menu_selector(SGSkirmishScene::onMagic));
-      magicMenuItem->setPosition(ccp(0, TEXT_FONT_SIZE*3));
+      magicMenuItem->setPosition(Vec2(0, TEXT_FONT_SIZE*3));
 
       const rapidjson::Value &val2  = res_list[2];
       Label *itemLabel = Label::create(val2["text"].GetString(),TEXT_FONT_NAME, TEXT_FONT_SIZE);
       itemLabel->setColor(Color3B::BLACK);
       MenuItemLabel *itemMenuItem = MenuItemLabel::create(itemLabel, this,
         menu_selector(SGSkirmishScene::onItem));
-      itemMenuItem->setPosition(ccp(0, TEXT_FONT_SIZE*2));
+      itemMenuItem->setPosition(Vec2(0, TEXT_FONT_SIZE*2));
 
       const rapidjson::Value &val3  = res_list[3];
       Label *idleLabel = Label::create(val3["text"].GetString(),TEXT_FONT_NAME, TEXT_FONT_SIZE);
       idleLabel->setColor(Color3B::BLACK);
       MenuItemLabel *idleMenuItem = MenuItemLabel::create(idleLabel, this,
         menu_selector(SGSkirmishScene::onIdle));
-      idleMenuItem->setPosition(ccp(0, TEXT_FONT_SIZE*1));
+      idleMenuItem->setPosition(Vec2(0, TEXT_FONT_SIZE*1));
 
       const rapidjson::Value &val4  = res_list[4];
       Label *cancelLabel = Label::create(val4["text"].GetString(),TEXT_FONT_NAME, TEXT_FONT_SIZE);
       cancelLabel->setColor(Color3B::BLACK);
       MenuItemLabel *cancelMenuItem = MenuItemLabel::create(cancelLabel, this,
         menu_selector(SGSkirmishScene::onCancel));
-      cancelMenuItem->setPosition(ccp(0, 0));
+      cancelMenuItem->setPosition(Vec2(0, 0));
 
       Menu* hero_action_menu = Menu::create(attackMenuItem, magicMenuItem,
         itemMenuItem, idleMenuItem, cancelMenuItem,NULL);
@@ -592,6 +591,7 @@ bool SGSkirmishScene::onHandleEventObjAdd(tinyxml2::XMLElement* event)
 
 bool SGSkirmishScene::onHandleEventMagicCall(tinyxml2::XMLElement* event)
 {
+  return true;
   std::string magic_name = event->Attribute("magic");
   int x = atoi(event->Attribute("x"));
   int y = atoi(event->Attribute("y"));
@@ -719,6 +719,19 @@ void SGSkirmishScene::resetAllHeroActivity()
     hero->setActive(true);
   }
 }
+
+void SGSkirmishScene::setSeletedHero(SGSHero* hero)
+{
+  __selected_hero = hero;
+
+  if (__selected_hero) {
+    __info_panel->showFirstHeroInfo(hero);
+    __selected_hero->__previous_map_position = __selected_hero->getMapPosition();
+  } 
+  return;
+}
+
+
 bool SGSkirmishScene::gameLogicFriendTurn() 
 {
   SGSHero* hero = getHero(__friend_heroes);
