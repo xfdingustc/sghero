@@ -1,0 +1,11 @@
+{
+"AttackWeaponList":[
+{"Name":"镔铁剑","Class":"剑","Type":"common","AttackCurve":"120,130,140","Effect":"攻击力 +Attack","Description":"钢制剑身长而重的剑，比短剑的威力大。",},
+]
+"DefenseWeaponList":[
+{"Name":"凤凰羽衣","Class":"铠甲","Type":"super","DefenseCurve":"39,49,59,69,79,89,99,99,99","HPPercentCurve":"30%,30%,30%,45%,45%,45%,60%,60%,60%","Effect":"防御力 +Defense\n每回合恢复HP HPPercent"},
+]
+"AssistWeaponList":[
+{"Name":"奇门遁甲","Class":"辅助","Effect":"法术模仿","Description":"术士左慈在峨眉山得到的书。"}
+]
+}

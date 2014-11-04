@@ -22,6 +22,9 @@
     <Filter Include="Classes\SGUtils">
       <UniqueIdentifier>{4766f911-6e05-4685-90b3-ebaa588d2d57}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\SGWeapon">
+      <UniqueIdentifier>{24360682-4d43-43f9-baf8-b9b579b6f315}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -104,6 +107,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\SGSInfoPanel.cpp">
       <Filter>Classes\SGSkirmishScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SGWeaponBase.cpp">
+      <Filter>Classes\SGWeapon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -193,6 +199,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\SGSInfoPanel.h">
       <Filter>Classes\SGSkirmishScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SGWeaponBase.h">
+      <Filter>Classes\SGWeapon</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

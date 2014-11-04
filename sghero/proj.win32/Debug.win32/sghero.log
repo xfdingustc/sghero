@@ -1,9 +1,52 @@
-﻿生成启动时间为 2014/9/2 12:19:45。
-     1>项目“D:\works\sghero\sghero\proj.win32\sghero.vcxproj”在节点 2 上(Clean 个目标)。
-     1>_PrepareForClean:
-         正在删除文件“Debug.win32\sghero.lastbuildstate”。
-     1>已完成生成项目“D:\works\sghero\sghero\proj.win32\sghero.vcxproj”(Clean 个目标)的操作。
+﻿生成启动时间为 11/4/2014 5:40:46 PM。
+     1>项目“C:\Work\startup\sghero\sghero\proj.win32\sghero.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         C:\Program Files\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /IC:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\cocos\audio\include /IC:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\external /IC:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\external\chipmunk\include\chipmunk /IC:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\extensions /I..\Classes /I.. /IC:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\cocos /IC:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\cocos\platform\win32 /IC:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\cocos\platform\desktop /IC:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\external\glfw3\include\win32 /I"C:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\external\win32-specific\gles\include\OGLES" /ZI /nologo /W3 /WX- /MP /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USE_MATH_DEFINES /D GL_GLEXT_PROTOTYPES /D CC_ENABLE_CHIPMUNK_INTEGRATION=1 /D COCOS2D_DEBUG=1 /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS /D _VARIADIC_MAX=10 /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc110.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\Classes\SGWeaponBase.cpp
+         SGWeaponBase.cpp
+     1>c:\work\startup\sghero\sghero\cocos2d\cocos\base\ccutils.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\work\startup\sghero\sghero\classes\sgweaponbase.cpp(54): warning C4018: “>”: 有符号/无符号不匹配
+     1>c:\work\startup\sghero\sghero\classes\sgweaponbase.cpp(55): warning C4018: “<”: 有符号/无符号不匹配
+       PreLinkEvent:
+         if not exist "C:\Work\startup\sghero\sghero\proj.win32\Debug.win32\" mkdir "C:\Work\startup\sghero\sghero\proj.win32\Debug.win32\"
+         xcopy /Y /Q "C:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\external\websockets\prebuilt\win32\*.*" "C:\Work\startup\sghero\sghero\proj.win32\Debug.win32\"
+         :VCEnd
+         2 File(s) copied
+       Link:
+         C:\Program Files\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Work\startup\sghero\sghero\proj.win32\Debug.win32\sghero.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\Work\startup\sghero\sghero\proj.win32\Debug.win32\ /LIBPATH:C:\Work\startup\sghero\sghero\proj.win32\Debug.win32\ opengl32.lib glew32.lib libzlib.lib libpng.lib libjpeg.lib libtiff.lib libwebp.lib libiconv.lib glfw3.lib freetype250.lib winmm.lib ws2_32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Work\startup\sghero\sghero\proj.win32\Debug.win32\sghero.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Work\startup\sghero\sghero\proj.win32\Debug.win32\sghero.lib" /MACHINE:X86 /SAFESEH Debug.win32\game.res
+         Debug.win32\AppDelegate.obj
+         Debug.win32\SGDramaScene.obj
+         Debug.win32\SGDramaSceneChapterScene.obj
+         Debug.win32\SGDramaSceneHero.obj
+         Debug.win32\SGObserver.obj
+         Debug.win32\SGSceneEvent.obj
+         Debug.win32\SGSceneHeroSpeakScene.obj
+         Debug.win32\SGDramaSceneInfoScene.obj
+         Debug.win32\SGDramaSceneSelectScene.obj
+         Debug.win32\SGHeroResourceUtils.obj
+         Debug.win32\SGSceneBase.obj
+         Debug.win32\SGSArea.obj
+         Debug.win32\SGSAreaObj.obj
+         Debug.win32\SGSControlPanel.obj
+         Debug.win32\SGSInfoPanel.obj
+         Debug.win32\SGSStrategyAttack.obj
+         Debug.win32\SGSStrategyStay.obj
+         Debug.win32\SGSStrategy.obj
+         Debug.win32\SGSkirmishInfo.obj
+         Debug.win32\SGSObj.obj
+         Debug.win32\SGSHero.obj
+         Debug.win32\SGSkirmishScene.obj
+         Debug.win32\SGSMagicCall.obj
+         Debug.win32\SGSTerrain.obj
+         Debug.win32\SGSSwitchScene.obj
+         Debug.win32\SGWeaponBase.obj
+         Debug.win32\SGWelcomeScene.obj
+         Debug.win32\main.obj
+         C:\Work\startup\sghero\sghero\proj.win32\Debug.win32\libcocos2d.lib
+         C:\Work\startup\sghero\sghero\proj.win32\Debug.win32\libAudio.lib
+         C:\Work\startup\sghero\sghero\proj.win32\Debug.win32\libchipmunk.lib
+         sghero.vcxproj -> C:\Work\startup\sghero\sghero\proj.win32\Debug.win32\sghero.exe
+     1>已完成生成项目“C:\Work\startup\sghero\sghero\proj.win32\sghero.vcxproj”(Build 个目标)的操作。
 
 生成成功。
 
-已用时间 00:00:00.11
+已用时间 00:00:20.29

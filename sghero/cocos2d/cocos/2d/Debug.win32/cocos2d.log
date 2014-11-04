@@ -1,9 +1,482 @@
-﻿生成启动时间为 2014/9/2 12:19:46。
-     1>项目“D:\works\sghero\sghero\cocos2d\cocos\2d\cocos2d.vcxproj”在节点 2 上(Clean 个目标)。
-     1>_PrepareForClean:
-         正在删除文件“Debug.win32\libcocos2d.lastbuildstate”。
-     1>已完成生成项目“D:\works\sghero\sghero\cocos2d\cocos\2d\cocos2d.vcxproj”(Clean 个目标)的操作。
+﻿生成启动时间为 11/3/2014 2:42:51 PM。
+     1>项目“C:\Work\startup\sghero\sghero\cocos2d\cocos\2d\cocos2d.vcxproj”在节点 3 上(Build 个目标)。
+     1>ClCompile:
+         C:\Program Files\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files\Microsoft SDKs\Windows\v7.1A\include" /IC:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\external\sqlite3\include /IC:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\external\unzip /IC:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\external\edtaa3func /IC:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\external\tinyxml2 /IC:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\external\png\include\win32 /IC:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\external\jpeg\include\win32 /IC:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\external\tiff\include\win32 /IC:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\external\webp\include\win32 /IC:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\external\freetype2\include\win32 /I"C:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\external\win32-specific\icon\include" /I"C:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\external\win32-specific\zlib\include" /IC:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\external\chipmunk\include\chipmunk /IC:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\external\xxhash /IC:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\external\ConvertUTF /IC:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\external /IC:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\cocos /IC:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\cocos\platform\win32 /IC:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\cocos\platform\desktop /IC:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\external\glfw3\include\win32 /I"C:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\external\win32-specific\gles\include\OGLES" /Z7 /nologo /W3 /WX- /MP /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _LIB /D COCOS2DXWIN32_EXPORTS /D GL_GLEXT_PROTOTYPES /D COCOS2D_DEBUG=1 /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS /D _VARIADIC_MAX=10 /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc110.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\..\external\ConvertUTF\ConvertUTF.c ..\..\external\ConvertUTF\ConvertUTFWrapper.cpp ..\..\external\edtaa3func\edtaa3func.cpp ..\..\external\tinyxml2\tinyxml2.cpp ..\..\external\unzip\ioapi.cpp ..\..\external\unzip\unzip.cpp ..\..\external\xxhash\xxhash.c ..\3d\CCAnimate3D.cpp ..\3d\CCAnimation3D.cpp ..\3d\CCBundle3D.cpp ..\3d\CCBundleReader.cpp ..\3d\CCMesh.cpp ..\3d\CCMeshSkin.cpp ..\3d\CCObjLoader.cpp ..\3d\CCSprite3D.cpp ..\3d\CCSprite3DMaterial.cpp ..\base\atitc.cpp ..\base\base64.cpp ..\base\CCAutoreleasePool.cpp ..\base\ccCArray.cpp ..\base\CCConfiguration.cpp ..\base\CCConsole.cpp ..\base\CCData.cpp ..\base\CCDataVisitor.cpp ..\base\CCDirector.cpp ..\base\CCEvent.cpp ..\base\CCEventAcceleration.cpp ..\base\CCEventCustom.cpp ..\base\CCEventDispatcher.cpp ..\base\CCEventFocus.cpp ..\base\CCEventKeyboard.cpp ..\base\CCEventListener.cpp ..\base\CCEventListenerAcceleration.cpp ..\base\CCEventListenerCustom.cpp ..\base\CCEventListenerFocus.cpp ..\base\CCEventListenerKeyboard.cpp ..\base\CCEventListenerMouse.cpp ..\base\CCEventListenerTouch.cpp ..\base\CCEventMouse.cpp ..\base\CCEventTouch.cpp ..\base\ccFPSImages.c ..\base\CCIMEDispatcher.cpp ..\base\CCNS.cpp ..\base\CCProfiling.cpp ..\base\CCRef.cpp ..\base\CCScheduler.cpp ..\base\CCScriptSupport.cpp ..\base\CCTouch.cpp ..\base\ccTypes.cpp ..\base\CCUserDefault.cpp ..\base\ccUTF8.cpp ..\base\ccUtils.cpp ..\base\CCValue.cpp ..\base\etc1.cpp ..\base\ObjectFactory.cpp ..\base\s3tc.cpp ..\base\TGAlib.cpp ..\base\ZipUtils.cpp ..\cocos2d.cpp ..\deprecated\CCArray.cpp ..\deprecated\CCDeprecated.cpp ..\deprecated\CCDictionary.cpp ..\deprecated\CCNotificationCenter.cpp ..\deprecated\CCSet.cpp ..\deprecated\CCString.cpp ..\math\CCAffineTransform.cpp ..\math\CCGeometry.cpp ..\math\CCVertex.cpp ..\math\Mat4.cpp ..\math\MathUtil.cpp ..\math\Quaternion.cpp ..\math\TransformUtils.cpp ..\math\Vec2.cpp ..\math\Vec3.cpp ..\math\Vec4.cpp ..\physics\CCPhysicsBody.cpp ..\physics\CCPhysicsContact.cpp ..\physics\CCPhysicsJoint.cpp ..\physics\CCPhysicsShape.cpp ..\physics\CCPhysicsWorld.cpp ..\physics\chipmunk\CCPhysicsBodyInfo_chipmunk.cpp ..\physics\chipmunk\CCPhysicsContactInfo_chipmunk.cpp ..\physics\chipmunk\CCPhysicsJointInfo_chipmunk.cpp ..\physics\chipmunk\CCPhysicsShapeInfo_chipmunk.cpp ..\physics\chipmunk\CCPhysicsWorldInfo_chipmunk.cpp ..\platform\CCFileUtils.cpp ..\platform\CCGLViewProtocol.cpp ..\platform\CCImage.cpp ..\platform\CCSAXParser.cpp ..\platform\CCThread.cpp ..\platform\desktop\CCGLView.cpp ..\platform\win32\CCApplication.cpp ..\platform\win32\CCCommon.cpp ..\platform\win32\CCDevice.cpp ..\platform\win32\CCFileUtilsWin32.cpp ..\platform\win32\CCStdC.cpp ..\renderer\CCBatchCommand.cpp ..\renderer\CCCustomCommand.cpp ..\renderer\CCGLProgram.cpp ..\renderer\CCGLProgramCache.cpp ..\renderer\CCGLProgramState.cpp ..\renderer\CCGLProgramStateCache.cpp ..\renderer\ccGLStateCache.cpp ..\renderer\CCGroupCommand.cpp ..\renderer\CCMeshCommand.cpp ..\renderer\CCQuadCommand.cpp ..\renderer\CCRenderCommand.cpp ..\renderer\CCRenderer.cpp ..\renderer\ccShaders.cpp ..\renderer\CCTexture2D.cpp ..\renderer\CCTextureAtlas.cpp ..\renderer\CCTextureCache.cpp CCAction.cpp CCActionCamera.cpp CCActionCatmullRom.cpp CCActionEase.cpp CCActionGrid.cpp CCActionGrid3D.cpp CCActionInstant.cpp CCActionInterval.cpp CCActionManager.cpp CCActionPageTurn3D.cpp CCActionProgressTimer.cpp CCActionTiledGrid.cpp CCActionTween.cpp CCAnimation.cpp CCAnimationCache.cpp CCAtlasNode.cpp CCClippingNode.cpp CCComponent.cpp CCComponentContainer.cpp CCDrawingPrimitives.cpp CCDrawNode.cpp CCFastTMXLayer.cpp CCFastTMXTiledMap.cpp CCFont.cpp CCFontAtlas.cpp CCFontAtlasCache.cpp CCFontCharMap.cpp CCFontFNT.cpp CCFontFreeType.cpp CCGLBufferedNode.cpp CCGrabber.cpp CCGrid.cpp CCLabel.cpp CCLabelAtlas.cpp CCLabelBMFont.cpp CCLabelTextFormatter.cpp CCLabelTTF.cpp CCLayer.cpp CCMenu.cpp CCMenuItem.cpp CCMotionStreak.cpp CCNode.cpp CCNodeGrid.cpp CCParallaxNode.cpp CCParticleBatchNode.cpp CCParticleExamples.cpp CCParticleSystem.cpp CCParticleSystemQuad.cpp CCProgressTimer.cpp CCRenderTexture.cpp CCScene.cpp CCSprite.cpp CCSpriteBatchNode.cpp CCSpriteFrame.cpp CCSpriteFrameCache.cpp CCTextFieldTTF.cpp CCTileMapAtlas.cpp CCTMXLayer.cpp CCTMXObjectGroup.cpp CCTMXTiledMap.cpp CCTMXXMLParser.cpp CCTransition.cpp CCTransitionPageTurn.cpp CCTransitionProgress.cpp CCTweenFunction.cpp
+         ConvertUTF.c
+         ConvertUTFWrapper.cpp
+         edtaa3func.cpp
+         tinyxml2.cpp
+         ioapi.cpp
+         unzip.cpp
+         xxhash.c
+         CCAnimate3D.cpp
+     1>..\..\external\xxhash\xxhash.c(312): warning C4804: “/”: 在操作中使用类型“bool”不安全
+         CCAnimation3D.cpp
+         CCBundle3D.cpp
+         CCBundleReader.cpp
+     1>..\3d\CCBundle3D.cpp(107): warning C4018: “<”: 有符号/无符号不匹配
+         CCMesh.cpp
+     1>..\3d\CCAnimate3D.cpp(98): warning C4018: “<”: 有符号/无符号不匹配
+         CCMeshSkin.cpp
+     1>..\3d\CCBundle3D.cpp(494): warning C4018: “<”: 有符号/无符号不匹配
+         CCObjLoader.cpp
+         CCSprite3D.cpp
+     1>..\3d\CCMeshSkin.cpp(301): warning C4018: “<”: 有符号/无符号不匹配
+     1>..\3d\CCMeshSkin.cpp(307): warning C4018: “<”: 有符号/无符号不匹配
+     1>..\3d\CCMeshSkin.cpp(335): warning C4018: “<”: 有符号/无符号不匹配
+     1>..\3d\CCMeshSkin.cpp(338): warning C4018: “<”: 有符号/无符号不匹配
+         CCSprite3DMaterial.cpp
+     1>C:\Work\startup\sghero\sghero\cocos2d\cocos\base/ccUtils.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (..\3d\CCObjLoader.cpp)
+     1>..\3d\CCObjLoader.cpp(170): warning C4018: “>”: 有符号/无符号不匹配
+         atitc.cpp
+         base64.cpp
+         CCAutoreleasePool.cpp
+         ccCArray.cpp
+         CCConfiguration.cpp
+         CCConsole.cpp
+         CCData.cpp
+         CCDataVisitor.cpp
+         CCDirector.cpp
+         CCEvent.cpp
+         CCEventAcceleration.cpp
+     1>C:\Work\startup\sghero\sghero\cocos2d\cocos\base/ccUtils.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (..\base\CCConsole.cpp)
+         CCEventCustom.cpp
+         CCEventDispatcher.cpp
+         CCEventFocus.cpp
+         CCEventKeyboard.cpp
+         CCEventListener.cpp
+         CCEventListenerAcceleration.cpp
+         CCEventListenerCustom.cpp
+         CCEventListenerFocus.cpp
+         CCEventListenerKeyboard.cpp
+         CCEventListenerMouse.cpp
+         CCEventListenerTouch.cpp
+         CCEventMouse.cpp
+         CCEventTouch.cpp
+         ccFPSImages.c
+         CCIMEDispatcher.cpp
+         CCNS.cpp
+         CCProfiling.cpp
+     1>C:\Work\startup\sghero\sghero\cocos2d\cocos\base/ccUtils.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (..\base\CCNS.cpp)
+         CCRef.cpp
+         CCScheduler.cpp
+         CCScriptSupport.cpp
+         CCTouch.cpp
+         ccTypes.cpp
+         CCUserDefault.cpp
+         ccUTF8.cpp
+         ccUtils.cpp
+     1>C:\Work\startup\sghero\sghero\cocos2d\cocos\base/ccUtils.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (..\base\ccUtils.cpp)
+         CCValue.cpp
+     1>C:\Work\startup\sghero\sghero\cocos2d\cocos\base/ccUtils.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (..\base\CCUserDefault.cpp)
+     1>..\base\ccUTF8.cpp(234): warning C4996: 'cocos2d::cc_wcslen': 被声明为已否决
+                 c:\work\startup\sghero\sghero\cocos2d\cocos\base\ccUTF8.h(130) : 参见“cocos2d::cc_wcslen”的声明
+     1>..\base\ccUTF8.cpp(277): warning C4996: 'cocos2d::cc_wcslen': 被声明为已否决
+                 c:\work\startup\sghero\sghero\cocos2d\cocos\base\ccUTF8.h(130) : 参见“cocos2d::cc_wcslen”的声明
+         etc1.cpp
+         ObjectFactory.cpp
+         s3tc.cpp
+         TGAlib.cpp
+     1>C:\Work\startup\sghero\sghero\cocos2d\cocos\base/ccUtils.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (..\base\CCValue.cpp)
+         ZipUtils.cpp
+         cocos2d.cpp
+         CCArray.cpp
+         CCDeprecated.cpp
+         CCDictionary.cpp
+         CCNotificationCenter.cpp
+         CCSet.cpp
+         CCString.cpp
+     1>c:\work\startup\sghero\sghero\cocos2d\cocos\base/ccUtils.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (..\deprecated\CCDeprecated.cpp)
+         CCAffineTransform.cpp
+         CCGeometry.cpp
+     1>C:\Work\startup\sghero\sghero\cocos2d\cocos\base/ccUtils.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (..\deprecated\CCString.cpp)
+         CCVertex.cpp
+         Mat4.cpp
+         MathUtil.cpp
+         Quaternion.cpp
+         TransformUtils.cpp
+         Vec2.cpp
+         Vec3.cpp
+         Vec4.cpp
+         CCPhysicsBody.cpp
+         CCPhysicsContact.cpp
+         CCPhysicsJoint.cpp
+         CCPhysicsShape.cpp
+         CCPhysicsWorld.cpp
+         CCPhysicsBodyInfo_chipmunk.cpp
+         CCPhysicsContactInfo_chipmunk.cpp
+         CCPhysicsJointInfo_chipmunk.cpp
+         CCPhysicsShapeInfo_chipmunk.cpp
+         CCPhysicsWorldInfo_chipmunk.cpp
+         CCFileUtils.cpp
+         CCGLViewProtocol.cpp
+         CCImage.cpp
+         CCSAXParser.cpp
+     1>C:\Work\startup\sghero\sghero\cocos2d\cocos\base/ccUtils.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (..\platform\CCFileUtils.cpp)
+     1>..\platform\CCFileUtils.cpp(546): warning C4018: “<”: 有符号/无符号不匹配
+         CCThread.cpp
+         CCGLView.cpp
+     1>C:\Work\startup\sghero\sghero\cocos2d\cocos\base/ccUtils.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (..\platform\CCImage.cpp)
+         CCApplication.cpp
+         CCCommon.cpp
+         CCDevice.cpp
+     1>C:\Work\startup\sghero\sghero\cocos2d\cocos\base/ccUtils.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (..\platform\desktop\CCGLView.cpp)
+         CCFileUtilsWin32.cpp
+         CCStdC.cpp
+         CCBatchCommand.cpp
+         CCCustomCommand.cpp
+         CCGLProgram.cpp
+     1>c:\work\startup\sghero\sghero\cocos2d\cocos\platform\win32\CCFileUtilsWin32.h(102): warning C4996: 'cocos2d::FileUtils::getFileData': 被声明为已否决 (..\platform\win32\CCFileUtilsWin32.cpp)
+                 C:\Work\startup\sghero\sghero\cocos2d\cocos\platform/CCFileUtils.h(101) : 参见“cocos2d::FileUtils::getFileData”的声明
+         CCGLProgramCache.cpp
+         CCGLProgramState.cpp
+         CCGLProgramStateCache.cpp
+         ccGLStateCache.cpp
+         CCGroupCommand.cpp
+         CCMeshCommand.cpp
+         CCQuadCommand.cpp
+     1>..\renderer\ccGLStateCache.cpp(225): warning C4800: “uint32_t”: 将值强制为布尔值“true”或“false”(性能警告)
+     1>..\renderer\ccGLStateCache.cpp(226): warning C4800: “uint32_t”: 将值强制为布尔值“true”或“false”(性能警告)
+         CCRenderCommand.cpp
+         CCRenderer.cpp
+         ccShaders.cpp
+         CCTexture2D.cpp
+         CCTextureAtlas.cpp
+         CCTextureCache.cpp
+     1>C:\Work\startup\sghero\sghero\cocos2d\cocos\base/ccUtils.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (..\renderer\CCTexture2D.cpp)
+         CCAction.cpp
+         CCActionCamera.cpp
+         CCActionCatmullRom.cpp
+     1>C:\Work\startup\sghero\sghero\cocos2d\cocos\base/ccUtils.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (..\renderer\CCTextureCache.cpp)
+         CCActionEase.cpp
+         CCActionGrid.cpp
+         CCActionGrid3D.cpp
+         CCActionInstant.cpp
+         CCActionInterval.cpp
+         CCActionManager.cpp
+         CCActionPageTurn3D.cpp
+         CCActionProgressTimer.cpp
+         CCActionTiledGrid.cpp
+         CCActionTween.cpp
+         CCAnimation.cpp
+         CCAnimationCache.cpp
+         CCAtlasNode.cpp
+         CCClippingNode.cpp
+         CCComponent.cpp
+         CCComponentContainer.cpp
+         CCDrawingPrimitives.cpp
+         CCDrawNode.cpp
+         CCFastTMXLayer.cpp
+         CCFastTMXTiledMap.cpp
+         CCFont.cpp
+         CCFontAtlas.cpp
+         CCFontAtlasCache.cpp
+         CCFontCharMap.cpp
+         CCFontFNT.cpp
+         CCFontFreeType.cpp
+         CCGLBufferedNode.cpp
+         CCGrabber.cpp
+         CCGrid.cpp
+         CCLabel.cpp
+         CCLabelAtlas.cpp
+         CCLabelBMFont.cpp
+     1>C:\Work\startup\sghero\sghero\cocos2d\cocos\base/ccUtils.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (CCGrid.cpp)
+         CCLabelTextFormatter.cpp
+         CCLabelTTF.cpp
+     1>C:\Program Files\Microsoft Visual Studio 11.0\VC\include\functional(1152): warning C4800: “unsigned int”: 将值强制为布尔值“true”或“false”(性能警告) (CCLabel.cpp)
+                 C:\Program Files\Microsoft Visual Studio 11.0\VC\include\functional(1152): 编译类 模板 成员函数“void std::_Bind<_Forced,_Ret,_Fun,_V0_t,_V1_t,_V2_t,_V3_t,_V4_t,_V5_t,_V6_t,_V7_t,_V8_t,_V9_t,_V10_t,<unnamed-symbol>>::operator ()(void)”时
+                 with
+                 [
+                     _Forced=true,
+                     _Ret=void,
+                     _Fun=std::_Pmf_wrap<void (__thiscall cocos2d::Label::* )(const cocos2d::Mat4 &,bool),void,cocos2d::Label,const cocos2d::Mat4 &,bool,std::_Nil,std::_Nil,std::_Nil,std::_Nil,std::_Nil,std::_Nil,std::_Nil,std::_Nil,std::_Nil,std::_Nil>,
+                     _V0_t=cocos2d::Label *const ,
+                     _V1_t=const cocos2d::Mat4 &,
+                     _V2_t=uint32_t &,
+                     _V3_t=std::_Nil,
+                     _V4_t=std::_Nil,
+                     _V5_t=std::_Nil,
+                     _V6_t=std::_Nil,
+                     _V7_t=std::_Nil,
+                     _V8_t=std::_Nil,
+                     _V9_t=std::_Nil,
+                     _V10_t=std::_Nil,
+                     <unnamed-symbol>=std::_Nil
+                 ]
+                 C:\Program Files\Microsoft Visual Studio 11.0\VC\include\xrefwrap(431): 参见对正在编译的函数 模板 实例化“void std::_Bind<_Forced,_Ret,_Fun,_V0_t,_V1_t,_V2_t,_V3_t,_V4_t,_V5_t,_V6_t,_V7_t,_V8_t,_V9_t,_V10_t,<unnamed-symbol>>::operator ()(void)”的引用
+                 with
+                 [
+                     _Forced=true,
+                     _Ret=void,
+                     _Fun=std::_Pmf_wrap<void (__thiscall cocos2d::Label::* )(const cocos2d::Mat4 &,bool),void,cocos2d::Label,const cocos2d::Mat4 &,bool,std::_Nil,std::_Nil,std::_Nil,std::_Nil,std::_Nil,std::_Nil,std::_Nil,std::_Nil,std::_Nil,std::_Nil>,
+                     _V0_t=cocos2d::Label *const ,
+                     _V1_t=const cocos2d::Mat4 &,
+                     _V2_t=uint32_t &,
+                     _V3_t=std::_Nil,
+                     _V4_t=std::_Nil,
+                     _V5_t=std::_Nil,
+                     _V6_t=std::_Nil,
+                     _V7_t=std::_Nil,
+                     _V8_t=std::_Nil,
+                     _V9_t=std::_Nil,
+                     _V10_t=std::_Nil,
+                     <unnamed-symbol>=std::_Nil
+                 ]
+                 CCLabel.cpp(888): 参见对正在编译的类 模板 实例化“std::_Bind<_Forced,_Ret,_Fun,_V0_t,_V1_t,_V2_t,_V3_t,_V4_t,_V5_t,_V6_t,_V7_t,_V8_t,_V9_t,_V10_t,<unnamed-symbol>>”的引用
+                 with
+                 [
+                     _Forced=true,
+                     _Ret=void,
+                     _Fun=std::_Pmf_wrap<void (__thiscall cocos2d::Label::* )(const cocos2d::Mat4 &,bool),void,cocos2d::Label,const cocos2d::Mat4 &,bool,std::_Nil,std::_Nil,std::_Nil,std::_Nil,std::_Nil,std::_Nil,std::_Nil,std::_Nil,std::_Nil,std::_Nil>,
+                     _V0_t=cocos2d::Label *const ,
+                     _V1_t=const cocos2d::Mat4 &,
+                     _V2_t=uint32_t &,
+                     _V3_t=std::_Nil,
+                     _V4_t=std::_Nil,
+                     _V5_t=std::_Nil,
+                     _V6_t=std::_Nil,
+                     _V7_t=std::_Nil,
+                     _V8_t=std::_Nil,
+                     _V9_t=std::_Nil,
+                     _V10_t=std::_Nil,
+                     <unnamed-symbol>=std::_Nil
+                 ]
+         CCLayer.cpp
+         CCMenu.cpp
+         CCMenuItem.cpp
+         CCMotionStreak.cpp
+         CCNode.cpp
+         CCNodeGrid.cpp
+         CCParallaxNode.cpp
+         CCParticleBatchNode.cpp
+         CCParticleExamples.cpp
+         CCParticleSystem.cpp
+         CCParticleSystemQuad.cpp
+         CCProgressTimer.cpp
+         CCRenderTexture.cpp
+         CCScene.cpp
+         CCSprite.cpp
+         CCSpriteBatchNode.cpp
+         CCSpriteFrame.cpp
+     1>C:\Work\startup\sghero\sghero\cocos2d\cocos\base/ccUtils.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (CCRenderTexture.cpp)
+         CCSpriteFrameCache.cpp
+         CCTextFieldTTF.cpp
+         CCTileMapAtlas.cpp
+         CCTMXLayer.cpp
+         CCTMXObjectGroup.cpp
+         CCTMXTiledMap.cpp
+         CCTMXXMLParser.cpp
+         CCTransition.cpp
+         CCTransitionPageTurn.cpp
+         CCTransitionProgress.cpp
+         CCTweenFunction.cpp
+       PreLinkEvent:
+         if not exist "C:\Work\startup\sghero\sghero\proj.win32\Debug.win32\" mkdir "C:\Work\startup\sghero\sghero\proj.win32\Debug.win32\"
+         xcopy /Y /Q "C:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\external\freetype2\prebuilt\win32\*.*" "C:\Work\startup\sghero\sghero\proj.win32\Debug.win32\"
+         xcopy /Y /Q "C:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\external\glfw3\prebuilt\win32\*.*" "C:\Work\startup\sghero\sghero\proj.win32\Debug.win32\"
+         xcopy /Y /Q "C:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\external\curl\prebuilt\win32\*.*" "C:\Work\startup\sghero\sghero\proj.win32\Debug.win32\"
+         xcopy /Y /Q "C:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\external\jpeg\prebuilt\win32\*.*" "C:\Work\startup\sghero\sghero\proj.win32\Debug.win32\"
+         xcopy /Y /Q "C:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\external\png\prebuilt\win32\*.*" "C:\Work\startup\sghero\sghero\proj.win32\Debug.win32\"
+         xcopy /Y /Q "C:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\external\tiff\prebuilt\win32\*.*" "C:\Work\startup\sghero\sghero\proj.win32\Debug.win32\"
+         xcopy /Y /Q "C:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\external\webp\prebuilt\win32\*.*" "C:\Work\startup\sghero\sghero\proj.win32\Debug.win32\"
+         xcopy /Y /Q "C:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\external\websockets\prebuilt\win32\*.*" "C:\Work\startup\sghero\sghero\proj.win32\Debug.win32\"
+         xcopy /Y /Q "C:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\external\win32-specific\zlib\prebuilt\*.*" "C:\Work\startup\sghero\sghero\proj.win32\Debug.win32\"
+         xcopy /Y /Q "C:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\external\win32-specific\icon\prebuilt\*.*" "C:\Work\startup\sghero\sghero\proj.win32\Debug.win32\"
+         xcopy /Y /Q "C:\Work\startup\sghero\sghero\cocos2d\cocos\2d\..\..\external\win32-specific\gles\prebuilt\*.*" "C:\Work\startup\sghero\sghero\proj.win32\Debug.win32\"
+         
+         :VCEnd
+         1 File(s) copied
+         1 File(s) copied
+         2 File(s) copied
+         1 File(s) copied
+         1 File(s) copied
+         2 File(s) copied
+         1 File(s) copied
+         2 File(s) copied
+         2 File(s) copied
+         2 File(s) copied
+         2 File(s) copied
+       Lib:
+         C:\Program Files\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"C:\Work\startup\sghero\sghero\proj.win32\Debug.win32\libcocos2d.lib" /NOLOGO Debug.win32\ConvertUTF.obj
+         Debug.win32\ConvertUTFWrapper.obj
+         Debug.win32\edtaa3func.obj
+         Debug.win32\tinyxml2.obj
+         Debug.win32\ioapi.obj
+         Debug.win32\unzip.obj
+         Debug.win32\xxhash.obj
+         Debug.win32\CCAnimate3D.obj
+         Debug.win32\CCAnimation3D.obj
+         Debug.win32\CCBundle3D.obj
+         Debug.win32\CCBundleReader.obj
+         Debug.win32\CCMesh.obj
+         Debug.win32\CCMeshSkin.obj
+         Debug.win32\CCObjLoader.obj
+         Debug.win32\CCSprite3D.obj
+         Debug.win32\CCSprite3DMaterial.obj
+         Debug.win32\atitc.obj
+         Debug.win32\base64.obj
+         Debug.win32\CCAutoreleasePool.obj
+         Debug.win32\ccCArray.obj
+         Debug.win32\CCConfiguration.obj
+         Debug.win32\CCConsole.obj
+         Debug.win32\CCData.obj
+         Debug.win32\CCDataVisitor.obj
+         Debug.win32\CCDirector.obj
+         Debug.win32\CCEvent.obj
+         Debug.win32\CCEventAcceleration.obj
+         Debug.win32\CCEventCustom.obj
+         Debug.win32\CCEventDispatcher.obj
+         Debug.win32\CCEventFocus.obj
+         Debug.win32\CCEventKeyboard.obj
+         Debug.win32\CCEventListener.obj
+         Debug.win32\CCEventListenerAcceleration.obj
+         Debug.win32\CCEventListenerCustom.obj
+         Debug.win32\CCEventListenerFocus.obj
+         Debug.win32\CCEventListenerKeyboard.obj
+         Debug.win32\CCEventListenerMouse.obj
+         Debug.win32\CCEventListenerTouch.obj
+         Debug.win32\CCEventMouse.obj
+         Debug.win32\CCEventTouch.obj
+         Debug.win32\ccFPSImages.obj
+         Debug.win32\CCIMEDispatcher.obj
+         Debug.win32\CCNS.obj
+         Debug.win32\CCProfiling.obj
+         Debug.win32\CCRef.obj
+         Debug.win32\CCScheduler.obj
+         Debug.win32\CCScriptSupport.obj
+         Debug.win32\CCTouch.obj
+         Debug.win32\ccTypes.obj
+         Debug.win32\CCUserDefault.obj
+         Debug.win32\ccUTF8.obj
+         Debug.win32\ccUtils.obj
+         Debug.win32\CCValue.obj
+         Debug.win32\etc1.obj
+         Debug.win32\ObjectFactory.obj
+         Debug.win32\s3tc.obj
+         Debug.win32\TGAlib.obj
+         Debug.win32\ZipUtils.obj
+         Debug.win32\cocos2d.obj
+         Debug.win32\CCArray.obj
+         Debug.win32\CCDeprecated.obj
+         Debug.win32\CCDictionary.obj
+         Debug.win32\CCNotificationCenter.obj
+         Debug.win32\CCSet.obj
+         Debug.win32\CCString.obj
+         Debug.win32\CCAffineTransform.obj
+         Debug.win32\CCGeometry.obj
+         Debug.win32\CCVertex.obj
+         Debug.win32\Mat4.obj
+         Debug.win32\MathUtil.obj
+         Debug.win32\Quaternion.obj
+         Debug.win32\TransformUtils.obj
+         Debug.win32\Vec2.obj
+         Debug.win32\Vec3.obj
+         Debug.win32\Vec4.obj
+         Debug.win32\CCPhysicsBody.obj
+         Debug.win32\CCPhysicsContact.obj
+         Debug.win32\CCPhysicsJoint.obj
+         Debug.win32\CCPhysicsShape.obj
+         Debug.win32\CCPhysicsWorld.obj
+         Debug.win32\CCPhysicsBodyInfo_chipmunk.obj
+         Debug.win32\CCPhysicsContactInfo_chipmunk.obj
+         Debug.win32\CCPhysicsJointInfo_chipmunk.obj
+         Debug.win32\CCPhysicsShapeInfo_chipmunk.obj
+         Debug.win32\CCPhysicsWorldInfo_chipmunk.obj
+         Debug.win32\CCFileUtils.obj
+         Debug.win32\CCGLViewProtocol.obj
+         Debug.win32\CCImage.obj
+         Debug.win32\CCSAXParser.obj
+         Debug.win32\CCThread.obj
+         Debug.win32\CCGLView.obj
+         Debug.win32\CCApplication.obj
+         Debug.win32\CCCommon.obj
+         Debug.win32\CCDevice.obj
+         Debug.win32\CCFileUtilsWin32.obj
+         Debug.win32\CCStdC.obj
+         Debug.win32\CCBatchCommand.obj
+         Debug.win32\CCCustomCommand.obj
+         Debug.win32\CCGLProgram.obj
+         Debug.win32\CCGLProgramCache.obj
+         Debug.win32\CCGLProgramState.obj
+         Debug.win32\CCGLProgramStateCache.obj
+         Debug.win32\ccGLStateCache.obj
+         Debug.win32\CCGroupCommand.obj
+         Debug.win32\CCMeshCommand.obj
+         Debug.win32\CCQuadCommand.obj
+         Debug.win32\CCRenderCommand.obj
+         Debug.win32\CCRenderer.obj
+         Debug.win32\ccShaders.obj
+         Debug.win32\CCTexture2D.obj
+         Debug.win32\CCTextureAtlas.obj
+         Debug.win32\CCTextureCache.obj
+         Debug.win32\CCAction.obj
+         Debug.win32\CCActionCamera.obj
+         Debug.win32\CCActionCatmullRom.obj
+         Debug.win32\CCActionEase.obj
+         Debug.win32\CCActionGrid.obj
+         Debug.win32\CCActionGrid3D.obj
+         Debug.win32\CCActionInstant.obj
+         Debug.win32\CCActionInterval.obj
+         Debug.win32\CCActionManager.obj
+         Debug.win32\CCActionPageTurn3D.obj
+         Debug.win32\CCActionProgressTimer.obj
+         Debug.win32\CCActionTiledGrid.obj
+         Debug.win32\CCActionTween.obj
+         Debug.win32\CCAnimation.obj
+         Debug.win32\CCAnimationCache.obj
+         Debug.win32\CCAtlasNode.obj
+         Debug.win32\CCClippingNode.obj
+         Debug.win32\CCComponent.obj
+         Debug.win32\CCComponentContainer.obj
+         Debug.win32\CCDrawingPrimitives.obj
+         Debug.win32\CCDrawNode.obj
+         Debug.win32\CCFastTMXLayer.obj
+         Debug.win32\CCFastTMXTiledMap.obj
+         Debug.win32\CCFont.obj
+         Debug.win32\CCFontAtlas.obj
+         Debug.win32\CCFontAtlasCache.obj
+         Debug.win32\CCFontCharMap.obj
+         Debug.win32\CCFontFNT.obj
+         Debug.win32\CCFontFreeType.obj
+         Debug.win32\CCGLBufferedNode.obj
+         Debug.win32\CCGrabber.obj
+         Debug.win32\CCGrid.obj
+         Debug.win32\CCLabel.obj
+         Debug.win32\CCLabelAtlas.obj
+         Debug.win32\CCLabelBMFont.obj
+         Debug.win32\CCLabelTextFormatter.obj
+         Debug.win32\CCLabelTTF.obj
+         Debug.win32\CCLayer.obj
+         Debug.win32\CCMenu.obj
+         Debug.win32\CCMenuItem.obj
+         Debug.win32\CCMotionStreak.obj
+         Debug.win32\CCNode.obj
+         Debug.win32\CCNodeGrid.obj
+         Debug.win32\CCParallaxNode.obj
+         Debug.win32\CCParticleBatchNode.obj
+         Debug.win32\CCParticleExamples.obj
+         Debug.win32\CCParticleSystem.obj
+         Debug.win32\CCParticleSystemQuad.obj
+         Debug.win32\CCProgressTimer.obj
+         Debug.win32\CCRenderTexture.obj
+         Debug.win32\CCScene.obj
+         Debug.win32\CCSprite.obj
+         Debug.win32\CCSpriteBatchNode.obj
+         Debug.win32\CCSpriteFrame.obj
+         Debug.win32\CCSpriteFrameCache.obj
+         Debug.win32\CCTextFieldTTF.obj
+         Debug.win32\CCTileMapAtlas.obj
+         Debug.win32\CCTMXLayer.obj
+         Debug.win32\CCTMXObjectGroup.obj
+         Debug.win32\CCTMXTiledMap.obj
+         Debug.win32\CCTMXXMLParser.obj
+         Debug.win32\CCTransition.obj
+         Debug.win32\CCTransitionPageTurn.obj
+         Debug.win32\CCTransitionProgress.obj
+         Debug.win32\CCTweenFunction.obj
+         cocos2d.vcxproj -> C:\Work\startup\sghero\sghero\proj.win32\Debug.win32\libcocos2d.lib
+     1>已完成生成项目“C:\Work\startup\sghero\sghero\cocos2d\cocos\2d\cocos2d.vcxproj”(Build 个目标)的操作。
 
 生成成功。
 
-已用时间 00:00:00.23
+已用时间 00:04:45.90
