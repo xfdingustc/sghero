@@ -24,14 +24,9 @@ void SGSHero::attackActionFinished(Node* hero, void* ptr)
 
 void SGSHero::attackHero(SGSHero* defense_hero)
 {
-  // attack
-  setDirection(getRelativeDirection(defense_hero));
-  Animate* attack_animate = this->getAttackAnimate();
-  __CCCallFuncND * funcall= __CCCallFuncND::create(this, callfuncND_selector(SGSHero::attackActionFinished, this), defense_hero);
-  FiniteTimeAction* attackWithCallback = Sequence::create(attack_animate, funcall, NULL);
-  this->stopAllActions();
-  this->runAction(attackWithCallback);
-  defense_hero->doAction("attacked");
+  SGMessage* message = new SGMessage(kWhatAttack, this);
+  message->setPtr("defender", defense_hero);
+  message->post();
 }
 
 void SGSHero::counterAttackFinished(Node* hero, void* ptr)
@@ -87,6 +82,8 @@ bool SGSHero::init(const char* hero_name, HERO_SIDE side)
   __status = HERO_STATUS_NORMAL;
   __ai = HERO_AI_ATTACK;
   initDataNum();
+
+  scheduleUpdate();
   return true;
   
 }
@@ -695,7 +692,44 @@ void SGSHero::setDirection(HERO_DIRECTION direction)
 
 }
 
+void SGSHero::handleMessage(SGMessage* message)
+{
+  unsigned int what = message->what();
+  switch (what)
+  {
+  case kWhatAttack:
+    onAttack(message);
+    break;
+  default:
+    break;
+  }
+}
 
+void SGSHero::onAttack(SGMessage* message)
+{
+  // attack
+  SGSHero* hero;
+  SGSHero** defender = &hero;
+  message->getPtr("defender", (void**)(defender));
+  setDirection(getRelativeDirection(*defender));
+  Animate* attack_animate = this->getAttackAnimate();
+  __CCCallFuncND * funcall= __CCCallFuncND::create(this, callfuncND_selector(SGSHero::attackActionFinished, this), *defender);
+  FiniteTimeAction* attackWithCallback = Sequence::create(attack_animate, funcall, NULL);
+  this->stopAllActions();
+  this->runAction(attack_animate);
+  //defense_hero->doAction("attacked");
+}
+
+void SGSHero::update(float dt)
+{
+  if (__msg_list.size() == 0) {
+    return;
+  }
+
+  SGMessage* message = __msg_list.front();
+  handleMessage(message);
+
+}
 void SGSHero::updataSprite()
 {
   faceTo(__direction);

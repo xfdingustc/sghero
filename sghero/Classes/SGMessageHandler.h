@@ -11,7 +11,7 @@ public:
   virtual ~SGMessageHandler();
   void postMessage(SGMessage* message);
 
-private:
+protected:
   std::list<SGMessage*> __msg_list;
 };
 

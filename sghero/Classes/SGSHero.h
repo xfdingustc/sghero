@@ -2,13 +2,14 @@
 #define SG_SKIRMISH_SCENE_HERO_H
 
 #include "cocos2d.h"
+#include "SGMessageHandler.h"
 #include "SGSObj.h"
 USING_NS_CC;
 
 typedef std::function<void()> SGSHeroActionFinishedCallback;
 
 class SGSTerrain;
-class SGSHero : public SGSObj 
+class SGSHero : public SGSObj, public SGMessageHandler
 {
 public:
   typedef enum {
@@ -107,7 +108,7 @@ public:
   void            setStatus(HERO_STATUS status);
   void            setTerrain(SGSTerrain* terrain) { __terrain = terrain; };
 
-
+  void            update(float dt);
 
   SGSPoint        __previous_map_position;
 
@@ -115,6 +116,15 @@ private:
   typedef std::map<std::string, Animate*> ANIMATE_MAP;
   HERO_DIRECTION  getDirection(const char* direction);
   std::string&    getHeroResFile(const char* res_dir);
+  
+
+  enum {
+    kWhatAttack,
+    kWhatDefensed,
+  };
+  void            handleMessage(SGMessage* message);
+
+  void            onAttack(SGMessage* message);
 
   void            updataSprite(); 
   HERO_AI         __ai;

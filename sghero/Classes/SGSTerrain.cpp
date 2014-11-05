@@ -80,13 +80,15 @@ SGSPointList& SGSTerrain::calcHeroAvailabePath(SGSHero* hero)
           open_list.push_back(temp_move);
         } else if(isInStepList(temp_move, open_list)) { // in Open list
           StepList::iterator iter;
-          for (iter = open_list.begin(); iter != open_list.end(); iter++) {
-            Step one_step_in_openlist = *iter;
-            if (one_step_in_openlist.__pos == temp_move.__pos) {
-              if (one_step_in_openlist.__stamina < temp_move.__stamina) {
-                open_list.remove(one_step_in_openlist);
-                open_list.push_back(temp_move);
-                log("replace open list x = %d y = %d", temp_move.__pos.x, temp_move.__pos.y);
+          if (open_list.size()) {
+            for (iter = open_list.begin(); iter != open_list.end(); iter++) {
+              Step one_step_in_openlist = *iter;
+              if (one_step_in_openlist.__pos == temp_move.__pos) {
+                if (one_step_in_openlist.__stamina < temp_move.__stamina) {
+                  open_list.remove(one_step_in_openlist);
+                  open_list.push_back(temp_move);
+                  log("replace open list x = %d y = %d", temp_move.__pos.x, temp_move.__pos.y);
+                }
               }
             }
           }
