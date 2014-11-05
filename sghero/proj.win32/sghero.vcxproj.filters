@@ -113,6 +113,7 @@
     </ClCompile>
     <ClCompile Include="..\Classes\SGWeaponRepo.cpp">
       <Filter>Classes\SGWeapon</Filter>
+    </ClCompile>
     <ClCompile Include="..\Classes\SGMessage.cpp">
       <Filter>Classes\SGUtils</Filter>
     </ClCompile>
@@ -219,6 +220,7 @@
     </ClInclude>
     <ClInclude Include="..\Classes\SGWeaponRepo.h">
       <Filter>Classes\SGWeapon</Filter>
+    </ClInclude>
     <ClInclude Include="..\Classes\SGMessage.h">
       <Filter>Classes\SGUtils</Filter>
     </ClInclude>
