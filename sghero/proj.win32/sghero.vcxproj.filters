@@ -113,6 +113,17 @@
     </ClCompile>
     <ClCompile Include="..\Classes\SGWeaponRepo.cpp">
       <Filter>Classes\SGWeapon</Filter>
+    <ClCompile Include="..\Classes\SGMessage.cpp">
+      <Filter>Classes\SGUtils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SGValue.cpp">
+      <Filter>Classes\SGUtils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SGMessageHandler.cpp">
+      <Filter>Classes\SGUtils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SGHash.cpp">
+      <Filter>Classes\SGUtils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -208,6 +219,17 @@
     </ClInclude>
     <ClInclude Include="..\Classes\SGWeaponRepo.h">
       <Filter>Classes\SGWeapon</Filter>
+    <ClInclude Include="..\Classes\SGMessage.h">
+      <Filter>Classes\SGUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SGValue.h">
+      <Filter>Classes\SGUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SGMessageHandler.h">
+      <Filter>Classes\SGUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SGHash.h">
+      <Filter>Classes\SGUtils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

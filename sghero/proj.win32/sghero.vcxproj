@@ -137,6 +137,9 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\SGDramaScene.cpp" />
     <ClCompile Include="..\Classes\SGDramaSceneChapterScene.cpp" />
     <ClCompile Include="..\Classes\SGDramaSceneHero.cpp" />
+    <ClCompile Include="..\Classes\SGHash.cpp" />
+    <ClCompile Include="..\Classes\SGMessage.cpp" />
+    <ClCompile Include="..\Classes\SGMessageHandler.cpp" />
     <ClCompile Include="..\Classes\SGObserver.cpp" />
     <ClCompile Include="..\Classes\SGSceneEvent.cpp" />
     <ClCompile Include="..\Classes\SGSceneHeroSpeakScene.cpp" />
@@ -158,6 +161,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\SGSMagicCall.cpp" />
     <ClCompile Include="..\Classes\SGSTerrain.cpp" />
     <ClCompile Include="..\Classes\SGSSwitchScene.cpp" />
+    <ClCompile Include="..\Classes\SGValue.cpp" />
     <ClCompile Include="..\Classes\SGWeaponBase.cpp" />
     <ClCompile Include="..\Classes\SGWeaponRepo.cpp" />
     <ClCompile Include="..\Classes\SGWelcomeScene.cpp" />
@@ -167,6 +171,9 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\SGDramaScene.h" />
     <ClInclude Include="..\Classes\SGDramaSceneChapterScene.h" />
+    <ClInclude Include="..\Classes\SGHash.h" />
+    <ClInclude Include="..\Classes\SGMessage.h" />
+    <ClInclude Include="..\Classes\SGMessageHandler.h" />
     <ClInclude Include="..\Classes\SGObserver.h" />
     <ClInclude Include="..\Classes\SGSceneEvent.h" />
     <ClInclude Include="..\Classes\SGSceneHeroSpeakScene.h" />
@@ -191,6 +198,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\SGSStrategyStay.h" />
     <ClInclude Include="..\Classes\SGSTerrain.h" />
     <ClInclude Include="..\Classes\SGSSwitchScene.h" />
+    <ClInclude Include="..\Classes\SGValue.h" />
     <ClInclude Include="..\Classes\SGWeaponBase.h" />
     <ClInclude Include="..\Classes\SGWeaponRepo.h" />
     <ClInclude Include="..\Classes\SGWelcomeScene.h" />
