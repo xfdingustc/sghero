@@ -11,7 +11,7 @@ USING_NS_CC;
 typedef enum {
 	WEAPON_ATTACK = 0,
 	WEAPON_DEFENSE,
-	WEAPON_SPECIAL
+	WEAPON_ASSIST
 } WEAPON_ATTR;
 
 typedef enum {
@@ -20,16 +20,36 @@ typedef enum {
 } WEAPON_TYPE;
 
 typedef struct {
-	int	attack;
-	int	defense;
-	int	spirit;
-	int	morale;
-	int	explosive;
-	int	move;
+	int attack;
+	int defense;
+	int spirit;
+	int morale;
+	int explosive;
+	int move;
 	int hpPercent;
-	int	hp;
-	int	mp;
-} WEAPON_PLUS;
+	int hp;
+	int mp;
+} Weapon_Plus;
+
+typedef struct {
+	std::string name;
+	std::string category;
+	std::string effect;
+	std::string description;
+	WEAPON_ATTR attribute;
+	WEAPON_TYPE type;
+	int corps_avail_1;
+	int corps_avail_2;
+	std::vector<int> attack;
+	std::vector<int> defense;
+	std::vector<int> spirit;
+	std::vector<int> morale;
+	std::vector<int> explosive;
+	std::vector<int> move;
+	std::vector<int> hpPercent;
+	std::vector<int> hp;
+	std::vector<int> mp;
+} Weapon_Full_Info;
 
 static int common_growth_curve[3] = {150, 150, 150};
 static int super_growth_curve[9] = {150, 150, 150, 200, 200, 200, 250, 250, 250};
@@ -37,23 +57,24 @@ static int super_growth_curve[9] = {150, 150, 150, 200, 200, 200, 250, 250, 250}
 class SGWeaponBase : public Sprite {
 public:
 	explicit SGWeaponBase(int level = 0) { __level = level;}
-	static SGWeaponBase* Create(const char* weapon_name);
+	static SGWeaponBase* Create(const char* weapon_name, int level = 0);
 	bool init(const char* weapon_name);
-	int updateWeaponParamsFromRepo(int level);
-	WEAPON_ATTR getAttribute() { return __attribute; }
-	WEAPON_PLUS* getPlus()	{ return __plus_table.at(__level);}
+	int loadWeaponParamsFromRepo();
+	std::string getName() { return __info.name; }
+	std::string getCategory() { return __info.category; }
+	std::string getDescription() { return __info.description; }
+	//std::string getEffect();		//TODO: Sometimes this has to be customized according to the plus value.
+	WEAPON_ATTR getAttribute() { return __info.attribute; }
+	WEAPON_TYPE getType() { return __info.type; }
+	int getLevel() { return __level; }
+	int getExp() { return __exp; }
+	void getCurrentWeaponPlus(Weapon_Plus *pPlus);
 	void incExp(int value);
 
 private:
-	std::string		__name;
-	std::string		__effect;
-	std::string		__description;
-	std::string		__class;
-	unsigned int	__level;
-	unsigned int	__exp;
-	WEAPON_TYPE		__type;
-	WEAPON_ATTR		__attribute;
-	std::vector<WEAPON_PLUS *>	__plus_table;
+	Weapon_Full_Info __info;
+	unsigned int __exp;
+	unsigned int __level;
 };
 
 #endif

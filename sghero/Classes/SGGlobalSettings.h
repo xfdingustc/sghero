@@ -11,6 +11,7 @@
 #define MENU_ITEM_TEXT_JSON_FILE "Menu.json"
 #define INFO_TEXT_JSON_FILE "Info.json"
 #define HERO_INFO_TEXT_JSON_FILE "HeroInfoText.json"
+#define WEAPON_REPO_TEXT_JSON_FILE "WeaponInfoText.json"
 
 #define SG_DRAMA_SCENE_HERO_RES_PATH "DramaSceneObjects/"
 #define SG_HERO_FACE_RES_PATH "HeroFaces/"
@@ -19,7 +20,7 @@
 #define SG_SKIRMISH_SCENE_HERO_SPEC_RES_PATH "HeroSpecAction/"
 #define SG_SKIRMISH_SCENE_OBJ_RES_PATH "Mark/"
 #define SG_SKIRMISH_SCENE_MAGIC_CALL_RES_PATH "Magic/"
-
+#define SG_WEAPON_REPO_RES_PATH "WeaponRepo/"
 #define SG_SKIRMISH_SCENE_HERO_WALK_RES_WIDTH 48
 #define SG_SKIRMISH_SCENE_HERO_WALK_RES_HEIGHT 48
 

@@ -111,6 +111,9 @@
     <ClCompile Include="..\Classes\SGWeaponBase.cpp">
       <Filter>Classes\SGWeapon</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\SGWeaponRepo.cpp">
+      <Filter>Classes\SGWeapon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -201,6 +204,9 @@
       <Filter>Classes\SGSkirmishScene</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\SGWeaponBase.h">
+      <Filter>Classes\SGWeapon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SGWeaponRepo.h">
       <Filter>Classes\SGWeapon</Filter>
     </ClInclude>
   </ItemGroup>

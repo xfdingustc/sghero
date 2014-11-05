@@ -159,6 +159,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\SGSTerrain.cpp" />
     <ClCompile Include="..\Classes\SGSSwitchScene.cpp" />
     <ClCompile Include="..\Classes\SGWeaponBase.cpp" />
+    <ClCompile Include="..\Classes\SGWeaponRepo.cpp" />
     <ClCompile Include="..\Classes\SGWelcomeScene.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -191,6 +192,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\SGSTerrain.h" />
     <ClInclude Include="..\Classes\SGSSwitchScene.h" />
     <ClInclude Include="..\Classes\SGWeaponBase.h" />
+    <ClInclude Include="..\Classes\SGWeaponRepo.h" />
     <ClInclude Include="..\Classes\SGWelcomeScene.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
