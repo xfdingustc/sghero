@@ -1,6 +1,7 @@
 #include "SGWeaponRepo.h"
 #include "SGGlobalSettings.h"
 #include <vector>
+#include <stdlib.h>
 
 USING_NS_CC;
 
@@ -61,9 +62,11 @@ Weapon_Full_Info *SGWeaponRepo::loadWeaponItemInfo(std::string name) {
 
 void SGWeaponRepo::registerToWeaponRepo(Weapon_Full_Info *wp_info, const rapidjson::Value &item) {
 	wp_info->name = item["Name"].GetString();
-	wp_info->attribute = static_cast<WEAPON_ATTR>(item["Attr"].GetInt()); 
 	wp_info->effect = item["Effect"].GetString();
 	wp_info->description = item["Description"].GetString();
+	//wp_info->corps_avail_1 = strtol(item["CorpsAvailable1"].GetString(), NULL, 16);
+	//wp_info->corps_avail_2 = strtol(item["CorpsAvailable2"].GetString(), NULL, 16);
+	wp_info->attribute = static_cast<WEAPON_ATTR>(item["Attr"].GetInt()); 
 
 	if (item.HasMember("Type")) {
 		wp_info->type = static_cast<WEAPON_TYPE>(item["Type"].GetInt());
@@ -92,6 +95,7 @@ void SGWeaponRepo::registerToWeaponRepo(Weapon_Full_Info *wp_info, const rapidjs
 			wp_info->hpPercent.push_back(curve[i].GetInt());
 		}
 	}
+	
 	__all_weapons.push_back(wp_info);
 }
 

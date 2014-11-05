@@ -22,7 +22,7 @@ bool SGWeaponBase::init(const char* weapon_name) {
 		return false;
 	}
 
-	__info.name = weapon_name;
+	__name = weapon_name;
 	__exp = 0;
 	loadWeaponParamsFromRepo();
 
@@ -38,22 +38,21 @@ int SGWeaponBase::loadWeaponParamsFromRepo() {
 		return -1;
 	}
 
-	pWeaponItemFull = pRepo->loadWeaponItemInfo(__info.name);
-	__info = *pWeaponItemFull;
+	__pInfo = pRepo->loadWeaponItemInfo(__name);
 
 	return 0;
 }
 
 void SGWeaponBase::getCurrentWeaponPlus(Weapon_Plus *pPlus) {
-	pPlus->attack = __info.attack.at(__level);
-	pPlus->defense = __info.defense.at(__level);
-	pPlus->spirit = __info.spirit.at(__level);
-	pPlus->morale = __info.morale.at(__level);
-	pPlus->explosive = __info.explosive.at(__level);
-	pPlus->move = __info.move.at(__level);
-	pPlus->hpPercent = __info.hpPercent.at(__level);
-	pPlus->hp = __info.hp.at(__level);
-	pPlus->mp = __info.mp.at(__level);
+	pPlus->attack = __pInfo->attack.at(__level);
+	pPlus->defense = __pInfo->defense.at(__level);
+	pPlus->spirit = __pInfo->spirit.at(__level);
+	pPlus->morale = __pInfo->morale.at(__level);
+	pPlus->explosive = __pInfo->explosive.at(__level);
+	pPlus->move = __pInfo->move.at(__level);
+	pPlus->hpPercent = __pInfo->hpPercent.at(__level);
+	pPlus->hp = __pInfo->hp.at(__level);
+	pPlus->mp = __pInfo->mp.at(__level);
 
 	return;
 }
@@ -62,16 +61,16 @@ void SGWeaponBase::incExp(int value) {
 	int topLevel = 0;
 	unsigned int levelExpMax = 0;
 
-	if(__info.type == WEAPON_COMMON) {
+	if(__pInfo->type == WEAPON_COMMON) {
 		topLevel = 3;
 		levelExpMax = common_growth_curve[__level];
-	} else if(__info.type = WEAPON_SUPER) {
+	} else if(__pInfo->type = WEAPON_SUPER) {
 		topLevel = 9;
 		levelExpMax = super_growth_curve[__level];
 	}
 
 	if(__level == topLevel && __exp == levelExpMax) {
-		log("Weapon %s has reached the level's up limit!", __info.name.c_str());
+		log("Weapon %s has reached the level's up limit!", __pInfo->name.c_str());
 		return;
 	}
 	__exp += value;

@@ -60,19 +60,20 @@ public:
 	static SGWeaponBase* Create(const char* weapon_name, int level = 0);
 	bool init(const char* weapon_name);
 	int loadWeaponParamsFromRepo();
-	std::string getName() { return __info.name; }
-	std::string getCategory() { return __info.category; }
-	std::string getDescription() { return __info.description; }
+	std::string getName() { return __pInfo->name; }
+	std::string getCategory() { return __pInfo->category; }
+	std::string getDescription() { return __pInfo->description; }
 	//std::string getEffect();		//TODO: Sometimes this has to be customized according to the plus value.
-	WEAPON_ATTR getAttribute() { return __info.attribute; }
-	WEAPON_TYPE getType() { return __info.type; }
+	WEAPON_ATTR getAttribute() { return __pInfo->attribute; }
+	WEAPON_TYPE getType() { return __pInfo->type; }
 	int getLevel() { return __level; }
 	int getExp() { return __exp; }
 	void getCurrentWeaponPlus(Weapon_Plus *pPlus);
 	void incExp(int value);
 
 private:
-	Weapon_Full_Info __info;
+	Weapon_Full_Info *__pInfo;
+	std::string __name;
 	unsigned int __exp;
 	unsigned int __level;
 };
