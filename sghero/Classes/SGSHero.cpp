@@ -3,6 +3,7 @@
 #include "SGGlobalSettings.h"
 #include "SGSkirmishScene.h"
 #include "SGSStrategy.h"
+#include "SGWeaponBase.h"
 
 SGSHeroActionFinishedCallback SGSHero::__action_finished_callback;
 
@@ -78,7 +79,11 @@ bool SGSHero::init(const char* hero_name, HERO_SIDE side)
 
   // init category
   initCategory();
-  
+
+	/* For Test Weapon Repo Purpose Only */
+  SGWeaponBase *pDefArm = SGWeaponBase::Create("·ï»ËÓðÒÂ", 0);
+	/* Test case ends */
+	
   __status = HERO_STATUS_NORMAL;
   __ai = HERO_AI_ATTACK;
   initDataNum();

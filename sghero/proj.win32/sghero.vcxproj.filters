@@ -233,6 +233,9 @@
     <ClInclude Include="..\Classes\SGHash.h">
       <Filter>Classes\SGUtils</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\SGCorpsType.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
