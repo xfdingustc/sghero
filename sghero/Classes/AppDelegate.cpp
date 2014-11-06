@@ -1,7 +1,9 @@
 #include "AppDelegate.h"
 #include "SGWelcomeScene.h"
+#include "CCLuaEngine.h"
 #include "SGGlobalSettings.h"
 
+using namespace CocosDenshion;
 USING_NS_CC;
 
 AppDelegate::AppDelegate() {
@@ -27,6 +29,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0 / 60);
+
+    // register lua engine
+    LuaEngine* pEngine = LuaEngine::getInstance();
 
     // create a scene. it's an autorelease object
     auto scene = SGWelcomeScene::createScene();
