@@ -718,11 +718,8 @@ void SGSHero::onAttack(SGMessage* message)
   message->getPtr("defender", (void**)(defender));
   setDirection(getRelativeDirection(*defender));
   Animate* attack_animate = this->getAttackAnimate();
-  __CCCallFuncND * funcall= __CCCallFuncND::create(this, callfuncND_selector(SGSHero::attackActionFinished, this), *defender);
-  FiniteTimeAction* attackWithCallback = Sequence::create(attack_animate, funcall, NULL);
   this->stopAllActions();
   this->runAction(attack_animate);
-  //defense_hero->doAction("attacked");
 }
 
 void SGSHero::update(float dt)
@@ -733,6 +730,8 @@ void SGSHero::update(float dt)
 
   SGMessage* message = __msg_list.front();
   handleMessage(message);
+  delete message;
+  __msg_list.pop_front();
 
 }
 void SGSHero::updataSprite()
