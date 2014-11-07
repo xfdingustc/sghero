@@ -134,6 +134,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
+    <ClCompile Include="..\Classes\SGCorpsRepo.cpp" />
     <ClCompile Include="..\Classes\SGDramaScene.cpp" />
     <ClCompile Include="..\Classes\SGDramaSceneChapterScene.cpp" />
     <ClCompile Include="..\Classes\SGDramaSceneHero.cpp" />
@@ -169,6 +170,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
+    <ClInclude Include="..\Classes\SGCorpsRepo.h" />
     <ClInclude Include="..\Classes\SGCorpsType.h" />
     <ClInclude Include="..\Classes\SGDramaScene.h" />
     <ClInclude Include="..\Classes\SGDramaSceneChapterScene.h" />
