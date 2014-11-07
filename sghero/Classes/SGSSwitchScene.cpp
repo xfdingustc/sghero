@@ -65,6 +65,7 @@ bool SGSSwitchScene::init()
 
   // add touch event handler:
   scheduleOnce(schedule_selector(SGSSwitchScene::exitScene), 3.0f);
+  return true;
 }
 
 void SGSSwitchScene::exitScene(float dt)

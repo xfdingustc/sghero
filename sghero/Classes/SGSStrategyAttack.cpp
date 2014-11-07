@@ -1,7 +1,7 @@
 #include "SGSStrategyAttack.h"
+#include "CCLuaEngine.h"
 
-
-
+using namespace CocosDenshion;
 
 
 SGSHeroList* SGSStrategyAttack::findAssaultableEnemyHeroes(SGSHero* hero)
@@ -92,12 +92,16 @@ SGSHero* SGSStrategyAttack::getBestAssaultHero(SGSHero* hero)
 
 bool SGSStrategyAttack::oneMove(SGSHero* hero)
 {
+
   SGSHero* best_assaultable_hero = getBestAssaultHero(hero);
   if (best_assaultable_hero) {
     log("%s is going to attack %s ", hero->getName().c_str(), best_assaultable_hero->getName().c_str());
     SGSPoint best_attacked_point = findBestAttackPoint(hero, best_assaultable_hero);
     hero->moveTo(best_attacked_point);
-    hero->attackHero(best_assaultable_hero);
+
+    LuaEngine* pEngine = LuaEngine::getInstance();
+    pEngine->executeGlobalFunction("HeroAttack");
+
     return false;
   } else {
     return true;

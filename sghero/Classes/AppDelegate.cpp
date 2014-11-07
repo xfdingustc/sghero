@@ -4,6 +4,7 @@
 #include "SGGlobalSettings.h"
 
 using namespace CocosDenshion;
+using namespace std;
 USING_NS_CC;
 
 AppDelegate::AppDelegate() {
@@ -32,6 +33,11 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     // register lua engine
     LuaEngine* pEngine = LuaEngine::getInstance();
+    ScriptEngineManager::getInstance()->setScriptEngine(pEngine);
+    pEngine->addSearchPath(SG_LUA_SCRIPTS_PATH);
+    
+    
+    pEngine->executeScriptFile("init_sg.lua");
 
     // create a scene. it's an autorelease object
     auto scene = SGWelcomeScene::createScene();
