@@ -40,6 +40,7 @@ typedef struct {
 	WEAPON_TYPE type;
 	int corps_avail_1;
 	int corps_avail_2;
+	SpriteFrame* frame;
 	std::vector<int> attack;
 	std::vector<int> defense;
 	std::vector<int> spirit;

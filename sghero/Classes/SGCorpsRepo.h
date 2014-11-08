@@ -14,7 +14,8 @@ public:
 	~SGCorpsRepo();
 	bool initCorpsRepo();
 	Corps_Info *loadCorpsItemInfo(std::string name);
-	//Corps_Info *getCorpsnItemInfoByIdx(CORPS_GROUP group, int index);		//TODO: this API may save the time of item search
+	//TODO: this API may save the time of item search
+	//Corps_Info *getCorpsnItemInfoByIdx(CORPS_GROUP group, int index);		
 
 private:
 	static SGCorpsRepo *__pInstance;
