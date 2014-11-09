@@ -1,12 +1,12 @@
 {
 "WeaponList":
 [
-{"Name":"镔铁剑","Attr":0,"Category":"剑","Type":0,"Attack":[120,130,140],"Effect":"攻击力 +<attack>","Description":"钢制剑身长而重的剑，比短剑的威力大。","Price":[500,800,1000],"CorpsAvailable1":"0x0000FFFF","CorpsAvailable2":"0x0FFFFFFF"},
-{"Name":"倚天剑","Attr":0,"Category":"剑","Type":1,"Attack":[24,34,44,54,64,74,84,94,104],"Effect":"攻击力 +<attack>,减轻全伤害 <allharm>","Description":"曹操的两把宝剑之一。此剑锋锐灵动，为匡扶天下的正义之剑。持剑人能借此剑之威势减少自己受到的所有伤害。","CorpsAvailable1":"0x0000FFFF","CorpsAvailable2":"0x0FFFFFFF"},
-{"Name":"古锭刀","Attr":0,"Category":"剑","Type":1,"Attack":[22,32,42,52,62,72,82,92,102],"Effect":"攻击力 +<attack>, MP强化能力 5%","Description":"汉末孙坚的武器，又名松纹古锭刀。此刀经多次铸造，以松纹为饰，将魔力蕴于其中。强化持刀者的攻防力直到持刀者法力耗尽为止，同时以此刀攻击能针对敌方法力上限造成额外伤害。","CorpsAvailable1":"0x0000FFFF","CorpsAvailable2":"0x0FFFFFFF"},
-{"Name":"凤凰羽衣","Attr":1,"Category":"铠甲","Type":1,"Defense":[39,49,59,69,79,89,99,99,99],"HPPercent":[30,30,30,45,45,45,60,60,60],"Effect":"防御力 +<defense>\n每回合恢复HP <hpPercent>","Description":"用神鸟凤凰的羽毛编织成的仙衣。披上后能源源不断从中获得生命力。对于修行深厚的穿戴者，还能让周围的同伴一下享受羽衣的福泽。","CorpsAvailable1":"0x0FFFFFFF","CorpsAvailable2":"0x0FFFFFFF"},
-{"Name":"奇门遁甲","Attr":2,"Effect":"法术模仿","Description":"术士左慈在峨眉山得到的书。","CorpsAvailable1":"0x0FFFFFFF","CorpsAvailable2":"0x0FFFFFFF"},
-{"Name":"丹书铁卷","Attr":2,"Effect":"每回合获得Exp 5","Description":"与赦罪铁契不同，书中内容包罗万象，仿佛永远都学不完。而当你成长到一定程度时，将能把某些宝物的效果发挥到极致。","CorpsAvailable1":"0x0FFFFFFF","CorpsAvailable2":"0x0FFFFFFF"},
-{"Name":"黑金手套","Attr":2,"Effect":"穿透攻击 两格","Description":"以猛虎皮为原料，黑金丝织成的手套。","CorpsAvailable1":"0x0FFFFFFF","CorpsAvailable2":"0x0FFFFFFF"}
+{"Name":"镔铁剑","ResPic":"23-1.png","Attr":0,"Category":"剑","Type":0,"Attack":[120,130,140],"Effect":"攻击力 +<attack>","Description":"钢制剑身长而重的剑，比短剑的威力大。","Price":[500,800,1000],"CorpsAvailable1":"0x0000FFFF","CorpsAvailable2":"0x0FFFFFFF"},
+{"Name":"倚天剑","ResPic":"24-1.png","Attr":0,"Category":"剑","Type":1,"Attack":[24,34,44,54,64,74,84,94,104],"Effect":"攻击力 +<attack>,减轻全伤害 <allharm>","Description":"曹操的两把宝剑之一。此剑锋锐灵动，为匡扶天下的正义之剑。持剑人能借此剑之威势减少自己受到的所有伤害。","CorpsAvailable1":"0x0000FFFF","CorpsAvailable2":"0x0FFFFFFF"},
+{"Name":"古锭刀","ResPic":"25-1.png","Attr":0,"Category":"剑","Type":1,"Attack":[22,32,42,52,62,72,82,92,102],"Effect":"攻击力 +<attack>, MP强化能力 5%","Description":"汉末孙坚的武器，又名松纹古锭刀。此刀经多次铸造，以松纹为饰，将魔力蕴于其中。强化持刀者的攻防力直到持刀者法力耗尽为止，同时以此刀攻击能针对敌方法力上限造成额外伤害。","CorpsAvailable1":"0x0000FFFF","CorpsAvailable2":"0x0FFFFFFF"},
+{"Name":"凤凰羽衣","ResPic":"53-1.png","Attr":1,"Category":"铠甲","Type":1,"Defense":[39,49,59,69,79,89,99,99,99],"HPPercent":[30,30,30,45,45,45,60,60,60],"Effect":"防御力 +<defense>\n每回合恢复HP <hpPercent>","Description":"用神鸟凤凰的羽毛编织成的仙衣。披上后能源源不断从中获得生命力。对于修行深厚的穿戴者，还能让周围的同伴一下享受羽衣的福泽。","CorpsAvailable1":"0x0FFFFFFF","CorpsAvailable2":"0x0FFFFFFF"},
+{"Name":"奇门遁甲","ResPic":"77-1.png","Attr":2,"Effect":"法术模仿","Description":"术士左慈在峨眉山得到的书。","CorpsAvailable1":"0x0FFFFFFF","CorpsAvailable2":"0x0FFFFFFF"},
+{"Name":"丹书铁卷","ResPic":"76-1.png","Attr":2,"Effect":"每回合获得Exp 5","Description":"与赦罪铁契不同，书中内容包罗万象，仿佛永远都学不完。而当你成长到一定程度时，将能把某些宝物的效果发挥到极致。","CorpsAvailable1":"0x0FFFFFFF","CorpsAvailable2":"0x0FFFFFFF"},
+{"Name":"黑金手套","ResPic":"72-1.png","Attr":2,"Effect":"穿透攻击 两格","Description":"以猛虎皮为原料，黑金丝织成的手套。","CorpsAvailable1":"0x0FFFFFFF","CorpsAvailable2":"0x0FFFFFFF"}
 ]
 }

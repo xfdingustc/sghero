@@ -28,7 +28,7 @@ bool SGWeaponRepo::initWeaponRepo() {
 	
 	std::string weapon_repo_json_file = FileUtils::getInstance()->fullPathForFilename(WEAPON_REPO_TEXT_JSON_FILE);
 	std::string json_data = FileUtils::getInstance()->getStringFromFile(weapon_repo_json_file.c_str());
-
+		
 	text_json.Parse<rapidjson::kParseDefaultFlags>(json_data.c_str());
   if (text_json.HasParseError()) {
     log("Parsing weapon info text json file error!! %s", text_json.GetParseError());
@@ -68,6 +68,15 @@ void SGWeaponRepo::registerToWeaponRepo(Weapon_Full_Info *wp_info, const rapidjs
 	//wp_info->corps_avail_2 = strtol(item["CorpsAvailable2"].GetString(), NULL, 16);
 	wp_info->attribute = static_cast<WEAPON_ATTR>(item["Attr"].GetInt()); 
 
+	if(item.HasMember("ResPic")) {
+		std::string weapon_res_name = SG_WEAPON_REPO_RES_PATH;
+		weapon_res_name.append(item["ResPic"].GetString());
+		std::string weapon_item_res_path = 
+			FileUtils::getInstance()->fullPathForFilename(weapon_res_name);
+		wp_info->frame = SpriteFrame::create(weapon_item_res_path, 
+					Rect(0, 0, SG_WEAPON_ITEM_RES_WIDTH, SG_WEAPON_ITEM_RES_HEIGHT));		
+		wp_info->frame->retain();
+	}	
 	if (item.HasMember("Type")) {
 		wp_info->type = static_cast<WEAPON_TYPE>(item["Type"].GetInt());
 	}
