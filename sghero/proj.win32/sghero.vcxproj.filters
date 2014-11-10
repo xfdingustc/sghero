@@ -25,6 +25,9 @@
     <Filter Include="Classes\SGWeapon">
       <UniqueIdentifier>{24360682-4d43-43f9-baf8-b9b579b6f315}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\SGCorps">
+      <UniqueIdentifier>{d72eae05-68e2-4ea1-8c14-9682444d7d28}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -127,7 +130,10 @@
       <Filter>Classes\SGUtils</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\SGCorpsRepo.cpp">
-      <Filter>Classes</Filter>
+      <Filter>Classes\SGCorps</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SGCorpsRange.cpp">
+      <Filter>Classes\SGCorps</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -236,11 +242,14 @@
     <ClInclude Include="..\Classes\SGHash.h">
       <Filter>Classes\SGUtils</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\SGCorpsType.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\SGCorpsRepo.h">
-      <Filter>Classes</Filter>
+      <Filter>Classes\SGCorps</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SGCorpsType.h">
+      <Filter>Classes\SGCorps</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SGCorpsRange.h">
+      <Filter>Classes\SGCorps</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

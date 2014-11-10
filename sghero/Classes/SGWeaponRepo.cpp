@@ -104,6 +104,29 @@ void SGWeaponRepo::registerToWeaponRepo(Weapon_Full_Info *wp_info, const rapidjs
 			wp_info->hpPercent.push_back(curve[i].GetInt());
 		}
 	}
+
+	// Shrink vector to fit
+	wp_info->attack.shrink_to_fit();
+	wp_info->defense.shrink_to_fit();
+	wp_info->spirit.shrink_to_fit();
+	wp_info->morale.shrink_to_fit();
+	wp_info->explosive.shrink_to_fit();
+	wp_info->move.shrink_to_fit();
+	wp_info->hpPercent.shrink_to_fit();
+	wp_info->hp.shrink_to_fit();
+	wp_info->mp.shrink_to_fit();
+	
+	/*
+	std::vector<int>(wp_info->attack).swap(wp_info->attack);
+	std::vector<int>(wp_info->defense).swap(wp_info->defense);
+	std::vector<int>(wp_info->spirit).swap(wp_info->spirit);
+	std::vector<int>(wp_info->morale).swap(wp_info->morale);
+	std::vector<int>(wp_info->explosive).swap(wp_info->explosive);
+	std::vector<int>(wp_info->move).swap(wp_info->move);
+	std::vector<int>(wp_info->hpPercent).swap(wp_info->hpPercent);
+	std::vector<int>(wp_info->hp).swap(wp_info->hp);
+	std::vector<int>(wp_info->mp).swap(wp_info->mp); 
+	*/
 	
 	__all_weapons.push_back(wp_info);
 }

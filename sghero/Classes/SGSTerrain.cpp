@@ -277,7 +277,7 @@ SGSHero* SGSTerrain::findNearestEnemyHero(SGSHero* hero)
     if (hero->isRival(enemy_hero)){
       int hero_distance;
       SGSPoint hero_pos = hero->getMapPosition();
-      SGSPoint enemy_pos = hero->getMapPosition();
+      SGSPoint enemy_pos = enemy_hero->getMapPosition();
       hero_distance = (hero_pos.x - enemy_pos.x) * (hero_pos.x - enemy_pos.x)
                        + (hero_pos.y - enemy_pos.y) * (hero_pos.y - enemy_pos.y);
       if (hero_distance < distance) {
