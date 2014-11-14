@@ -21,6 +21,8 @@ private:
 	static SGWeaponRepo *__pInstance;
 	void registerToWeaponRepo(Weapon_Full_Info *wp_info, const rapidjson::Value &val);
 	std::vector<Weapon_Full_Info*> __all_weapons;
+	std::vector<int> common_growth_curve;
+	std::vector<int> super_growth_curve;
 	rapidjson::Document text_json;
 	
 };

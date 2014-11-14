@@ -11,6 +11,7 @@ public:
 	~SGCorpsAttackRange();
 	bool initAttackRange();
 	SGSPointList *getAttackRange(CORPS_ATTACK_RANGE type) { return &rangeList[static_cast<int>(type)];}
+	
 private:
 	static SGCorpsAttackRange *__pInstance;
 	SGSPointList rangeList[CORPS_RANGE_MAX]; 

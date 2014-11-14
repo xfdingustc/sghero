@@ -34,16 +34,31 @@ bool SGWeaponRepo::initWeaponRepo() {
     log("Parsing weapon info text json file error!! %s", text_json.GetParseError());
     return false;
 	} else if (text_json.IsObject()) {
-		const rapidjson::Value &res_list = text_json["WeaponList"];
-		if (res_list.IsArray()) {
-			for (int i=0; i < res_list.Size(); i++) {
+		const rapidjson::Value &weapon_list = text_json["WeaponList"];
+		if (weapon_list.IsArray()) {
+			for (int i=0; i < weapon_list.Size(); i++) {
 				Weapon_Full_Info *weapon_item = new Weapon_Full_Info;
 				memset(weapon_item, 0, sizeof(Weapon_Full_Info));
-				const rapidjson::Value &item = res_list[i];
+				const rapidjson::Value &item = weapon_list[i];
 				registerToWeaponRepo(weapon_item, item);
 			}
 		}
-	}
+
+		const rapidjson::Value &curve_list = text_json["WeaponGrowthCurve"];
+		if (curve_list.HasMember("Common")) {
+			const rapidjson::Value &curve = curve_list["Common"];
+			for(int i=0; i < curve.Size(); i++) {
+				common_growth_curve.push_back(curve[i].GetInt());
+			}
+		}
+		if (curve_list.HasMember("Super")) {
+			const rapidjson::Value &curve = curve_list["Super"];
+			for(int i=0; i < curve.Size(); i++) {
+				super_growth_curve.push_back(curve[i].GetInt());
+			}
+		}				
+	} 
+	
 	return true;
 }
 
@@ -64,8 +79,8 @@ void SGWeaponRepo::registerToWeaponRepo(Weapon_Full_Info *wp_info, const rapidjs
 	wp_info->name = item["Name"].GetString();
 	wp_info->effect = item["Effect"].GetString();
 	wp_info->description = item["Description"].GetString();
-	//wp_info->corps_avail_1 = strtol(item["CorpsAvailable1"].GetString(), NULL, 16);
-	//wp_info->corps_avail_2 = strtol(item["CorpsAvailable2"].GetString(), NULL, 16);
+	wp_info->corps_avail_1 = strtol(item["CorpsAvailable1"].GetString(), NULL, 16);
+	wp_info->corps_avail_2 = strtol(item["CorpsAvailable2"].GetString(), NULL, 16);
 	wp_info->attribute = static_cast<WEAPON_ATTR>(item["Attr"].GetInt()); 
 
 	if(item.HasMember("ResPic")) {
@@ -79,6 +94,11 @@ void SGWeaponRepo::registerToWeaponRepo(Weapon_Full_Info *wp_info, const rapidjs
 	}	
 	if (item.HasMember("Type")) {
 		wp_info->type = static_cast<WEAPON_TYPE>(item["Type"].GetInt());
+		if (wp_info->type == 0) {
+			wp_info->growth_curve = common_growth_curve;
+		}	else if (wp_info->type == 1) {
+			wp_info->growth_curve = super_growth_curve;
+		}	
 	}
 	if (item.HasMember("Category")) {
 		wp_info->category = item["Category"].GetString();
@@ -106,6 +126,7 @@ void SGWeaponRepo::registerToWeaponRepo(Weapon_Full_Info *wp_info, const rapidjs
 	}
 
 	// Shrink vector to fit
+	wp_info->growth_curve.shrink_to_fit();
 	wp_info->attack.shrink_to_fit();
 	wp_info->defense.shrink_to_fit();
 	wp_info->spirit.shrink_to_fit();
@@ -133,8 +154,10 @@ void SGWeaponRepo::registerToWeaponRepo(Weapon_Full_Info *wp_info, const rapidjs
 
 SGWeaponRepo::~SGWeaponRepo() {
 	for ( std::vector<Weapon_Full_Info*>::iterator iter = __all_weapons.begin(); iter != __all_weapons.end(); iter++) {
-		if (NULL != *iter) 
-		{
+		if (NULL != *iter) {
+			if ((*iter)->frame != NULL) {
+				(*iter)->frame->release();
+			}
 			delete *iter; 
 			*iter = NULL;
 		}	

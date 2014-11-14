@@ -5,6 +5,7 @@
 #include "tinyxml2/tinyxml2.h"
 #include "SGObserver.h"
 #include <vector>
+#include "SGSObj.h"
 
 USING_NS_CC;
 
@@ -50,6 +51,7 @@ typedef struct {
 	std::vector<int> hpPercent;
 	std::vector<int> hp;
 	std::vector<int> mp;
+	std::vector<int> growth_curve;
 } Weapon_Full_Info;
 
 static int common_growth_curve[3] = {150, 150, 150};

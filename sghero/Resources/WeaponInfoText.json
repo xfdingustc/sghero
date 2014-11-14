@@ -1,4 +1,9 @@
 {
+"WeaponGrowthCurve":
+[
+{"Common":[150,150,150],"Super":[150,150,150,200,200,200,250,250]}
+],
+
 "WeaponList":
 [
 {"Name":"镔铁剑","ResPic":"23-1.png","Attr":0,"Category":"剑","Type":0,"Attack":[120,130,140],"Effect":"攻击力 +<attack>","Description":"钢制剑身长而重的剑，比短剑的威力大。","Price":[500,800,1000],"CorpsAvailable1":"0x0000FFFF","CorpsAvailable2":"0x0FFFFFFF"},

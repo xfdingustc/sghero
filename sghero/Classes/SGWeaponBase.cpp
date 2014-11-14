@@ -59,16 +59,16 @@ void SGWeaponBase::getCurrentWeaponPlus(Weapon_Plus *pPlus) {
 
 void SGWeaponBase::incExp(int value) {
 	int topLevel = 0;
-	unsigned int levelExpMax = 0;
+	int levelExpMax = 0;
 
 	if(__pInfo->type == WEAPON_COMMON) {
 		topLevel = 3;
-		levelExpMax = common_growth_curve[__level];
 	} else if(__pInfo->type = WEAPON_SUPER) {
 		topLevel = 9;
-		levelExpMax = super_growth_curve[__level];
 	}
-
+	
+	levelExpMax = __pInfo->growth_curve.at(__level);
+	
 	if(__level == topLevel && __exp == levelExpMax) {
 		log("Weapon %s has reached the level's up limit!", __pInfo->name.c_str());
 		return;
