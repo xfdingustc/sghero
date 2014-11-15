@@ -292,6 +292,22 @@ int LuaStack::executeGlobalFunction(const char* functionName)
     }
     return executeFunction(0);
 }
+int LuaStack::executeGlobalFunction(const char* functionName, int argsNum)
+{  
+
+  lua_getglobal(_state, functionName);       /* query function by name, stack: function */
+  if (!lua_isfunction(_state, -1))
+  {
+    CCLOG("[LUA ERROR] name '%s' does not represent a Lua function", functionName);
+    lua_pop(_state, 1);
+    return 0;
+  }
+  if (argsNum > 0)
+  {
+    lua_insert(_state, -(argsNum + 1));                        /* L: ... func arg1 arg2 ... */
+  }
+  return executeFunction(argsNum);
+}
 
 void LuaStack::clean(void)
 {

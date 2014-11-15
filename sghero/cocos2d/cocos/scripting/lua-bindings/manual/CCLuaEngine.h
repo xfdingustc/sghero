@@ -110,6 +110,7 @@ public:
      @return The integer value returned from the script function.
      */
     virtual int executeGlobalFunction(const char* functionName);
+    virtual int executeGlobalFunction(const char* functionName,int argNum);
 
     virtual int executeNodeEvent(Node* pNode, int nAction);
     virtual int executeMenuItemEvent(MenuItem* pMenuItem);

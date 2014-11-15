@@ -105,6 +105,14 @@ int LuaEngine::executeGlobalFunction(const char* functionName)
     return ret;
 }
 
+int LuaEngine::executeGlobalFunction(const char* functionName, int argNum)
+{
+
+  int ret = _stack->executeGlobalFunction(functionName, argNum);
+  _stack->clean();
+  return ret;
+}
+
 int LuaEngine::executeNodeEvent(Node* pNode, int nAction)
 {
     return 0;
