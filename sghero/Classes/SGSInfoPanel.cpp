@@ -102,7 +102,7 @@ void SGSInfoPanel::showHeroInfo(Layer* layer, SGSHero* hero)
   layer->addChild(force);
 
   std::string force_num;
-  sprintf(number, "%d", hero->getForce());
+  sprintf(number, "%d", hero->getStrength());
   force_num = number;
   Label *force_text = Label::create(force_num,TEXT_FONT_NAME, font_size);
   force_text->setColor(Color3B::BLACK);

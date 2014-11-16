@@ -72,7 +72,7 @@ public:
   SGSPointList*   getAttackAreaFromPosition(Vec2& pos);
   HERO_category   getcategory() { return __category; }
   int             getCommand() { return __command; }
-  int             getForce() { return __force; }
+  int             getStrength() { return __strength; }
   int             getLuck() { return __luck; }
   int             getIntelligence() { return __intelligence; } 
   HERO_DIRECTION  getRelativeDirection(SGSHero* other_hero);
@@ -133,7 +133,7 @@ private:
   HERO_category   __category;
   int             __command;
   HERO_DIRECTION  __direction;
-  int             __force;
+  int             __strength;
   int             __hp;
   int             __hp_max;
   int             __intelligence;
