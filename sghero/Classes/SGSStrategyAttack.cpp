@@ -20,7 +20,7 @@ SGSHeroList* SGSStrategyAttack::findAssaultableEnemyHeroes(SGSHero* hero)
 
   for (walk_area_iter = valid_walk_point_list.begin(); walk_area_iter != valid_walk_point_list.end(); walk_area_iter++) {
     SGSPoint one_valid_move_pos = *walk_area_iter;
-    SGSPointList* attack_area = hero->getAttackAreaFromPosition(Vec2(one_valid_move_pos.x, one_valid_move_pos.y));
+    SGSPointList* attack_area = hero->getAttackAreaFromPosition(&one_valid_move_pos);
     for (attack_area_iter = attack_area->begin(); attack_area_iter != attack_area->end(); attack_area_iter++) {
       SGSPoint one_attack_pos = *attack_area_iter;
       SGSHero* one_hero = __terrain->findHeroByPosition(one_attack_pos);
@@ -55,7 +55,7 @@ SGSPoint& SGSStrategyAttack::findBestAttackPoint(SGSHero* attack_hero, SGSHero* 
   
   for (iter = pos_list.begin(); iter != pos_list.end(); iter++) {
     SGSPoint one_point = *iter;
-    SGSPointList* attack_area = attack_hero->getAttackAreaFromPosition(Vec2(one_point.x, one_point.y));
+    SGSPointList* attack_area = attack_hero->getAttackAreaFromPosition(&one_point);
     SGSPointList::iterator attack_iter;
     for (attack_iter = attack_area->begin(); attack_iter != attack_area->end(); attack_iter++) {
       SGSPoint one_attack_point = *attack_iter;

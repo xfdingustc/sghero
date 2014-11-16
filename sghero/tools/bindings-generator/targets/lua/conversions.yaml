@@ -17,6 +17,7 @@ conversions:
     "@std::vector<int.*>.>": "std::vector<int>"
     "@cocos2d::Map<std::basic_string.*,": "cocos2d::Map<std::string,"
   ns_map:
+    "SGSHero::": "sgshero."
     "cocos2d::experimental::ui::": "ccexp."
     "cocos2d::experimental::": "ccexp."
     "cocos2d::extension::": "cc."
@@ -27,6 +28,8 @@ conversions:
     "cocostudio::": "ccs."
     "cocosbuilder::": "cc."
     "CocosDenshion::": "cc."
+    
+
 
   to_native:
     # lua to native
@@ -74,6 +77,7 @@ conversions:
     "MeshVertexAttrib": "ok &= luaval_to_mesh_vertex_attrib(tolua_S, ${arg_idx}, &${out_value})"
     "@vector<float.*>": "ok &= luaval_to_std_vector_float(tolua_S, ${arg_idx}, &${out_value})"
     "@vector<unsigned short.*>": "ok &= luaval_to_std_vector_ushort(tolua_S, ${arg_idx}, &${out_value})"
+    
 
     object: "ok &= luaval_to_object<${arg.to_string($generator).replace(\"*\", \"\")}>(tolua_S, ${arg_idx}, \"${scriptname}\",&${out_value})"
   from_native:
@@ -124,6 +128,7 @@ conversions:
     "MeshVertexAttrib": "mesh_vertex_attrib_to_luaval(tolua_S, ${in_value})"
     "@vector<float.*>": "ccvector_float_to_luaval(tolua_S, ${in_value})"
     "@vector<unsigned short.*>": "ccvector_ushort_to_luaval(tolua_S, ${in_value})"
+    
 
     object: "object_to_luaval<${ntype.replace(\"*\", \"\").replace(\"const \", \"\")}>(tolua_S, \"${scriptname}\",(${ntype.replace(\"const \", \"\")})${in_value})"
 

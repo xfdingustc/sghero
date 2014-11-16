@@ -126,7 +126,7 @@ def main():
         tolua_root = '%s/tools/tolua' % project_root
         output_dir = '%s/Classes/lua-bindings' % project_root
 
-        cmd_args = {'SGSHero.ini' : ('SGSHero', 'lua_cocos2dx_auto'), \
+        cmd_args = {'SGSHero.ini' : ('SGSHero', 'lua_sgshero_auto'), \
                     }
         target = 'lua'
         generator_py = '%s/generator.py' % cxx_generator_root

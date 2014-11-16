@@ -71,7 +71,7 @@ public:
   HERO_AI         getAI() { return __ai; }
   Animate*        getAttackAnimate();
   SGSPointList*   getAttackArea();
-  SGSPointList*   getAttackAreaFromPosition(Vec2& pos);
+  SGSPointList*   getAttackAreaFromPosition(SGSPoint* pos);
   HERO_category   getcategory() { return __category; }
   int             getCommand() { return __command; }
   int             getStrength() { return __strength; }
@@ -94,7 +94,7 @@ public:
   bool            isActive() { return (__active && isVisible());}
   bool            isRival(SGSHero* hero);
  
-  void            moveOneStep(SGSPointList& path);
+  void            moveOneStep(SGSPointList* path);
   void            moveOneStepFinished(Node* node, void* ptr);
   void            moveTo(SGSPoint* target_pos);
   void            oneAIMove(const SGSHeroActionFinishedCallback& callback, SGSTerrain* terrain);
@@ -114,6 +114,7 @@ public:
 
 private:
   typedef std::map<std::string, Animate*> ANIMATE_MAP;
+  
   HERO_DIRECTION  getDirection(const char* direction);
   std::string&    getHeroResFile(const char* res_dir);
   HERO_DIRECTION  getRelativeDirection(SGSPoint& point);

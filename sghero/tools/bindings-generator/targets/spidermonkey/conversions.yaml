@@ -26,6 +26,7 @@ conversions:
     "cocostudio::": "ccs."
     "cocosbuilder::": "cc."
     "CocosDenshion::": "cc."
+    "SGSHero::": "sgshero."
   to_native:
     # jsval to int
     int: "ok &= jsval_to_int32(cx, ${in_value}, (int32_t *)&${out_value})"

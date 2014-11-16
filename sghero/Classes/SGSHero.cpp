@@ -390,24 +390,24 @@ void SGSHero::faceTo(HERO_DIRECTION direction)
   this->runAction(face_walk);
 }
 
-void SGSHero::moveOneStep(SGSPointList& path)
+void SGSHero::moveOneStep(SGSPointList* path)
 {
-  if (path.empty()) {
+  if (path->empty()) {
     SGSPoint point = getMapPosition();
     log("%s finished move %d %d", this->getName().c_str(), point.x, point.y);
     SGSkirmishScene::getCurrentSkirmish()->startSkirmish(0.0f);
     return;
   } 
 
-  SGSPoint target_pos = path.front();
-  path.erase(path.begin());
+  SGSPoint target_pos = path->front();
+  path->erase(path->begin());
   faceTo(getRelativeDirection(target_pos));
   log("%s move one step to %d %d", this->getName().c_str(), target_pos.x, target_pos.y);
 
   stopAllActions();
   int actualDuration = 0.8f;
   FiniteTimeAction *actionMove = MoveTo::create(actualDuration, SGSPoint::mapPos2OpenGLPos(target_pos));
-  __CCCallFuncND * funcall= __CCCallFuncND::create(this, callfuncND_selector(SGSHero::moveOneStepFinished, this), &path);
+  __CCCallFuncND * funcall= __CCCallFuncND::create(this, callfuncND_selector(SGSHero::moveOneStepFinished, this), path);
   FiniteTimeAction* moveWithCallback = Sequence::create(actionMove, funcall, NULL);
   Animate* animate = getWalkAnimate(__direction);
   Repeat* walk = Repeat::create(animate, 300);
@@ -418,7 +418,7 @@ void SGSHero::moveOneStep(SGSPointList& path)
 void SGSHero::moveOneStepFinished(Node* node, void* ptr)
 {
   SGSPointList* path = reinterpret_cast<SGSPointList*>(ptr);
-  moveOneStep(*path);
+  moveOneStep(path);
 }
 
 
@@ -456,7 +456,7 @@ void SGSHero::moveTo(SGSPoint* target_pos)
   this->runAction(sequence);
   return;
 #endif
-  moveOneStep(path);
+  moveOneStep(&path);
 
 }
 
@@ -646,17 +646,17 @@ void SGSHero::setStatus(HERO_STATUS status)
 SGSPointList* SGSHero::getAttackArea()
 {
   SGSPoint map_position = this->getMapPosition();
-  return getAttackAreaFromPosition(Vec2(map_position.x, map_position.y));
+  return getAttackAreaFromPosition(&map_position);
 }
 
-SGSPointList* SGSHero::getAttackAreaFromPosition(Vec2& pos)
+SGSPointList* SGSHero::getAttackAreaFromPosition(SGSPoint* pos)
 {
   static SGSPointList point_list;
 
   SGSPointList::iterator iter;
   SGSPoint sgs_point;
-  sgs_point.x = pos.x;
-  sgs_point.y = pos.y;
+  sgs_point.x = pos->x;
+  sgs_point.y = pos->y;
 
   for (iter = point_list.begin(); iter != point_list.end();) {
     iter = point_list.erase(iter);
