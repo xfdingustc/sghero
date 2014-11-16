@@ -1,9 +1,9 @@
 --------------------------------
--- @module sgshero
+-- @module cc
 
 --------------------------------------------------------
--- the sgshero SGSHero
--- @field [parent=#sgshero] SGSHero#SGSHero SGSHero preloaded module
+-- the cc SGSHero
+-- @field [parent=#cc] SGSHero#SGSHero SGSHero preloaded module
 
 
 return nil

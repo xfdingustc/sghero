@@ -1898,8 +1898,8 @@ TOLUA_API int register_all_SGSHero(lua_State* tolua_S)
 {
 	tolua_open(tolua_S);
 	
-	tolua_module(tolua_S,"sgshero",0);
-	tolua_beginmodule(tolua_S,"sgshero");
+	tolua_module(tolua_S,"cc",0);
+	tolua_beginmodule(tolua_S,"cc");
 
 	lua_register_SGSHero_SGSHero(tolua_S);
 

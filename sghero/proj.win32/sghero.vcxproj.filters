@@ -28,6 +28,9 @@
     <Filter Include="Classes\SGCorps">
       <UniqueIdentifier>{d72eae05-68e2-4ea1-8c14-9682444d7d28}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\lua-binding">
+      <UniqueIdentifier>{021bf895-a309-4436-811e-411ede3b50d5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -134,6 +137,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\SGCorpsRange.cpp">
       <Filter>Classes\SGCorps</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\lua-bindings\lua_sgshero_auto.cpp">
+      <Filter>Classes\lua-binding</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -250,6 +256,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\SGCorpsRange.h">
       <Filter>Classes\SGCorps</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\lua-bindings\lua_sgshero_auto.hpp">
+      <Filter>Classes\lua-binding</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

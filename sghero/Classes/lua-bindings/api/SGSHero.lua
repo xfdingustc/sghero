@@ -2,7 +2,7 @@
 --------------------------------
 -- @module SGSHero
 -- @extend SGSObj,SGMessageHandler
--- @parent_module sgshero
+-- @parent_module cc
 
 --------------------------------
 -- @function [parent=#SGSHero] moveTo 

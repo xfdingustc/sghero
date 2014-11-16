@@ -102,11 +102,11 @@ bool SGSStrategyAttack::oneMove(SGSHero* hero)
     hero->attackHero(best_assaultable_hero);
 #else
     LuaEngine* pEngine = LuaEngine::getInstance();
-    pEngine->getLuaStack()->pushObject(hero, "Node");
+    pEngine->getLuaStack()->pushObject(hero, "SGSHero");
     //pEngine->getLuaStack()->pushObject(best_assaultable_hero, "SGHero");
     pEngine->executeGlobalFunction("HeroAttack", 1);
 #endif
-    return false;
+    return true;
   } else {
     return true;
   }

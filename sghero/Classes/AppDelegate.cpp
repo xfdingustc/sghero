@@ -2,7 +2,7 @@
 #include "SGWelcomeScene.h"
 #include "CCLuaEngine.h"
 #include "SGGlobalSettings.h"
-
+#include "lua-bindings/lua_sgshero_auto.hpp"
 using namespace CocosDenshion;
 using namespace std;
 USING_NS_CC;
@@ -35,8 +35,11 @@ bool AppDelegate::applicationDidFinishLaunching() {
     LuaEngine* pEngine = LuaEngine::getInstance();
     ScriptEngineManager::getInstance()->setScriptEngine(pEngine);
     pEngine->addSearchPath(SG_LUA_SCRIPTS_PATH);
+    register_all_SGSHero(pEngine->getLuaStack()->getLuaState());
     
-    
+    pEngine->executeScriptFile("DeprecatedEnum.lua");
+    pEngine->executeScriptFile("DeprecatedClass.lua");
+    pEngine->executeScriptFile("Deprecated.lua");
     pEngine->executeScriptFile("init_sg.lua");
 
     // create a scene. it's an autorelease object

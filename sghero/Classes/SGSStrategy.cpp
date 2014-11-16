@@ -14,7 +14,7 @@ SGSStrategy* SGSStrategy::createStrategy(SGSHero::HERO_AI ai, SGSTerrain* terrai
   switch (ai)
   {
   case SGSHero::HERO_AI_ATTACK:
-    strategy = new SGSStrategyStay(terrain);
+    strategy = new SGSStrategyAttack(terrain);
     break;
   case SGSHero::HERO_AI_STAY:
     strategy = new SGSStrategyStay(terrain);

@@ -1,6 +1,6 @@
 function HeroAttack(attacker, defender)
 	
-	attacker:faceTo("west");
+	attacker:doAttackAction();
 	
 	
 end
