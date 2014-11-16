@@ -81,7 +81,7 @@ bool SGSHero::init(const char* hero_name, HERO_SIDE side)
   initCategory();
 
 	/* For Test Weapon Repo Purpose Only */
-  SGWeaponBase *pDefArm = SGWeaponBase::Create("·ï»ËÓğÒÂ", 0);
+  //SGWeaponBase *pDefArm = SGWeaponBase::Create("·ï»ËÓğÒÂ", 0);
 	/* Test case ends */
 	
   __status = HERO_STATUS_NORMAL;
