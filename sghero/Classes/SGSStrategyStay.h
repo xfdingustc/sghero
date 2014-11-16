@@ -3,7 +3,7 @@
 
 #include "SGSStrategy.h"
 
-
+NS_CC_BEGIN
 
 class SGSStrategyStay : public SGSStrategy 
 {
@@ -12,5 +12,5 @@ public:
   bool oneMove(SGSHero* hero);
 
 };
-
+NS_CC_END
 #endif

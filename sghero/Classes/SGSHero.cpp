@@ -5,6 +5,8 @@
 #include "SGSStrategy.h"
 #include "SGWeaponBase.h"
 
+
+NS_CC_BEGIN
 SGSHeroActionFinishedCallback SGSHero::__action_finished_callback;
 
 
@@ -762,5 +764,5 @@ void SGSHero::updataSprite()
     setColor(Color3B::GRAY);
   } 
 }
-
+NS_CC_END
 

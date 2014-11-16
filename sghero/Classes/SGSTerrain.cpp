@@ -1,7 +1,7 @@
 #include "SGGlobalSettings.h"
 #include "SGSTerrain.h"
 
-
+NS_CC_BEGIN
 int SGSTerrain::SteminaConsuming[SGSTerrain::TERRAIN_MAX][SGSHero::HERO_CATEGORY_MAX] =
 {
   {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
@@ -452,3 +452,4 @@ SGSObj* SGSTerrain::getObj(SGSPoint& pos)
   }
   return NULL;
 }
+NS_CC_END

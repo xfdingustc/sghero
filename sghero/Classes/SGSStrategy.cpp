@@ -1,7 +1,7 @@
 #include "SGSStrategy.h"
 #include "SGSStrategyAttack.h"
 #include "SGSStrategyStay.h"
-
+NS_CC_BEGIN
 SGSStrategy::SGSStrategy(SGSTerrain* terrain) 
   : __terrain(terrain)
 {
@@ -25,3 +25,4 @@ SGSStrategy* SGSStrategy::createStrategy(SGSHero::HERO_AI ai, SGSTerrain* terrai
   }
   return strategy;
 }
+NS_CC_END

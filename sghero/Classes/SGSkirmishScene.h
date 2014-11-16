@@ -11,7 +11,7 @@ USING_NS_CC;
 #include "SGSInfoPanel.h"
 #include "SGSTerrain.h"
 
-
+NS_CC_BEGIN
 class SGSkirmishScene : public SGSceneBase
 {
   friend SGSHero;
@@ -134,5 +134,5 @@ private:
   SGSControlPanel* __control_panel;
   SGSInfoPanel* __info_panel;
 };
-
+NS_CC_END
 #endif

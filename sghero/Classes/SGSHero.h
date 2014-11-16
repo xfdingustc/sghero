@@ -6,6 +6,8 @@
 #include "SGSObj.h"
 USING_NS_CC;
 
+
+NS_CC_BEGIN
 typedef std::function<void()> SGSHeroActionFinishedCallback;
 
 class SGSTerrain;
@@ -158,5 +160,5 @@ private:
 
 typedef Vector<SGSHero*> SGSHeroList;
 
-
+NS_CC_END
 #endif

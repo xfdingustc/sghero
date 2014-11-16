@@ -2,7 +2,7 @@
 #define SG_SKIRMISH_STRATEGY_ATTACK_H
 
 #include "SGSStrategy.h"
-
+NS_CC_BEGIN
 class SGSStrategyAttack : public SGSStrategy 
 {
 public:
@@ -15,5 +15,5 @@ private:
 
 
 };
-
+NS_CC_END
 #endif

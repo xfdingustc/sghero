@@ -7,7 +7,7 @@
 #include "SGSArea.h"
 USING_NS_CC;
 
-
+NS_CC_BEGIN
 class SGSTerrain : public SGObserver
 {
 public:
@@ -100,5 +100,5 @@ private:
   TERRAIN_TYPE*  __terrain_info;
   SGSHeroList      __heroes;
 };
-
+NS_CC_END
 #endif

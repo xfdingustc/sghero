@@ -8,6 +8,7 @@ USING_NS_CC;
 #include "SGSHero.h"
 #include "SGSTerrain.h"
 
+NS_CC_BEGIN
 
 class SGSStrategy 
 {
@@ -18,4 +19,5 @@ public:
 protected:
   SGSTerrain* __terrain;
 };
+NS_CC_END
 #endif
