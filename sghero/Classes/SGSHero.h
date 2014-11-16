@@ -69,15 +69,14 @@ public:
   HERO_AI         getAI() { return __ai; }
   Animate*        getAttackAnimate();
   SGSPointList*   getAttackArea();
-  SGSPointList*   getAttackAreaFromPosition(SGSPoint& pos);
+  SGSPointList*   getAttackAreaFromPosition(Vec2& pos);
   HERO_category   getcategory() { return __category; }
   int             getCommand() { return __command; }
   int             getForce() { return __force; }
   int             getLuck() { return __luck; }
   int             getIntelligence() { return __intelligence; } 
   HERO_DIRECTION  getRelativeDirection(SGSHero* other_hero);
-  HERO_DIRECTION  getRelativeDirection(SGSPoint& point);
-  HERO_DIRECTION  getRelativeDirectionFrom(SGSPoint& point, SGSPoint& from);
+
   HERO_SIDE       getSide() { return __side; }
   int             getStamina() { return __stamina; }
   HERO_STATUS     getStatus() { return __status; }
@@ -95,8 +94,7 @@ public:
  
   void            moveOneStep(SGSPointList& path);
   void            moveOneStepFinished(Node* node, void* ptr);
-  void            moveTo(SGSPoint& target_pos);
-  void            moveToAndAttack(SGSPoint& target_pos, SGSHero* enemy_hero);
+  void            moveTo(SGSPoint* target_pos);
   void            oneAIMove(const SGSHeroActionFinishedCallback& callback, SGSTerrain* terrain);
 
   void            setActionFinishedCallback(const SGSHeroActionFinishedCallback& callback);
@@ -116,7 +114,8 @@ private:
   typedef std::map<std::string, Animate*> ANIMATE_MAP;
   HERO_DIRECTION  getDirection(const char* direction);
   std::string&    getHeroResFile(const char* res_dir);
-  
+  HERO_DIRECTION  getRelativeDirection(SGSPoint& point);
+  HERO_DIRECTION  getRelativeDirectionFrom(SGSPoint& point, SGSPoint& from);
 
   enum {
     kWhatAttack,

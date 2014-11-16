@@ -162,7 +162,7 @@ bool SGSkirmishScene::touchHandleStateMachine(Touch *touch)
     if ((hero && hero == __selected_hero) || (!hero && __selected_hero)) {
       SGSArea* area = (SGSArea*)this->getChildByName(WALK_PATH);
       if (area && area->containPoint(pos)) {
-        __selected_hero->moveTo(SGSPoint::openGLPos2MapPos(pos));
+        __selected_hero->moveTo(&(SGSPoint::openGLPos2MapPos(pos)));
         this->removeChildByName(WALK_PATH);
         createActionSelectMenu();
         __event_handle_state = EVENT_HANDLE_STATE_HERO_MOVED;
@@ -485,7 +485,7 @@ bool SGSkirmishScene::onHandleEventHeroMove(tinyxml2::XMLElement* event)
   int x = atoi(event->Attribute("x"));
   int y = atoi(event->Attribute("y"));
   SGSHero* hero = (SGSHero*)this->getChildByName(hero_name);
-  hero->moveTo(SGSPoint(x, y));
+  hero->moveTo(&(SGSPoint(x, y)));
   std::string direction = event->Attribute("face");
   return true;
 }

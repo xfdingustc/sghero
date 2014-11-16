@@ -420,11 +420,11 @@ void SGSHero::moveOneStepFinished(Node* node, void* ptr)
 }
 
 
-void SGSHero::moveTo(SGSPoint& target_pos)
+void SGSHero::moveTo(SGSPoint* target_pos)
 {
   SGSkirmishScene::getCurrentSkirmish()->stopSkirmish();
 
-  SGSPointList& path = __terrain->calcShortestPath(this, target_pos);
+  SGSPointList& path = __terrain->calcShortestPath(this, *target_pos);
   if (path.empty()) {
     log("Failed to find available path");
     return;
@@ -458,10 +458,7 @@ void SGSHero::moveTo(SGSPoint& target_pos)
 
 }
 
-void SGSHero::moveToAndAttack(SGSPoint& target_pos, SGSHero* enemy_hero)
-{
 
-}
 
 
 void SGSHero::oneAIMove(const SGSHeroActionFinishedCallback& callback, SGSTerrain* terrain)
@@ -646,23 +643,27 @@ void SGSHero::setStatus(HERO_STATUS status)
 
 SGSPointList* SGSHero::getAttackArea()
 {
-  return getAttackAreaFromPosition(this->getMapPosition());
+  SGSPoint map_position = this->getMapPosition();
+  return getAttackAreaFromPosition(Vec2(map_position.x, map_position.y));
 }
 
-SGSPointList* SGSHero::getAttackAreaFromPosition(SGSPoint& pos)
+SGSPointList* SGSHero::getAttackAreaFromPosition(Vec2& pos)
 {
   static SGSPointList point_list;
 
   SGSPointList::iterator iter;
+  SGSPoint sgs_point;
+  sgs_point.x = pos.x;
+  sgs_point.y = pos.y;
 
   for (iter = point_list.begin(); iter != point_list.end();) {
     iter = point_list.erase(iter);
   }
 
-  point_list.push_back(pos.getUp());
-  point_list.push_back(pos.getDown());
-  point_list.push_back(pos.getLeft());
-  point_list.push_back(pos.getRight());
+  point_list.push_back(sgs_point.getUp());
+  point_list.push_back(sgs_point.getDown());
+  point_list.push_back(sgs_point.getLeft());
+  point_list.push_back(sgs_point.getRight());
 
   return &point_list;
 }
