@@ -8,6 +8,8 @@
 #include "json/document.h"
 #include "SGWeaponBase.h"
 
+NS_CC_BEGIN
+
 class SGWeaponRepo {
 public:
 	static SGWeaponRepo *instance();
@@ -26,4 +28,5 @@ private:
 	rapidjson::Document text_json;
 	
 };
+NS_CC_END
 #endif

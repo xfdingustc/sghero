@@ -1,5 +1,7 @@
 #include "SGCorpsRange.h"
 
+NS_CC_BEGIN
+
 SGCorpsAttackRange *SGCorpsAttackRange::__pInstance = NULL;
 
 SGCorpsAttackRange::SGCorpsAttackRange() {
@@ -263,3 +265,5 @@ bool SGCorpsAttackRange::initAttackRange() {
 	*/
 	return true;
 }
+
+NS_CC_END

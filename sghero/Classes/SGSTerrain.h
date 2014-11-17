@@ -5,7 +5,7 @@
 #include "SGObserver.h"
 #include "SGSHero.h"
 #include "SGSArea.h"
-USING_NS_CC;
+#include "SGCorpsType.h"
 
 NS_CC_BEGIN
 class SGSTerrain : public SGObserver
@@ -91,8 +91,10 @@ private:
   bool                    isInStepPtrList(Step* step, StepPtrList& step_list);
   void                    loadTerrain(std::string& terrain_file);
   Step                    moveHero(SGSHero* hero, STEP_DIRECTION one_step, Step from);
-
+	static bool							loadCorpsTerrainAdapt();
   static int              SteminaConsuming[TERRAIN_MAX][SGSHero::HERO_CATEGORY_MAX];
+  static int			  			MovementConsuming[TERRAIN_MAX][CORPS_MAX_TYPE_NUM];
+  
   int                     __width;
   int                     __height;
 

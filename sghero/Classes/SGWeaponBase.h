@@ -7,7 +7,7 @@
 #include <vector>
 #include "SGSObj.h"
 
-USING_NS_CC;
+NS_CC_BEGIN
 
 typedef enum {
 	WEAPON_ATTACK = 0,
@@ -83,4 +83,6 @@ private:
 	unsigned int __level;
 };
 
+NS_CC_END
+	
 #endif

@@ -3,7 +3,7 @@
 #include <vector>
 #include <stdlib.h>
 
-USING_NS_CC;
+NS_CC_BEGIN
 
 SGWeaponRepo *SGWeaponRepo::__pInstance = NULL;
 
@@ -165,3 +165,5 @@ SGWeaponRepo::~SGWeaponRepo() {
 	}
 	__all_weapons.clear();
 }
+
+NS_CC_END

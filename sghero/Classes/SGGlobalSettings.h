@@ -13,6 +13,7 @@
 #define HERO_INFO_TEXT_JSON_FILE "HeroInfoText.json"
 #define WEAPON_REPO_TEXT_JSON_FILE "WeaponInfoText.json"
 #define CORPS_REPO_TEXT_JSON_FILE "CorpsInfoText.json"
+#define CORPS_TERRAIN_ADAPTATION_JSON_FILE "CorpsTerrainAdaptText.json"
 
 #define SG_DRAMA_SCENE_HERO_RES_PATH "DramaSceneObjects/"
 #define SG_HERO_FACE_RES_PATH "HeroFaces/"

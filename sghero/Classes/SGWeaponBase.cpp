@@ -2,7 +2,7 @@
 #include "SGWeaponRepo.h"
 #include "SGGlobalSettings.h"
 
-USING_NS_CC;
+NS_CC_BEGIN
 
 SGWeaponBase* SGWeaponBase::Create(const char* weapon_name, int level) {
 	SGWeaponBase* weapon = new SGWeaponBase(level);
@@ -84,3 +84,5 @@ void SGWeaponBase::incExp(int value) {
 	}
 	return;
 }
+
+NS_CC_END

@@ -7,6 +7,8 @@
 #include <vector>
 #include "json/document.h"
 
+NS_CC_BEGIN
+
 class SGCorpsRepo {
 public:
 	static SGCorpsRepo *instance();
@@ -23,5 +25,5 @@ private:
 	std::vector<Corps_Info*> __all_corps;
 	rapidjson::Document text_json;
 };
-
+NS_CC_END
 #endif

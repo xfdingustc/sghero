@@ -1,5 +1,6 @@
 #include "SGGlobalSettings.h"
 #include "SGSTerrain.h"
+#include "json/document.h"
 
 NS_CC_BEGIN
 int SGSTerrain::SteminaConsuming[SGSTerrain::TERRAIN_MAX][SGSHero::HERO_CATEGORY_MAX] =
@@ -35,6 +36,7 @@ int SGSTerrain::SteminaConsuming[SGSTerrain::TERRAIN_MAX][SGSHero::HERO_CATEGORY
   {65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535 },
 };
 
+int SGSTerrain::MovementConsuming[TERRAIN_MAX][CORPS_MAX_TYPE_NUM] = {0};
 
 SGSTerrain::SGSTerrain(std::string& terrain_file, Size size)
   : __width(size.width),
@@ -47,6 +49,32 @@ SGSTerrain::SGSTerrain(std::string& terrain_file, Size size)
 SGSTerrain::~SGSTerrain()
 {
   delete __terrain_info;
+}
+
+bool SGSTerrain::loadCorpsTerrainAdapt() {
+	std::string corps_terrain_json_file = FileUtils::getInstance()->fullPathForFilename(CORPS_TERRAIN_ADAPTATION_JSON_FILE);
+	std::string json_data = FileUtils::getInstance()->getStringFromFile(corps_terrain_json_file.c_str());
+	rapidjson::Document text_json;
+	text_json.Parse<rapidjson::kParseDefaultFlags>(json_data.c_str());
+  if (text_json.HasParseError()) {
+    log("Parsing corps terrain text json file error!! %s", text_json.GetParseError());
+    return false;
+	} else if (text_json.IsObject()) {
+		const rapidjson::Value &res_list = text_json["CorpsTerrainList"];
+		if (res_list.IsArray()) {
+			for (int i=0; i < res_list.Size(); i++) {
+				const rapidjson::Value &item = res_list[i];
+				int corps_id = item["Corps"].GetInt();
+				const rapidjson::Value &move_consume = item["MoveConsuming"];
+				if(move_consume.IsArray()) {
+					for(int j=0; j < move_consume.Size(); j++) {
+						MovementConsuming[j][corps_id] = move_consume[j].GetInt();
+					}
+				}
+			}
+		}
+	}
+	return true;
 }
 
 SGSPointList& SGSTerrain::calcHeroAvailabePath(SGSHero* hero)

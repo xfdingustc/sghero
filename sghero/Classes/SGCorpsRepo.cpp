@@ -2,7 +2,7 @@
 #include "SGGlobalSettings.h"
 #include <vector>
 
-USING_NS_CC;
+NS_CC_BEGIN
 
 SGCorpsRepo *SGCorpsRepo::__pInstance = NULL;
 
@@ -50,7 +50,7 @@ Corps_Info *SGCorpsRepo::loadCorpsItemInfo(std::string name) {
 	for ( std::vector<Corps_Info *>::iterator iter = __all_corps.begin(); iter != __all_corps.end(); iter++ ) {
 		if (NULL != *iter) 
 		{
-			if ((*iter)->category_name == name.c_str()) {				
+			if ((*iter)->code_name == name.c_str()) {				
 				return (*iter);
 			}
 		}	
@@ -60,8 +60,11 @@ Corps_Info *SGCorpsRepo::loadCorpsItemInfo(std::string name) {
 }
 
 void SGCorpsRepo::registerToCorpsRepo(Corps_Info *corps_info, const rapidjson::Value &item) {
-	corps_info->category_name = item["Category"].GetString();
-
+	corps_info->display_name = item["Category"].GetString();
+	corps_info->code_name = item["Abbreviation"].GetString();
+	corps_info->group = item["Group"].GetInt();
+	corps_info->corps_id_in_group = 1 << item["CorpsId"].GetInt();
+	
 	if (item.HasMember("Level")) {
 		const rapidjson::Value &curve = item["Level"];
 		int level_num = curve.Size();
@@ -99,3 +102,5 @@ SGCorpsRepo::~SGCorpsRepo() {
 	// since we destruct the SGCorpsRepo here
 	// there's no need to do a vector().swap
 }
+
+NS_CC_END

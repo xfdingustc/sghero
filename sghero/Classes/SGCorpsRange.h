@@ -4,6 +4,8 @@
 #include "SGCorpsType.h"
 #include "SGSPoint.h"
 
+NS_CC_BEGIN
+
 class SGCorpsAttackRange {
 public:
 	static SGCorpsAttackRange *instance();
@@ -16,4 +18,5 @@ private:
 	static SGCorpsAttackRange *__pInstance;
 	SGSPointList rangeList[CORPS_RANGE_MAX]; 
 };
+NS_CC_END
 #endif
