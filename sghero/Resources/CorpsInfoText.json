@@ -1,8 +1,8 @@
 {
 "CorpsList":
 [
-{"Category":"君主类","Level":["豪杰","英雄",“英杰"],"Range":[0,1,1],"Move":[5,6,6]},
-{"Category":"刀兵类","Level":["大刀兵","校刀兵","神刀兵"],"Range":[1,1,1],"Move":[5,5,5]},
-{"Category":"枪兵类","Level":["枪兵","长枪兵","神枪兵"],"Range":[0,3,6],"Move":[5,5,5]}
+{"Category":"君主类","Abbreviation":"junzhu","CorpsId":"0","Group":"0","Level":["豪杰","英雄",“英杰"],"Range":[0,1,1],"Move":[5,6,6]},
+{"Category":"刀兵类","Abbreviation":"daobing","CorpsId":"1","Group":"0","Level":["大刀兵","校刀兵","神刀兵"],"Range":[1,1,1],"Move":[5,5,5]},
+{"Category":"枪兵类","Abbreviation":"qiangbing","CorpsId":"2","Group":"0","Level":["枪兵","长枪兵","神枪兵"],"Range":[0,3,6],"Move":[5,5,5]}
 ]
 }

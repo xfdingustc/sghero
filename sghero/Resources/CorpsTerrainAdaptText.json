@@ -1,0 +1,8 @@
+{
+"CorpsTerrainList":
+[
+{"Corps":"0","MovementConsuming":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},
+{"Corps":"1","MovementConsuming":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},
+{"Corps":"2","MovementConsuming":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]}
+]
+}
