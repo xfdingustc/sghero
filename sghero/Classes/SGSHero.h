@@ -4,6 +4,9 @@
 #include "cocos2d.h"
 #include "SGMessageHandler.h"
 #include "SGSObj.h"
+#include "SGCorpsType.h"
+#include "SGCorpsRange.h"
+
 USING_NS_CC;
 
 
@@ -148,6 +151,8 @@ private:
   int             __stamina;
   HERO_STATUS     __status;
   SGSTerrain*     __terrain;
+	int							__level;
+	CORPS_ATTACK_RANGE	__range;
 
 
 

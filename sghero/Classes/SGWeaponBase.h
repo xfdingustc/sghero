@@ -33,7 +33,8 @@ typedef struct {
 } Weapon_Plus;
 
 typedef struct {
-	std::string name;
+	std::string code_name;
+	std::string display_name;
 	std::string category;
 	std::string effect;
 	std::string description;
@@ -63,7 +64,8 @@ public:
 	static SGWeaponBase* Create(const char* weapon_name, int level = 0);
 	bool init(const char* weapon_name);
 	int loadWeaponParamsFromRepo();
-	std::string getName() { return __pInfo->name; }
+	std::string getDisplayName() { return __pInfo->display_name; }
+	std::string getCodeName() { return __pInfo->code_name; }
 	std::string getCategory() { return __pInfo->category; }
 	std::string getDescription() { return __pInfo->description; }
 	//std::string getEffect();		//TODO: Sometimes this has to be customized according to the plus value.

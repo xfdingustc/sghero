@@ -62,21 +62,22 @@ bool SGWeaponRepo::initWeaponRepo() {
 	return true;
 }
 
-Weapon_Full_Info *SGWeaponRepo::loadWeaponItemInfo(std::string name) {
+Weapon_Full_Info *SGWeaponRepo::loadWeaponItemInfo(std::string code_name) {
 	for ( std::vector<Weapon_Full_Info *>::iterator iter = __all_weapons.begin(); iter != __all_weapons.end(); iter++ ) {
 		if (NULL != *iter) 
 		{
-			if ((*iter)->name == name.c_str()) {				
+			if ((*iter)->code_name == code_name.c_str()) {				
 				return (*iter);
 			}
 		}	
 	}
-	log("Fail to find the specified weapon %s", name.c_str());
+	log("Fail to find the specified weapon %s", code_name.c_str());
 	return NULL;
 }
 
 void SGWeaponRepo::registerToWeaponRepo(Weapon_Full_Info *wp_info, const rapidjson::Value &item) {
-	wp_info->name = item["Name"].GetString();
+	wp_info->display_name = item["Name"].GetString();
+	wp_info->code_name = item["Abbreviation"].GetString();
 	wp_info->effect = item["Effect"].GetString();
 	wp_info->description = item["Description"].GetString();
 	wp_info->corps_avail_1 = strtol(item["CorpsAvailable1"].GetString(), NULL, 16);

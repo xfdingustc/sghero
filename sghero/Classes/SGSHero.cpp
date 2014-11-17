@@ -70,6 +70,10 @@ bool SGSHero::init(const char* hero_name, HERO_SIDE side)
 
   __active = true;
 
+	/* range and level should be loaded from the hero script */
+	__range = CORPS_RANGE_INFANTRY;
+	__level = 10;
+
   initActions();
   initAttackActions();
   initSpecActions();
@@ -652,8 +656,10 @@ SGSPointList* SGSHero::getAttackArea()
 SGSPointList* SGSHero::getAttackAreaFromPosition(SGSPoint* pos)
 {
   static SGSPointList point_list;
-
+	SGSPointList *range_list = NULL;
   SGSPointList::iterator iter;
+	SGCorpsAttackRange *attack_range = SGCorpsAttackRange::instance();
+
   SGSPoint sgs_point;
   sgs_point.x = pos->x;
   sgs_point.y = pos->y;
@@ -662,11 +668,17 @@ SGSPointList* SGSHero::getAttackAreaFromPosition(SGSPoint* pos)
     iter = point_list.erase(iter);
   }
 
-  point_list.push_back(sgs_point.getUp());
-  point_list.push_back(sgs_point.getDown());
-  point_list.push_back(sgs_point.getLeft());
-  point_list.push_back(sgs_point.getRight());
-
+	if (NULL != attack_range) {
+		range_list = attack_range->getAttackRange(__range);
+	} else {
+		log("Failed to get attack range, should not come here!");
+		return &point_list;
+	}
+	
+	for (iter = range_list->begin(); iter != range_list->end(); iter++) {
+		point_list.push_back(*iter + sgs_point);
+	}
+	
   return &point_list;
 }
 

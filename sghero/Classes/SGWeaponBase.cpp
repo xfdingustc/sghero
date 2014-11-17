@@ -70,7 +70,7 @@ void SGWeaponBase::incExp(int value) {
 	levelExpMax = __pInfo->growth_curve.at(__level);
 	
 	if(__level == topLevel && __exp == levelExpMax) {
-		log("Weapon %s has reached the level's up limit!", __pInfo->name.c_str());
+		log("Weapon %s has reached the level's up limit!", __pInfo->code_name.c_str());
 		return;
 	}
 	__exp += value;

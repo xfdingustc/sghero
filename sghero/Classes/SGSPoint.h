@@ -20,6 +20,14 @@ public:
   inline bool operator!=(const SGSPoint& v) const {
     return x!=v.x || y!=v.y;
   };
+	
+	inline SGSPoint operator+(const SGSPoint& v) {
+		SGSPoint res; 
+		res.x = x + v.x;
+		res.y = y + v.y;
+		return res;
+	}
+	
   inline static Vec2 mapPos2OpenGLPos(SGSPoint& origin) {
     Vec2 new_pos;
 

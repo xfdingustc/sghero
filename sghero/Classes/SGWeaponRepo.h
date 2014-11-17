@@ -14,7 +14,7 @@ public:
 	SGWeaponRepo();
 	~SGWeaponRepo();
 	bool initWeaponRepo();
-	Weapon_Full_Info *loadWeaponItemInfo(std::string name);
+	Weapon_Full_Info *loadWeaponItemInfo(std::string code_name);
 	//Weapon_Full_Info *getWeaponItemInfoByIdx(int index);		//TODO: this API may save the time of item search
 
 private:
