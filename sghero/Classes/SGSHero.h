@@ -4,7 +4,7 @@
 #include "cocos2d.h"
 #include "SGMessageHandler.h"
 #include "SGSObj.h"
-#include "SGCorpsType.h"
+#include "SGCorpsRepo.h"
 #include "SGCorpsRange.h"
 
 USING_NS_CC;

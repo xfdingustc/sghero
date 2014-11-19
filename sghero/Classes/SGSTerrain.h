@@ -5,7 +5,6 @@
 #include "SGObserver.h"
 #include "SGSHero.h"
 #include "SGSArea.h"
-#include "SGCorpsType.h"
 
 NS_CC_BEGIN
 class SGSTerrain : public SGObserver
