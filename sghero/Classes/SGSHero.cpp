@@ -428,39 +428,10 @@ void SGSHero::moveOneStepFinished(Node* node, void* ptr)
 
 void SGSHero::moveTo(SGSPoint* target_pos)
 {
-  SGSkirmishScene::getCurrentSkirmish()->stopSkirmish();
-
-  SGSPointList& path = __terrain->calcShortestPath(this, *target_pos);
-  if (path.empty()) {
-    log("Failed to find available path");
-    return;
-  } else {
-    path.erase(path.begin());
-  }
-
-#if 0
-  static SGSPoint previous_pos = getMapPosition();
-  Vector<FiniteTimeAction*> move_action_sequence;
-
-  SGSPointList::iterator iter;
-  for (iter = path.begin(); iter != path.end(); iter++) {
-    SGSPoint target_pos = *iter;
-    Vec2 move_vec = SGSPoint::mapPos2OpenGLPos(target_pos) - SGSPoint::mapPos2OpenGLPos(previous_pos);
-    int actualDuration = 0.8f;
-    FiniteTimeAction *actionMove = MoveBy::create(actualDuration, move_vec);
-    HERO_DIRECTION direction = getRelativeDirectionFrom(target_pos, previous_pos);
-    Animate* animate = getWalkAnimate(direction);
-    Repeat* walk = Repeat::create(animate, 4);
-    Spawn * walk_one_step = Spawn::create(walk, actionMove, NULL);
-    move_action_sequence.pushBack(walk_one_step);
-    previous_pos = target_pos;
-  }
-  Sequence* sequence = Sequence::create(move_action_sequence);
-  stopAllActions();
-  this->runAction(sequence);
-  return;
-#endif
-  moveOneStep(&path);
+  SGMessage* message = new SGMessage(kWhatMove, this);
+  message->setInt("x", target_pos->x);
+  message->setInt("y", target_pos->y);
+  message->post();
 
 }
 
@@ -720,6 +691,9 @@ void SGSHero::handleMessage(SGMessage* message)
   case kWhatAttack:
     onAttack(message);
     break;
+  case kWhatMove:
+    onMoveTo(message);
+    break;
   default:
     break;
   }
@@ -735,6 +709,27 @@ void SGSHero::onAttack(SGMessage* message)
   Animate* attack_animate = this->getAttackAnimate();
   this->stopAllActions();
   this->runAction(attack_animate);
+}
+
+void SGSHero::onMoveTo(SGMessage* message)
+{
+  
+  int x, y;
+  message->getInt("x", &x);
+  message->getInt("y", &y);
+  SGSPoint target_pos(x,y);
+
+  SGSPointList& path = __terrain->calcShortestPath(this, target_pos);
+  if (path.empty()) {
+    log("Failed to find available path");
+    return;
+  } else {
+    path.erase(path.begin());
+  }
+
+
+  moveOneStep(&path);
+
 }
 
 void SGSHero::update(float dt)
