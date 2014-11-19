@@ -126,10 +126,12 @@ private:
   enum {
     kWhatAttack,
     kWhatDefensed,
+    kWhatMove,
   };
   void            handleMessage(SGMessage* message);
 
   void            onAttack(SGMessage* message);
+  void            onMoveTo(SGMessage* message);
 
   void            updataSprite(); 
   HERO_AI         __ai;

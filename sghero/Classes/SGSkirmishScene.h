@@ -48,6 +48,7 @@ private:
   bool parseSkrimishTests(tinyxml2::XMLElement* tests);
 
   void checkTests();
+  void delay(float time);
   void gameLogic();
   bool gameLogicFriendTurn();
   bool gameLogicEnemyTurn();
