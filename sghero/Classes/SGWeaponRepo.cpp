@@ -80,8 +80,10 @@ void SGWeaponRepo::registerToWeaponRepo(Weapon_Full_Info *wp_info, const rapidjs
 	wp_info->code_name = item["Abbreviation"].GetString();
 	wp_info->effect = item["Effect"].GetString();
 	wp_info->description = item["Description"].GetString();
-	wp_info->corps_avail_1 = strtol(item["CorpsAvailable1"].GetString(), NULL, 16);
-	wp_info->corps_avail_2 = strtol(item["CorpsAvailable2"].GetString(), NULL, 16);
+	wp_info->corps_avail_1 = strtol(item["CorpsAvail1"].GetString(), NULL, 16);
+	wp_info->corps_avail_2 = strtol(item["CorpsAvail2"].GetString(), NULL, 16);
+	wp_info->corps_avail_3 = strtol(item["CorpsAvail3"].GetString(), NULL, 16);
+	wp_info->corps_avail_4 = strtol(item["CorpsAvail4"].GetString(), NULL, 16);
 	wp_info->attribute = static_cast<WEAPON_ATTR>(item["Attr"].GetInt()); 
 
 	if(item.HasMember("ResPic")) {

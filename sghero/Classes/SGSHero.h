@@ -152,7 +152,7 @@ private:
   HERO_STATUS     __status;
   SGSTerrain*     __terrain;
 	int							__level;
-	CORPS_ATTACK_RANGE	__range;
+	SGCorpsRepo::CORPS_ATTACK_RANGE	__range;
 
 
 

@@ -94,6 +94,7 @@ private:
 	static bool							loadCorpsTerrainAdapt();
   static int              SteminaConsuming[TERRAIN_MAX][SGSHero::HERO_CATEGORY_MAX];
   static int			  			MovementConsuming[TERRAIN_MAX][CORPS_MAX_TYPE_NUM];
+	static int							CorpsAdaptation[TERRAIN_MAX][CORPS_MAX_TYPE_NUM];
   
   int                     __width;
   int                     __height;

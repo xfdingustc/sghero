@@ -57,4 +57,7 @@
 #define TEXT_FONT_NAME "fonts/libian.ttf"
 #define TEXT_FONT_SIZE 20
 #define CHAPTER_TEXT_FONT_SIZE 50
+#define CORPS_MAX_LEVEL	3
+#define CORPS_MAX_TYPE_NUM 64
+
 #endif

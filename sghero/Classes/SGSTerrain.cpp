@@ -36,7 +36,8 @@ int SGSTerrain::SteminaConsuming[SGSTerrain::TERRAIN_MAX][SGSHero::HERO_CATEGORY
   {65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535 },
 };
 
-int SGSTerrain::MovementConsuming[TERRAIN_MAX][CORPS_MAX_TYPE_NUM] = {0};
+int SGSTerrain::MovementConsuming[SGSTerrain::TERRAIN_MAX][CORPS_MAX_TYPE_NUM] = {0};
+int SGSTerrain::CorpsAdaptation[SGSTerrain::TERRAIN_MAX][CORPS_MAX_TYPE_NUM] = {0};
 
 SGSTerrain::SGSTerrain(std::string& terrain_file, Size size)
   : __width(size.width),
@@ -64,11 +65,17 @@ bool SGSTerrain::loadCorpsTerrainAdapt() {
 		if (res_list.IsArray()) {
 			for (int i=0; i < res_list.Size(); i++) {
 				const rapidjson::Value &item = res_list[i];
-				int corps_id = item["Corps"].GetInt();
+				int corps_id = item["CorpsId"].GetInt();
 				const rapidjson::Value &move_consume = item["MoveConsuming"];
 				if(move_consume.IsArray()) {
 					for(int j=0; j < move_consume.Size(); j++) {
 						MovementConsuming[j][corps_id] = move_consume[j].GetInt();
+					}
+				}
+				const rapidjson::Value &corps_adapt = item["CorpsAdapt"];
+				if(corps_adapt.IsArray()) {
+					for(int j=0; j < corps_adapt.Size(); j++) {
+						CorpsAdaptation[j][corps_id] = corps_adapt[j].GetInt();
 					}
 				}
 			}

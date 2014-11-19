@@ -46,7 +46,7 @@ bool SGCorpsRepo::initCorpsRepo() {
 	return true;
 }
 
-Corps_Info *SGCorpsRepo::loadCorpsItemInfo(std::string name) {
+SGCorpsRepo::Corps_Info *SGCorpsRepo::loadCorpsItemInfoByName(std::string name) {
 	for ( std::vector<Corps_Info *>::iterator iter = __all_corps.begin(); iter != __all_corps.end(); iter++ ) {
 		if (NULL != *iter) 
 		{
@@ -59,11 +59,23 @@ Corps_Info *SGCorpsRepo::loadCorpsItemInfo(std::string name) {
 	return NULL;
 }
 
+SGCorpsRepo::Corps_Info *SGCorpsRepo::loadCorpsItemInfoById(int id) {
+	for ( std::vector<Corps_Info *>::iterator iter = __all_corps.begin(); iter != __all_corps.end(); iter++ ) {
+		if (NULL != *iter) 
+		{
+			if ((*iter)->corps_id == id) {				
+				return (*iter);
+			}
+		}	
+	}
+	log("Fail to find the specified corps %d", id);
+	return NULL;
+}
+
 void SGCorpsRepo::registerToCorpsRepo(Corps_Info *corps_info, const rapidjson::Value &item) {
 	corps_info->display_name = item["Category"].GetString();
 	corps_info->code_name = item["Abbreviation"].GetString();
-	corps_info->group = item["Group"].GetInt();
-	corps_info->corps_id_in_group = 1 << item["CorpsId"].GetInt();
+	corps_info->corps_id = item["CorpsId"].GetInt();
 	
 	if (item.HasMember("Level")) {
 		const rapidjson::Value &curve = item["Level"];
@@ -76,7 +88,7 @@ void SGCorpsRepo::registerToCorpsRepo(Corps_Info *corps_info, const rapidjson::V
 		const rapidjson::Value &curve = item["Range"];
 		int level_num = curve.Size();
 		for (int i=0; i< level_num; i++) {
-			corps_info->level_range.push_back(static_cast<CORPS_ATTACK_RANGE>(curve[i].GetInt()));
+			corps_info->level_range.push_back(static_cast<SGCorpsRepo::CORPS_ATTACK_RANGE>(curve[i].GetInt()));
 		}
 	}
 	if (item.HasMember("Move")) {

@@ -42,6 +42,8 @@ typedef struct {
 	WEAPON_TYPE type;
 	int corps_avail_1;
 	int corps_avail_2;
+	int corps_avail_3;
+	int corps_avail_4;	
 	SpriteFrame* frame;
 	std::vector<int> attack;
 	std::vector<int> defense;
@@ -54,9 +56,6 @@ typedef struct {
 	std::vector<int> mp;
 	std::vector<int> growth_curve;
 } Weapon_Full_Info;
-
-static int common_growth_curve[3] = {150, 150, 150};
-static int super_growth_curve[9] = {150, 150, 150, 200, 200, 200, 250, 250, 250};
 
 class SGWeaponBase : public Sprite {
 public:

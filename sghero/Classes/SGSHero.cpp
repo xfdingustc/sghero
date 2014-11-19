@@ -71,7 +71,7 @@ bool SGSHero::init(const char* hero_name, HERO_SIDE side)
   __active = true;
 
 	/* range and level should be loaded from the hero script */
-	__range = CORPS_RANGE_INFANTRY;
+	__range = SGCorpsRepo::CORPS_RANGE_INFANTRY;
 	__level = 10;
 
   initActions();
