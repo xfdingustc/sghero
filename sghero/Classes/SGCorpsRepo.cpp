@@ -88,7 +88,7 @@ void SGCorpsRepo::registerToCorpsRepo(Corps_Info *corps_info, const rapidjson::V
 		const rapidjson::Value &curve = item["Range"];
 		int level_num = curve.Size();
 		for (int i=0; i< level_num; i++) {
-			corps_info->level_range.push_back(static_cast<SGCorpsRepo::CORPS_ATTACK_RANGE>(curve[i].GetInt()));
+			corps_info->level_range.push_back(curve[i].GetInt());
 		}
 	}
 	if (item.HasMember("Move")) {

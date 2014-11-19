@@ -4,6 +4,7 @@
 #include "SGSkirmishScene.h"
 #include "SGSStrategy.h"
 #include "SGWeaponBase.h"
+#include "SGCorpsRange.h"
 
 
 NS_CC_BEGIN
@@ -71,7 +72,7 @@ bool SGSHero::init(const char* hero_name, HERO_SIDE side)
   __active = true;
 
 	/* range and level should be loaded from the hero script */
-	__range = SGCorpsRepo::CORPS_RANGE_INFANTRY;
+	__range = SGCorpsAttackRange::CORPS_RANGE_INFANTRY;
 	__level = 10;
 
   initActions();

@@ -253,7 +253,7 @@ bool SGCorpsAttackRange::initAttackRange() {
 		rangeList[17].push_back(SGSPoint(i, 3));
 	}
 
-	for (i = 0; i < static_cast<int>(SGCorpsRepo::CORPS_RANGE_MAX); i++) {
+	for (i = 0; i < static_cast<int>(SGCorpsAttackRange::CORPS_RANGE_MAX); i++) {
 		rangeList[i].shrink_to_fit();
 	}
 
