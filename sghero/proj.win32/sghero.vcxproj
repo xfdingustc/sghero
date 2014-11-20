@@ -208,6 +208,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\SGSStrategyStay.h" />
     <ClInclude Include="..\Classes\SGSTerrain.h" />
     <ClInclude Include="..\Classes\SGSSwitchScene.h" />
+    <ClInclude Include="..\Classes\SGSTimeInterval.h" />
     <ClInclude Include="..\Classes\SGValue.h" />
     <ClInclude Include="..\Classes\SGWeaponBase.h" />
     <ClInclude Include="..\Classes\SGWeaponRepo.h" />

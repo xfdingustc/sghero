@@ -17,8 +17,10 @@ public:
   unsigned int what() const;
 
   void setInt(const char* name, int value);
+  void setFloat(const char* name, float value);
   void setPtr(const char* name, void* value);
   bool getInt(const char* name, int* value);
+  bool getFloat(const char* name, float* value);
   bool getPtr(const char* name, void** value);
 
   void post();

@@ -99,7 +99,7 @@ public:
  
   void            moveOneStep(SGSPointList* path);
   void            moveOneStepFinished(Node* node, void* ptr);
-  void            moveTo(SGSPoint* target_pos);
+  float           moveTo(SGSPoint* target_pos);
   void            oneAIMove(const SGSHeroActionFinishedCallback& callback, SGSTerrain* terrain);
 
   void            setActionFinishedCallback(const SGSHeroActionFinishedCallback& callback);
@@ -127,12 +127,16 @@ private:
     kWhatAttack,
     kWhatDefensed,
     kWhatMove,
+    kWhatDelay,
   };
+
   void            handleMessage(SGMessage* message);
 
   void            onAttack(SGMessage* message);
+  void            onDelay(SGMessage* message);
   void            onMoveTo(SGMessage* message);
 
+  void            startUpdate(float dt);
   void            updataSprite(); 
   HERO_AI         __ai;
   int             __agility;

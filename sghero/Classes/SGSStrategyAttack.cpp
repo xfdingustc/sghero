@@ -98,14 +98,10 @@ bool SGSStrategyAttack::oneMove(SGSHero* hero)
     log("%s is going to attack %s ", hero->getName().c_str(), best_assaultable_hero->getName().c_str());
     SGSPoint best_attacked_point = findBestAttackPoint(hero, best_assaultable_hero);
     hero->moveTo(&best_attacked_point);
-#if 0
-    hero->attackHero(best_assaultable_hero);
-#else
     LuaEngine* pEngine = LuaEngine::getInstance();
     pEngine->getLuaStack()->pushObject(hero, "SGSHero");
     //pEngine->getLuaStack()->pushObject(best_assaultable_hero, "SGHero");
     pEngine->executeGlobalFunction("HeroAttack", 1);
-#endif
     return true;
   } else {
     return true;

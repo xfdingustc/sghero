@@ -3,6 +3,7 @@
 #include "SGGlobalSettings.h"
 #include "SGSkirmishScene.h"
 #include "SGSStrategy.h"
+#include "SGSTimeInterval.h"
 #include "SGWeaponBase.h"
 #include "SGCorpsRange.h"
 
@@ -95,7 +96,7 @@ bool SGSHero::init(const char* hero_name, HERO_SIDE side)
   __ai = HERO_AI_ATTACK;
   initDataNum();
 
-  scheduleUpdate();
+  startUpdate(0.0f);
   return true;
   
 }
@@ -410,7 +411,7 @@ void SGSHero::moveOneStep(SGSPointList* path)
   log("%s move one step to %d %d", this->getName().c_str(), target_pos.x, target_pos.y);
 
   stopAllActions();
-  int actualDuration = 0.8f;
+  int actualDuration = SGS_HERO_MOVE_ONE_STEP_TIME;
   FiniteTimeAction *actionMove = MoveTo::create(actualDuration, SGSPoint::mapPos2OpenGLPos(target_pos));
   __CCCallFuncND * funcall= __CCCallFuncND::create(this, callfuncND_selector(SGSHero::moveOneStepFinished, this), path);
   FiniteTimeAction* moveWithCallback = Sequence::create(actionMove, funcall, NULL);
@@ -427,13 +428,19 @@ void SGSHero::moveOneStepFinished(Node* node, void* ptr)
 }
 
 
-void SGSHero::moveTo(SGSPoint* target_pos)
+float SGSHero::moveTo(SGSPoint* target_pos)
 {
   SGMessage* message = new SGMessage(kWhatMove, this);
   message->setInt("x", target_pos->x);
   message->setInt("y", target_pos->y);
   message->post();
-
+  SGSPointList& path = __terrain->calcShortestPath(this, *target_pos);
+  int steps = path.size();
+  float delay = steps * SGS_HERO_MOVE_ONE_STEP_TIME;
+  SGMessage* delay_message = new SGMessage(kWhatDelay, this);
+  delay_message->setFloat("time", delay);
+  delay_message->post();
+  return delay;
 }
 
 
@@ -695,6 +702,9 @@ void SGSHero::handleMessage(SGMessage* message)
   case kWhatMove:
     onMoveTo(message);
     break;
+  case kWhatDelay:
+    onDelay(message);
+    break;
   default:
     break;
   }
@@ -710,6 +720,14 @@ void SGSHero::onAttack(SGMessage* message)
   Animate* attack_animate = this->getAttackAnimate();
   this->stopAllActions();
   this->runAction(attack_animate);
+}
+
+void SGSHero::onDelay(SGMessage* message)
+{
+  float time;
+  message->getFloat("time", &time);
+  unscheduleUpdate();
+  scheduleOnce(schedule_selector(SGSHero::startUpdate), time);
 }
 
 void SGSHero::onMoveTo(SGMessage* message)
@@ -745,6 +763,13 @@ void SGSHero::update(float dt)
   __msg_list.pop_front();
 
 }
+
+
+void SGSHero::startUpdate(float dt)
+{
+  scheduleUpdate();
+}
+
 void SGSHero::updataSprite()
 {
   faceTo(__direction);

@@ -45,6 +45,15 @@ void SGMessage::setInt(const char* name, int value)
 
 }
 
+void SGMessage::setFloat(const char* name, float value)
+{
+  SGHash name_hash = getHashFromString(name);
+
+  SGValue* new_value = new SGValue();
+  new_value->setData(SGValue::SG_TYPE_FLOAT, &value, sizeof(value));
+
+  __items.insert(std::pair<SGHash, SGValue*>(name_hash, new_value));
+}
 
 void SGMessage::setPtr(const char* name, void *value) {
   SGHash field_hash = getHashFromString(name);
@@ -84,7 +93,33 @@ void SGMessage::setPtr(const char* name, void *value) {
    return true;
  }
 
+ bool SGMessage::getFloat(const char* name, float* value)
+ {
+   SGHash field_hash = getHashFromString(name);
 
+   std::map<SGHash, SGValue*>::iterator it;
+
+   it = __items.find(field_hash);
+   if (it == __items.end()) {
+     return false;
+   }
+
+   SGValue* found_value = it->second;
+
+   unsigned int size = 0;
+   const void* data;
+   SGValue::SGValueType type;
+
+   found_value->getData(&type, &data, &size);
+   if (type != SGValue::SG_TYPE_FLOAT) {
+     return false;
+   }
+
+
+   *value = *((float*)(data));
+
+   return true;
+ }
  bool SGMessage::getPtr(const char* name, void **value) {
    SGHash field_hash = getHashFromString(name);
 

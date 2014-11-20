@@ -485,8 +485,7 @@ bool SGSkirmishScene::onHandleEventHeroMove(tinyxml2::XMLElement* event)
   int x = atoi(event->Attribute("x"));
   int y = atoi(event->Attribute("y"));
   SGSHero* hero = (SGSHero*)this->getChildByName(hero_name);
-  hero->moveTo(&(SGSPoint(x, y)));
-  delay(10);
+  delay(hero->moveTo(&(SGSPoint(x, y))));
   std::string direction = event->Attribute("face");
   return true;
 }
@@ -495,7 +494,7 @@ bool SGSkirmishScene::onHandleEventHeroMove(tinyxml2::XMLElement* event)
 bool SGSkirmishScene::onHandleEventDelay(tinyxml2::XMLElement* event)
 {
   float time = float(atoi(event->Attribute("time"))) ;
-  delay(time);
+  delay(time*0.1f);
   return true;
 }
 
@@ -680,7 +679,7 @@ void SGSkirmishScene::checkTests()
 void SGSkirmishScene::delay(float time)
 {
   stopSkirmish();
-  scheduleOnce(schedule_selector(SGSkirmishScene::startSkirmish), time*0.1f);
+  scheduleOnce(schedule_selector(SGSkirmishScene::startSkirmish), time);
 }
 
 void SGSkirmishScene::gameLogic()

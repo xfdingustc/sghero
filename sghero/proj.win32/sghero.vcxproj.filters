@@ -260,6 +260,9 @@
     <ClInclude Include="..\Classes\lua-bindings\lua_sgshero_auto.hpp">
       <Filter>Classes\lua-binding</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\SGSTimeInterval.h">
+      <Filter>Classes\SGSkirmishScene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
