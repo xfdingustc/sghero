@@ -8,6 +8,7 @@
 -- @function [parent=#SGSHero] moveTo 
 -- @param self
 -- @param #SGSPoint sgspoint
+-- @return float#float ret (return value: float)
         
 --------------------------------
 -- @function [parent=#SGSHero] getStatus 
@@ -108,6 +109,11 @@
 -- @param #bool bool
         
 --------------------------------
+-- @function [parent=#SGSHero] setTerrain 
+-- @param self
+-- @param #cc.SGSTerrain sgsterrain
+        
+--------------------------------
 -- @function [parent=#SGSHero] attackActionFinished 
 -- @param self
 -- @param #cc.Node node
@@ -118,9 +124,8 @@
 -- @param self
         
 --------------------------------
--- @function [parent=#SGSHero] setTerrain 
+-- @function [parent=#SGSHero] attacked 
 -- @param self
--- @param #cc.SGSTerrain sgsterrain
         
 --------------------------------
 -- @function [parent=#SGSHero] initActions 

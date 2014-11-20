@@ -178,7 +178,6 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\lua-bindings\lua_sgshero_auto.hpp" />
     <ClInclude Include="..\Classes\SGCorpsRange.h" />
     <ClInclude Include="..\Classes\SGCorpsRepo.h" />
-    <ClInclude Include="..\Classes\SGCorpsType.h" />
     <ClInclude Include="..\Classes\SGDramaScene.h" />
     <ClInclude Include="..\Classes\SGDramaSceneChapterScene.h" />
     <ClInclude Include="..\Classes\SGHash.h" />

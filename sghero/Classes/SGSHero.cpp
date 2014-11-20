@@ -32,6 +32,16 @@ void SGSHero::attackHero(SGSHero* defense_hero)
   SGMessage* message = new SGMessage(kWhatAttack, this);
   message->setPtr("defender", defense_hero);
   message->post();
+  addDelay(SGS_HERO_ATTACK_ACTION_DURATION);
+  return;
+}
+
+void SGSHero::attacked()
+{
+  SGMessage* message = new SGMessage(kWhatAttacked, this);
+  message->post();
+  addDelay(SGS_HERO_ATTACK_ACTION_DURATION);
+  return;
 }
 
 void SGSHero::counterAttackFinished(Node* hero, void* ptr)
@@ -211,7 +221,7 @@ bool SGSHero::initAttackActions()
   animFrames_south->pushBack(__attack_sprite_frames.at(1));
   animFrames_south->pushBack(__attack_sprite_frames.at(2));
   animFrames_south->pushBack(__attack_sprite_frames.at(3));
-  Animation* animation_south = Animation::createWithSpriteFrames(*animFrames_south, 0.2f);
+  Animation* animation_south = Animation::createWithSpriteFrames(*animFrames_south, SGS_HERO_ATTACK_ACTION_INTERVAL);
   Animate* animate_south = Animate::create(animation_south);
   animate_south->retain();
   std::string animate_name = "attack_south";
@@ -222,7 +232,7 @@ bool SGSHero::initAttackActions()
   animFrames_north->pushBack(__attack_sprite_frames.at(5));
   animFrames_north->pushBack(__attack_sprite_frames.at(6));
   animFrames_north->pushBack(__attack_sprite_frames.at(7));
-  Animation* animation_north = Animation::createWithSpriteFrames(*animFrames_north, 0.2f);
+  Animation* animation_north = Animation::createWithSpriteFrames(*animFrames_north, SGS_HERO_ATTACK_ACTION_INTERVAL);
   Animate* animate_north = Animate::create(animation_north);
   animate_north->retain();
   animate_name = "attack_north";
@@ -233,7 +243,7 @@ bool SGSHero::initAttackActions()
   animFrames_west->pushBack(__attack_sprite_frames.at(9));
   animFrames_west->pushBack(__attack_sprite_frames.at(10));
   animFrames_west->pushBack(__attack_sprite_frames.at(11));
-  Animation* animation_west = Animation::createWithSpriteFrames(*animFrames_west, 0.2f);
+  Animation* animation_west = Animation::createWithSpriteFrames(*animFrames_west, SGS_HERO_ATTACK_ACTION_INTERVAL);
   Animate* animate_west = Animate::create(animation_west);
   animate_west->retain();
   animate_name = "attack_west";
@@ -437,9 +447,7 @@ float SGSHero::moveTo(SGSPoint* target_pos)
   SGSPointList& path = __terrain->calcShortestPath(this, *target_pos);
   int steps = path.size();
   float delay = steps * SGS_HERO_MOVE_ONE_STEP_TIME;
-  SGMessage* delay_message = new SGMessage(kWhatDelay, this);
-  delay_message->setFloat("time", delay);
-  delay_message->post();
+  addDelay(delay);
   return delay;
 }
 
@@ -566,6 +574,13 @@ void SGSHero::doAction(const char* action)
     Animate* animate = __animate_map[action_name];
     RepeatForever* animate_repeat = RepeatForever::create(animate);
   }
+}
+
+void SGSHero::addDelay(float delay)
+{
+  SGMessage* delay_message = new SGMessage(kWhatDelay, this);
+  delay_message->setFloat("time", delay);
+  delay_message->post();
 }
 
 SGSHero::HERO_DIRECTION SGSHero::getDirection(const char* direction)
@@ -699,6 +714,9 @@ void SGSHero::handleMessage(SGMessage* message)
   case kWhatAttack:
     onAttack(message);
     break;
+  case kWhatAttacked:
+    onAttacked(message);
+    break;
   case kWhatMove:
     onMoveTo(message);
     break;
@@ -720,6 +738,11 @@ void SGSHero::onAttack(SGMessage* message)
   Animate* attack_animate = this->getAttackAnimate();
   this->stopAllActions();
   this->runAction(attack_animate);
+}
+
+void SGSHero::onAttacked(SGMessage* message)
+{
+  this->doAction("attacked");
 }
 
 void SGSHero::onDelay(SGMessage* message)

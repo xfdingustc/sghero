@@ -1,6 +1,0 @@
-function HeroAttack(attacker, defender)
-	
-	attacker:doAttackAction();
-	
-	
-end

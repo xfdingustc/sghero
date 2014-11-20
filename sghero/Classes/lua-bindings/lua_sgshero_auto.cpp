@@ -38,8 +38,9 @@ int lua_SGSHero_SGSHero_moveTo(lua_State* tolua_S)
         ok &= luaval_to_object<SGSPoint>(tolua_S, 2, "SGSPoint",&arg0);
         if(!ok)
             return 0;
-        cobj->moveTo(arg0);
-        return 0;
+        double ret = cobj->moveTo(arg0);
+        tolua_pushnumber(tolua_S,(lua_Number)ret);
+        return 1;
     }
     CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "moveTo",argc, 1);
     return 0;
@@ -890,6 +891,52 @@ int lua_SGSHero_SGSHero_setActive(lua_State* tolua_S)
 
     return 0;
 }
+int lua_SGSHero_SGSHero_setTerrain(lua_State* tolua_S)
+{
+    int argc = 0;
+    cocos2d::SGSHero* cobj = nullptr;
+    bool ok  = true;
+
+#if COCOS2D_DEBUG >= 1
+    tolua_Error tolua_err;
+#endif
+
+
+#if COCOS2D_DEBUG >= 1
+    if (!tolua_isusertype(tolua_S,1,"cc.SGSHero",0,&tolua_err)) goto tolua_lerror;
+#endif
+
+    cobj = (cocos2d::SGSHero*)tolua_tousertype(tolua_S,1,0);
+
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
+    {
+        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_SGSHero_SGSHero_setTerrain'", nullptr);
+        return 0;
+    }
+#endif
+
+    argc = lua_gettop(tolua_S)-1;
+    if (argc == 1) 
+    {
+        cocos2d::SGSTerrain* arg0;
+
+        ok &= luaval_to_object<cocos2d::SGSTerrain>(tolua_S, 2, "cc.SGSTerrain",&arg0);
+        if(!ok)
+            return 0;
+        cobj->setTerrain(arg0);
+        return 0;
+    }
+    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "setTerrain",argc, 1);
+    return 0;
+
+#if COCOS2D_DEBUG >= 1
+    tolua_lerror:
+    tolua_error(tolua_S,"#ferror in function 'lua_SGSHero_SGSHero_setTerrain'.",&tolua_err);
+#endif
+
+    return 0;
+}
 int lua_SGSHero_SGSHero_attackActionFinished(lua_State* tolua_S)
 {
     int argc = 0;
@@ -982,7 +1029,7 @@ int lua_SGSHero_SGSHero_initDataNum(lua_State* tolua_S)
 
     return 0;
 }
-int lua_SGSHero_SGSHero_setTerrain(lua_State* tolua_S)
+int lua_SGSHero_SGSHero_attacked(lua_State* tolua_S)
 {
     int argc = 0;
     cocos2d::SGSHero* cobj = nullptr;
@@ -1002,28 +1049,25 @@ int lua_SGSHero_SGSHero_setTerrain(lua_State* tolua_S)
 #if COCOS2D_DEBUG >= 1
     if (!cobj) 
     {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_SGSHero_SGSHero_setTerrain'", nullptr);
+        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_SGSHero_SGSHero_attacked'", nullptr);
         return 0;
     }
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 0) 
     {
-        cocos2d::SGSTerrain* arg0;
-
-        ok &= luaval_to_object<cocos2d::SGSTerrain>(tolua_S, 2, "cc.SGSTerrain",&arg0);
         if(!ok)
             return 0;
-        cobj->setTerrain(arg0);
+        cobj->attacked();
         return 0;
     }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "setTerrain",argc, 1);
+    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "attacked",argc, 0);
     return 0;
 
 #if COCOS2D_DEBUG >= 1
     tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_SGSHero_SGSHero_setTerrain'.",&tolua_err);
+    tolua_error(tolua_S,"#ferror in function 'lua_SGSHero_SGSHero_attacked'.",&tolua_err);
 #endif
 
     return 0;
@@ -1868,9 +1912,10 @@ int lua_register_SGSHero_SGSHero(lua_State* tolua_S)
         tolua_function(tolua_S,"setStatus",lua_SGSHero_SGSHero_setStatus);
         tolua_function(tolua_S,"init",lua_SGSHero_SGSHero_init);
         tolua_function(tolua_S,"setActive",lua_SGSHero_SGSHero_setActive);
+        tolua_function(tolua_S,"setTerrain",lua_SGSHero_SGSHero_setTerrain);
         tolua_function(tolua_S,"attackActionFinished",lua_SGSHero_SGSHero_attackActionFinished);
         tolua_function(tolua_S,"initDataNum",lua_SGSHero_SGSHero_initDataNum);
-        tolua_function(tolua_S,"setTerrain",lua_SGSHero_SGSHero_setTerrain);
+        tolua_function(tolua_S,"attacked",lua_SGSHero_SGSHero_attacked);
         tolua_function(tolua_S,"initActions",lua_SGSHero_SGSHero_initActions);
         tolua_function(tolua_S,"getSide",lua_SGSHero_SGSHero_getSide);
         tolua_function(tolua_S,"update",lua_SGSHero_SGSHero_update);

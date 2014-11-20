@@ -251,9 +251,6 @@
     <ClInclude Include="..\Classes\SGCorpsRepo.h">
       <Filter>Classes\SGCorps</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\SGCorpsType.h">
-      <Filter>Classes\SGCorps</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\SGCorpsRange.h">
       <Filter>Classes\SGCorps</Filter>
     </ClInclude>

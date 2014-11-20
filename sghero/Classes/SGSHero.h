@@ -60,6 +60,7 @@ public:
   
   void            attackActionFinished(Node* hero, void* ptr);
   void            attackHero(SGSHero* defense_hero);
+  void            attacked();
   void            counterAttackFinished(Node* hero, void* ptr);
   static          SGSHero* create(const char* hero_name, HERO_SIDE side, SGObserver* observer);
   explicit        SGSHero(SGObserver* observer) : SGSObj(observer) {}
@@ -118,6 +119,7 @@ public:
 private:
   typedef std::map<std::string, Animate*> ANIMATE_MAP;
   
+  void            addDelay(float delay);
   HERO_DIRECTION  getDirection(const char* direction);
   std::string&    getHeroResFile(const char* res_dir);
   HERO_DIRECTION  getRelativeDirection(SGSPoint& point);
@@ -125,6 +127,7 @@ private:
 
   enum {
     kWhatAttack,
+    kWhatAttacked,
     kWhatDefensed,
     kWhatMove,
     kWhatDelay,
@@ -133,6 +136,7 @@ private:
   void            handleMessage(SGMessage* message);
 
   void            onAttack(SGMessage* message);
+  void            onAttacked(SGMessage* message);
   void            onDelay(SGMessage* message);
   void            onMoveTo(SGMessage* message);
 
