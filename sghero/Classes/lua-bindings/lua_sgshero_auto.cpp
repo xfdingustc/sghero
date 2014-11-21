@@ -409,56 +409,6 @@ int lua_SGSHero_SGSHero_isRival(lua_State* tolua_S)
 
     return 0;
 }
-int lua_SGSHero_SGSHero_setActionFinishedCallback(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::SGSHero* cobj = nullptr;
-    bool ok  = true;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"cc.SGSHero",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    cobj = (cocos2d::SGSHero*)tolua_tousertype(tolua_S,1,0);
-
-#if COCOS2D_DEBUG >= 1
-    if (!cobj) 
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_SGSHero_SGSHero_setActionFinishedCallback'", nullptr);
-        return 0;
-    }
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
-    {
-        std::function<void ()> arg0;
-
-        do {
-			// Lambda binding for lua is not supported.
-			assert(false);
-		} while(0)
-		;
-        if(!ok)
-            return 0;
-        cobj->setActionFinishedCallback(arg0);
-        return 0;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "setActionFinishedCallback",argc, 1);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_SGSHero_SGSHero_setActionFinishedCallback'.",&tolua_err);
-#endif
-
-    return 0;
-}
 int lua_SGSHero_SGSHero_getWalkAnimate(lua_State* tolua_S)
 {
     int argc = 0;
@@ -622,24 +572,17 @@ int lua_SGSHero_SGSHero_oneAIMove(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 2) 
+    if (argc == 1) 
     {
-        std::function<void ()> arg0;
-        cocos2d::SGSTerrain* arg1;
+        cocos2d::SGSTerrain* arg0;
 
-        do {
-			// Lambda binding for lua is not supported.
-			assert(false);
-		} while(0)
-		;
-
-        ok &= luaval_to_object<cocos2d::SGSTerrain>(tolua_S, 3, "cc.SGSTerrain",&arg1);
+        ok &= luaval_to_object<cocos2d::SGSTerrain>(tolua_S, 2, "cc.SGSTerrain",&arg0);
         if(!ok)
             return 0;
-        cobj->oneAIMove(arg0, arg1);
+        cobj->oneAIMove(arg0);
         return 0;
     }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "oneAIMove",argc, 2);
+    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "oneAIMove",argc, 1);
     return 0;
 
 #if COCOS2D_DEBUG >= 1
@@ -933,55 +876,6 @@ int lua_SGSHero_SGSHero_setTerrain(lua_State* tolua_S)
 #if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_SGSHero_SGSHero_setTerrain'.",&tolua_err);
-#endif
-
-    return 0;
-}
-int lua_SGSHero_SGSHero_attackActionFinished(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::SGSHero* cobj = nullptr;
-    bool ok  = true;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"cc.SGSHero",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    cobj = (cocos2d::SGSHero*)tolua_tousertype(tolua_S,1,0);
-
-#if COCOS2D_DEBUG >= 1
-    if (!cobj) 
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_SGSHero_SGSHero_attackActionFinished'", nullptr);
-        return 0;
-    }
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 2) 
-    {
-        cocos2d::Node* arg0;
-        void* arg1;
-
-        ok &= luaval_to_object<cocos2d::Node>(tolua_S, 2, "cc.Node",&arg0);
-
-        #pragma warning NO CONVERSION TO NATIVE FOR void*;
-        if(!ok)
-            return 0;
-        cobj->attackActionFinished(arg0, arg1);
-        return 0;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "attackActionFinished",argc, 2);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_SGSHero_SGSHero_attackActionFinished'.",&tolua_err);
 #endif
 
     return 0;
@@ -1757,55 +1651,6 @@ int lua_SGSHero_SGSHero_moveOneStep(lua_State* tolua_S)
 
     return 0;
 }
-int lua_SGSHero_SGSHero_counterAttackFinished(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::SGSHero* cobj = nullptr;
-    bool ok  = true;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-#if COCOS2D_DEBUG >= 1
-    if (!tolua_isusertype(tolua_S,1,"cc.SGSHero",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    cobj = (cocos2d::SGSHero*)tolua_tousertype(tolua_S,1,0);
-
-#if COCOS2D_DEBUG >= 1
-    if (!cobj) 
-    {
-        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_SGSHero_SGSHero_counterAttackFinished'", nullptr);
-        return 0;
-    }
-#endif
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 2) 
-    {
-        cocos2d::Node* arg0;
-        void* arg1;
-
-        ok &= luaval_to_object<cocos2d::Node>(tolua_S, 2, "cc.Node",&arg0);
-
-        #pragma warning NO CONVERSION TO NATIVE FOR void*;
-        if(!ok)
-            return 0;
-        cobj->counterAttackFinished(arg0, arg1);
-        return 0;
-    }
-    CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "counterAttackFinished",argc, 2);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_SGSHero_SGSHero_counterAttackFinished'.",&tolua_err);
-#endif
-
-    return 0;
-}
 int lua_SGSHero_SGSHero_create(lua_State* tolua_S)
 {
     int argc = 0;
@@ -1902,7 +1747,6 @@ int lua_register_SGSHero_SGSHero(lua_State* tolua_S)
         tolua_function(tolua_S,"getLuck",lua_SGSHero_SGSHero_getLuck);
         tolua_function(tolua_S,"getRelativeDirection",lua_SGSHero_SGSHero_getRelativeDirection);
         tolua_function(tolua_S,"isRival",lua_SGSHero_SGSHero_isRival);
-        tolua_function(tolua_S,"setActionFinishedCallback",lua_SGSHero_SGSHero_setActionFinishedCallback);
         tolua_function(tolua_S,"getWalkAnimate",lua_SGSHero_SGSHero_getWalkAnimate);
         tolua_function(tolua_S,"setDirection",lua_SGSHero_SGSHero_setDirection);
         tolua_function(tolua_S,"getAI",lua_SGSHero_SGSHero_getAI);
@@ -1913,7 +1757,6 @@ int lua_register_SGSHero_SGSHero(lua_State* tolua_S)
         tolua_function(tolua_S,"init",lua_SGSHero_SGSHero_init);
         tolua_function(tolua_S,"setActive",lua_SGSHero_SGSHero_setActive);
         tolua_function(tolua_S,"setTerrain",lua_SGSHero_SGSHero_setTerrain);
-        tolua_function(tolua_S,"attackActionFinished",lua_SGSHero_SGSHero_attackActionFinished);
         tolua_function(tolua_S,"initDataNum",lua_SGSHero_SGSHero_initDataNum);
         tolua_function(tolua_S,"attacked",lua_SGSHero_SGSHero_attacked);
         tolua_function(tolua_S,"initActions",lua_SGSHero_SGSHero_initActions);
@@ -1931,7 +1774,6 @@ int lua_register_SGSHero_SGSHero(lua_State* tolua_S)
         tolua_function(tolua_S,"getCommand",lua_SGSHero_SGSHero_getCommand);
         tolua_function(tolua_S,"doAction",lua_SGSHero_SGSHero_doAction);
         tolua_function(tolua_S,"moveOneStep",lua_SGSHero_SGSHero_moveOneStep);
-        tolua_function(tolua_S,"counterAttackFinished",lua_SGSHero_SGSHero_counterAttackFinished);
         tolua_function(tolua_S,"create", lua_SGSHero_SGSHero_create);
     tolua_endmodule(tolua_S);
     std::string typeName = typeid(cocos2d::SGSHero).name();

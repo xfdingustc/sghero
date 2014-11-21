@@ -780,7 +780,7 @@ bool SGSkirmishScene::gameLogicEnemyTurn()
 bool SGSkirmishScene::gameLogicMoveOneHero(SGSHero* hero)
 {
   stopSkirmish();
-  hero->oneAIMove(std::bind(&SGSkirmishScene::strategyOneMoveFinished, this), __terrain);
+  hero->oneAIMove(__terrain);
   return true;
 }
 
@@ -795,10 +795,7 @@ void SGSkirmishScene::showHeroAvailabePath(SGSHero* hero)
   area->show();
 }
 
-void SGSkirmishScene::strategyOneMoveFinished()
-{
-  startSkirmish(1.0f);
-}
+
 
 
 SGSHero* SGSkirmishScene::getHero(SGSHeroList& list)

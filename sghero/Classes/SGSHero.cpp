@@ -9,23 +9,6 @@
 
 
 NS_CC_BEGIN
-SGSHeroActionFinishedCallback SGSHero::__action_finished_callback;
-
-
-void SGSHero::attackActionFinished(Node* hero, void* ptr)
-{
-  SGSHero* enemy_hero = (SGSHero*)ptr;
-
-  // counterattack
-  enemy_hero->setDirection(enemy_hero->getRelativeDirection(this));
-  Animate* counter_attack_animate = enemy_hero->getAttackAnimate();
-  __CCCallFuncND * funcall= __CCCallFuncND::create(enemy_hero, callfuncND_selector(SGSHero::counterAttackFinished, this), this);
-  FiniteTimeAction* counterAttackWithCallback = Sequence::create(counter_attack_animate, funcall, NULL);
-  enemy_hero->stopAllActions();
-  enemy_hero->runAction(counterAttackWithCallback);
-  this->doAction("attacked");
-}
-
 
 void SGSHero::attackHero(SGSHero* defense_hero)
 {
@@ -44,18 +27,6 @@ void SGSHero::attacked()
   return;
 }
 
-void SGSHero::counterAttackFinished(Node* hero, void* ptr)
-{
-  SGSHero* enemy_hero = (SGSHero*)ptr;
-  enemy_hero->updataSprite();  
-  enemy_hero->setActive(false);
-
-  log("%s %s", this->getName().c_str(), enemy_hero->getName().c_str());
-  updataSprite();
-  if (SGSHero::__action_finished_callback) {
-    SGSHero::__action_finished_callback();
-  }
-}
 
 
 SGSHero* SGSHero::create(const char* hero_name, HERO_SIDE side, SGObserver* observer)
@@ -454,17 +425,13 @@ float SGSHero::moveTo(SGSPoint* target_pos)
 
 
 
-void SGSHero::oneAIMove(const SGSHeroActionFinishedCallback& callback, SGSTerrain* terrain)
+void SGSHero::oneAIMove(SGSTerrain* terrain)
 {
-  setActionFinishedCallback(callback);
   HERO_AI hero_ai = getAI();
   SGSStrategy* strategy = SGSStrategy::createStrategy(hero_ai, terrain);
   bool ret = strategy->oneMove(this);
   if (ret) {
     setActive(false);
-    if (SGSHero::__action_finished_callback) {
-      __action_finished_callback();
-    }
   }
   
 }
@@ -676,10 +643,6 @@ SGSPointList* SGSHero::getAttackAreaFromPosition(SGSPoint* pos)
   return &point_list;
 }
 
-void  SGSHero::setActionFinishedCallback(const SGSHeroActionFinishedCallback& callback)
-{
-  SGSHero::__action_finished_callback = callback;
-}
 
 void SGSHero::setActive(bool active)
 {

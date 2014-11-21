@@ -51,7 +51,4 @@ int register_all_SGSHero(lua_State* tolua_S);
 
 
 
-
-
-
 #endif // __SGSHero_h__

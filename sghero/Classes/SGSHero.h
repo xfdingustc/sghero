@@ -58,10 +58,9 @@ public:
     HERO_STATUS_CHAOS,
   } HERO_STATUS;
   
-  void            attackActionFinished(Node* hero, void* ptr);
+
   void            attackHero(SGSHero* defense_hero);
   void            attacked();
-  void            counterAttackFinished(Node* hero, void* ptr);
   static          SGSHero* create(const char* hero_name, HERO_SIDE side, SGObserver* observer);
   explicit        SGSHero(SGObserver* observer) : SGSObj(observer) {}
 
@@ -101,9 +100,8 @@ public:
   void            moveOneStep(SGSPointList* path);
   void            moveOneStepFinished(Node* node, void* ptr);
   float           moveTo(SGSPoint* target_pos);
-  void            oneAIMove(const SGSHeroActionFinishedCallback& callback, SGSTerrain* terrain);
+  void            oneAIMove(SGSTerrain* terrain);
 
-  void            setActionFinishedCallback(const SGSHeroActionFinishedCallback& callback);
   void            setActive(bool active); 
   void            setAI(HERO_AI ai) { __ai = ai; }
   void            setAI(std::string& ai);
@@ -170,7 +168,6 @@ private:
   Vector<SpriteFrame*> __attack_sprite_frames;
   Vector<SpriteFrame*> __spec_sprite_frames;
 
-  static SGSHeroActionFinishedCallback __action_finished_callback;
   
 };
 

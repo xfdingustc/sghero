@@ -57,7 +57,6 @@ private:
   void setAttackedHero(SGSHero* hero);
   void setSeletedHero(SGSHero* hero);
   void showHeroAvailabePath(SGSHero* hero);
-  void strategyOneMoveFinished();
   void switchToNextRound();
 
   bool onHandleSettingMap(tinyxml2::XMLElement* setting);

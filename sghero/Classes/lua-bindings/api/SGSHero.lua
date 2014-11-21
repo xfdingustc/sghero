@@ -52,11 +52,6 @@
 -- @return bool#bool ret (return value: bool)
         
 --------------------------------
--- @function [parent=#SGSHero] setActionFinishedCallback 
--- @param self
--- @param #function func
-        
---------------------------------
 -- @function [parent=#SGSHero] getWalkAnimate 
 -- @param self
 -- @param #int hero_direction
@@ -75,7 +70,6 @@
 --------------------------------
 -- @function [parent=#SGSHero] oneAIMove 
 -- @param self
--- @param #function func
 -- @param #cc.SGSTerrain sgsterrain
         
 --------------------------------
@@ -112,12 +106,6 @@
 -- @function [parent=#SGSHero] setTerrain 
 -- @param self
 -- @param #cc.SGSTerrain sgsterrain
-        
---------------------------------
--- @function [parent=#SGSHero] attackActionFinished 
--- @param self
--- @param #cc.Node node
--- @param #void void
         
 --------------------------------
 -- @function [parent=#SGSHero] initDataNum 
@@ -204,12 +192,6 @@
 -- @function [parent=#SGSHero] moveOneStep 
 -- @param self
 -- @param #array_table array
-        
---------------------------------
--- @function [parent=#SGSHero] counterAttackFinished 
--- @param self
--- @param #cc.Node node
--- @param #void void
         
 --------------------------------
 -- @function [parent=#SGSHero] create 
